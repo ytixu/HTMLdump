@@ -3,21 +3,24 @@ var quest = document.getElementById("question");
 var div = document.getElementById("ans");
 var result = document.getElementById("result");
 var score = document.getElementById("score");
+var done = document.getElementById("quest");
 var button;
 var points = 0;
 var questtaked = 0;
 var firstClick = true;
 
-falseAns = function() {
-	result.innerHTML = "That's wrong, you morron!";
+falseAns = function(name) {
+	result.innerHTML = "Try again!";
 	if (firstClick) score.innerHTML = (points/questtaked).toFixed(2);
 	firstClick = false;
+	document.getElementById(name).setAttribute("class","wrong");
 }
 
-rightAns = function() {
+rightAns = function(name) {
 	result.innerHTML = "Right!";
 	if (firstClick) score.innerHTML = ((++points)/questtaked).toFixed(2);
 	firstClick = false;
+	document.getElementById(name).setAttribute("class","right");
 }
 
 start = function() {
@@ -32,6 +35,7 @@ createButton = function(name, func){
 	b.setAttribute("onclick",func);
 	b.type = "button";
 	b.value = name;
+	b.id = name;
 	return b;
 }
 
@@ -51,6 +55,8 @@ next = function(){
 	var ind = Math.floor(Math.random()*dict.length);
 	var indd;
 	var rand = [ind];
+	var temp;
+	done.innerHTML = questtaked;
 	if (Math.random() > 0.5){
 		quest.innerHTML = "Choose the correct word for: ";
 		quest.innerHTML += dict[ind].def[Math.floor(Math.random()*dict[ind].def.length)].bold();
@@ -62,9 +68,11 @@ next = function(){
 				continue;
 			}
 			rand.push(indd);
-			button.push(createButton(dict[indd].word[0], "falseAns()"));
+			temp = dict[indd].word[0];
+			button.push(createButton(temp, "falseAns(\"" + temp + "\")"));
 		}
-		button.push(createButton(dict[ind].word[0], "rightAns()"));
+		temp = dict[ind].word[0];
+		button.push(createButton(temp, "rightAns(\"" + temp + "\")"));
 	}else{
 		quest.innerHTML = "Choose the correct definition for: ";
 		quest.innerHTML += dict[ind].word[0].bold();
@@ -76,9 +84,11 @@ next = function(){
 				continue;
 			}
 			rand.push(indd);
-			button.push(createButton(dict[indd].def[Math.floor(Math.random()*dict[indd].def.length)], "falseAns()"));
+			temp = dict[indd].def[Math.floor(Math.random()*dict[indd].def.length)];
+			button.push(createButton(temp, "falseAns(\"" + temp + "\")"));
 		}
-		button.push(createButton(dict[ind].def[Math.floor(Math.random()*dict[ind].def.length)], "rightAns()"));
+		temp = dict[ind].def[Math.floor(Math.random()*dict[ind].def.length)];
+		button.push(createButton(temp, "rightAns(\"" + temp + "\")"));
 	}
 	var j = Math.floor(Math.random()*6);
 	for (var i=0; i<button.length; i++){

@@ -32,6 +32,12 @@ input.main{
 	width:200;
 	height:50;
 }
+input.wrong{
+	border:2px solid #faa;
+}
+input.right{
+	border:2px solid #aff;
+}
 :focus {outline:none;} ::-moz-focus-inner {border:0;}
 </style>
 
@@ -42,12 +48,13 @@ input.main{
 <input class="main" onclick="start()" type="button" value="START" id="bt"/>
 </br></br>
 <table>
-	<tr><td width="300">
+	<tr><td width="350" >
 		<p id="question"></p>
 		<div id="ans"></div>
 		<p id="result"></p>
-	</td><td valign="top" width="90" align="center">
-		<p>Score: <span id="score">0</span></p>
+	</td><td valign="top" width="90" align="left">
+		<p>S: <span id="score">0</span></p>
+		<p>Q: <span id="quest">0</span></p>
 	</td></tr>
 </table>
 </center>
