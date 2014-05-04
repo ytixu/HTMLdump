@@ -1,0 +1,57 @@
+<html>
+<head><title>Project of the daemon</title>
+
+<style>
+body {
+	background-color:#66aedf;
+}
+p {
+	font-family:"Helvetica";
+	font-size:20px;
+	color:#ffffff;
+}
+input {
+	font-family:"Helvetica";
+	font-size:20px;
+	color:#ffffff;
+	border:0px;
+	width:300;
+	height:70;
+	white-space: normal;
+}
+input[type=button] {
+    background-color:#5b9cc8;
+}
+input[type=button]:hover {
+    background-color:#66aedf;
+}
+input[type=button]:focus {
+   	outline: 0;
+}
+input.main{
+	width:200;
+	height:50;
+}
+:focus {outline:none;} ::-moz-focus-inner {border:0;}
+</style>
+
+</head>
+<body id="body">
+</br></br>
+<center>
+<input class="main" onclick="start()" type="button" value="START" id="bt"/>
+</br></br>
+<table>
+	<tr><td width="300">
+		<p id="question"></p>
+		<div id="ans"></div>
+		<p id="result"></p>
+	</td><td valign="top" width="90" align="center">
+		<p>Score: <span id="score">0</span></p>
+	</td></tr>
+</table>
+</center>
+
+<SCRIPT SRC="theScript.js"></SCRIPT>
+</body>
+</html>
