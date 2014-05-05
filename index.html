@@ -1,5 +1,6 @@
 <html>
 <head><title>Project of the daemon</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"> </script>
 
 <style>
 body {
@@ -41,13 +42,24 @@ input.right{
 input.wdlst{
 	width:40;
 	height:30;
-	background-color:#005a97;
+	background-color:rgba(0,0,0,0);
 	margin: -2;
 	color: #d8e1e7;
 }
 input.wdlst:hover{
 	background-color:#003c65;
 }
+input.wdlstAct{
+	width:40;
+	height:30;
+	margin: -2;
+	color: #d8e1e7;
+	background-color:#003c65;
+}
+input.wdlstAct:hover{
+	background-color:rgba(0,0,0,0);
+}
+
 :focus {outline:none;} ::-moz-focus-inner {border:0;}
 
 .credit{
@@ -62,6 +74,24 @@ a {
 a:hover {
 	color:#ffffff;
 }
+
+#slider {
+    overflow: hidden;
+    position: relative;
+    background-color:#005a97;
+}
+.rotate{
+	width:50;
+	white-space: nowrap;
+	white-space: pre;
+	position:relative;
+	top:30px;
+	left:2px;
+	-ms-transform:rotate(270deg); /* IE 9 */
+	-moz-transform:rotate(270deg); /* Firefox */
+	-webkit-transform:rotate(270deg); /* Safari and Chrome */
+	-o-transform:rotate(270deg); /* Opera */
+}
 </style>
 
 </head>
@@ -71,14 +101,30 @@ a:hover {
 <input class="main" onclick="start()" type="button" value="START" id="bt"/>
 </br></br>
 <table>
-	<tr><td id="wdlist" width="200" valign="top" align="center">
-		<p align="center">word list</p>
-	</td><td width="350" height="580" valign="top">
+	<tr><td width="250" valign="top" align="right">
+		<table id="slider"><tr><td height="390">
+				<p class="rotate">WORD LIST</p>
+			</td><td>
+				<div id="wdlist" width="200" align="center"></div>
+<script> 
+$('#slider').mouseover(
+	function() {
+      	$('#wdlist').stop().animate({width: "show"}, 500)
+   	})
+   	.mouseout(function() {
+      	$('#wdlist').stop().animate({width: "hide", height: "390px"}, 500)
+   	});
+</script>
+			</td></tr>
+		</table>
+	</td><td width="10"><br></td>
+	<td width="300" height="580" valign="top">
 		<p id="question"></p>
 		<div id="ans"></div>
 		<p id="result"></p>
 		<p id="def"></p>
-	</td><td valign="top" width="90" align="left">
+	</td><td width="10"><br></td>
+	<td valign="top" width="155" align="left">
 		<p>S: <span id="score">0</span></p>
 		<p>Q: <span id="quest">0</span></p>
 	</td></tr>
