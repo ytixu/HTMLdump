@@ -7,7 +7,7 @@ var done = document.getElementById("quest");
 var button;
 var points = 0;
 var questtaked = 0;
-var firstClick = true;
+var firstClick = false;
 
 var wdlstList = [];
 
@@ -20,6 +20,7 @@ createButton = function(name, func){
 	return b;
 }
 
+//delete an element in the list 
 deleteEle = function(ele){
 	for (var i=0; i<wdlstList.length; i++){
 		if (wdlstList[i] == ele){
@@ -64,6 +65,12 @@ rightAns = function(name) {
 	if (firstClick) score.innerHTML = ((++points)/questtaked).toFixed(2);
 	firstClick = false;
 	document.getElementById(name).setAttribute("class","right");
+	var b;
+	for (var i=0; i<button.length; i++){
+		b = document.getElementById(button[i].id);
+		b.id = "disabled";
+		b.setAttribute("onclick", "function() { return false; }");
+	}
 }
 
 start = function() {
@@ -81,6 +88,7 @@ alreadyChosen = function(a, n){
 }
 
 next = function(){
+	if (firstClick) score.innerHTML = (points/questtaked).toFixed(2);
 	div.innerHTML = "";
 	result.innerHTML = "";
 	button = [];
