@@ -39,6 +39,19 @@ input.right{
 	border:2px solid #aff;
 }
 :focus {outline:none;} ::-moz-focus-inner {border:0;}
+
+.credit{
+	font-family:"Helvetica";
+	font-size:15px;
+	color:#dddddd;
+}
+a {
+	font-weight:bold;
+	color:#dddddd;
+}
+a:hover {
+	color:#ffffff;
+}
 </style>
 
 </head>
@@ -48,17 +61,21 @@ input.right{
 <input class="main" onclick="start()" type="button" value="START" id="bt"/>
 </br></br>
 <table>
-	<tr><td width="350" >
+	<tr><td width="350" height="580" valign="top">
 		<p id="question"></p>
 		<div id="ans"></div>
 		<p id="result"></p>
+		<p id="def"></p>
 	</td><td valign="top" width="90" align="left">
 		<p>S: <span id="score">0</span></p>
 		<p>Q: <span id="quest">0</span></p>
 	</td></tr>
 </table>
+<span class="credit">by amadstudent - words taken from <a target="blank" href="http://www.majortests.com/gre/wordlist.php">majortests</a></span>
 </center>
 
-<SCRIPT SRC="theScript.js"></SCRIPT>
+<script type="text/javascript" language="javascript" src="words.js"></script>
+<script type="text/javascript" language="javascript" src="theScript.js"></script>
+
 </body>
 </html>
