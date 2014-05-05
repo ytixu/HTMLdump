@@ -9,7 +9,7 @@ var points = 0;
 var questtaked = 0;
 var firstClick = true;
 
-var wdlst = 0;
+var wdlstList = [];
 
 createButton = function(name, func){
 	var b = document.createElement("input");
@@ -20,13 +20,34 @@ createButton = function(name, func){
 	return b;
 }
 
+deleteEle = function(ele){
+	for (var i=0; i<wdlstList.length; i++){
+		if (wdlstList[i] == ele){
+			for (var j=i; j<wdlstList.length-1; j++){
+				wdlstList[j] = wdlstList[j+1];
+			}
+			wdlstList.splice(wdlstList.length-1, 1);
+			break;
+		}
+	}
+}
+
 changeList = function(lst){
-	wdlst=lst;
+	wdlstList.push(lst);
+	var b = document.getElementById((parseInt(lst)+1).toString());
+	b.setAttribute("class","wdlstAct");
+	b.setAttribute("onclick","changeback("+lst+")");
+}
+changeback = function(lst){
+	deleteEle(lst);
+	var b = document.getElementById((parseInt(lst)+1).toString());
+	b.setAttribute("class","wdlst");
+	b.setAttribute("onclick","changeList("+lst+")");
 }
 
 var l = document.getElementById("wdlist");
 for (var i=0; i<5*15; i++){
-	var b = createButton((i+1).toString(), "changeList("+ i.toString() +")");
+	var b = createButton((i+1).toString(), "changeList("+ (i).toString() +")");
 	b.setAttribute("class", "wdlst");
 	l.appendChild(b);
 }
@@ -65,6 +86,8 @@ next = function(){
 	button = [];
 	firstClick = true;
 	questtaked++;
+	var wdlst = 0;
+	if (wdlstList.length > 0) wdlst = wdlstList[Math.floor(Math.random()*wdlstList.length)];
 	var ind = Math.floor(Math.random()*dict[wdlst].length);
 	var indd;
 	var rand = [ind];
