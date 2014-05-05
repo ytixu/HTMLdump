@@ -108,7 +108,7 @@ a:hover {
 	<tr><td width="250" valign="top" align="right">
 		<table id="slider"><tr><td height="390">
 				<p class="rotate">WORD LIST</p>
-			</td><td>
+			</td><td valign="top">
 				<div id="wdlist" width="200" align="center"></div>
 <script> 
 $('#slider').mouseover(
@@ -116,14 +116,13 @@ $('#slider').mouseover(
       	$('#wdlist').stop().animate({width: "show"}, 500)
    	})
    	.mouseout(function() {
-      	$('#wdlist').stop().animate({width: "hide", height: "390px"}, 500)
+      	$('#wdlist').stop().animate({width: "hide", height: "380px"}, 500)
    	});
 </script>
 			</td></tr>
-		<tr><td>
-			<p id="displayWd"></p>
-		</td></tr>
 		</table>
+		<br>
+		<span id="displayWd" class="credit"></span>
 	</td><td width="10"><br></td>
 	<td width="300" height="580" valign="top">
 		<p id="question">

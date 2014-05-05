@@ -46,10 +46,23 @@ changeback = function(lst){
 	b.setAttribute("onclick","changeList("+lst+")");
 }
 
+displayWords = function(lst){
+	var disp = document.getElementById("displayWd");
+	disp.innerHTML = "";
+	for (var i=0; i<dict[lst].length; i++){
+		disp.innerHTML += dict[lst][i].word[0] + " " ;
+	}
+}
+endDisplayWords = function(){
+	document.getElementById("displayWd").innerHTML = "";
+}
+
 var l = document.getElementById("wdlist");
 for (var i=0; i<5*15; i++){
 	var b = createButton((i+1).toString(), "changeList("+ (i).toString() +")");
 	b.setAttribute("class", "wdlst");
+	b.setAttribute("onmouseover", "displayWords("+ (i).toString() +")");
+	b.setAttribute("onmouseout", "endDisplayWords()");
 	l.appendChild(b);
 }
 

@@ -225,7 +225,7 @@ var dict = [
 			def: ["difficult to understand", "obscure"]
 		},{
 			word: ["Blunderbuss"], 
-			def: ["1. ancient weapon (type of gun)", "2. a clumsy person"]
+			def: ["ancient weapon (type of gun)", "a clumsy person"]
 		},{
 			word: ["Cringe"], 
 			def: ["recoil", "flinch", "shy away"]
@@ -423,7 +423,7 @@ var dict = [
 			def: ["speak ambiguously", "avoid telling the truth"]
 		},{
 			word: ["Hieroglyphics"], 
-			def: ["1. picture writing", "2. writing which is difficult to read or enigmatic"]
+			def: ["picture writing", "writing which is difficult to read or enigmatic"]
 		},{
 			word: ["Larceny"], 
 			def: ["theft", "robbery", "stealing"]
@@ -585,7 +585,7 @@ var dict = [
 			def: ["grossly exaggerated speech"]
 		},{
 			word: ["Legend"], 
-			def: ["1. key to map", " 2. myth or story"]
+			def: ["key to map", " myth or story"]
 		},{
 			word: ["Odious"], 
 			def: ["hateful"]
@@ -933,7 +933,7 @@ var dict = [
 			def: ["talkative"]
 		},{
 			word: ["Ordain"], 
-			def: ["1. destine", "2. confer holy orders on a priest"]
+			def: ["destine", "confer holy orders on a priest"]
 		},{
 			word: ["Precinct"], 
 			def: ["district of a city"]
@@ -1026,10 +1026,10 @@ var dict = [
 			def: ["destitute", "poor"]
 		},{
 			word: ["Lukewarm"], 
-			def: ["1. unenthusiastic", "2. neither hot nor cold"]
+			def: ["unenthusiastic", "neither hot nor cold"]
 		},{
 			word: ["Ossify"], 
-			def: ["1. turn to bone", "2. become fixed and rigid"]
+			def: ["turn to bone", "become fixed and rigid"]
 		},{
 			word: ["Preclude"], 
 			def: ["prevent or make impossible"]
@@ -1374,7 +1374,7 @@ var dict = [
 			def: ["a wrong-doer"]
 		},{
 			word: ["Paradigm"], 
-			def: ["1. example", "2. model", "3. way of looking at things"]
+			def: ["example", "model", "way of looking at things"]
 		},{
 			word: ["Pristine"], 
 			def: ["unspoiled"]
@@ -1431,7 +1431,7 @@ var dict = [
 			def: ["obsessive", "fixated"]
 		},{
 			word: ["Indifferent"], 
-			def: ["1. neutral", " 2. not outstanding"]
+			def: ["neutral", " not outstanding"]
 		},{
 			word: ["Malingerer"], 
 			def: ["person who deliberately tries to avoid work"]
@@ -1497,10 +1497,10 @@ var dict = [
 			def: ["laziness"]
 		},{
 			word: ["Mallet"], 
-			def: ["1. wooden hammer", "2. stick used for polo"]
+			def: ["wooden hammer", "stick used for polo"]
 		},{
 			word: ["Parasite"], 
-			def: ["1. scrounger", "2. animal which takes digested food from another"]
+			def: ["scrounger", "animal which takes digested food from another"]
 		},{
 			word: ["Prodigious"], 
 			def: ["very large"]
@@ -1851,7 +1851,7 @@ var dict = [
 			def: ["one who give support (usually financial)"]
 		},{
 			word: ["Prostration"], 
-			def: ["1. lying face down", "2. be overcome with extreme weakness"]
+			def: ["lying face down", "be overcome with extreme weakness"]
 		},{
 			word: ["Somnambulist"], 
 			def: ["sleepwalker"]
@@ -2088,7 +2088,7 @@ var dict = [
 			def: ["lucid", "well argued"]
 		},{
 			word: ["Divert"], 
-			def: ["1. entertain", "2. distract", "3. cause a detour"]
+			def: ["entertain", "distract", "cause a detour"]
 		},{
 			word: ["Fractious"], 
 			def: ["irritable", "difficult to control"]
@@ -2340,7 +2340,7 @@ var dict = [
 			def: ["easy to control", "submissive"]
 		},{
 			word: ["Drone"], 
-			def: ["1. monotonous noise (n)", "2. to speak with no emotion (v)", "3.male bee"]
+			def: ["monotonous noise (n)", "to speak with no emotion (v)", "male bee"]
 		},{
 			word: ["Gambol"], 
 			def: ["frolic", "leap", "bound"]
@@ -2385,7 +2385,7 @@ var dict = [
 			def: ["nomadic", "moving from place to place"]
 		},{
 			word: ["Quarry"], 
-			def: ["1. something that is hunted", "2. mine for stone"]
+			def: ["something that is hunted", "mine for stone"]
 		},{
 			word: ["Stoke"], 
 			def: ["add fuel to", "strengthen"]
@@ -2721,7 +2721,7 @@ var dict = [
 			def: ["outstandingly, obviously bad"]
 		},{
 			word: ["Grate (v)"], 
-			def: ["1. to annoy", "aggravate", "vex", "2. shred"]
+			def: ["to annoy", "aggravate", "vex", "shred"]
 		},{
 			word: ["Irrevocable"], 
 			def: ["cannot be cancelled", "unchangeable"]
@@ -2793,7 +2793,7 @@ var dict = [
 			def: ["carelessness"]
 		},{
 			word: ["Petrify"], 
-			def: ["1. terrify", "2. turn to stone"]
+			def: ["terrify", "turn to stone"]
 		},{
 			word: ["Receptacle"], 
 			def: ["container", "vessel", "holder"]
@@ -3165,10 +3165,10 @@ var dict = [
 			def: ["ill-mannered person [boorish (a)]"]
 		},{
 			word: ["Cardinal"], 
-			def: ["1. high ranking church official", "2. major, important"]
+			def: ["high ranking church official", "major, important"]
 		},{
 			word: ["Deliberate"], 
-			def: ["1. slow (a)", "2. to think over (v)", "3. on purpose (a)"]
+			def: ["slow (a)", "to think over (v)", "on purpose (a)"]
 		},{
 			word: ["Equivocation"], 
 			def: ["speaking ambiguously [equivocate (v), equivocal (a)]"]
@@ -3414,7 +3414,7 @@ var dict = [
 			def: ["peaceful and happy", "calm (esp. of summer weather)"]
 		},{
 			word: ["List (v)"], 
-			def: ["1. to lean to one side", "2. to write in order"]
+			def: ["to lean to one side", "to write in order"]
 		},{
 			word: ["Maudlin"], 
 			def: ["sad", "sentimental", "inclined to weep"]
@@ -3432,7 +3432,7 @@ var dict = [
 			def: ["attack bitterly"]
 		},{
 			word: ["Whittle"], 
-			def: ["1. carve with knife", "2. reduce step by step"]
+			def: ["carve with knife", "reduce step by step"]
 		},{
 			word: ["Colander"], 
 			def: ["bowl with holes used to drain vegetables etc."]
@@ -3444,7 +3444,7 @@ var dict = [
 			def: ["transparent", "thin and delicate"]
 		},{
 			word: ["Dispatch"], 
-			def: ["1. send (v)", "2. speed", "celerity (n)"]
+			def: ["send (v)", "speed", "celerity (n)"]
 		},{
 			word: ["Epistemology"], 
 			def: ["theory of knowledge"]
@@ -3588,7 +3588,7 @@ var dict = [
 			def: ["scolding", "criticism [reprove (v)]"]
 		},{
 			word: ["Scurvy"], 
-			def: ["1. disease due to lack of vitamin C", "2. contemptible", "rascally"]
+			def: ["disease due to lack of vitamin C", "contemptible", "rascally"]
 		}
 	],
 	[
@@ -3738,7 +3738,7 @@ var dict = [
 			def: ["exaggeration [hyperbolic (a)]"]
 		},{
 			word: ["Modest"], 
-			def: ["1. bashful", "unpretentious", "2. not excessive"]
+			def: ["bashful", "unpretentious", "not excessive"]
 		},{
 			word: ["Prolixity"], 
 			def: ["wordiness [prolix (a)]"]
@@ -3786,7 +3786,7 @@ var dict = [
 			def: ["made less severe [alleviation (n)", "alleviate (v)]"]
 		},{
 			word: ["Apostrophe"], 
-			def: ["1. punctuation mark", "2. appeal to someone not present (a figure of speech)"]
+			def: ["punctuation mark", "appeal to someone not present (a figure of speech)"]
 		},{
 			word: ["Centurion"], 
 			def: ["roman soldier (commander of a company of 100 soldiers)"]
@@ -3801,7 +3801,7 @@ var dict = [
 			def: ["infallibility", "inability to make mistakes [inerrant (a)]"]
 		},{
 			word: ["Mince"], 
-			def: ["1. chop into small pieces", "2. walk with tiny steps, 3. speak in an affected manner"]
+			def: ["chop into small pieces", "walk with tiny steps, speak in an affected manner"]
 		},{
 			word: ["Palpate"], 
 			def: ["medical term meaning to examine with the hands"]
@@ -3810,7 +3810,7 @@ var dict = [
 			def: ["unoriginal, obvious saying"]
 		},{
 			word: ["Quibble"], 
-			def: ["1. (v) to argue about minor matters", "to play on words when finding fault", "2. (n) a minor verbal point in an argument"]
+			def: ["(v) to argue about minor matters", "to play on words when finding fault", "(n) a minor verbal point in an argument"]
 		},{
 			word: ["Apprehension"], 
 			def: ["slight fear", "sense of something unfavorable"]
@@ -3834,7 +3834,7 @@ var dict = [
 			def: ["branch of science concerned with things as they are perceived", "not directly derived from theory"]
 		},{
 			word: ["Precipitate"], 
-			def: ["1. hurried (a)", "2. insoluble product of a reaction in chemistry (n), 3. to instigate or speed up an action (v)"]
+			def: ["hurried (a)", "insoluble product of a reaction in chemistry (n), to instigate or speed up an action (v)"]
 		},{
 			word: ["Renege"], 
 			def: ["go back on promise or retract statement"]
@@ -3855,10 +3855,10 @@ var dict = [
 			def: ["atone", "make amends for"]
 		},{
 			word: ["Hack"], 
-			def: ["1. chop roughly", "2. person who writes to earn money, 3. hired horse"]
+			def: ["chop roughly", "person who writes to earn money, hired horse"]
 		},{
 			word: ["Prone"], 
-			def: ["1. vulnerable to", "2. horizontal"]
+			def: ["vulnerable to", "horizontal"]
 		},{
 			word: ["Propensity"], 
 			def: ["tendency", "inclination"]
@@ -3870,7 +3870,7 @@ var dict = [
 			def: ["small boat"]
 		},{
 			word: ["Umbrage"], 
-			def: ["1. shadow", "2. offence", "sense of injury"]
+			def: ["shadow", "offence", "sense of injury"]
 		},{
 			word: ["Dilettantism"], 
 			def: ["dabbling esp. in the arts [dilettante (n) = person who dabbles]"]
@@ -3894,10 +3894,10 @@ var dict = [
 			def: ["jagged edge"]
 		},{
 			word: ["Slight"], 
-			def: ["1. minor (a)", "2. perceived insult (v) and (n)"]
+			def: ["minor (a)", "perceived insult (v) and (n)"]
 		},{
 			word: ["Tare"], 
-			def: ["1. weed", "2. allowance made for container when weighing"]
+			def: ["weed", "allowance made for container when weighing"]
 		},{
 			word: ["Unprepossessing"], 
 			def: ["	unattractive"]
@@ -3915,7 +3915,7 @@ var dict = [
 			def: ["dig up [opposite  inter = bury]"]
 		},{
 			word: ["Façade"], 
-			def: ["1. front elevation of building, 2. false appearance or demeanor"]
+			def: ["front elevation of building, false appearance or demeanor"]
 		},{
 			word: ["Impeding"], 
 			def: ["hindering [impede (v)", "impediment (n)]"]
@@ -3936,7 +3936,7 @@ var dict = [
 			def: ["appropriate (of behavior)", "decorous"]
 		},{
 			word: ["Analogue"], 
-			def: ["1. something similar", "2. output proportional to input (engineering)"]
+			def: ["something similar", "output proportional to input (engineering)"]
 		},{
 			word: ["Coda"], 
 			def: ["piece of music at the end of a musical work", "finale", "final part of document"]
@@ -3960,10 +3960,10 @@ var dict = [
 			def: ["material used for writing on before paper was invented"]
 		},{
 			word: ["Pique"], 
-			def: ["1. annoyance (n)", "2. to stimulate interest", "to annoy (v)"]
+			def: ["annoyance (n)", "to stimulate interest", "to annoy (v)"]
 		},{
 			word: ["Sap"], 
-			def: ["1. liquid inside plants (n)", "2. to drain", "to undermine (v)", "3. a fool (n)"]
+			def: ["liquid inside plants (n)", "to drain", "to undermine (v)", "a fool (n)"]
 		},{
 			word: ["Arbitrator"], 
 			def: ["mediator", "person appointed to judge a dispute [arbitrate (v)]"]
@@ -3987,7 +3987,7 @@ var dict = [
 			def: ["to prevent", "stop", "disable"]
 		},{
 			word: ["Strut"], 
-			def: ["1. supporting rod (n)", "2. to walk in an arrogant manner", "show off (v)"]
+			def: ["supporting rod (n)", "to walk in an arrogant manner", "show off (v)"]
 		},{
 			word: ["Toy (v)"], 
 			def: ["to play with"]
@@ -4017,7 +4017,7 @@ var dict = [
 			def: ["leaning", "interest", "talent"]
 		},{
 			word: ["Propitiate"], 
-			def: ["appease", "try to gain favor [propitiation (n)]	"]
+			def: ["appease", "try to gain favor [propitiation (n)]"]
 		},{
 			word: ["Stanch"], 
 			def: ["to stop"]
@@ -4034,8 +4034,68 @@ var dict = [
 	],
 	[
 		{
+			word: ["Lumber"], 
+			def: ["walk in an ungainly way", "timber (wood)"]
+		},{
+			word: ["Muse"], 
+			def: ["think", "meditate (v)", "a source of inspiration (n) [in mythology, a goddess who gives inspiration]"]
+		},{
+			word: ["Prescience"], 
+			def: ["foreknowledge"]
+		},{
+			word: ["Prune"], 
+			def: ["to trim", "a dried plum"]
+		},{
+			word: ["Ready"], 
+			def: ["(used of wit) quick"]
+		},{
+			word: ["Resolve"], 
+			def: ["firmness (n)"]
+		},{
+			word: ["Squalid"], 
+			def: ["dirty and demeaning"]
+		},{
+			word: ["Sullied"], 
+			def: ["made dirty or impure [opposite unsullied; sully (v)]"]
+		},{
+			word: ["Veneration"], 
+			def: ["worship", "respect [venerable (a), venerate (v)]"]
+		},{
+			word: ["Demur"], 
+			def: ["object", "hesitate to accept"]
+		},{
+			word: ["Duplicity"], 
+			def: ["cunning", "deception", "double dealing"]
+		},{
+			word: ["Exigency"], 
+			def: ["urgent matter", "pressing need"]
+		},{
+			word: ["Expostulate"], 
+			def: ["offer strong objections", "remonstrate"]
+		},{
+			word: ["Gossamer"], 
+			def: ["delicate", "filmy", "like gauze"]
+		},{
+			word: ["Inefficacious"], 
+			def: ["ineffective"]
+		},{
+			word: ["Pine"], 
+			def: ["type of evergreen tree", "grieve"]
+		},{
+			word: ["Prudish"], 
+			def: ["narrow-minded", "excessively concerned with morals [prudery (n), prude (n)]"]
+		},{
+			word: ["Quixotic"], 
+			def: ["impractically idealistic"]
+		},{
+			word: ["Stipple"], 
+			def: ["cover with dots of paint etc."]
+		}
+	],
+	[
+		{
 			word: ["Abrasion"], 
-			def: ["1. damage to skin caused by scraping", "2. process of scraping or rubbing [abrade (v)]"]
+			def: ["damage to skin caused by scraping", "process of scraping or rubbing [abrade (v)]"]
 		},{
 			word: ["Adumbrate"], 
 			def: ["outline", "indicate"]
@@ -4050,10 +4110,10 @@ var dict = [
 			def: ["passionate"]
 		},{
 			word: ["Gall"], 
-			def: ["1. bitterness (bad feeling)", "2. confidence", "3. abnormal growth on a plant"]
+			def: ["bitterness (bad feeling)", "confidence", "abnormal growth on a plant"]
 		},{
 			word: ["Levee"], 
-			def: ["1. raised bank of a river", "2. morning reception held by a monarch"]
+			def: ["raised bank of a river", "morning reception held by a monarch"]
 		},{
 			word: ["Preternatural"], 
 			def: ["unnatural", "abnormal"]
@@ -4089,10 +4149,10 @@ var dict = [
 			def: ["to plug", "press loose matter down tightly (e.g. pack explosives into a hole)"]
 		},{
 			word: ["Venturing"], 
-			def: ["1. hazarding", "risking", "putting forward", "2. going somewhere [venturesome means courageous or willing to take risks]"]
+			def: ["hazarding", "risking", "putting forward", "going somewhere [venturesome means courageous or willing to take risks]"]
 		},{
 			word: ["Wry"], 
-			def: ["1. twisted or bent to one side", "2. dryly humorous"]
+			def: ["twisted or bent to one side", "dryly humorous"]
 		}
 	],
 	[
@@ -4104,7 +4164,7 @@ var dict = [
 			def: ["kill or destroy a large part of (originally one tenth)"]
 		},{
 			word: ["Fledge"], 
-			def: ["1. grow feathers", "2. leave nest [fledgling (n) = an inexperienced person or a baby bird]"]
+			def: ["grow feathers", "leave nest [fledgling (n) = an inexperienced person or a baby bird]"]
 		},{
 			word: ["Gouge"], 
 			def: ["cut or dig out"]
@@ -4143,16 +4203,16 @@ var dict = [
 			def: ["wrong idea [fallacious (a)]"]
 		},{
 			word: ["Fringe"], 
-			def: ["1. decorative border with tassels (n)", "2. to form an edge (v)"]
+			def: ["decorative border with tassels (n)", "to form an edge (v)"]
 		},{
 			word: ["Leaven"], 
 			def: ["to make light", "modify", "cause bread to rise using yeast etc."]
 		},{
 			word: ["Patronize"], 
-			def: ["1. to talk down to", "condescend", "2. to be a customer of"]
+			def: ["to talk down to", "condescend", "to be a customer of"]
 		},{
 			word: ["Prominent"], 
-			def: ["1. eminent", "2. protruding", "3. obvious"]
+			def: ["eminent", "protruding", "obvious"]
 		},{
 			word: ["Statute"], 
 			def: ["law [statutory (a)]"]
@@ -4170,10 +4230,10 @@ var dict = [
 			def: ["speak or write at great length"]
 		},{
 			word: ["Flag (v)"], 
-			def: ["1. to lose energy", "2. to signal"]
+			def: ["to lose energy", "to signal"]
 		},{
 			word: ["Flail"], 
-			def: ["1. tool used to thresh grain", "2. to thresh (separate grain from chaff)", "3. to wave arms about wildly"]
+			def: ["tool used to thresh grain", "to thresh (separate grain from chaff)", "to wave arms about wildly"]
 		},{
 			word: ["Indicted"], 
 			def: ["accused (of crime)"]
@@ -4185,7 +4245,7 @@ var dict = [
 			def: ["slander"]
 		},{
 			word: ["Secure (v)"], 
-			def: ["1. to fix firmly", "2. to obtain"]
+			def: ["to fix firmly", "to obtain"]
 		},{
 			word: ["Talon"], 
 			def: ["long pointed nail or claw"]
@@ -4194,13 +4254,13 @@ var dict = [
 			def: ["state of inactivity", "disuse"]
 		},{
 			word: ["Disarm"], 
-			def: ["1. take away weapons", "2. win over to one’s side [disarming (a)]"]
+			def: ["take away weapons", "win over to one’s side [disarming (a)]"]
 		},{
 			word: ["Elaborate"], 
-			def: ["1. complex and detailed (a)", "2. to expand on (v)"]
+			def: ["complex and detailed (a)", "to expand on (v)"]
 		},{
 			word: ["Foment"], 
-			def: ["1. stir up", "2. bathe with hot liquids (medical)"]
+			def: ["stir up", "bathe with hot liquids (medical)"]
 		},{
 			word: ["Jockeying"], 
 			def: ["maneuvering", "struggling to get ahead of others [jockey (v)]"]
@@ -4224,13 +4284,13 @@ var dict = [
 	[
 		{
 			word: ["Allure"], 
-			def: ["1. attraction (n)", "2. to attract (v)"]
+			def: ["attraction (n)", "to attract (v)"]
 		},{
 			word: ["Caulk"], 
 			def: ["treat with substance such as tar to make water-tight"]
 		},{
 			word: ["Conscript"], 
-			def: ["1. person enlisted compulsorily into the armed forces", "2. (v) to enlist compulsorily"]
+			def: ["person enlisted compulsorily into the armed forces", "(v) to enlist compulsorily"]
 		},{
 			word: ["Desultory"], 
 			def: ["aimless", "inconsistent in effort"]
@@ -4254,7 +4314,7 @@ var dict = [
 			def: ["hesitation or fear"]
 		},{
 			word: ["Assay"], 
-			def: ["1. try", "2. assess purity"]
+			def: ["try", "assess purity"]
 		},{
 			word: ["Chauvinist"], 
 			def: ["someone excessively patriotic [chauvinism (n)]"]
@@ -4263,13 +4323,13 @@ var dict = [
 			def: ["separate", "discontinuous (not to be confused with discreet - prudent", "diplomatic]"]
 		},{
 			word: ["Enlist"], 
-			def: ["1. sign up for the army", "2. obtain"]
+			def: ["sign up for the army", "obtain"]
 		},{
 			word: ["Fabricated"], 
 			def: ["made up", "false", "manufactured [fabricate (v)", "fabrication(n)]"]
 		},{
 			word: ["Fulminate"], 
-			def: ["1. attack loudly in words", "denounce thunderously", "2. explode noisily"]
+			def: ["attack loudly in words", "denounce thunderously", "explode noisily"]
 		},{
 			word: ["Hawser"], 
 			def: ["thick rope or cable"]
@@ -4278,7 +4338,7 @@ var dict = [
 			def: ["agree with", "complement", "match up with (in British usage jibe means mock)"]
 		},{
 			word: ["Peer"], 
-			def: ["1. an equal", "2. to stare at", "3. nobleman"]
+			def: ["an equal", "to stare at", "nobleman"]
 		},{
 			word: ["Stickler"], 
 			def: ["one who is strict about rules or details"]
@@ -4302,7 +4362,7 @@ var dict = [
 			def: ["be excessively fond of [doting (a)]"]
 		},{
 			word: ["Errant"], 
-			def: ["1. wandering", "2. wrong", "3. straying from accepted standards"]
+			def: ["wandering", "wrong", "straying from accepted standards"]
 		},{
 			word: ["Fervent"], 
 			def: ["passionate"]
@@ -4380,7 +4440,7 @@ var dict = [
 			def: ["talk nonsense"]
 		},{
 			word: ["Burlesque"], 
-			def: ["1. comic play", "2. lampoon"]
+			def: ["comic play", "lampoon"]
 		},{
 			word: ["Exemplar"], 
 			def: ["model type [exemplary (a)]"]
@@ -4404,7 +4464,7 @@ var dict = [
 			def: ["remedy"]
 		},{
 			word: ["Saw"], 
-			def: ["1. tool for cutting", "2. wise saying"]
+			def: ["tool for cutting", "wise saying"]
 		},{
 			word: ["Sibyl"], 
 			def: ["prophetess"]
@@ -4413,7 +4473,7 @@ var dict = [
 	[
 		{
 			word: ["Brook"], 
-			def: ["1. small stream", "2. tolerate"]
+			def: ["small stream", "tolerate"]
 		},{
 			word: ["Emboss"], 
 			def: ["decorate with a raised design"]
@@ -4434,7 +4494,7 @@ var dict = [
 			def: ["instrument to measure distance covered"]
 		},{
 			word: ["Purchase"], 
-			def: ["1. grip", "2. buy"]
+			def: ["grip", "buy"]
 		},{
 			word: ["Quotidian"], 
 			def: ["daily", "routine"]
@@ -4506,7 +4566,7 @@ var dict = [
 			def: ["made dull", "spoil (reputation)"]
 		},{
 			word: ["Compromised"], 
-			def: ["1. damaged or put in doubt (esp. of reputation)", "2. reached an agreement by giving up part of a claim"]
+			def: ["damaged or put in doubt (esp. of reputation)", "reached an agreement by giving up part of a claim"]
 		},{
 			word: ["Drabness"], 
 			def: ["dullness"]
@@ -4524,7 +4584,7 @@ var dict = [
 			def: ["mindless talk"]
 		},{
 			word: ["Prohibitive"], 
-			def: ["1. prohibiting", "2. exorbitantly expensive"]
+			def: ["prohibiting", "exorbitantly expensive"]
 		},{
 			word: ["Purist"], 
 			def: ["conservative", "one who insists on correct forms of language etc."]
@@ -4581,10 +4641,10 @@ var dict = [
 			def: ["evenness", "uniformity"]
 		},{
 			word: ["Personification"], 
-			def: ["1. represent something as a person", "2. a concrete example of"]
+			def: ["represent something as a person", "a concrete example of"]
 		},{
 			word: ["Plaque"], 
-			def: ["1. surface deposit on teeth or in artery etc.", " 2. decorative plate or sign"]
+			def: ["surface deposit on teeth or in artery etc.", " decorative plate or sign"]
 		},{
 			word: ["Plausibility"], 
 			def: ["believability [plausible (a)]"]
