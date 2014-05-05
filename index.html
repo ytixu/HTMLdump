@@ -38,6 +38,16 @@ input.wrong{
 input.right{
 	border:2px solid #aff;
 }
+input.wdlst{
+	width:40;
+	height:30;
+	background-color:#005a97;
+	margin: -2;
+	color: #d8e1e7;
+}
+input.wdlst:hover{
+	background-color:#003c65;
+}
 :focus {outline:none;} ::-moz-focus-inner {border:0;}
 
 .credit{
@@ -61,7 +71,9 @@ a:hover {
 <input class="main" onclick="start()" type="button" value="START" id="bt"/>
 </br></br>
 <table>
-	<tr><td width="350" height="580" valign="top">
+	<tr><td id="wdlist" width="200" valign="top" align="center">
+		<p align="center">word list</p>
+	</td><td width="350" height="580" valign="top">
 		<p id="question"></p>
 		<div id="ans"></div>
 		<p id="result"></p>

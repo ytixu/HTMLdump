@@ -11,6 +11,26 @@ var firstClick = true;
 
 var wdlst = 0;
 
+createButton = function(name, func){
+	var b = document.createElement("input");
+	b.setAttribute("onclick",func);
+	b.type = "button";
+	b.value = name;
+	b.id = name;
+	return b;
+}
+
+changeList = function(lst){
+	wdlst=lst;
+}
+
+var l = document.getElementById("wdlist");
+for (var i=0; i<5*15; i++){
+	var b = createButton((i+1).toString(), "changeList("+ i.toString() +")");
+	b.setAttribute("class", "wdlst");
+	l.appendChild(b);
+}
+
 falseAns = function(name) {
 	result.innerHTML = "Try again!";
 	if (firstClick) score.innerHTML = (points/questtaked).toFixed(2);
@@ -30,15 +50,6 @@ start = function() {
 	bt.value = "NEXT";
 	bt.onclick = next;
 	next();
-}
-
-createButton = function(name, func){
-	var b = document.createElement("input");
-	b.setAttribute("onclick",func);
-	b.type = "button";
-	b.value = name;
-	b.id = name;
-	return b;
 }
 
 alreadyChosen = function(a, n){

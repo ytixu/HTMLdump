@@ -61,7 +61,10 @@ var dict = [
 		},{
 			word: ["Tangent"], 
 			def: ["going off the main subject"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Abasement"], 
 			def: ["humiliation", "degradation"]
 		},{
@@ -121,7 +124,10 @@ var dict = [
 		},{
 			word: ["Tardy"], 
 			def: ["slow", "late", "overdue", "delayed"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Absolution"], 
 			def: ["forgiveness", "pardon", "release"]
 		},{
@@ -181,7 +187,10 @@ var dict = [
 		},{
 			word: ["Tedium"], 
 			def: ["boredom"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Abstemious"], 
 			def: ["self denying", "refraining from indulging"]
 		},{
@@ -241,7 +250,10 @@ var dict = [
 		},{
 			word: ["Tenacious"], 
 			def: ["stubborn", "resolute", "holding firm to a purpose"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Accolade"], 
 			def: ["tribute", "honor", "praise"]
 		},{
@@ -364,7 +376,10 @@ var dict = [
 		},{
 			word: ["Therapeutic"], 
 			def: ["medicinal", "curative"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Acuity"], 
 			def: ["sharpness (mental or visual)"]
 		},{
@@ -424,7 +439,10 @@ var dict = [
 		},{
 			word: ["Timorous"], 
 			def: ["cowardly", "fearful"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Adroit"], 
 			def: ["skilful / skillful"]
 		},{
@@ -484,7 +502,10 @@ var dict = [
 		},{
 			word: ["Titter"], 
 			def: ["giggle quietly"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Adversity"], 
 			def: ["hardship"]
 		},{
@@ -544,7 +565,10 @@ var dict = [
 		},{
 			word: ["Torpid"], 
 			def: ["inactive", "lazy", "stagnant"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Aesthetic"], 
 			def: ["concerning art or beauty"]
 		},{
@@ -667,7 +691,10 @@ var dict = [
 		},{
 			word: ["Tranquil"], 
 			def: ["peaceful"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Alibi"], 
 			def: ["an excuse that shows someone was not at a crime scene"]
 		},{
@@ -727,7 +754,10 @@ var dict = [
 		},{
 			word: ["Transgress"], 
 			def: ["go astray", "disobey", "commit a sin"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Alleviate"], 
 			def: ["make less severe"]
 		},{
@@ -787,7 +817,10 @@ var dict = [
 		},{
 			word: ["Traverse"], 
 			def: ["to move across"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Altruism"], 
 			def: ["putting others first", "being self-sacrificing"]
 		},{
@@ -847,7 +880,10 @@ var dict = [
 		},{
 			word: ["Trinket"], 
 			def: ["something of little value", "knick-knack"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Ambiguity"], 
 			def: ["uncertainty", "vagueness"]
 		},{
@@ -970,7 +1006,10 @@ var dict = [
 		},{
 			word: ["Truncate"], 
 			def: ["cut short"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Ameliorate"], 
 			def: ["make better"]
 		},{
@@ -1030,7 +1069,10 @@ var dict = [
 		},{
 			word: ["Turpitude"], 
 			def: ["depravity"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Amiable"], 
 			def: ["friendly"]
 		},{
@@ -1090,7 +1132,10 @@ var dict = [
 		},{
 			word: ["Ubiquitous"], 
 			def: ["found everywhere", "omnipresent"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Amorphous"], 
 			def: ["lacking in shape"]
 		},{
@@ -1150,7 +1195,10 @@ var dict = [
 		},{
 			word: ["Unctuous"], 
 			def: ["oily", "using excessive flattery"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Analogous"], 
 			def: ["comparable"]
 		},{
@@ -1273,7 +1321,10 @@ var dict = [
 		},{
 			word: ["Unfetter"], 
 			def: ["set free"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Annex (n)"], 
 			def: ["a building which is an addition to an existing building"]
 		},{
@@ -1333,7 +1384,10 @@ var dict = [
 		},{
 			word: ["Unprecedented"], 
 			def: ["never having happened before"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Anomaly"], 
 			def: ["something which does not fit in a pattern", "irregularity"]
 		},{
@@ -1393,7 +1447,10 @@ var dict = [
 		},{
 			word: ["Unwitting"], 
 			def: ["not deliberate", "unconscious"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Antagonistic"], 
 			def: ["opposed", "hostile", "aggressive"]
 		},{
@@ -1453,7 +1510,10 @@ var dict = [
 		},{
 			word: ["Uproarious"], 
 			def: ["hilarious", "hysterical", "very funny"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Anthology"], 
 			def: ["a book which is a collection of poems or stories"]
 		},{
@@ -1576,7 +1636,10 @@ var dict = [
 		},{
 			word: ["Utilitarian"], 
 			def: ["useful"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Apathy"], 
 			def: ["lack of interest or emotion"]
 		},{
@@ -1636,7 +1699,10 @@ var dict = [
 		},{
 			word: ["Vacillate"], 
 			def: ["waver", "hesitate"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Appease"], 
 			def: ["pacify", "soothe", "calm down", "make peace with"]
 		},{
@@ -1696,7 +1762,10 @@ var dict = [
 		},{
 			word: ["Vagrant"], 
 			def: ["person wandering without a home"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Arable"], 
 			def: ["can be cultivated"]
 		},{
@@ -1756,7 +1825,10 @@ var dict = [
 		},{
 			word: ["Variegated"], 
 			def: ["multicolored", "speckled"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Arcane"], 
 			def: ["obscure", "known only to a few people"]
 		},{
@@ -1879,7 +1951,10 @@ var dict = [
 		},{
 			word: ["Veneer"], 
 			def: ["surface coating"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Articulate"], 
 			def: ["clear", "lucid", "eloquent"]
 		},{
@@ -1939,7 +2014,10 @@ var dict = [
 		},{
 			word: ["Venial"], 
 			def: ["minor", "unimportant"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Artisan"], 
 			def: ["craftsman"]
 		},{
@@ -1999,7 +2077,10 @@ var dict = [
 		},{
 			word: ["Verbose"], 
 			def: ["talkative", "long-winded", "rambling"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Assiduous"], 
 			def: ["thorough", "diligent"]
 		},{
@@ -2059,7 +2140,10 @@ var dict = [
 		},{
 			word: ["Vertigo"], 
 			def: ["dizziness"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Astute"], 
 			def: ["perceptive", "sharp-witted"]
 		},{
@@ -2182,7 +2266,10 @@ var dict = [
 		},{
 			word: ["Vindicate"], 
 			def: ["prove right", "remove blame"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Attenuate"], 
 			def: ["weaken"]
 		},{
@@ -2242,7 +2329,10 @@ var dict = [
 		},{
 			word: ["Virulent"], 
 			def: ["dangerous", "harmful"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Auspicious"], 
 			def: ["favorable", "promising to turn out well"]
 		},{
@@ -2302,7 +2392,10 @@ var dict = [
 		},{
 			word: ["Vitriolic"], 
 			def: ["corrosive", "strongly attacking"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Aversion"], 
 			def: ["a dislike of"]
 		},{
@@ -2362,7 +2455,10 @@ var dict = [
 		},{
 			word: ["Vivify"], 
 			def: ["enliven"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Banal"], 
 			def: ["common", "dull"]
 		},{
@@ -2485,7 +2581,10 @@ var dict = [
 		},{
 			word: ["Voluminous"], 
 			def: ["very large", "spacious"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Bastion"], 
 			def: ["fortress", "stronghold"]
 		},{
@@ -2545,7 +2644,10 @@ var dict = [
 		},{
 			word: ["Waive"], 
 			def: ["surrender", "give up"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Begrudge"], 
 			def: ["resent"]
 		},{
@@ -2605,7 +2707,10 @@ var dict = [
 		},{
 			word: ["Wary"], 
 			def: ["hesitant", "cautious"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Belabor"], 
 			def: ["explain in unnecessary detail"]
 		},{
@@ -2665,7 +2770,10 @@ var dict = [
 		},{
 			word: ["Waylay"], 
 			def: ["accost", "stop", "approach", "hinder"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Belie"], 
 			def: ["contradict"]
 		},{
@@ -2788,7 +2896,10 @@ var dict = [
 		},{
 			word: ["Whimsical"], 
 			def: ["capricious", "changeable"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Bemoan"], 
 			def: ["complain about"]
 		},{
@@ -2848,7 +2959,10 @@ var dict = [
 		},{
 			word: ["Wily"], 
 			def: ["cunning"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Benign"], 
 			def: ["kindly", "harmless"]
 		},{
@@ -2908,7 +3022,10 @@ var dict = [
 		},{
 			word: ["Wistful"], 
 			def: ["melancholy", "pensive", "expressing a longing for"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Bequeath"], 
 			def: ["leave something in one's will to be given after one's death"]
 		},{
@@ -2968,7 +3085,10 @@ var dict = [
 		},{
 			word: ["Zeal"], 
 			def: ["enthusiasm"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Beret"], 
 			def: ["type of cap"]
 		},{
@@ -3091,7 +3211,10 @@ var dict = [
 		},{
 			word: ["Stipulate"], 
 			def: ["specify [stipulation (n)]"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Diaphanous"], 
 			def: ["transparent", "thin and delicate"]
 		},{
@@ -3151,7 +3274,10 @@ var dict = [
 		},{
 			word: ["Recumbent"], 
 			def: ["reclining", "lying down"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Ambidextrous"], 
 			def: ["able to use both left and right hands equally well"]
 		},{
@@ -3211,7 +3337,10 @@ var dict = [
 		},{
 			word: ["Sinecure"], 
 			def: ["job which pays salary but requiring little effort"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Anodized"], 
 			def: ["electroplated", "coated with thin layer of metal"]
 		},{
@@ -3271,7 +3400,10 @@ var dict = [
 		},{
 			word: ["Sidereal"], 
 			def: ["of or related to stars"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Avaricious"], 
 			def: ["greedy for money"]
 		},{
@@ -3394,7 +3526,10 @@ var dict = [
 		},{
 			word: ["Satiate"], 
 			def: ["satisfy", "fill completely [satiable (a)", "satiation (n)]"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Slake"], 
 			def: ["quench", "satisfy"]
 		},{
@@ -3454,7 +3589,10 @@ var dict = [
 		},{
 			word: ["Scurvy"], 
 			def: ["1. disease due to lack of vitamin C", "2. contemptible", "rascally"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Tutelary"], 
 			def: ["serving as a guardian [tutelage (n)]"]
 		},{
@@ -3514,7 +3652,10 @@ var dict = [
 		},{
 			word: ["Proximate"], 
 			def: ["immediate", "nearest"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Pugnacious"], 
 			def: ["aggressive, ready to fight [pugnacity (n)]"]
 		},{
@@ -3574,7 +3715,10 @@ var dict = [
 		},{
 			word: ["Undergird"], 
 			def: ["support", "strengthen"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Vitiate"], 
 			def: ["weaken", "sap energy"]
 		},{
@@ -3634,9 +3778,6 @@ var dict = [
 		},{
 			word: ["Shard"], 
 			def: ["fragment of pottery"]
-		},{
-			word: ["Xenophobe"], 
-			def: ["person afraid of foreigners"]
 		}
 	],
 	[
@@ -3700,7 +3841,10 @@ var dict = [
 		},{
 			word: ["Armada"], 
 			def: ["fleet of ships"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Dawdler"], 
 			def: ["slow person who falls behind others [dawdle (v)]"]
 		},{
@@ -3760,7 +3904,10 @@ var dict = [
 		},{
 			word: ["Aberration"], 
 			def: ["deviation from the normal"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Cant"], 
 			def: ["insincere talk"]
 		},{
@@ -3820,7 +3967,10 @@ var dict = [
 		},{
 			word: ["Arbitrator"], 
 			def: ["mediator", "person appointed to judge a dispute [arbitrate (v)]"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Descry"], 
 			def: ["to see (esp. at a distance)", "catch sight of"]
 		},{
@@ -3880,63 +4030,6 @@ var dict = [
 		},{
 			word: ["Forage"], 
 			def: ["search for food"]
-		},{
-			word: ["Lumber"], 
-			def: ["1. walk in an ungainly way", "2. timber (wood)"]
-		},{
-			word: ["Muse"], 
-			def: ["1. think", "meditate (v)", "2. a source of inspiration (n) [in mythology, a goddess who gives inspiration]"]
-		},{
-			word: ["Prescience"], 
-			def: ["foreknowledge"]
-		},{
-			word: ["Prune"], 
-			def: ["1. to trim", "2. a dried plum"]
-		},{
-			word: ["Ready"], 
-			def: ["(used of wit) quick"]
-		},{
-			word: ["Resolve"], 
-			def: ["firmness (n)"]
-		},{
-			word: ["Squalid"], 
-			def: ["dirty and demeaning"]
-		},{
-			word: ["Sullied"], 
-			def: ["made dirty or impure [opposite unsullied", "sully (v)]"]
-		},{
-			word: ["Veneration"], 
-			def: ["worship", "respect [venerable (a), venerate (v)]"]
-		},{
-			word: ["Demur"], 
-			def: ["object", "hesitate to accept"]
-		},{
-			word: ["Duplicity"], 
-			def: ["cunning", "deception", "double dealing	"]
-		},{
-			word: ["Exigency"], 
-			def: ["urgent matter", "pressing need"]
-		},{
-			word: ["Expostulate"], 
-			def: ["offer strong objections", "remonstrate"]
-		},{
-			word: ["Gossamer"], 
-			def: ["delicate", "filmy", "like gauze"]
-		},{
-			word: ["Inefficacious"], 
-			def: ["ineffective"]
-		},{
-			word: ["Pine"], 
-			def: ["1. type of evergreen tree", "2. grieve		"]
-		},{
-			word: ["Prudish"], 
-			def: ["narrow-minded", "excessively concerned with morals [prudery (n), prude (n)]"]
-		},{
-			word: ["Quixotic"], 
-			def: ["impractically idealistic"]
-		},{
-			word: ["Stipple"], 
-			def: ["cover with dots of paint etc."]
 		}
 	],
 	[
@@ -4000,7 +4093,10 @@ var dict = [
 		},{
 			word: ["Wry"], 
 			def: ["1. twisted or bent to one side", "2. dryly humorous"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Arduous"], 
 			def: ["hard"]
 		},{
@@ -4060,7 +4156,10 @@ var dict = [
 		},{
 			word: ["Statute"], 
 			def: ["law [statutory (a)]"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Antipathy"], 
 			def: ["hatred"]
 		},{
@@ -4120,7 +4219,10 @@ var dict = [
 		},{
 			word: ["Temperate"], 
 			def: ["moderate"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Allure"], 
 			def: ["1. attraction (n)", "2. to attract (v)"]
 		},{
@@ -4180,7 +4282,10 @@ var dict = [
 		},{
 			word: ["Stickler"], 
 			def: ["one who is strict about rules or details"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Cloture"], 
 			def: ["closure", "terminating a debate by voting	"]
 		},{
@@ -4303,7 +4408,10 @@ var dict = [
 		},{
 			word: ["Sibyl"], 
 			def: ["prophetess"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Brook"], 
 			def: ["1. small stream", "2. tolerate"]
 		},{
@@ -4363,7 +4471,10 @@ var dict = [
 		},{
 			word: ["Milk"], 
 			def: ["to squeeze", "obtain by application of pressure"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Chorales"], 
 			def: ["simple hymns"]
 		},{
@@ -4423,7 +4534,10 @@ var dict = [
 		},{
 			word: ["Taunt"], 
 			def: ["mock", "tease"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Arresting (a)"], 
 			def: ["attracting attention", "striking	"]
 		},{
@@ -4483,7 +4597,10 @@ var dict = [
 		},{
 			word: ["Vagary"], 
 			def: ["something unaccountable", "freak"]
-		},{
+		}
+	],
+	[
+		{
 			word: ["Aisle"], 
 			def: ["corridor", "passageway (esp. between rows of seats)"]
 		},{
