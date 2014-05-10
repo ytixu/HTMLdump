@@ -55,6 +55,15 @@ excludeWord = function(){
 	document.getElementById("exclLst").appendChild(b);
 }
 
+clearList = function(){
+	var div = document.getElementById("exclLst");
+	var eleChild = div.childNodes;
+	for (var i=eleChild.length-1; i>=0; i--){
+		eleChild[i].click();
+	}
+	// div.innerHTML = "";
+}
+
 
 //delete an element in the list 
 deleteEle = function(ele){

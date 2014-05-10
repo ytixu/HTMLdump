@@ -36,9 +36,10 @@ input.main{
 input.include{
 	color: #d8e1e7;
 	background-color:#005a97;
-	width:80;
+	width:auto;
 	height:30;
 	font-size:12pt;
+	margin-left: -1pt;
 }
 input.include:hover {
     background-color:#5b9cc8;
@@ -49,6 +50,7 @@ input.exWord{
 	width:auto;
 	height:30;
 	font-size:12pt;
+	margin-left: -1pt;
 }
 input.exWord:hover {
     background-color:#005a97;
@@ -164,8 +166,10 @@ $('#slider').mouseover(
 	<td id="sscore" valign="top" width="200" align="left">
 		<p>S: <span id="score">0</span></p>
 		<p>Q: <span id="quest">0</span></p>
-		<input class="include" value="exclude" onclick="excludeWord()" type="button">
-		<br>
+		<div style="background-color:#005a97;">
+			<input class="include" value="exclude" onclick="excludeWord()" type="button">
+			<input class="include" value="clear list" onclick="clearList()" type="button">
+		</div>
 		<div id="exclLst"></div>
 	</td></tr>
 </table>
