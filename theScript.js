@@ -9,7 +9,28 @@ var points = 0;
 var questtaked = 0;
 var firstClick = false;
 
+var currWord = 0
+var currDict = 0
+
 var wdlstList = [];
+
+/////////For dict
+var isActive = 'in_use'
+var isNotActive = ''
+
+is_inUse = function(w, d){
+	if (dict[d][w].using[0].localeCompare(isNotActive) == 0) return false
+	else return true
+}
+
+setInUse = function(w, d){
+	dict[d][w].using[0] = isActive
+}
+
+setNotUse = function(w, d){
+	dict[d][w].using[0] = isNotActive
+}
+/////////For dict
 
 createButton = function(name, func){
 	var b = document.createElement("input");
@@ -19,6 +40,21 @@ createButton = function(name, func){
 	b.id = name;
 	return b;
 }
+
+includeWord = function(w,d){
+	setInUse(w,d);
+	document.getElementById("exclLst").removeChild(document.getElementById(dict[d][w].word+"_ex"));
+}
+
+excludeWord = function(){
+	if (questtaked==0 || !is_inUse(currWord, currDict)) return;
+	setNotUse(currWord, currDict);
+	var b = createButton(dict[currDict][currWord].word, "includeWord("+currWord+", "+currDict+")");
+	b.setAttribute("class", "exWord");
+	b.id += "_ex";
+	document.getElementById("exclLst").appendChild(b);
+}
+
 
 //delete an element in the list 
 deleteEle = function(ele){
@@ -50,7 +86,8 @@ displayWords = function(lst){
 	var disp = document.getElementById("displayWd");
 	disp.innerHTML = "";
 	for (var i=0; i<dict[lst].length; i++){
-		disp.innerHTML += dict[lst][i].word[0] + " " ;
+		if (is_inUse(i, lst)) disp.innerHTML += dict[lst][i].word[0].bold() + " " ;
+		else disp.innerHTML += dict[lst][i].word[0] + " " ;
 	}
 }
 endDisplayWords = function(){
@@ -107,44 +144,68 @@ next = function(){
 	button = [];
 	firstClick = true;
 	questtaked++;
-	var wdlst = 0;
-	if (wdlstList.length > 0) wdlst = wdlstList[Math.floor(Math.random()*wdlstList.length)];
-	var ind = Math.floor(Math.random()*dict[wdlst].length);
-	var indd;
-	var rand = [ind];
+	if (wdlstList.length > 0) currDict = wdlstList[Math.floor(Math.random()*wdlstList.length)];
+	currWord = Math.floor(Math.random()*dict[currDict].length);
+	if (!is_inUse(currWord, currDict)){
+		console.log(currWord.toString() + " , " + currDict.toString());
+		//get next one that is active
+		var l = wdlstList.length;
+		if (l==0) l=1;
+		for (var j=0; j<l; j++){
+			var d = wdlstList[(wdlstList.indexOf(currDict)+j)%l];
+			if (d == undefined) d = 0;
+			console.log(((wdlstList.indexOf(currDict)+j)%l).toString() +" d = "+d.toString());
+			var ll = dict[d].length;
+			for (var i=0; i<ll; i++){
+				console.log(((i + currWord)%ll).toString() + ", " + d.toString());
+				if (is_inUse((i + currWord)%ll, d)){
+					currWord = (i + currWord)%ll;
+					currDict = d;
+					j += l;
+					break;
+				}
+			}
+		}
+		if (!is_inUse(currWord, currDict)){
+			quest.innerHTML = "All words in this list(s) are excluded.";
+			return;
+		}
+	}
+	var indd; 
+	var rand = [currWord];
 	var temp;
 	done.innerHTML = questtaked;
 	if (Math.random() > 0.5){
 		quest.innerHTML = "Choose the correct word for: ";
-		quest.innerHTML += dict[wdlst][ind].def[Math.floor(Math.random()*dict[wdlst][ind].def.length)].bold();
+		quest.innerHTML += dict[currDict][currWord].def[Math.floor(Math.random()*dict[currDict][currWord].def.length)].bold();
 		quest.innerHTML += ".";
 		for (var i=0; i<5; i++){
-			indd = Math.floor(Math.random()*dict[wdlst].length);
+			indd = Math.floor(Math.random()*dict[currDict].length);
 			if (alreadyChosen(rand, indd)){
 				i--; 
 				continue;
 			}
 			rand.push(indd);
-			temp = dict[wdlst][indd].word[0];
+			temp = dict[currDict][indd].word[0];
 			button.push(createButton(temp, "falseAns(\"" + temp + "\")"));
 		}
-		temp = dict[wdlst][ind].word[0];
+		temp = dict[currDict][currWord].word[0];
 		button.push(createButton(temp, "rightAns(\"" + temp + "\")"));
 	}else{
 		quest.innerHTML = "Choose the correct definition for: ";
-		quest.innerHTML += dict[wdlst][ind].word[0].bold();
+		quest.innerHTML += dict[currDict][currWord].word[0].bold();
 		quest.innerHTML += ".";
 		for (var i=0; i<5; i++){
-			indd = Math.floor(Math.random()*dict[wdlst].length);
+			indd = Math.floor(Math.random()*dict[currDict].length);
 			if (alreadyChosen(rand, indd)){
 				i--; 
 				continue;
 			}
 			rand.push(indd);
-			temp = dict[wdlst][indd].def[Math.floor(Math.random()*dict[wdlst][indd].def.length)];
+			temp = dict[currDict][indd].def[Math.floor(Math.random()*dict[currDict][indd].def.length)];
 			button.push(createButton(temp, "falseAns(\"" + temp + "\")"));
 		}
-		temp = dict[wdlst][ind].def[Math.floor(Math.random()*dict[wdlst][ind].def.length)];
+		temp = dict[currDict][currWord].def[Math.floor(Math.random()*dict[currDict][currWord].def.length)];
 		button.push(createButton(temp, "rightAns(\"" + temp + "\")"));
 	}
 	var j = Math.floor(Math.random()*6);
