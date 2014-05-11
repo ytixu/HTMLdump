@@ -147,23 +147,23 @@ alreadyChosen = function(a, n){
 }
 
 next = function(){
-	if (firstClick) score.innerHTML = (points/questtaked).toFixed(2);
 	div.innerHTML = "";
 	result.innerHTML = "";
 	button = [];
-	firstClick = true;
-	questtaked++;
 	if (wdlstList.length > 0) currDict = wdlstList[Math.floor(Math.random()*wdlstList.length)];
 	currWord = Math.floor(Math.random()*dict[currDict].length);
 	if (!is_inUse(currWord, currDict)){
+		// console.log(currWord.toString() + " , " + currDict.toString());
 		//get next one that is active
 		var l = wdlstList.length;
 		if (l==0) l=1;
 		for (var j=0; j<l; j++){
 			var d = wdlstList[(wdlstList.indexOf(currDict)+j)%l];
 			if (d == undefined) d = 0;
+			// console.log(((wdlstList.indexOf(currDict)+j)%l).toString() +" d = "+d.toString());
 			var ll = dict[d].length;
 			for (var i=0; i<ll; i++){
+				// console.log(((i + currWord)%ll).toString() + ", " + d.toString());
 				if (is_inUse((i + currWord)%ll, d)){
 					currWord = (i + currWord)%ll;
 					currDict = d;
@@ -177,6 +177,11 @@ next = function(){
 			return;
 		}
 	}
+	//update score 
+	if (firstClick) score.innerHTML = (points/questtaked).toFixed(2);
+	firstClick = true;
+	questtaked++;
+
 	var indd; 
 	var rand = [currWord];
 	var temp;
