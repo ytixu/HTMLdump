@@ -211,7 +211,7 @@ next = function(){
 			temp = dict[currDict][indd].def.join("; ");
 			button.push(createButton(temp, "falseAns(\"" + temp + "\")"));
 		}
-		temp = dict[currDict][currWord].def.join(", ");
+		temp = dict[currDict][currWord].def.join("; ");
 		button.push(createButton(temp, "rightAns(\"" + temp + "\")"));
 	}
 	var j = Math.floor(Math.random()*6);
