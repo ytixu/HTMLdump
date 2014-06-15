@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>The Big Gap: a geometrical approch of the distance between th Earth and the Moon</title>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+
+		<script type="text/javascript">
+			function gotoAnchor(aname, aFrame)
+			{
+				var yScroll = document.body.scrollTop;
+				var xScroll = document.body.scrollLeft;
+				document.getElementById(aFrame).src="text.html#" + aname;
+				self.scrollTo(xScroll, yScroll);
+			}
+		</script>
+	</head>
+	<body> 
+		<center><table width="1500" height="700">
+			<tr><td height="100" width="1000"></td><td></td></tr>
+			<tr><td height="10"><span class="titleTwo">&emsp;&emsp;&emsp; The </span><br/><span class="titleOne">Big Gap</span>
+							<br/><span class="titleThree">The Earth, the Moon and the Space in Between</span>
+							<table align="right">
+								<tr><td class="off" onmouseover="this.className='on'" onmouseout="this.className='off'"><h1><a href='javascript:parent.gotoAnchor("abs", "theframe")'><div class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">Abstract</div></a></h1></td>
+									<td class="off" onmouseover="this.className='on'" onmouseout="this.className='off'"><h1><a href='javascript:parent.gotoAnchor("con", "theframe")'><div class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">Content</div></a></h1></td>
+									<td class="off" onmouseover="this.className='on'" onmouseout="this.className='off'"><h1><h1><a href='javascript:parent.gotoAnchor("six", "theframe")'><div class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">Appendix</div></a></h1></td></tr>
+							</table>
+					</td><td><br/>
+						<p>First Year Undergraduate Student Reserch
+							<br/>
+							McGill University 
+							<br/>
+							December 14, 2012 
+						</p>
+					</td></tr>
+	    	<tr><td ><center><iframe id="theframe" frameborder="0" allowtransparency="true" seamless="seamless" width="1000" height="600" src="text.html"></iframe></center></td>
+	    		<td>
+	    			<h1>Side notes</h1> 
+	    			<iframe name="note" frameborder="0" allowtransparency="true" seamless="seamless" width="490" height="255" src="note.html"></iframe>
+	    			<h1>Bibiography</h1>
+	    			<iframe name="biblio" frameborder="0" allowtransparency="true" seamless="seamless" width="490" height="255" src="biblio.html" marginwidth="30px"></iframe>
+	    		</td>
+	    	</tr>
+	    </table></center>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+.titleOne{
+	line-height:40%;
+	font-size:90px;
+	font-family:"Book Antiqua";
+}
+.titleTwo{
+	letter-spacing:-1px;
+	line-height:100%;
+	font-size:30px;
+	font-family:"Book Antiqua";
+}
+.titleThree{
+	letter-spacing:-1px;
+	line-height:290%;
+	font-size:20px;
+	font-family:"Book Antiqua";
+}
+
+h1{
+	font-family:"Book Antiqua";
+	font-variant:small-caps;
+	font-size:20px;
+	text-align:left;
+	margin:10px;0px;
+}
+
+h2{
+	font-family:"Book Antiqua";
+	text-transform:uppercase;
+	font-size:15px;
+	text-align:left;
+	margin:10px;0px;
+	color:rgba(9,9,9,0.8);
+}
+
+
+p {
+	font-family:"Book Antiqua";
+	font-size:18px;
+	color:#555555;
+	margin:20px;
+	line-height:1.5em;
+}
+
+sup, sub{
+	line-height:1em;
+}
+
+li {
+	font-family:"Book Antiqua";
+	font-variant:small-caps;
+	font-size:18px;
+	margin:20px;
+}
+
+.cap{
+	font-family:"Book Antiqua";
+	font-size:15px;
+	color:#555555;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: #aaaaaa;
+}
+
+a {text-decoration:none; font-family:"Book Antiqua"; color:#555555;}
+a:link    {text-decoration:none; font-family:"Book Antiqua"; color:#555555;}
+a:visited {text-decoration:none; font-family:"Book Antiqua"; color:#555555;}
+a:hover   {text-decoration:none; font-family:"Book Antiqua"; color:#888888;}
+a:active  {text-decoration:none; font-family:"Book Antiqua"; color:#555555;}	
+
+.on {background:#aaaaaa; color:white; }
+.off {background:rbga(0,0,0,0);}
