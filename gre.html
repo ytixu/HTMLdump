@@ -1,0 +1,183 @@
+<html>
+<head><title>Project of the daemon</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"> </script>
+
+<style>
+body {
+	background-color:#66aedf;
+}
+p {
+	font-family:"Helvetica";
+	font-size:20px;
+	color:#ffffff;
+}
+input {
+	font-family:"Helvetica";
+	font-size:20px;
+	color:#ffffff;
+	border:0px;
+	width:300;
+	height:70;
+	white-space: normal;
+}
+input[type=button] {
+    background-color:#5b9cc8;
+}
+input[type=button]:hover {
+    background-color:#66aedf;
+}
+input[type=button]:focus {
+   	outline: 0;
+}
+input.main{
+	width:200;
+	height:50;
+}
+input.include{
+	color: #d8e1e7;
+	background-color:#005a97;
+	width:auto;
+	height:30;
+	font-size:12pt;
+	margin-left: -1pt;
+}
+input.include:hover {
+    background-color:#5b9cc8;
+}
+input.exWord{
+	color: #d8e1e7;
+	background-color:rgba(0,0,0,0);
+	width:auto;
+	height:30;
+	font-size:12pt;
+	margin-left: -1pt;
+}
+input.exWord:hover {
+    background-color:#005a97;
+}
+input.wrong{
+	border:2px solid #faa;
+}
+input.right{
+	border:2px solid #aff;
+}
+input.wdlst{
+	width:40;
+	height:30;
+	background-color:rgba(0,0,0,0);
+	margin: -2;
+	color: #d8e1e7;
+}
+input.wdlst:hover{
+	background-color:#003c65;
+}
+input.wdlstAct{
+	width:40;
+	height:30;
+	margin: -2;
+	color: #d8e1e7;
+	background-color:#003c65;
+}
+input.wdlstAct:hover{
+	background-color:rgba(0,0,0,0);
+}
+
+#disabled{
+	background-color:#66aedf;
+}
+
+:focus {outline:none;} ::-moz-focus-inner {border:0;}
+
+.credit{
+	font-family:"Helvetica";
+	font-size:15px;
+	color:#dddddd;
+}
+a {
+	font-weight:bold;
+	color:#dddddd;
+}
+a:hover {
+	color:#ffffff;
+}
+
+#slider {
+    overflow: hidden;
+    position: relative;
+    background-color:#005a97;
+}
+#exclLst{
+	overflow-y: scroll;
+    background-color:#5b9cc8;
+    max-height: 370;
+}
+.rotate{
+	width:50;
+	white-space: nowrap;
+	white-space: pre;
+	position:relative;
+	top:30px;
+	left:2px;
+	-ms-transform:rotate(270deg); /* IE 9 */
+	-moz-transform:rotate(270deg); /* Firefox */
+	-webkit-transform:rotate(270deg); /* Safari and Chrome */
+	-o-transform:rotate(270deg); /* Opera */
+}
+</style>
+
+</head>
+<body id="body">
+</br></br>
+<center>
+<input class="main" onclick="start()" type="button" value="START" id="bt"/>
+</br></br>
+<table>
+	<tr><td width="250" valign="top" align="right">
+		<table id="slider"><tr><td height="390">
+				<p class="rotate">WORD LIST</p>
+			</td><td valign="top">
+				<div id="wdlist" width="200" align="center"></div>
+<script> 
+$('#slider').mouseover(
+	function() {
+      	$('#wdlist').stop().animate({width: "show"}, 500)
+   	})
+   	.mouseout(function() {
+      	$('#wdlist').stop().animate({width: "hide", height: "380px"}, 500)
+   	});
+</script>
+			</td></tr>
+		</table>
+		<br>
+		<span id="displayWd" class="credit"></span>
+	</td><td width="10"><br></td>
+	<td width="300" height="580" valign="top">
+		<p id="question">
+			<span class="credit">Hya! My name is GREvocPrep 3.2 and I exists here to help you to transfer and save 1500 vocabulary words into your long-term memory. On my right, you may select the list(s) of words that you would like work on. You can refer to your score (in percentage) and the number of questions that you did so far on my left. If you find some words boring, you may click on "exclude" to add it to the black list the next time it (or its definition) appears in a question. 
+			<br><br>
+			In case you are interested in reporting bugs or sharing suggestions, please e-mail to my parent at <a href="#">godealitbyyourself@mail.org</a>.
+				<br><br>
+			Click on START to begin!</span>
+		</p>
+		<div id="ans"></div>
+		<p id="result"></p>
+		<p id="def"></p>
+	</td><td width="10"><br></td>
+	<td id="sscore" valign="top" width="200" align="left">
+		<p>S: <span id="score">0</span></p>
+		<p>Q: <span id="quest">0</span></p>
+		<div style="background-color:#005a97;">
+			<input class="include" value="exclude" onclick="excludeWord()" type="button">
+			<input class="include" value="clear list" onclick="clearList()" type="button">
+		</div>
+		<div id="exclLst"></div>
+	</td></tr>
+</table>
+<span class="credit">by amadstudent - words taken from <a target="blank" href="http://www.majortests.com/gre/wordlist.php">majortests</a></span>
+</center>
+
+<script type="text/javascript" language="javascript" src="words.js"></script>
+<script type="text/javascript" language="javascript" src="theScript.js"></script>
+
+</body>
+</html>
