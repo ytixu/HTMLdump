@@ -1,7 +1,7 @@
 //constants
 var COL = 16, ROW = 16, BOMB_NUM = 50;
 //IDs
-var BOMB = -1, EMPTY = 0, FLAG = 1;
+var BOMB = -1, EMPTY = 0, FLAG = 1, LIVE = 5;
 
 var grid = {
 	width: null,
@@ -109,12 +109,12 @@ var RB = 0, HB = 1, CS = 2;
 var score = {
 	remain_bombs: null, 
 	cleared_squares: null,
-	hit_bombs: null,
+	lives: null,
 
 	init: function(b){
 		this.remain_bombs = b;
 		this.cleared_squares = 0;
-		this.hit_bombs = 0;
+		this.lives = LIVE;
 	},
 
 	found_bomb: function(){
@@ -133,7 +133,7 @@ var score = {
 	},
 
 	hit_bomb: function(){
-		this.hit_bombs ++;
+		this.lives --;
 		draw_score(HB);
 	}, 
 
@@ -146,7 +146,11 @@ var score = {
 	},
 
 	get_hb: function(){
-		return this.hit_bombs;
+		return this.lives;
+	},
+
+	get_score: function(){
+		return (100+this.cleared_squares)/this.remain_bombs + this.lives*10
 	}
 }
 
@@ -182,11 +186,12 @@ function set_bombs(start_c, start_r, bombs){
 };
 
 //Game objects
-var canvas, ctx, keystate, frames;
+var canvas, ctx;
 //graphics
 var TILE_SIZE = 40;
 var disabled_color = '#ddd', enabled_color = '#5c8', bomb_color = '#f55';
 var color = ['#333', '#0a0', '#00a', '#d55', '#5d5', '#55d', '#a00'];
+var panel_color = 'rgba(255,255,255,0.8);'
 
 function main(){
 	canvas = document.createElement('canvas');
@@ -199,11 +204,7 @@ function main(){
 	ctx.font="bold 20px Courier";
 	ctx.textAlign="center"; 
 
-	frames = 0;
-	keystate = {};
-
 	init(0,0);
-	draw_player();
 };
 
 function init(start_c, start_r){
@@ -213,6 +214,8 @@ function init(start_c, start_r){
 	set_bombs(start_c, start_r, BOMB_NUM);
 	draw_grid();
 	open_tile(start_c, start_r);
+	draw_player();
+	window.addEventListener("keydown", move_player, false);
 };
 
 function write_tile(n, c, r){
@@ -304,7 +307,6 @@ function partial_open_tile(c, r){
 };
 
 function open_tile(c, r){
-	console.log(c, r);
 	if (grid.is_open(c,r)) return;
 	grid.open_square(c,r);
 	color_tile(c, r);
@@ -315,10 +317,31 @@ function open_tile(c, r){
 	}else score.hit_bomb();
 };
 
+function end_game(){
+	for (var i=0; i<COL; i++){
+		for (var j=0; j<ROW; j++){
+			if (grid.is_open(i, j)) continue;
+			color_tile(i, j);
+		}
+	}
+	window.removeEventListener("keydown", move_player, false);
+	ctx.fillStyle = panel_color;
+	ctx.fillRect(0, 2*ROW/3*TILE_SIZE, COL*TILE_SIZE, ROW/3*TILE_SIZE);
+	ctx.fillStyle = color[0];
+	write_tile('SCORE: '+score.get_score(), Math.round(COL/2.4), Math.round(2.5*ROW/3));
+	write_tile('Press <space> to continue.', Math.round(COL/2.4), Math.round(2.8*ROW/3));
+	window.addEventListener("keydown", restart, false);
+};
+
+function restart(e){
+	if (e.keyCode == 32){
+		init(0,0);
+		window.removeEventListener("keydown", restart, false);
+	}
+};
+
 // keybord controls
 var player_color = '#000', player_num_color = '#fff', sweeper_color = '#7ea', flag_color = bomb_color;
-
-window.addEventListener("keydown", move_player, false);
  
 function draw_player(){
 	coord = player.get_position();
@@ -376,6 +399,9 @@ function move_player(e) {
 			coord = player.get_aim();
 			if (!grid.is_flagged(coord[0], coord[1]))
 				open_tile(coord[0], coord[1]);
+			if (score.get_hb() <= 0){
+				end_game();
+			}
 			return;
 		case 74: case 101: //J, 5
 			coord = player.get_position();
