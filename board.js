@@ -7,10 +7,12 @@ var grid = {
 	width: null,
 	height: null,
 	_grid: null,
+	total: null,
 
 	init: function(c, r){
 		this.width = c;
 		this.height = r;
+		this.total = c*r;
 		this._grid = [];
 		for (var x = 0; x<c; x++){
 			this._grid.push([]);
@@ -147,6 +149,12 @@ var score = {
 
 	get_hb: function(){
 		return this.lives;
+	},
+
+	is_cleared: function(){
+		if (BOMB_NUM + this.cleared_squares == grid.total)
+			return true
+		return false
 	},
 
 	get_score: function(){
@@ -317,11 +325,13 @@ function open_tile(c, r){
 	}else score.hit_bomb();
 };
 
-function end_game(){
-	for (var i=0; i<COL; i++){
-		for (var j=0; j<ROW; j++){
-			if (grid.is_open(i, j)) continue;
-			color_tile(i, j);
+function end_game(w){
+	if (w == 0){
+		for (var i=0; i<COL; i++){
+			for (var j=0; j<ROW; j++){
+				if (grid.is_open(i, j)) continue;
+				color_tile(i, j);
+			}
 		}
 	}
 	window.removeEventListener("keydown", move_player, false);
@@ -400,8 +410,10 @@ function move_player(e) {
 			if (!grid.is_flagged(coord[0], coord[1]))
 				open_tile(coord[0], coord[1]);
 			if (score.get_hb() <= 0){
-				end_game();
+				end_game(0);
 			}
+			if (score.is_cleared())
+				end_game(1)
 			return;
 		case 74: case 101: //J, 5
 			coord = player.get_position();
@@ -413,6 +425,8 @@ function move_player(e) {
 			);
 			if (count == grid.get(coord[0], coord[1]))
 				grid.do_to_surrounding(coord[0], coord[1], partial_open_tile);
+			if (score.is_cleared())
+				end_game(1)
 			return;
 		case 16: case 13: //shift, enter (num)
 			coord = player.get_aim();
@@ -444,6 +458,8 @@ function move_player(e) {
 			}catch(err){}
 		}
 	}catch(err){}
+	if (score.is_cleared())
+		end_game(1)
 };
 
 
