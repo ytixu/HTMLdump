@@ -1,0 +1,22 @@
+body {
+	background-color: #ffffff;
+	font-family: 'Helvetica';
+}
+
+p.title {
+	color: #555555;
+	font-size: 50px;
+	font-weight: bold;
+	/*text-align: center;*/
+}
+
+p.chapter {
+	color: #aaaaaa;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+p.text {
+	color: #555555;
+	font-size: 20px;
+}

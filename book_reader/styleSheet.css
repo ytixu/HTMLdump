@@ -1,0 +1,84 @@
+
+/*#EAF9B6 #C7E077 #89A236 #50640D #1E2700*/
+/*#555555 #666666 #aaaaaa*/
+
+body {
+	background-color : #ffffff;
+	margin: 0px;
+	font-family: 'Helvetica';
+}
+
+H1 {
+	color: #555555;
+	font-weight: bold;
+}
+
+div{
+	border-width:0px;
+}
+
+#book {
+	position: absolute; 
+	top: 0; 
+	left: 100px; 
+	height: 100%;
+	width: 70%;
+	min-width: 300px;
+	z-index:1;
+	border-width: 0px;
+}
+
+#shelf, #menu{
+	background-color: #555555;
+	color: #ffffff;
+}
+
+#menu {
+	position: absolute; 
+	top: 0; 
+	left: -200px; 
+	height: 100%;
+	width: 250px;
+	z-index:2;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: #aaaaaa;
+}
+
+table#shelf {
+	width: 200px;
+	margin-left: 0px;
+	margin-top: 1em;
+	overflow: none;
+}
+
+td.title {
+	padding-left:1em;
+}
+
+td.title:hover {
+	background-color: #666666;
+}
+
+td#chapter {
+	color: #aaaaaa;
+	display: none;
+}
+
+a {
+	color: #aaaaaa;
+	text-decoration: none;
+	padding-left:2em;
+}
+
+a:hover {
+	color: #ffffff;
+}
+
