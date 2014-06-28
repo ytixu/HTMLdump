@@ -44,6 +44,45 @@ div{
 	overflow-x: hidden;
 }
 
+#bookmarks, #menu_button, #info, #save {
+	z-index:2;
+	position: relative; 
+	width: 30px;
+	height: 30px;
+}
+
+#bookmarks:hover, #menu_button:hover, #save:hover {
+	opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+#info:hover {
+	opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#save {
+	top: 70px;
+	left: 175px;
+}
+
+#menu_button {
+	top: 110px;
+	left: 140px;
+}
+
+#info {
+	top: 10px;
+	left: 100px;
+	opacity: 0.1;
+    filter: alpha(opacity=10);
+}
+
+#bookmarks {
+	top: 30px;	
+	left: 209px;
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -55,7 +94,7 @@ div{
 table#shelf {
 	width: 200px;
 	margin-left: 0px;
-	margin-top: 1em;
+	margin-top: -1em;
 	overflow: none;
 }
 

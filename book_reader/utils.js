@@ -2,7 +2,10 @@ function load_book(title){
 	var src = 'books/'+title
 	var iframe = document.getElementById('book')
 	// console.log(iframe.src.indexOf(src));
-	if (iframe.src.indexOf(src) ==-1) iframe.src = src;
+	if (iframe.src.indexOf(src) ==-1){
+		save(iframe)
+		iframe.src = src;
+	} 
 };
 
 function init(){
@@ -53,3 +56,21 @@ function gotoAnchor(aname, fName){
 	self.scrollTo(xScroll, yScroll);
 }
 
+// save to file
+
+function save(iframe){
+	var paws;
+	if ( iframe.contentWindow.document.getElementsByTagName('body').innerHTML ) {
+		console.log(iframe.contentDocument.getElementsByTagName('body').innerHTML);
+		paws = iframe.contentWindow.document.getElementsByTagName('img');
+
+	}
+
+    // var fs = require('fs');
+    // var stream = fs.createWriteStream("my_file.txt");
+    // stream.once('open', function(fd) {
+    //     stream.write("My first row\n");
+    //     stream.write("My second row\n");
+    //     stream.end();
+    // });
+}
