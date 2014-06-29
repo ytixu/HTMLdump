@@ -1,11 +1,37 @@
 function load_book(title){
-	var src = 'books/'+title
-	var iframe = document.getElementById('book')
-	// console.log(iframe.src.indexOf(src));
-	if (iframe.src.indexOf(src) ==-1){
-		save(iframe)
-		iframe.src = src;
-	} 
+	var div = document.getElementById('book');
+	console.log(div);
+	if (div.innerHTML != ''){
+		var script = document.getElementById('book_title');
+		console.log(script.src);
+		if (script.src.indexOf('books/'+title+'.js') > -1) return;
+		script.parentElement.removeChild(script);
+	}
+	load_script(title, function(){
+		console.log('loaded');
+	});
+}
+
+function load_script(title, callback){
+	var src = 'books/'+title+'.js';
+	var script = document.createElement('script');
+	script.id = 'book_title';
+	console.log(script, src);
+	script.src = src;
+	document.body.appendChild(script);
+    if (script.readyState){  //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else {  //Others
+        script.onload = function(){
+            callback();
+        };
+    }
 };
 
 function init(){
@@ -26,7 +52,7 @@ function init(){
 		for (var chap in books.get_chapters(key)){
 			link = document.createElement('a');
 			link.innerHTML = books.get_chapter(key, chap);
-			link.setAttribute('href', 'javascript:parent.gotoAnchor("#chap'+chap+'","'+books.get_text(key)+'")');
+			link.setAttribute('href', '#'+books.get_text(key)+'chap'+chap);
 			cell.appendChild(link);
 			cell.innerHTML += '</br>';
 		}
@@ -58,13 +84,13 @@ function gotoAnchor(aname, fName){
 
 // save to file
 
-function save(iframe){
-	var paws;
-	if ( iframe.contentWindow.document.getElementsByTagName('body').innerHTML ) {
-		console.log(iframe.contentDocument.getElementsByTagName('body').innerHTML);
-		paws = iframe.contentWindow.document.getElementsByTagName('img');
+// function save(iframe){
+// 	var paws;
+// 	if ( iframe.contentWindow.document.getElementsByTagName('body').innerHTML ) {
+// 		console.log(iframe.contentDocument.getElementsByTagName('body').innerHTML);
+// 		paws = iframe.contentWindow.document.getElementsByTagName('img');
 
-	}
+// 	}
 
     // var fs = require('fs');
     // var stream = fs.createWriteStream("my_file.txt");
@@ -73,4 +99,4 @@ function save(iframe){
     //     stream.write("My second row\n");
     //     stream.end();
     // });
-}
+// }

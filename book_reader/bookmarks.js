@@ -1,4 +1,4 @@
-var IMAGE = 'paw.gif';
+var IMAGE = 'paw_b.gif';
 var DIST = 40.0;
 var ERROR = 15.0;
 

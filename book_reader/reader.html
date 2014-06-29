@@ -9,37 +9,55 @@
 	<body>
 		<table><tr><td>
 			<div id='menu'>
-				<img id='bookmarks' src='paw.gif'>
+				<img id='bookmarks' src='paw_w.gif'>
 				<img id='save' src='save.png'>
 				<img id='menu_button' src='arro.png'>
 				<table id='shelf'></table>
 				<img id='info' src='info.png'>
 			</div>
 		</td><td>
-			<iframe id='book' class='Container' src=""></iframe>
+			<div id='book' class='Container' src=""></div>
 		</td></tr></table>
 
 		<script type="text/javascript" src="book_obj.js"></script>
 		<script type="text/javascript" src="books\books.js"></script>
 		<script type="text/javascript" src="utils.js"></script>
+		<script type="text/javascript" src="bookmarks.js"></script>
 	</body>
 	<script>
-	$(document).ready(function() {
-		$('#menu').click(
-		  function() {
-		  	// $( this ).finish();
-		    $( this ).animate({
-				'marginLeft' : "200px" //moves left
+			var animatedScroll = false;
+
+			$(document).ready(function() {
+				$('#menu_button').click(
+				  function() {
+				  	$( '#menu' ).clearQueue();
+				    $( '#menu' ).animate({
+						'marginLeft' : "0px" //moves left
+					});
+				  });
+				$( '#book' ).mouseover(
+				  function() {
+				  	$( '#menu' ).clearQueue();
+				  	$( '#menu' ).stop();;
+				    $( '#menu' ).animate({
+						'marginLeft' : "-200px" //moves right
+					});
+				  }
+				);
 			});
-		  });
-		$('#book').mouseover(
-		  function() {
-		  	// $( '#menu' ).finish();
-		    $( '#menu' ).animate({
-				'marginLeft' : "0px" //moves right
+			var fixmeTop = $('#menu').offset().top; // Get initial position
+			$(window).scroll(function() {            // Assign scroll event listener
+			    var currentScroll = $(window).scrollTop(); // Get current position
+			    if (currentScroll >= fixmeTop) { // Make it fixed if you've scrolled to it
+			        $('#menu').css({
+			            position: 'fixed',
+			            top: '0',
+			        });
+			    } else {                       // Make it static if you scroll above
+			        $('#menu').css({
+			            position: 'static'
+			        });
+			    }
 			});
-		  }
-		);
-	});
-	</script>
+		</script>
 </html>
