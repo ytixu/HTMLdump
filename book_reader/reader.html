@@ -9,11 +9,15 @@
 	<body>
 		<table><tr><td>
 			<div id='menu'>
-				<img id='bookmarks' src='paw_w.gif'>
-				<img id='save' src='save.png'>
-				<img id='menu_button' src='arro.png'>
+				<img id='bookmarks' src='paw_w.gif' title="color">
+				<img id='save' src='save.png' title="save">
+				<img id='menu_button' src='arro.png' title="menu">
 				<table id='shelf'></table>
-				<img id='info' src='info.png'>
+				<img id='info' src='info.png' title="info">
+				<div id='info_text' style="display:none;width:160px;margin-left:20px;font-size:14px;color: #888888;">
+					<p>Mew, my name is <br><center><span style="font-family:monospace;"> >> cat e_book -v 1.0</span></center><br>
+					To add bookmarks, rightclick or rightclick and drag on the text. Then. doubleclick on a bookmark to remove it. Your bookmarks are saved when you switch to another e-book or when you click on the save button.</p>
+				</div>
 			</div>
 		</td><td>
 			<div id='book' class='Container' src=""></div>
@@ -44,6 +48,9 @@
 					});
 				  }
 				);
+				$('#save').click(function (){ save(); });
+				$('#info').click(function (){ show_info(); });
+				$('#bookmarks').click(function(){ switch_color(); });
 			});
 			var fixmeTop = $('#menu').offset().top; // Get initial position
 			$(window).scroll(function() {            // Assign scroll event listener

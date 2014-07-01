@@ -1,6 +1,6 @@
-var IMAGE = 'paw_b.gif';
 var DIST = 40.0;
 var ERROR = 15.0;
+
 
 var movement = {
     start_x: null,
@@ -88,13 +88,6 @@ function draw(end_evt){
     console.log(angle, itvls.num)
 
     for (var i=0; i<itvls.num; i++){
-        image = document.createElement('img');
-        image.src = IMAGE;
-        // image.style.transform = angle;
-        image.style.webkitTransform = angle; /* Opera, Chrome, and Safari */
-        // image.style.MozTransform = angle;
-        // image.style.msTransform = angle;/* IE 9 */
-        // image.style.OTransform = angle;
         var x = movement.add_x(itvls.xi*i);
         var y = movement.add_y(itvls.yi*i);
         console.log(x, y, 'bibibi');
@@ -105,16 +98,9 @@ function draw(end_evt){
             x += change.dx;
             y -= change.dy;
         }
-
-        image.style.position="absolute";
-        image.style.top = y.toString()+'px';
-        image.style.left = x.toString()+'px';
-        image.style.opacity = .4;
-        image.style.filter = "alpha(opacity=40)"; /* For IE8 and earlier */
-        image.width = '25';
-        image.height = '25';
-        document.body.appendChild(image);
+        stick_paw(y.toString()+'px', x.toString()+'px', angle, KEY, IMAGE[COLOR]);
     }
+    KEY += 1;
 };
 
 window.addEventListener('contextmenu', function(e){e.preventDefault()});
@@ -126,5 +112,4 @@ window.addEventListener("mousedown", function(start_evt){
         window.addEventListener("mouseup", draw, false);
     }
 }, false);
-
 
