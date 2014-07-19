@@ -7,10 +7,9 @@ var books = {
 		this.book_num = 0;
 	},
 
-	add: function(title, chapters, text){
+	add: function(title, chapters){
 
 		this._books.push({ title : title,
-						   text : text,
 						   chapters : new Array() });
 		for (var i in chapters){
 			this._books[this.book_num].chapters.push(chapters[i]);
@@ -38,8 +37,9 @@ var books = {
 		return this._books[ind].chapters[indd];
 	},
 
-	get_text: function(ind){
-		return this._books[ind].text
+	get_file: function(ind, indd){
+		console.log(indd, this.get_chapters(ind))
+		return this.get_title(ind).replace(/ /g, '_')+'_'+indd.toString()
 	}
 };
 

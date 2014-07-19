@@ -48,7 +48,7 @@ function init(){
 		var cell = row.insertCell(0);
 		cell.innerHTML = books.get_title(key);
 		cell.setAttribute('class', 'title');
-		cell.setAttribute('onclick', 'show('+key+',\"'+books.get_text(key)+'\")');
+		cell.setAttribute('onclick', 'show('+key+')');
 		ind += 1
 		var row = shelf.insertRow(ind);
 		var cell = row.insertCell(0);
@@ -57,7 +57,7 @@ function init(){
 		for (var chap in books.get_chapters(key)){
 			link = document.createElement('a');
 			link.innerHTML = books.get_chapter(key, chap);
-			link.setAttribute('href', '#'+books.get_text(key)+'chap'+chap);
+			link.setAttribute('onclick', 'show_chapter(books.get_file('+key+', '+chap+'))');
 			cell.appendChild(link);
 			cell.innerHTML += '</br>';
 		}
@@ -73,10 +73,10 @@ function check_different(title){
 		if (script.src.indexOf('books/'+title+'.js') > -1) return false;
 		return true
 	}catch(err){}
-	return false;
+	return true;
 }
 
-function show(key, file){
+function show(key){
 	var chapters = document.getElementsByClassName(key);
 	for (var i=0; i<chapters.length; i++){
 		// console.log(chapters[i].style.display);
@@ -86,6 +86,8 @@ function show(key, file){
 			chapters[i].style.display = 'inline';
 		}
 	}
+}
+function show_chapter(file){
 	var different = check_different(file);
 	if (different)
 		save_n_remove();
