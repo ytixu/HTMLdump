@@ -10,6 +10,7 @@
 		<table><tr><td>
 			<div id='menu'>
 				<img id='bookmarks' src='paw_w.gif' title="color">
+				<img id='next' src='next.png' title="next">
 				<img id='save' src='save.png' title="save">
 				<img id='menu_button' src='arro.png' title="menu">
 				<table id='shelf'></table>
@@ -51,6 +52,7 @@
 				$('#save').click(function (){ save(); });
 				$('#info').click(function (){ show_info(); });
 				$('#bookmarks').click(function(){ switch_color(); });
+				$('#next').click(function(){ scrollToNext(); });
 			});
 			var fixmeTop = $('#menu').offset().top; // Get initial position
 			$(window).scroll(function() {            // Assign scroll event listener

@@ -1,0 +1,2 @@
+var TEXT ='<p class="chapter">Chapter 5.2</p><p class="text"></p><p class="text">IT\'S END ALREADY!</p><p class="text"></p><p class="text">And voila my long text</p><p class="text"></p>';
+document.getElementById("book").innerHTML = TEXT;

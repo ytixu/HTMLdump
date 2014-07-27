@@ -3,6 +3,46 @@ var KEY = 0;
 var IMAGE = ['paw_b.gif', 'paw_bl.png', 'paw_pu.png', 'paw_pi.png', 'paw_g.png', 'paw_o.png'];
 var COLOR = 0;
 
+var pawn = {
+        lst: [],
+        ind: 0,
+        add_pawn: function(p_text, k){
+		p = [parseInt(p_text[0].replace('px', '')), parseInt(p_text[1].replace('px', ''))]
+		for (var i=0; i<this.lst.length; i++){
+			if (this.lst[i].key == k){
+				if (p[1] > this.lst[i].coord[1]){
+					this.lst[i].coord = p;
+				}
+				console.log('~~~~~~~~~~~~~~~~~~~~~', this.lst);
+				return;
+			}
+		}
+                this.lst.push({key:k, coord:p});
+		console.log('~~~~~~~~~~~~~~~~~~~~~', this.lst);
+        },
+	remove: function(key){
+		for (var i=0; i<this.lst.length; i++){
+			if (this.lst[i].key == key){
+				this.lst.splice(i, 1);
+			}
+		}
+	},
+        reset: function(){
+                this.lst = [];
+                this.ind = 0;
+        },
+        next: function(){
+		key = this.lst.length - this.ind - 1
+		try{
+                	coord = this.lst[key].coord;
+		}catch(err){
+			return 0;
+		}
+                this.ind = (this.ind+1)%this.lst.length;
+                return [key, coord];
+        }
+};
+
 function load_book(title){
 	var div = document.getElementById('book');
 	// console.log(div);
@@ -18,6 +58,7 @@ function load_book(title){
 };
 
 function load_script(title, callback){
+	pawn.reset();
 	var src = 'books/'+title+'.js';
 	var script = document.createElement('script');
 	script.id = 'book_title';
@@ -96,11 +137,16 @@ function show_chapter(file){
 		load_paws();
 };
 
-function gotoAnchor(aname, fName){
-	var yScroll = document.body.scrollTop;
-	var xScroll = document.body.scrollLeft;
-	document.getElementById('book').src="books/" +fName+ aname;
-	self.scrollTo(xScroll, yScroll);
+function scrollToNext(){
+	paw = pawn.next();
+	console.log(paw);
+	if (paw == 0) return;
+	key = paw[0]
+	coords = paw[1]
+	console.log('oooooooooooooooo', coords);
+	window.scrollTo(coords[1], coords[0]);
+	hover_paw(key, 0.2, 20);
+	setInterval(function(){hover_paw(key, 0.4, 40)},1000);
 };
 
 function get_book_name(){
@@ -122,6 +168,7 @@ function hover_paw(key, op, op_s){
 
 function unstick_paw(key){
 	console.log('re', key);
+	pawn.remove(key);
 	var paws = document.getElementsByClassName("bookmark" + key.toString());
 	for(var i=paws.length-1; i>-1; i--) {
 		document.body.removeChild(paws[i]);
@@ -130,6 +177,7 @@ function unstick_paw(key){
 };
 
 function stick_paw(y, x, angle, key, img){
+	pawn.add_pawn([y,x], key);
 	image = document.createElement('img');
 	console.log('~~~~~~~~~~~~~~~~', img);
     image.src = img;

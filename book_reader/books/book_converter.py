@@ -9,12 +9,13 @@ ttl_code = '$title$'
 files = glob.glob('*.txt')
 
 def add_book(title, chapters):
+	print chapters
 	return 'books.add(\"%s\", [%s]);\n' % (title, ','.join(chapters))
 
 with open('books.js', 'w') as sink:
 	for f in files:
 		with open(f, 'r') as source:
-			chapters = source.read().split(chp_code)
+			chapters = source.read().replace('\r', '').split(chp_code)
 			title = chapters[0].replace(ttl_code, '').replace('\n', '')
 			chapters = [chp_code.join(chapters[:2])] + [chp_code+c for c in chapters[2:]]
 			chap_name = []

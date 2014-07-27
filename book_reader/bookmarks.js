@@ -90,7 +90,6 @@ function draw(end_evt){
     for (var i=0; i<itvls.num; i++){
         var x = movement.add_x(itvls.xi*i);
         var y = movement.add_y(itvls.yi*i);
-        console.log(x, y, 'bibibi');
         if (i%2 == 0){
             x -= change.dx;
             y += change.dy;

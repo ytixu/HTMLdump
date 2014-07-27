@@ -70,14 +70,15 @@ p.text {
 	overflow-x: hidden;
 }
 
-#bookmarks, #menu_button, #info, #save {
+
+#bookmarks, #menu_button, #info, #save, #next {
 	z-index:2;
 	position: relative; 
 	width: 30px;
 	height: 30px;
 }
 
-#bookmarks:hover, #menu_button:hover, #save:hover {
+#next:hover, #bookmarks:hover, #menu_button:hover, #save:hover {
 	opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
@@ -88,13 +89,13 @@ p.text {
 }
 
 #save {
-	top: 70px;
-	left: 175px;
+	top: 110px;
+	left: 141px;
 }
 
 #menu_button {
-	top: 110px;
-	left: 140px;
+	top: 150px;
+	left: 107px;
 }
 
 #info {
@@ -107,6 +108,11 @@ p.text {
 #bookmarks {
 	top: 30px;	
 	left: 209px;
+}
+
+#next { 
+	top: 70px;
+	left: 175px;
 }
 
 /*::-webkit-scrollbar {

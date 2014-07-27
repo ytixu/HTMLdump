@@ -1,0 +1,2 @@
+var TEXT ='<p class="chapter">Chapter 4</p><p class="text"></p><p class="text">Vladadop-G2, an orange-brownish melon, and Mewlow, a green-vomit colored melon, fall in love and marry each other. They get many kinds with wicked colors and have much fun poisoning the planet Froggyfog Frog\' frogs. They henceforth live happily even before. </p><p class="text"></p><p class="text">The end!</p><p class="text"></p>';
+document.getElementById("book").innerHTML = TEXT;
