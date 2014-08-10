@@ -1,0 +1,19 @@
+To add books:
+	Go to books/dist folder and add the .txt files.
+	File format must obey the following rules:
+		1) Book title must be on the first line, starting with $title$.
+		2) Chapter names must start with $chap$
+		3) All name and paragraph are seperated by new lines.
+	Refer to example in books/dist if needed: Seven.txt and story.txt
+
+	Run book_converter.exe and then open or refresh the webpage and you'll see them.
+
+To remove books: 
+	Manually remove the original .txt file and all .js files having the corresponding title in books/dist.
+
+	Run book_converter.exe and then open or refresh the webpage and you'll not see them.
+
+
+NB: While running book_converter.exe, you don't need to do anything; just wait. The program should close itself when it's done. 
+
+If you run into any issue or if book_converter.exe is taking a long time to run, please report me.  

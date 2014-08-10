@@ -49,7 +49,7 @@ function load_book(title){
 	if (div.innerHTML != ''){
 		var script = document.getElementById('book_title');
 		// console.log(script.src);
-		if (script.src.indexOf('books/'+title+'.js') > -1) return;
+		if (script.src.indexOf('books/dist/'+title+'.js') > -1) return;
 		script.parentElement.removeChild(script);
 	}
 	load_script(title, function(){
@@ -59,7 +59,7 @@ function load_book(title){
 
 function load_script(title, callback){
 	pawn.reset();
-	var src = 'books/'+title+'.js';
+	var src = 'books/dist/'+title+'.js';
 	var script = document.createElement('script');
 	script.id = 'book_title';
 	// console.log(script, src);
@@ -111,7 +111,7 @@ document.onload = init();
 function check_different(title){
 	try{
 		var script = document.getElementById('book_title');
-		if (script.src.indexOf('books/'+title+'.js') > -1) return false;
+		if (script.src.indexOf('books/dist/'+title+'.js') > -1) return false;
 		return true
 	}catch(err){}
 	return true;

@@ -1,0 +1,5 @@
+build/*
+dist/*.pyd
+dist/*.zip
+dist/*.pyd
+dist/*.exe

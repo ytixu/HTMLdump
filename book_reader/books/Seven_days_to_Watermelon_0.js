@@ -1,2 +1,0 @@
-var TEXT ='<p class="title">Seven days to Watermelon</p><p class="text"></p><p class="chapter">Chapter 1: some title</p><p class="text"></p><p class="text">This is a story about Elise, an average girl in an average building waiting in line to buy a watermelon. </p><p class="text"></p>';
-document.getElementById("book").innerHTML = TEXT;
