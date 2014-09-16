@@ -1,0 +1,73 @@
+/*html { 
+	background: url('1.png') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}*/
+
+body{
+    margin: 100px;
+    font-family: "Arial";
+}
+#menuBar{
+    width:60px;
+    height:100%;
+    display:block;
+    position: fixed;
+    top:80px;
+    right:200px;
+}
+#code, #logo, .title, span.comment{
+	font-family: "Lucida Console";
+}
+#logo, .title, span.comment{
+    width: 60%;
+    text-align: left;
+}
+#logo{
+	font-size: 20px;
+}
+#nav{
+	width:30%;
+    float:right;
+    text-align: left;
+}
+#nav ul li{
+    list-style:none;
+    float:left;
+    width:60px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+    color: #FFFFFF;
+    margin: 3px;
+    padding: .3em 0em;
+}
+
+span.blue{
+	color:#6666FF;
+}
+
+span.red{
+	color:#FF9966;
+}
+
+span.green{
+	color:#339933;
+}
+
+span.comment{
+	color:#666666;
+}
+
+span.turquoise{
+	color:#007999;
+} 
+
+.toggle:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+
+p { 
+	margin:0;
+}
