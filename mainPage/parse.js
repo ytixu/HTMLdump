@@ -125,7 +125,52 @@ var state = {
 	logo_parsed: false,
 	logo_rest: ["/** This class is going to rock all the other classes in the universe~ **/", 
 				"/** Need more amoebae for your project? Count me in! **/", 
-				"/** My species are called the phagobincodivae - binary code consumming divas! **/"]
+				"/** My species are called the phagobincodivae - binary code consumming divas! **/"],
+	menu:{
+		cv: false,
+		pj: false,
+		lk: false,
+
+		toggle: function(domObjName, pred, texta, textb){
+			var domObj = document.getElementById(domObjName);
+			if (pred){
+				domObj.innerHTML = texta;
+			}else{
+				domObj.innerHTML = textb;
+			}
+		}
+	},
+	toggleCV: function(pred){
+		this.menu.toggle("menuCV", pred, "Run", "CV");
+		this.menu.cv = pred;
+		//console.log(this.menu.cv);
+	},
+	togglePj: function(pred){
+		this.menu.toggle("menuPj", pred, "Log", "Projects");
+		this.menu.pj = pred;
+	},
+	toggleLk: function(pred){
+		this.menu.toggle("menuLk", pred, "Fork", "Links");
+		this.menu.lk = pred;
+
+	},
+	scroll_pre:0,
+	offset: document.getElementById("mainContent").getBoundingClientRect().top - document.body.getBoundingClientRect().top + 80
+}
+
+function changeMenu(scroll){
+	if (state.scroll_pre - scroll > 0){
+		if (scroll < state.offset-100) state.toggleCV(false);
+		if (scroll < state.offset-135) state.togglePj(false);
+		if (scroll < state.offset-170) state.toggleLk(false);
+	}
+	if (!state.scroll_pre  - scroll < 0){
+		if (scroll > state.offset-180) state.toggleLk(true);
+		if (scroll > state.offset-145) state.togglePj(true);
+		if (scroll > state.offset-110) state.toggleCV(true);
+	}
+	state.scroll_pre = scroll;
+	console.log(state.scroll_pre);
 }
 
 document.getElementById("logo").onclick = function(){
@@ -142,5 +187,8 @@ document.getElementById("logo").onclick = function(){
 			}
 			state.logo = true;
 		}
-
+		var rect = document.getElementById("divisor").getBoundingClientRect();
+		state.offset = rect.top;
+		//console.log(rect.top);
 	};
+//console.log(state.offset, document.body.getBoundingClientRect().top);

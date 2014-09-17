@@ -8,15 +8,15 @@
 
 body{
     margin: 100px;
-    font-family: "Arial";
+    font-family: sans-serif;
 }
 #menuBar{
-    width:60px;
+    width:340px;
     height:100%;
     display:block;
     position: fixed;
-    top:80px;
-    right:200px;
+    top:50px;
+    right:0px;
 }
 #code, #logo, .title, span.comment{
 	font-family: "Lucida Console";
@@ -28,20 +28,19 @@ body{
 #logo{
 	font-size: 20px;
 }
-#nav{
-	width:30%;
-    float:right;
-    text-align: left;
-}
-#nav ul li{
+ul#nav li{
     list-style:none;
-    float:left;
-    width:60px;
+    width:100px;
     text-align: center;
     background-color: rgba(0,0,0,0.4);
     color: #FFFFFF;
-    margin: 3px;
+    margin: 6px;
     padding: .3em 0em;
+}
+ ul#nav li:hover{
+	background-color: rgba(0,0,0,0.6);
+	cursor: pointer; 
+	cursor: hand;
 }
 
 span.blue{
@@ -66,8 +65,23 @@ span.turquoise{
 
 .toggle:hover {
 	background-color: rgba(0,0,0,0.1);
+	cursor: pointer; 
+	cursor: hand;
 }
 
 p { 
 	margin:0;
+}
+
+h4.subtitle{
+	color:#999999;
+	text-transform: uppercase;
+}
+
+hr{
+	margin: 30px;
+}
+
+a{
+	text-decoration: none;
 }
