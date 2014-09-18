@@ -67,26 +67,40 @@ var CVS_substitute = [
   ["computer science-course project-CPU design-LogiSim", 30],
   ["computer science-course assignment-programming-assembly-MIPS", 30],
   ["computer science-course assignment-programming-functional-SML", 60],
+  ["computer science-course assignment-programming-functional-scheme", 3],
+  ["computer science-personal project-programming-functional-haskell", 3],
   ["computer science-course assignment-programming-object oriented-java", 180],
   ["computer science-course assignment-algorithm design-java", 180],
   ["computer science-course assignment-numerical computing-MATLAB", 60],
-  ["computer science-course project-artificial inteligence-game player-java", 60],
+  ["computer science-course project-artificial inteligence-board game player-java", 60],
   ["computer science-course project-robotics-ROS", 60],
-  ["computer science-course assignment-sudoku solver-java", 10],
-  ["computer science-research-social network-twitter-geolocation inference-python", 800],
+  ["computer science-course assignment-sudoku solver-java", 6],
+  ["computer science-research-social network-twitter-geolocation inference-python", 750],
+  ["computer science-personal project-tweet scraping-python", 6],
   ["computer science-hackathon-semantic annotation-python, SPARQL", 24],
-  ["computer science-hackathon-shapefile database-python", 20],
+  ["computer science-hackathon-shapefile database-python, RDF", 16],
   ["computer science-personal project-app development-Windows 8-C#, XMAL", 5],
   ["computer science-personal project-app development-Windows 8-javascript HTML, CSS", 5],
   ["computer science-personal project-app development-python",36],
   ["computer science-personal project-webpage design-javascript, jQuery, HTML, CSS", 100],
   ["computer science-personal project-webpage design-HTML, CSS", 20],
-  ["probablity and statistics-personal project-stochastic process simulation-python", 60],
-  ["probablity and statistics-course assingment-R", 120],
-  ["arts-personal project-photography-photoshop", 120],
+  ["computer science-course project-software design-card game-java", 120],
+  ["computer science-personal project-transcribe course notes-LaTex", 20],
+
+  ["mathematics-personal project-stochastic process simulation-python", 35],
+  ["mathematics-course assignment-nonparametric statistics-R", 20],
+  ["mathematics-course assignment-nonparametric statistics-SAS", 10],
+  ["mathematics-course assignment-regression-R", 30],
+  ["mathematics-personal project-transcribe course notes-LaTex", 30],
+
+  ["arts-personal project-photography-photoshop", 60],
   ["arts-personal project-digital drawing-photoshop", 60],
-  ["arts-personal project-logo design-photoshop", 10],
-  ["arts-personal project-wallpaper design-photoshop", 20]
+  ["arts-logo design-photoshop", 10],
+  ["arts-personal project-wallpaper design-photoshop", 20],
+  ["arts-personal project-3D modeling-Google Sketchup", 50],
+  ["arts-personal project-video editing-windows movie maker", 20],
+  ["arts-course assignment-computer game making-game maker", 60],
+  ["arts-course project-music composition-digital-LMMS", 10]
 ];
 
 var CVS_colors = function(){
@@ -137,6 +151,7 @@ var CVS_colors = function(){
     colMap[i] = formatColor(colMap[i]);
   }
   colMap["personal project"] = "#AAAAAA";
+  colMap["course assignment"] = "#888888";
   console.log(colMap);
   return colMap;
 }();
