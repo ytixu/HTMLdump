@@ -196,7 +196,7 @@ function set_bombs(start_c, start_r, bombs){
 //Game objects
 var canvas, ctx;
 //graphics
-var TILE_SIZE = 40;
+var TILE_SIZE = 30;
 var disabled_color = '#ddd', enabled_color = '#5c8', bomb_color = '#f55';
 var color = ['#333', '#0a0', '#00a', '#d55', '#5d5', '#55d', '#a00'];
 var panel_color = 'rgba(255,255,255,0.8);'
