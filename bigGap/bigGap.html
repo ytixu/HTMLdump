@@ -16,7 +16,7 @@
 	<body> 
 		<center><table style="width:80%;height:100%;">
 			<tr><td height="100" style="width:70%;"></td><td></td></tr>
-			<tr><td height="10"><span class="titleTwo">&emsp;&emsp;&emsp; The </span><br/><span class="titleOne">Big Gap</span>
+			<tr><td height="10"><div id="tttle"> <span class="titleTwo">&emsp;&emsp;&emsp; The </span><br/><span class="titleOne">Big Gap</span></div>
 							<br/><span class="titleThree">The Earth, the Moon and the Space in Between</span>
 							<table align="right">
 								<tr><td class="off" onmouseover="this.className='on'" onmouseout="this.className='off'"><h1><a href='javascript:parent.gotoAnchor("abs", "theframe")'><div class="off" onmouseover="this.className='on'" onmouseout="this.className='off'">Abstract</div></a></h1></td>
@@ -46,7 +46,12 @@
 	    		$("#theframe").height($("#biblio").height() + $("#note").height()+90);
 	    		console.log($("#theframe").height());
 			}
-	    	$(document).ready(resizeFrame);
+	    	$(document).ready(function(){
+	    		resizeFrame();
+	    		if (navigator.userAgent.indexOf('Firefox') != -1 && parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('Firefox') + 8)) >= 3.6){//Firefox
+ 					$("#tttle").css({ 'margin-top': '-10px' });  
+ 				}
+ 			});
 			$(window).resize(resizeFrame);
 		</script>
 	</body>
