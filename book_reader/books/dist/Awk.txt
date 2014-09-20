@@ -1,6 +1,6 @@
 $title$App Development Log
 
-$shap$GRE Nexus
+$chap$GRE Nexus
 
 Day 1
 
@@ -27,7 +27,7 @@ Dear logger,
 My app is officially in the store! You can go check it out at [insert link]. I only have a simple logo for now. But once I have time again, after the exam, I'll be able to amend it and also add animation to my graph. 
 
 YAY! First app completed! \(ovo)/
-
+<hr>
 
 REALITY
 

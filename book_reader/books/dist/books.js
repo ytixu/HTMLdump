@@ -1,1 +1,1 @@
-books.add("", []);
+books.add("App Development Log", ["GRE Nexus"]);
