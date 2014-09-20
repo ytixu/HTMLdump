@@ -1,11 +1,3 @@
-/*html { 
-	background: url('1.png') no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}*/
-
 body{
     margin: 100px;
     font-family: 'Open Sans', sans-serif;
@@ -47,7 +39,7 @@ span.blue{
 	color:#6666FF;
 }
 
-span.red{
+span.red, h4{
 	color:#FF9966;
 }
 
@@ -63,7 +55,12 @@ span.turquoise{
 	color:#007999;
 } 
 
-.toggle:hover {
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+a.link:hover, .toggle:hover {
 	background-color: rgba(0,0,0,0.1);
 	cursor: pointer; 
 	cursor: hand;
@@ -78,10 +75,13 @@ h4.subtitle{
 	text-transform: uppercase;
 }
 
-hr{
-	margin: 30px;
+#divisor{
+	margin: 60px;
 }
 
-a{
+
+.titleNote{
 	text-decoration: none;
+	font-size: 10px;
+	color:#AAAAAA;
 }

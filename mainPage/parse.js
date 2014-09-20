@@ -141,16 +141,16 @@ var state = {
 		}
 	},
 	toggleCV: function(pred){
-		this.menu.toggle("menuCV", pred, "Run", "CV");
+		this.menu.toggle("menuCV", pred, "CV", "Run");
 		this.menu.cv = pred;
 		//console.log(this.menu.cv);
 	},
 	togglePj: function(pred){
-		this.menu.toggle("menuPj", pred, "Log", "Projects");
+		this.menu.toggle("menuPj", pred, "Projects", "Log");
 		this.menu.pj = pred;
 	},
 	toggleLk: function(pred){
-		this.menu.toggle("menuLk", pred, "Fork", "Links");
+		this.menu.toggle("menuLk", pred, "Links", "Fork");
 		this.menu.lk = pred;
 
 	},
@@ -170,7 +170,7 @@ function changeMenu(scroll){
 		if (scroll > state.offset-110) state.toggleCV(true);
 	}
 	state.scroll_pre = scroll;
-	console.log(state.scroll_pre);
+	// console.log(state.scroll_pre);
 }
 
 document.getElementById("logo").onclick = function(){

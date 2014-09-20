@@ -118,7 +118,7 @@ var CVS_colors = function(){
     ss.splice(0,1);
     cat[s[0]].sub.push(ss);
   }
-  console.log(cat);
+  // console.log(cat);
   var colMap = {};
   var startColor = getRandomColor();
   var ind = 0;
@@ -126,7 +126,7 @@ var CVS_colors = function(){
     var color = [startColor[ind%3], startColor[(ind+1)%3], startColor[(ind+2)%3]];
     ind++;
     colMap[i] = color;
-    console.log(color);
+    // console.log(color);
     // console.log(numChild(cat[keys[i]], 1));
     var sstep = Math.floor((250.0-Math.min.apply(null, colMap[i]))/cat[i].len);
     for (var j in cat[i].sub){
@@ -135,14 +135,14 @@ var CVS_colors = function(){
         if (Object.keys(colMap).indexOf(arr[k]) < 0){
           colMap[arr[k]] = color.map(function(x){
                 var shift = Math.abs((k+1)*(230-x)/arr[k].length);
-                console.log(shift);
+                // console.log(shift);
                 if (x == Math.min.apply(null, color)){
                     return Math.min(240, Math.floor(x+ shift));
                 }
                 var temp = Math.floor( Math.random() * shift + (k+1)*30);
-                console.log("13, ",temp, (k+1));
+                // console.log("13, ",temp, (k+1));
                 return Math.min(240, x+temp)  });
-          console.log(color, colMap[arr[k]] );
+          // console.log(color, colMap[arr[k]] );
         }
       }
     }
@@ -152,6 +152,6 @@ var CVS_colors = function(){
   }
   colMap["personal project"] = "#AAAAAA";
   colMap["course assignment"] = "#888888";
-  console.log(colMap);
+  // console.log(colMap);
   return colMap;
 }();
