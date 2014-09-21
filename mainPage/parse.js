@@ -72,22 +72,23 @@ var strings =
 	"},",
 	"amoebaEatsSticks: function() = {",
 	"/**",
-	"Before I was introduced to programming, my passion revolves around arts. With scissor and glue, I spent my childhood happily in a world of paper crafts, until a high school project taught me to design lamps. As I assembled my own curcuit system, it enlightened me that I can easily extend my creativity into state-of-art technologies, such as a keyboard and a screen.",
+	"Before I was introduced to programming, my passion revolves around arts. With scissor and glue, I spent my childhood happily in a world of paper crafts, until a high school project taught me to design lamps. As I assembled my own circuit system, it enlightened me that I can easily extend my creativity into state-of-art technologies, such as a keyboard and a screen.",
 	"**/",
 	"},",
 	"amoebaDiscoversRoastedPythonAndJavaCoffee: function() = {",
 	"/**",
-	"Entering university, althought my childhood background may give the impression that I would fit better in an engineering program, I reckoned that a science program would allow me to reseach for new ideas and thus build unique products.",
+	"Entering university, although my childhood background may give the impression that I would fit better in an engineering program, I reckoned that a science program would allow me to research for new ideas and thus build unique products.",
 	"**/",
 	"},",
 	"amoebaEatsCatopus: function() = {",
 	"/**",
 	"Just like art don't exists without an audience, I cannot prove my skills without showing my work. I have listed my recent projects below. The <Log> button brings you to records on some of my project's developing processes.",
 	"**/",
+
 	// "},",
 	// "amoebaSingsInForTheFoodSheLovedInC-ShapMajor: function() = {",
 	// "/**",
-		
+
 	// "**/",
 	"}"]
 
@@ -127,11 +128,11 @@ var state = {
 	logo_clicks: 0,
 	logo_rest: ["/** This class implements an objects that shall generate more classes. **/", 
 				"/** Need more amoebae for your project? Count me in! **/", 
-				"/** My species are called the phagobincodivae - binary code consumming divas! **/"],
-	logo_special: ["/** Congradulation! You have clicked me 10 times! **/", 
-					"/** Congradulation! You have clicked me 50 times! **/",
+				"/** My species are called the phagobincodivae - binary code consuming divas! **/"],
+	logo_special: ["/**Congratulation! You have clicked me 10 times! **/", 
+					"/** Congratulation! You have clicked me 50 times! **/",
 					"/** *sigh* Why do you choose to do this to yourself? You may go check out my math articles in you have free time. **/",
-					"/** You can stop clicking me, I will implicitly congradulate you every time henceforth. **/"],
+					"/** You can stop clicking me, I will implicitly Congratulation you every time henceforth. **/"],
 	menu:{
 		cv: false,
 		pj: false,
