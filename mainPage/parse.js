@@ -126,7 +126,7 @@ var state = {
 	logo: false,
 	logo_parsed: false,
 	logo_clicks: 0,
-	logo_rest: ["/** This class implements an objects that shall generate more classes. **/", 
+	logo_rest: ["/** This object implements an object that shall generate more objects. **/", 
 				"/** Need more amoebae for your project? Count me in! **/", 
 				"/** My species are called the phagobincodivae - binary code consuming divas! **/"],
 	logo_special: ["/**Congratulation! You have clicked me 10 times! **/", 
