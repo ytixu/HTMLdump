@@ -29,7 +29,7 @@ ul#nav li{
     margin: 6px;
     padding: .3em 0em;
 }
- ul#nav li:hover{
+ul#nav li:hover{
 	background-color: rgba(0,0,0,0.6);
 	cursor: pointer; 
 	cursor: hand;
@@ -49,6 +49,7 @@ span.green{
 
 span.comment{
 	color:#666666;
+	padding-left: 30px;
 }
 
 span.turquoise{
@@ -75,7 +76,11 @@ h4.subtitle{
 	text-transform: uppercase;
 }
 
-#divisor{
+hr{
+	margin: 30px;
+}
+
+hr #divisor{
 	margin: 60px;
 }
 

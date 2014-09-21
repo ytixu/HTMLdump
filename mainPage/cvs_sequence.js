@@ -63,51 +63,111 @@ var CVS_substitute = [
   // ["other-astronomy", 8],
   // ["other-philosophy", 3.33]
   ["computer science-course assignment-operating system-C", 120],
-  ["computer science-course assignment-webpage development-HTML, CSS, C, perl", 15],
+  ["computer science-course assignment-webpage development-HTML, CSS, C, Perl", 15],
   ["computer science-course project-CPU design-LogiSim", 30],
   ["computer science-course assignment-programming-assembly-MIPS", 30],
   ["computer science-course assignment-programming-functional-SML", 60],
-  ["computer science-course assignment-programming-functional-scheme", 3],
-  ["computer science-personal project-programming-functional-haskell", 3],
-  ["computer science-course assignment-programming-object oriented-java", 180],
-  ["computer science-course assignment-algorithm design-java", 180],
+  ["computer science-course assignment-programming-functional-Scheme", 3],
+  ["computer science-personal project-programming-functional-Haskell", 3],
+  ["computer science-course assignment-programming-object oriented-Java", 180],
+  ["computer science-course assignment-algorithm design-Java", 180],
   ["computer science-course assignment-numerical computing-MATLAB", 60],
-  ["computer science-course project-artificial inteligence-board game player-java", 60],
+  ["computer science-course project-artificial inteligence-board game player-Java", 60],
   ["computer science-course project-robotics-ROS", 60],
-  ["computer science-course assignment-sudoku solver-java", 6],
-  ["computer science-research-social network-twitter-geolocation inference-python", 750],
-  ["computer science-personal project-tweet scraping-python", 6],
-  ["computer science-hackathon-semantic annotation-python, SPARQL", 24],
-  ["computer science-hackathon-shapefile database-python, RDF", 16],
+  ["computer science-course assignment-sudoku solver-Java", 6],
+  ["computer science-research-social network-Twitter-geolocation inference-Python", 750],
+  ["computer science-personal project-tweet scraping-Python", 6],
+  ["computer science-hackathon-semantic annotation-Python, SPARQL", 24],
+  ["computer science-hackathon-shapefile database-Python, RDF", 16],
   ["computer science-personal project-app development-Windows 8-C#, XMAL", 5],
-  ["computer science-personal project-app development-Windows 8-javascript HTML, CSS", 5],
-  ["computer science-personal project-app development-python",36],
-  ["computer science-personal project-webpage design-javascript, jQuery, HTML, CSS", 100],
+  ["computer science-personal project-app development-Windows 8-Javascript, HTML, CSS", 5],
+  ["computer science-personal project-app development-Python",36],
+  ["computer science-personal project-webpage design-Javascript, jQuery, HTML, CSS", 100],
   ["computer science-personal project-webpage design-HTML, CSS", 20],
-  ["computer science-course project-software design-card game-java", 120],
+  ["computer science-course project-software design-card game-Java", 120],
   ["computer science-personal project-transcribe course notes-LaTex", 20],
 
-  ["mathematics-personal project-stochastic process simulation-python", 35],
+  ["mathematics-personal project-stochastic process simulation-Python", 35],
   ["mathematics-course assignment-nonparametric statistics-R", 20],
   ["mathematics-course assignment-nonparametric statistics-SAS", 10],
   ["mathematics-course assignment-regression-R", 30],
   ["mathematics-personal project-transcribe course notes-LaTex", 30],
 
-  ["arts-personal project-photography-photoshop", 60],
-  ["arts-personal project-digital drawing-photoshop", 60],
-  ["arts-logo design-photoshop", 10],
-  ["arts-personal project-wallpaper design-photoshop", 20],
+  ["arts-personal project-photography-Photoshop", 60],
+  ["arts-personal project-digital drawing-Photoshop", 60],
+  ["arts-logo design-Photoshop", 10],
+  ["arts-personal project-wallpaper design-Photoshop", 20],
   ["arts-personal project-3D modeling-Google Sketchup", 50],
-  ["arts-personal project-video editing-windows movie maker", 20],
-  ["arts-course assignment-computer game making-game maker", 60],
+  ["arts-personal project-video editing-Windows Movie Maker", 20],
+  ["arts-course assignment-computer game making-Game Maker", 60],
   ["arts-course project-music composition-digital-LMMS", 10]
 ];
 
+var drawList  = function(topTech, colMap){
+  console.log(topTech);
+  var main = document.getElementById("main");
+  var block = document.createElement("p");
+  block.innerHTML = "Top 7<br>";
+  for (var t in topTech){
+    block.innerHTML += t + " " + topTech[t].toString() + "%</br>"
+    // try{
+    //   block.style.background = colMap[t];
+    // }catch(e){}
+  }
+  block.style.textAlign = "right";
+  block.style.width = "100px";
+  block.style.marginLeft = "200px";
+  main.appendChild(block);
+  main.appendChild(document.createElement("br"));
+}
+
+// find top 7
+var topList = function(tech){
+  console.log(tech);
+  var sum = 0.0;
+  var index = [];
+  var reverseTech = {};
+  for (var i in tech){
+    sum += tech[i];
+    index.push(tech[i]);
+    if (Object.keys(reverseTech).indexOf(tech[i].toString()) < 0){
+      reverseTech[tech[i]] = [i];
+    }else{
+      reverseTech[tech[i]].push(i);
+    }
+  }
+  index = index.sort(function(a, b){
+                        return b-a;
+                    });
+  var topTech = {}
+  for (var i=0; i<7;){
+    for (var t in reverseTech[index[i]]){
+      console.log(reverseTech[index[i]][t], i);
+      topTech[reverseTech[index[i]][t]] = (index[i]/sum*100).toFixed(2);
+      i++;
+    }
+  }
+  console.log(index, reverseTech);
+  return topTech;
+}
+
+// determine color
 var CVS_colors = function(){
+  var tech = {};
   var cat = {};
 
   for (var i in CVS_substitute){
   	var s = CVS_substitute[i][0].split("-");
+    // add to tech
+    var ss = s[s.length-1].split(", ");
+    for (var t in ss){
+      if (Object.keys(tech).indexOf(ss[t]) < 0){
+        tech[ss[t]] = CVS_substitute[i][1];
+      }else{
+        tech[ss[t]] += CVS_substitute[i][1];
+      }
+    }
+    // add to cat
     if (Object.keys(cat).indexOf(s[0]) < 0){
       cat[s[0]] = {len: s.length, 
                    sub: []};
@@ -118,6 +178,7 @@ var CVS_colors = function(){
     ss.splice(0,1);
     cat[s[0]].sub.push(ss);
   }
+  var topTech = topList(tech);
   // console.log(cat);
   var colMap = {};
   var startColor = getRandomColor();
@@ -153,5 +214,6 @@ var CVS_colors = function(){
   colMap["personal project"] = "#AAAAAA";
   colMap["course assignment"] = "#888888";
   // console.log(colMap);
+  drawList(topTech, colMap);
   return colMap;
 }();

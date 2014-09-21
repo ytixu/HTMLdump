@@ -63,32 +63,32 @@ var dict = {
 // loadFile();
 
 var strings = 
-	["utimateGoal: \"Spread like binary fission and conquere the world!\",",
+	["utimateGoal: \"Spread like binary fission and embrace the world!\",",
 	"amoebaSaysHelloWorld: function() = {",
-	"&nbsp;/**",
-	"&nbsp;",
-	"&nbsp;**/",
+	"/**",
+	"My name is Yi Tian Xu. If you have difficulty to remember, you may use the trick that my elementary school teacher used. She told my father during a parent-teacher meeting that \"Yi Tian\" sounds like \"E.T.\".",
+	"**/",
 	"&nbsp;return this.createConsole.console.shout(\"Hello World!\");",
 	"},",
 	"amoebaEatsSticks: function() = {",
-	"&nbsp;/**",
-	"&nbsp; ",
-	"&nbsp;**/",
+	"/**",
+	"Before I was introduced to programming, my passion revolves around arts. With scissor and glue, I spent my childhood happily in a world of paper crafts, until a high school project taught me to design lamps. As I assembled my own curcuit system, it enlightened me that I can easily extend my creativity into state-of-art technologies, such as a keyboard and a screen.",
+	"**/",
 	"},",
 	"amoebaDiscoversRoastedPythonAndJavaCoffee: function() = {",
-	"&nbsp;/**",
-
-	"&nbsp;**/",
+	"/**",
+	"Entering university, althought my childhood background may give the impression that I would fit better in an engineering program, I reckoned that a science program would allow me to reseach for new ideas and thus build unique products.",
+	"**/",
 	"},",
 	"amoebaEatsCatopus: function() = {",
-	"&nbsp;/**",
-
-	"&nbsp;**/",
-	"},",
-	"amoebaSingsInForTheFoodSheLovedInC-ShapMajor: function() = {",
-	"&nbsp;/**",
-
-	"&nbsp;**/",
+	"/**",
+	"Just like art don't exists without an audience, I cannot prove my skills without showing my work. I have listed my recent projects below. The <Log> button brings you to records on some of my project's developing processes.",
+	"**/",
+	// "},",
+	// "amoebaSingsInForTheFoodSheLovedInC-ShapMajor: function() = {",
+	// "/**",
+		
+	// "**/",
 	"}"]
 
 function parse(){
@@ -96,13 +96,13 @@ function parse(){
 	for (var i=0; i<strings.length; i++){
 		var s = strings[i]
 		if (cmt){
-			strings[i] = "&nbsp;" + s;
+			strings[i] = dict.wrapComment("&nbsp;" + s);
 		}
 		if (dict.isComment(s)){
-			strings[i] = dict.wrapComment("&nbsp;" + s);
+			strings[i] = dict.wrapComment(s);
 			if (!cmt) cmt = true;
 			else cmt = false;
-		}else{
+		}else if(!cmt){
 			var ss = s.split('\"');
 			for (var j=0; j<ss.length; j++){
 				if (j%2 == 0){
@@ -117,15 +117,21 @@ function parse(){
 			strings[i] = dict.wrapTitle("&nbsp;" + ss.join(""));
 		}
 	}
+	console.log(strings)
 	return strings.join("<br>");
 }
 
 var state = {
 	logo: false,
 	logo_parsed: false,
-	logo_rest: ["/** This class is going to rock all the other classes in the universe~ **/", 
+	logo_clicks: 0,
+	logo_rest: ["/** This class implements an objects that shall generate more classes. **/", 
 				"/** Need more amoebae for your project? Count me in! **/", 
 				"/** My species are called the phagobincodivae - binary code consumming divas! **/"],
+	logo_special: ["/** Congradulation! You have clicked me 10 times! **/", 
+					"/** Congradulation! You have clicked me 50 times! **/",
+					"/** *sigh* Why do you choose to do this to yourself? You may go check out my math articles in you have free time. **/",
+					"/** You can stop clicking me, I will implicitly congradulate you every time henceforth. **/"],
 	menu:{
 		cv: false,
 		pj: false,
@@ -175,8 +181,18 @@ function changeMenu(scroll){
 
 document.getElementById("logo").onclick = function(){
 		if (state.logo){
-			document.getElementById("datatext").innerHTML=
-				dict.wrapComment("&nbsp;" +state.logo_rest[Math.floor(Math.random()*state.logo_rest.length)]);
+			if (state.logo_clicks == 10){
+				document.getElementById("datatext").innerHTML=dict.wrapComment(state.logo_special[0]);
+			}else if (state.logo_clicks == 50){
+				document.getElementById("datatext").innerHTML=dict.wrapComment(state.logo_special[1]);
+			}else if (state.logo_clicks == 100){
+				document.getElementById("datatext").innerHTML=dict.wrapComment(state.logo_special[2]);
+			}else if (state.logo_clicks == 1000){
+				document.getElementById("datatext").innerHTML=dict.wrapComment(state.logo_special[3]);
+			}else{
+				document.getElementById("datatext").innerHTML=
+					dict.wrapComment("&nbsp;" +state.logo_rest[Math.floor(Math.random()*state.logo_rest.length)]);
+			}
 			state.logo = false;
 		}else{
 			if (state.logo_parsed){
@@ -186,6 +202,7 @@ document.getElementById("logo").onclick = function(){
 				state.logo_parsed = true;
 			}
 			state.logo = true;
+			if (state.logo_clicks < 1000) state.logo_clicks += 1;
 		}
 		var rect = document.getElementById("divisor").getBoundingClientRect();
 		state.offset = rect.top;
