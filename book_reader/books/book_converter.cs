@@ -35,16 +35,17 @@ namespace converter
                 {
                     continue;
                 }
+                Console.Out.Write(String.Format("Converting file {0}\n", fileName));
                 string[] text = File.ReadAllLines(fileName);
                 foreach (string l in text)
                 {
-                    string  line = l.Replace("\\", "\\\\").Replace("\'", "\\\'");
+                    string line = l.Replace("\\", "\\\\").Replace("\'", "\\\'");
                     // title
                     if (line.StartsWith(TTLE))
                     {
                         if (bookTitle != "")
                         {
-                            bookWriter.Write("[\"{0}\"]);\n", String.Join("\",\"",bookChaps.ToArray()));
+                            bookWriter.Write("[\"{0}\"]);\n", String.Join("\",\"", bookChaps.ToArray()));
                             bookChaps.Clear();
                         }
                         bookTitle = line.Remove(0, TTLE.Length);
@@ -63,12 +64,12 @@ namespace converter
                         chapWriter.Write(CHAPSRT);
                         chapWriter.Write(toText(bookTitle, "title"));
                         bookChaps.Add(line.Remove(0, CHAP.Length));
-                        chapWriter.Write(toText(bookChaps[bookChaps.Count-1], "chapter"));
+                        chapWriter.Write(toText(bookChaps[bookChaps.Count - 1], "chapter"));
                     }
                     else if (chapWriter != null)
                     {
                         chapWriter.Write(toText(line, "text"));
-                       
+
                     }
 
                 }
@@ -77,7 +78,7 @@ namespace converter
             bookWriter.Close();
             chapWriter.Write(CHAPEND);
             chapWriter.Close();
-            Console.Out.Write("Done.");
+            Console.Out.Write("Done. You can close this window now.");
             Console.In.Read();
         }
     }
