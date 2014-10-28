@@ -76,7 +76,7 @@ var CVS_substitute = [
   ["computer science-course assignment-robotics-ROS", 60],
   ["computer science-course assignment-robotics-C++", 60],
   ["computer science-course assignment-sudoku solver-Java", 6],
-  ["computer science-research-social network-Twitter-geolocation inference-Python", 750],
+  ["computer science-research-social network-Twitter-geolocation inference-Python", 670],
   ["computer science-personal project-tweet scraping-Python", 6],
   ["computer science-hackathon-semantic annotation-Python, SPARQL", 24],
   ["computer science-hackathon-shapefile database-Python, RDF", 16],
