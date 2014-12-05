@@ -96,6 +96,7 @@ var tests = {
 		are: "This test can be compared with Student's t-test\\begin{equation*}\
 					e_{W_s,T}(F) = 12\\sigma^2 \\{f^*(0)\\}^2\
 				\\end{equation*}where $\\sigma^2$ is the variance for associated with $F$.",
+		notes:"It has been proven by Hodges and Lehmann in 1956 that $e_{W_s} \\geq 0.864$ always.",
 		links: ["mannWhitney"]
 	},
 	mannWhitney:{
@@ -151,6 +152,29 @@ var tests = {
 		limiting: "When $min(m,n)\\rightarrow \\infty$, $P\\left(\\sqrt{\\frac{mn}{m+n}}D_{m,n} \\geq t\\right) = K(t)$,\
 				   where \\begin{equation*}K(t) = 2\\sum_{k=1}^\\infty (-1)^{k+1}e^{-2k^2t^2}\\end{equation*}",
 		links: ["siegelTukey", "ansariBrad"]
+	},
+	extendedWilcox:{
+		open: false,
+		name: "\"Extended Wilcoxon's\" Test",
+		hypo: hypothesis.generalTwoIndep,
+		procedure: "Given samples $X_1, ..., X_m$ and $Y_1, ..., Y_n$.\
+					 Find the ranks $S_i$ for each $Y_i, \\ i \\in \\{1, .., n\\}$.\
+					 Construct a score function $a_N(S_i)$ such that $a_N(i) = E[X_{(i)}]$ where\
+					 $X_{(i)}$ is the $i$th order statisitic of $X_1,...,X_N\\sim F$ for some distribution $F$.",
+		statistic: "\\sum_{i=1}^na_N(S_i)",
+		links: ["wilcox", "normalScore"]
+	},
+	normalScore:{
+		open: false,
+		name: "Normal Score Test",
+		hypo: hypothesis.generalTwoIndep,
+		procedure: "Given samples $X_1, ..., X_m$ and $Y_1, ..., Y_n$.\
+					 Find the ranks $S_i$ for each $Y_i, \\ i \\in \\{1, .., n\\}$.\
+					 Let $a_N(S_i)$ be a function such that $a_N(s) = E[X_{(s)}]$ where\
+					 $X_{(s)}$ is the $s$th order statisitic of $X_1,...,X_N\\sim F$ for some Gaussian distribution $F$.",
+		statistic: "N_s = \\sum_{i=1}^na_N(S_i)",
+		notes: "Compared to Student's t-test, this statistic satistisfies $e_{N_s, T} \\geq 1$.",
+		links: ["wilcox","extendedWilcox"]
 	},
 	sign:{
 		open: false,
@@ -505,6 +529,37 @@ var tests = {
 		limiting: normalLimiting(["$N$"], '\\tau_N'),
 		links: ["kendall"]
 	},
+	copula:{
+		open: false,
+		name:"Copula-Based Test of Independence",
+		hypo: hypothesis.stochasticIndep,
+		procedure:"Given two series of data $X_1,...,X_N$ and $Y_1,...,Y_N$ collected at different time.\
+					Get ranks $R_i$ and $S_i$ for each each series, $i=1,...,N$.\
+					Construct a function $J(r,s)$\
+					such that<ul>\
+					<li>$\\int_{0}^{1}J(u,v)du \\mbox{ (and } dv\\mbox{)} = 0\
+					\\leq \\int_0^s\\int_0^tJ(u,v)dvdu$</li>\
+					<li>$J$ can be expressed as a finite sum of square integrable functions that are monotime in each of their arguments</li>\
+					<li>$J(uv) = -J(1-u,v) = -J(u,1-v)$</li></ul>",
+		statistic: "T_N^J=\\frac{1}{N} \\sum_{i=1}^NJ\\left(\\frac{R_{i}}{N+1},\\frac{S_{i}}{N+1}\\right)",
+		links:["localPower","waerden"]
+	},
+	localPower:{
+		open: false,
+		name:"Locally Most Powerful Test",
+		hypo: hypothesis.stochasticIndep,
+		procedure:"Given two series of data $X_1,...,X_N$ and $Y_1,...,Y_N$ collected at different time and their copula $C_{\\theta}(u,v)$.\
+					Get ranks $R_i$ and $S_i$ for each each series, $i=1,...,N$.\
+					Construct a function $T(r,s)$ such that\
+					\\begin{equation*} T(r,s) = E\\left[\\frac{\\dot{c}_{\\theta_0}}{c_{\\theta_0}}(U_{(r)}, V_{(s)})\\right]\\end{equation*}\
+					where\
+					\\begin{align*}&c_{\\theta_0}(u,v) = \\frac{\\delta}{\\delta u\\delta v}C_{\\theta}(u,v)\\\\\
+								&\\dot{c}_{\\theta_0}(u,v) = \\frac{\\delta}{\\delta \\theta}c_{\\theta_0}(u,v)\\end{align*}\
+					and $U_{(r)}$ and $V_{(s)}$ are the $r$th and $s$th order statistics of $U_1, ..., U_N\\sim \\mathcal{U}(0,1)$\
+					and $V_1, ..., V_N\\sim \\mathcal{U}(0,1)$ respectively.",
+		statistic:"T_N^J=\\frac{1}{N} \\sum_{i=1}^NT(R_{i},S_{i})",
+		links:["copula","waerden"]
+	},
 	waerden:{
 		open: false,
 		name: "Waerden's Test",
@@ -516,7 +571,7 @@ var tests = {
 		variance: "V[V_N] = \\frac{1}{N-1}\\left\\{\\sum_{i=1}^N\\Phi^{-1}\\left(\\frac{i}{N+1}\\right)\\right)\\}^2",
 		rejection: "$V_N$ is far from 0.",
 		limiting: normalLimiting(["$N$"], 'V_N'),
-		links: []
+		links: ["localPower"]
 	}
 }
 
@@ -587,13 +642,17 @@ var presentTest = function(test){
 			div.appendChild(toDOM("The dual statistic is \\begin{equation*}"+ test.dual[0] 
 							+ "\\end{equation*}" + dualDetail, 'p'));
 		}
-		div.appendChild(toDOM("The null hypothesis is rejected if "+test.rejection, 'p'));
+		if (test.rejection){
+			div.appendChild(toDOM("The null hypothesis is rejected if "+test.rejection, 'p'));
+		}
 		if (test.distribution != null){
 			div.appendChild(toDOM("Distribution", 'h4'));
 			div.appendChild(toDOM(test.distribution, 'p'));
 		}
-		div.appendChild(toDOM("Limiting Distribution", 'h4'));
-		div.appendChild(toDOM(test.limiting, 'p'));
+		if (test.limiting){
+			div.appendChild(toDOM("Limiting Distribution", 'h4'));
+			div.appendChild(toDOM(test.limiting, 'p'));
+		}
 		if (test.ties != null){
 			div.appendChild(toDOM("Encountering Tries", 'h4'));
 			div.appendChild(toDOM("When there are ties, "+test.ties, 'p'));
@@ -622,7 +681,7 @@ var presentTest = function(test){
 var index = [
 	{
 		name: "Compare Two Independent Samples",
-		sub: ["wilcox", "mannWhitney", "smirnov"]
+		sub: ["wilcox", "mannWhitney", "smirnov", "normalScore"]
 	},{
 		name: "Deal with Paired Data",
 		sub: ["sign", "wilcoxSign", "wilcoxCombo"]
@@ -632,7 +691,7 @@ var index = [
 	},
 	{
 		name: "Test Independence and Trend",
-		sub: ["spearmanTrend", "mann", "spearmanIndep", "kendall", "rho", "tau"]
+		sub: ["spearmanTrend", "mann", "spearmanIndep", "kendall", "rho", "tau", "copula", "localPower"]
 	}
 ]
 
