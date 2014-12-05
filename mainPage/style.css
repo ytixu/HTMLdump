@@ -1,0 +1,92 @@
+body{
+    margin: 100px;
+    font-family: 'Open Sans', sans-serif;
+}
+#menuBar{
+    width:340px;
+    height:100%;
+    display:block;
+    position: fixed;
+    top:50px;
+    right:0px;
+}
+#code, #logo, .title, span.comment{
+	font-family: "Lucida Console";
+}
+#logo, .title, span.comment{
+    width: 60%;
+    text-align: left;
+}
+#logo{
+	font-size: 20px;
+}
+ul#nav li{
+    list-style:none;
+    width:100px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+    color: #FFFFFF;
+    margin: 6px;
+    padding: .3em 0em;
+}
+ul#nav li:hover{
+	background-color: rgba(0,0,0,0.6);
+	cursor: pointer; 
+	cursor: hand;
+}
+
+span.blue{
+	color:#6666FF;
+}
+
+span.red, h4{
+	color:#FF9966;
+}
+
+span.green{
+	color:#339933;
+}
+
+span.comment{
+	color:#666666;
+	padding-left: 30px;
+}
+
+span.turquoise{
+	color:#007999;
+} 
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+a.link:hover, .toggle:hover {
+	background-color: rgba(0,0,0,0.1);
+	cursor: pointer; 
+	cursor: hand;
+}
+
+p { 
+	margin:0;
+}
+
+h4.subtitle{
+	color:#999999;
+	text-transform: uppercase;
+}
+
+hr{
+	margin: 30px;
+}
+
+hr #divisor{
+	margin: 60px;
+}
+
+
+.titleNote{
+	text-decoration: none;
+	font-size: 10px;
+	color:#AAAAAA;
+}

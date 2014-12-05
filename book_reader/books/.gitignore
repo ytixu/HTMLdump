@@ -2,4 +2,6 @@ build/*
 dist/*.pyd
 dist/*.zip
 dist/*.pyd
-dist/*.exe
+dist/*.dll
+dist/book_converter_py.exe
+dist/old/*

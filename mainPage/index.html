@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>goldenratiphi</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"> </script>
+</head>
+<body>
+<center>
+    <p id="logo" class="toggle"><span class="blue">var</span> SwallowLikeAnAmoeba = {</p>
+	<div id="menuBar">
+		<table style="width:400px;"><tr><td style="vertical-align:top;padding-top:40px;">
+			<a id="name" style="font-size:40px;color:#666666;" href="index.html">Yi Tian <span class="turquoise">Xu</span></a>
+            <div id="linkDump" style="heigth:0px;display:none;color:#888888;">
+        		<a class="link" href="mailto:yi.t.xu@mail.mcgill.ca" target="_top">yi.t.xu@mail.mcgill.ca</a></br>
+                <a class="link" href="https://github.com/ytixu" target="blank">github</a></br>
+                <a class="link" href="https://ca.linkedin.com/in/yitianxu/" target="blank">linkedin</a></br>
+                <a class="link" href="https://goldenratiphi.wordpress.com/" target="blank">wordpress</a>
+            </div>
+   		</td><td style="width:50%;vertical-align:top;padding-top:10px;">
+            <ul id="nav">
+                <a target="blank" href="CV-2014.pdf"><li id="menuCV">Run</li></a>
+                <a target="blank" href="http://ytixu.github.io/HTMLdump/book_reader/reader.html"><li id="menuPj">
+                    Log
+                </li></a>
+                <li id="menuLk">Fork</li>
+            </ul> 
+	    </td></tr> </table>
+    </div>
+    <div id="datatext" style="text-align:left;width:60%;">
+    	<span class="comment" id=\"code\">&nbsp;/** This object implements an objects that shall generate more objects. **/</span>
+    </div>
+    <p id="logo" style="margin-bottom:100px;">}</p>
+   
+    <hr id="divisor"/>
+
+    <table id="mainContent" style="text-align:left;width:50%;"><tr><td>
+        <iframe src="timechart.html" scrolling="no" style="border:0;width:350px;height:600px;overflow-x:hidden;overflow-y:hidden;margin-left:-350px;margin-top:0px;">
+                <p>Your browser does not support iframes. :(</p>
+            </iframe>
+    </td><td>
+        <h4 class="subtitle">Background</h4>
+            Bachelor in Statistics and Computer Science at McGill University <span class="titleNote">(2012, 2015 expected)</span></br>
+            Summer research assistant, Network Dynamics at McGill University <span class="titleNote">(2014)</span>
+
+            <hr/>
+
+        <h4 class="subtitle">Sample Works</h4>
+            <h4>GRE Nexus <span class="titleNote">(2014, on going)</span></h4>
+                Constructing a network for Barron's 800 High-Frequency GRE words using word relations to define connections, such as synonyms, antonyms, homophone, lexicographical order. Creating a Windows 8 app that allows user to navigate through this graph. Desired version supports randomized quiz, dynamic word selection and grouping. 
+            <h4><a class="link" target="blank" href="https://github.com/ytixu/HTMLdump/tree/gh-pages/book_reader">E-Book Reader</a> <span class="titleNote">(2014, on going)</span></h4>
+                Commissioned by a friend, build a webpage to display local e-book, supporting bookmarking features. Conversion of books in .txt files to .js files done using python program. Familiarized with web local storage.
+            <h4><a class="link" target="blank" href="http://ytixu.github.io/HTMLdump/mines/bomb.html">Keyboard Minesweeper</a> <span class="titleNote">(2014)</span></h4>
+                Explore game making using HTML canvas. Redesign classical minesweeper game such that all movements are performed using keyboard only.
+            <h4><a class="link" target="black" href="http://ytixu.github.io/HTMLdump/GRE_Nexus/gre.html">GREvocPrep</a> <span class="titleNote">(2014)</span></h4>
+                Collected GRE words from online source and designed a randomized quiz with Javascript, HTLM, CSS with scoring system and dynamic word removal feature.
+            <h4><a class="link" target="black" href="https://goldenratiphi.wordpress.com/2014/02/02/tweets-scrapping/">Twitter Tweet Scraping</a> <span class="titleNote">(2014)</span></h4>
+                Experiment data scraping with Python, implemented a red-black tree (with only insertion supported), analysis the frequency of course name mentions and generated result using Turtle graphics.
+            <h4><a class="link" target="black" href="https://goldenratiphi.wordpress.com/tag/stochastics/">Simulation of Stochastics Processes</a> <span class="titleNote">(2013)</span></h4>
+                Discussed of mathematical models of stochastic processes learned in class and programed simple Python simulation of these processes.
+            <h4><a class="link" target="blank" href="http://ytixu.github.io/HTMLdump/bigGap/bigGap.html">The Big Gap</a> <span class="titleNote">(2012)</span></h4>
+                First-year seminars course research on geometric methods to measure the distance of the Moon.
+        </td></tr>
+    </div>
+</center>
+
+<script type="text/javascript" src="parse.js"></script>
+<script>
+	$(window).scroll(function (event) {
+	    var scroll = $(window).scrollTop();
+	    changeMenu(scroll);
+	});
+    $( "#menuLk" ).click(function() {
+        if ( $( "#linkDump" ).is( ":hidden" ) ) {
+            $( "#linkDump" ).slideDown( "fast" );
+            $( "#menuLk" ).css('background-color', "rgba(0,0,0,0.6)");
+        } else {
+            $( "#linkDump" ).hide();
+             $( "#menuLk" ).css('background-color', "rgba(0,0,0,0.4)");
+        }
+    });
+</script>
+</body>
+</html>
