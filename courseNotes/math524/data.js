@@ -632,7 +632,7 @@ var index = [
 	},
 	{
 		name: "Test Independence and Trend",
-		sub: ["spearmanTrend", "mann", "spearmanIndep", "rho", "tau"]
+		sub: ["spearmanTrend", "mann", "spearmanIndep", "kendall", "rho", "tau"]
 	}
 ]
 
