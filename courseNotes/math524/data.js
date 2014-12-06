@@ -80,7 +80,6 @@ var tests = {
 		mean: "E[W_s] = \\frac{1}{2}n(N+1)",
 		variance: "V[W_s] = \\frac{1}{12}mn(N+1)",
 		rejection: "$W_s$ is either too big or too small (depending on $H_1$).",
-		distribution: "",
 		limiting: normalLimiting(["$m$", "$n$"], 'W_s'),
 		ties: "set the mid-ranks to where there are ties. The statistic $W_s^*$ will have the same\
 				mean and limiting distribution, but different variance, i.e.:\
