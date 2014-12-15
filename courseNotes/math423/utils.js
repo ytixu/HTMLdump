@@ -47,7 +47,7 @@ var utilModel ={
 	},
 	expectedError: "\\mathbb{E}_{\\boldsymbol\\varepsilon|\\boldsymbol X}\
 				[\\boldsymbol\\varepsilon|\\boldsymbol X] = 0_n",
-	assumeModel: "\\boldsymbol Y = \\boldsymbol X\\boldsymbol\\beta + \\boldsymbol\\varepsilon",
+	assumeModel: "\\boldsymbol y = \\boldsymbol X\\boldsymbol\\beta + \\boldsymbol\\varepsilon",
 	assumeNormalError: "\\boldsymbol\\varepsilon|\\boldsymbol X \\sim \\mathcal{N}(0_n,\\sigma^2\\mathbb{I}_n)",
 	assumeNormalOutCome: "\\boldsymbol Y|\\boldsymbol X \\sim \\mathcal{N}(\\boldsymbol X\\boldsymbol\\beta,\\sigma^2\\mathbb{I}_n)",
 	xtx: "\\boldsymbol X^\\top \\boldsymbol X",
@@ -59,7 +59,8 @@ var utilModel ={
 	expectedBeta: "\\mathbb{E}_{\\boldsymbol Y|\\boldsymbol X}[\\hat{\\boldsymbol\\beta}|\\boldsymbol X] = \\beta",
 	varBeta: "\\mathbb{V}_{\\boldsymbol Y|\\boldsymbol X}[\\hat{\\boldsymbol\\beta}|\\boldsymbol X]\
 			 = \\sigma^2(\\boldsymbol X^\\top \\boldsymbol X)^{-1}",
-	residual: "e_i = y_i - \\hat{y}_i = y_i-\\boldsymbol x_i\\hat{\\boldsymbol\\beta}"
+	residual: "e_i = y_i - \\hat{y}_i = y_i-\\boldsymbol x_i\\hat{\\boldsymbol\\beta}",
+	ras: "R_{\\text{adj}}^2"
 }
 var ss_ = function(str, para){
 			if (para != null){
@@ -74,6 +75,22 @@ var ms_ = function(str, para){
 	return "MS_{\\text{"+str+"}}";
 }
 
+var ssmBar = function(num, betas, c, r, bar){
+	var numerator = [];
+	for (var i = 0; i<num.length; i++){
+		numerator.push("\\beta_"+num[i].toString());
+	}
+	var denom = [];
+	for (var i = 0; i<betas.length; i++){
+		denom.push("\\beta_"+betas[i].toString());
+	}
+	if (denom.length > 0){
+		return bar+"{"+c+"S}_{\\text{"+r+"}}("+numerator.join(",")+"|"+denom.join(",")+")";
+	}else{
+		return bar+"{"+c+"S}_{\\text{"+r+"}}("+numerator.join(",")+")";
+	}
+}
+
 var tests = {
 	tTest:{
 		j: "for any $j\\in \\{0,1,\\dots,k\\}$",
@@ -84,40 +101,36 @@ var tests = {
 	},
 	ftest:{
 		sumDecomp: [ss_("T"), [ss_("RES"), ss_("R")].join("+")].join("="),
+
 		// get SS_R bar
 		ssrBar : function(num, betas){
-			var numerator = [];
-			var ind = 0;
-			for (;ind < betas.length; ind++){
-				if (b == num){
-					break;
-				}
-			}
-			if (ind == betas.length){
-				return null; // bad input
-			}
-			for (var i = 0; i<ind; i++){
-				numerator.push("\\beta_"+betas[i].toString());
-			}
-			return "\\overline{SS}_{\\text{R}}(\\beta_"+num.toString()+"|"+numerator.join(",")+")";
+			return ssmBar(num, betas, "S", "R", "\\overline");
 		},
 
 		// get MS_RES
-		msres : function(betas){
-			var denom = []
-			for (var i = 0; i<betas.length; i++){
-				denom.push("\\beta_"+betas[i].toString());
-			}
-			return "MS_{\\text{RES}}("+denom.join(",")+")";
+		msBar : function(num, betas){
+			return ssmBar(num, betas, "M", "R", "\\overline");
+		},
+
+		msRes : function(betas){
+			return ssmBar(betas, [], "M", "RES", "");
+		},
+		ssRes : function(betas){
+			return ssmBar(betas, [], "S", "RES", "");
 		},
 		hypo: "<center>$H_0$: $\\beta_1 = \\beta_2 = \\dots = \\beta_k = 0$<br>\
 				$H_1$: $\\beta_j \\neq 0$ for at least one $j$</center>",
 		stat: "F = \\frac{"+ss_("R")+"/(p-1)}{"+ss_("RES")+"/(n-p)}",
 		// get F value
-		Ftest : function(num, betas){
-			return "\\frac{"+this.ssrBar(num, betas)+"}{"+this.msres(betas)+"}";
+		Ftest : function(num, betas, all){
+			return "\\frac{"+this.ssrBar(num, betas)+"}{"+this.msRes(all)+"}";
 		},
-		ass:"under $H_0$, $F \\sim \\mbox{Fisher}(k,n-p)$"
+		ass: function(para){
+			if (para == null){
+				para = "k";
+			}
+			return "under $H_0$, $F \\sim \\mbox{Fisher}("+para+",n-p)$";
+		}
 	}
 
 }
