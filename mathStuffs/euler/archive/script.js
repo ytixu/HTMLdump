@@ -1,4 +1,4 @@
-var title = "solvelikeaeuler";
+var title = "solvelikeamoderneuler";
 var pageTitle = "Project ProjectEuler";
 var originalLink = "https://projecteuler.net/";
 
@@ -11,13 +11,15 @@ function createChild(cont, type){
 }
 
 function createLink(name, src, dir){
-	var link = createChild("Multiples of 3 and 5", "a");
+	var link = createChild(name, "a");
 	link.href = dir+src+".html";
 	return link;
 }
 
 function setIndex(domele, dir){
-	domele.appendChild(createLink("Multiples of 3 and 5", "1", dir))
+	domele.appendChild(createLink("Multiples of 3 and 5", "1", dir));
+	domele.appendChild(document.createElement("br"));
+	domele.appendChild(createLink("Even Fibonacci Number", "2", dir));
 }
 
 function setup(dir){

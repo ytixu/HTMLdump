@@ -47,6 +47,7 @@ div.answer{
 	bottom: 0px;
 	overflow-y: scroll;
 	max-width: 60%;
+	min-width: 60%;
 	padding: 4% 2% 4% 0%;
 }
 
@@ -68,4 +69,9 @@ div.code{
  
 ::-webkit-scrollbar-thumb {
     background-color: #338585;
+}
+
+
+h4{
+	color:#C2A385;
 }
