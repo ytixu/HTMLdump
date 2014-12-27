@@ -48,7 +48,7 @@ div.answer{
 	overflow-y: scroll;
 	max-width: 60%;
 	min-width: 60%;
-	padding: 4% 2% 4% 0%;
+	padding: 4% 2% 8% 0%;
 }
 
 a { 
@@ -72,6 +72,6 @@ div.code{
 }
 
 
-h4{
+h3,h4{
 	color:#C2A385;
 }
