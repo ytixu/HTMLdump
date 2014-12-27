@@ -1,0 +1,71 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+#index{
+	display: block;
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	text-align: right;
+	font-size: 16px;
+	bottom:0;
+	overflow-y: scroll;
+	background-color: #669999;
+	color: white;
+	padding: 4% 2% 4% 4%;
+}
+#title{
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin:1% 2% 0% 0%;
+	color: #338585;
+}
+#index a { 
+	color: white; 
+	text-decoration: none;
+} 
+#index a:hover{ 
+	color: #dddddd; 
+} 
+
+div.question{
+	color: #888888; 
+}
+
+div.answer{
+	margin-left: 2%;
+}
+
+#text{
+	display: block;
+	position:absolute;
+	top: 0px;
+	left: 18%;
+	font-size: 20px;
+	bottom: 0px;
+	overflow-y: scroll;
+	max-width: 60%;
+	padding: 4% 2% 4% 0%;
+}
+
+a { 
+	color: black;
+	text-decoration: none;
+} 
+a:hover{ 
+	color: #444444; 
+} 
+
+div.code{
+	background-color: #dddddd;
+}
+
+::-webkit-scrollbar {
+    max-width: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: #338585;
+}
