@@ -3,7 +3,7 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 #menuBar{
-    width:340px;
+    width:360px;
     height:100%;
     display:block;
     position: fixed;
