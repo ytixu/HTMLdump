@@ -80,7 +80,6 @@ var tests = {
 		mean: "E[W_s] = \\frac{1}{2}n(N+1)",
 		variance: "V[W_s] = \\frac{1}{12}mn(N+1)",
 		rejection: "$W_s$ is either too big or too small (depending on $H_1$).",
-		distribution: "",
 		limiting: normalLimiting(["$m$", "$n$"], 'W_s'),
 		ties: "set the mid-ranks to where there are ties. The statistic $W_s^*$ will have the same\
 				mean and limiting distribution, but different variance, i.e.:\
@@ -97,7 +96,7 @@ var tests = {
 					e_{W_s,T}(F) = 12\\sigma^2 \\{f^*(0)\\}^2\
 				\\end{equation*}where $\\sigma^2$ is the variance for associated with $F$.",
 		notes:"It has been proven by Hodges and Lehmann in 1956 that $e_{W_s} \\geq 0.864$ always.",
-		links: ["mannWhitney"]
+		links: ["mannWhitney", "extendedWilcox", "normalScore"]
 	},
 	mannWhitney:{
 		open: false,
@@ -111,7 +110,7 @@ var tests = {
 		distribution: "A table for this statistic is available for small $n$ and $m$.",
 		limiting: normalLimiting(["$m$", "$n$"], 'W_{XY}'),
 		notes: "This is design to make it easier to tabulate the distribution for Wilcoxon rank sum statistic.",
-		links: ["wilcox"]
+		links: ["wilcox", "extendedWilcox", "normalScore"]
 	},
 	siegelTukey:{
 		open: false,
@@ -151,7 +150,7 @@ var tests = {
 						 \\end{equation*}",
 		limiting: "When $min(m,n)\\rightarrow \\infty$, $P\\left(\\sqrt{\\frac{mn}{m+n}}D_{m,n} \\geq t\\right) = K(t)$,\
 				   where \\begin{equation*}K(t) = 2\\sum_{k=1}^\\infty (-1)^{k+1}e^{-2k^2t^2}\\end{equation*}",
-		links: ["siegelTukey", "ansariBrad"]
+		links: ["wilcox", "mannWhitney", "siegelTukey", "ansariBrad", "extendedWilcox", "normalScore"]
 	},
 	extendedWilcox:{
 		open: false,
@@ -162,7 +161,7 @@ var tests = {
 					 Construct a score function $a_N(S_i)$ such that $a_N(i) = E[X_{(i)}]$ where\
 					 $X_{(i)}$ is the $i$th order statisitic of $X_1,...,X_N\\sim F$ for some distribution $F$.",
 		statistic: "\\sum_{i=1}^na_N(S_i)",
-		links: ["wilcox", "normalScore"]
+		links: ["wilcox", "mannWhitney", "normalScore"]
 	},
 	normalScore:{
 		open: false,
@@ -174,7 +173,7 @@ var tests = {
 					 $X_{(s)}$ is the $s$th order statisitic of $X_1,...,X_N\\sim F$ for some Gaussian distribution $F$.",
 		statistic: "N_s = \\sum_{i=1}^na_N(S_i)",
 		notes: "Compared to Student's t-test, this statistic satistisfies $e_{N_s, T} \\geq 1$.",
-		links: ["wilcox","extendedWilcox"]
+		links: ["wilcox", "mannWhitney", "extendedWilcox"]
 	},
 	sign:{
 		open: false,
@@ -245,7 +244,7 @@ var tests = {
 				\\end{equation*}$\\tau^2$ is the variance associated with $L$;\
 				and with Sign test\\begin{equation*}\
 					e_{S_N,V_s} = \\frac{\\{l(0)\\}^2}{3\\{l^*(0)\\}^2}\\end{equation*}",
-		links: ["sign"]
+		links: ["sign", "wilcox"]
 	},
 	wilcoxCombo:{
 		open: false,
@@ -269,7 +268,7 @@ var tests = {
 				&E[W_s^{\\text{combo}}]  = \\sum_{k=1}^b\\frac{1}{N_k+1}E[W_{s_k}]\\\\\
 				&V[W_s^{\\text{combo}}] = \\sum_{k=1}^b\\left(\\frac{1}{N_k+1}\\right)^2V[W_{s_k}]\
 			\\end{align*}",
-		links: ["sign", "jonckheere", "chacko"]
+		links: ["sign", "wilcoxSign", "wilcox"]
 	},
 	kruskalW:{
 		open: false,
@@ -396,7 +395,7 @@ var tests = {
 		statistic: "\\hat{Q} = \\Lambda\\left(\\frac{(sn)^3(sn+1)(2sn+1)}{6} - \\frac{1}{4}sn^2(sn+1)^2\\right)",
 		rejection: "$Q$ is too small.",
 		limiting: "Assymptotically, $Q\\sim \\chi_{(s-1)}^2$.",
-		links: ["friedman"]
+		links: ["friedman", "chacko", "cochran"]
 	},
 	spearmanTrend:{
 		open: false,
@@ -447,7 +446,7 @@ var tests = {
 		variance: "V[D^+] = \\sum_{i=1}^s V[D_i] = \\frac{sN^2(N+1)^2(N-1)}{36}",
 		rejection: "$D^+$ is too small.",
 		limiting: normalLimiting(["$N$"], 'D^+'),
-		links: ["spearmanTrend", "bPlus"]
+		links: ["spearmanTrend", "bPlus", "spearmanIndep"]
 	},
 	bPlus:{
 		open: false,
@@ -460,7 +459,7 @@ var tests = {
 		variance: "V[B^+] = \\sum_{i=1}^s V[B_i] = \\frac{1}{72}s(2N^3+3N^2-5N)",
 		rejection: "$B^+$ is too large.",
 		limiting: normalLimiting(["$N$"], 'B^+'),
-		links: ["mann", "dPlus"]
+		links: ["mann", "dPlus", "kendall"]
 	},
 	spearmanIndep:{
 		open: false,
@@ -479,7 +478,7 @@ var tests = {
 			&E[D^*] = \\frac{N^3-N}{6} - \\frac{1}{12}\\sum_{i=1}^l(d_i^3-d_i)\\\\\
 			&V[D^*] = \\frac{N^2(N+1)^2(N-1)}{36}\\left(1-\\sum_{i=1}^l\\frac{d_i^3-d_i}{N^3-N}\\right)\
 		\\end{align*}",
-		links: ["mann", "dPlus", "spearmanTrend"]
+		links: ["dPlus", "spearmanTrend", "kendall", "rho"]
 	},
 	kendall:{
 		open: false,
@@ -498,7 +497,7 @@ var tests = {
 		rejection: "$B$ is too large.",
 		limiting: normalLimiting(["$N$"], 'B'),
 		notes: "$B$ can be interpreted as the number of concordant pairs.",
-		links: ["mann", "dPlus", "spearmanTrend"]
+		links: ["mann", "bPlus", "spearmanIndep", "tau"]
 	},
 	rho:{
 		open: false,
@@ -542,7 +541,7 @@ var tests = {
 					<li>$J$ can be expressed as a finite sum of square integrable functions that are monotime in each of their arguments</li>\
 					<li>$J(uv) = -J(1-u,v) = -J(u,1-v)$</li></ul>",
 		statistic: "T_N^J=\\frac{1}{N} \\sum_{i=1}^NJ\\left(\\frac{R_{i}}{N+1},\\frac{S_{i}}{N+1}\\right)",
-		links:["localPower","waerden"]
+		links:["localPower","waerden", "rho", "tau"]
 	},
 	localPower:{
 		open: false,

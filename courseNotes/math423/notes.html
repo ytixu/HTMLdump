@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<HTML>
+	<HEAD>
+		<TITLE>
+		 	ReAnal
+		</TITLE>
+		<style>
+		body {
+			padding: 5% 20%;
+			font-size: 16pt;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		p.abstract {
+		    font-style: italic;
+			margin-left: 30px;
+		}
+		p{
+			color: #555555;
+		}
+
+		h2 {
+			color: #04B486;
+		}
+		h2:hover {
+			color: #26c6a8;
+			cursor: pointer;
+		}
+
+		h3 {
+		    color: #8258FA;
+		}
+		h3:hover {
+		    color: #9A2EFE;
+		    cursor: pointer;
+		}
+
+		h4 {
+		    color: #31B404;
+		}
+
+		h4:hover{
+			color: #52D626;
+			cursor: pointer;
+		}
+		.numSection{
+			color: #cccccc;
+		}
+		div#source, a{
+			color: #cccccc;
+			font-size: 12pt;
+		}
+		a:hover{
+			color: #888888;
+			cursor: pointer;
+		}
+
+
+		div#main{
+			background-color: #8258FA;
+			color: #FFFFFF;
+			text-align: center;
+			width: 80pt;
+			padding-top: 15pt;
+			padding-bottom: 15pt;
+			display: block;
+			position: fixed;
+			left:0%;
+			top: 13%;
+		}
+		div#main:hover{
+			background-color: #9A2EFE;
+			cursor: pointer;
+		}
+		div#source{
+			text-align: center;
+			padding-top: 50pt;
+		}
+		td{
+			padding: 10px;
+		}
+		td.title{
+			background-color: #CED8F6;
+			text-align: center;
+		}
+		div.hidden{
+			display:none;
+		}
+		div.visible{
+			display:block;
+		}
+		</style>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
+			$("a[href='#top']").click(function() {
+			  $("html, body").animate({ scrollTop: 0 }, "slow");
+			  return false;
+			});
+		</script>
+	</HEAD>
+	<BODY>
+		<h1>Regression and Analysis of Varaince</h1>
+		<div id="CONTENT"></div>
+		<div id="source">Source: MATH 423 Regression and Analysis of Varaince<br>course taught by <a href="http://www.math.mcgill.ca/dstephens/" target="blank">David A. Stephens</a><br>McGill university, Fall 2014</div>
+		<div id="main">HOME</div>
+	</BODY>
+	<script src="utils.js"></script>
+	<script src="multipleReg.js"></script>
+</HTML>
