@@ -60,6 +60,7 @@ a:hover{
 } 
 
 div.code{
+	padding: 2px;
 	background-color: #dddddd;
 }
 
