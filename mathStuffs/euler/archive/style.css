@@ -76,3 +76,8 @@ div.code{
 h3,h4{
 	color:#C2A385;
 }
+
+p.date{
+	color:#888888;
+	text-align: right;
+}
