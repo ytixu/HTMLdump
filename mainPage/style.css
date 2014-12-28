@@ -1,9 +1,10 @@
 body{
     margin: 100px;
     font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
 }
 #menuBar{
-    width:360px;
+    width:370px;
     height:100%;
     display:block;
     position: fixed;
@@ -89,4 +90,9 @@ hr #divisor{
 	text-decoration: none;
 	font-size: 10px;
 	color:#AAAAAA;
+}
+
+ul{
+	margin: 0px 0px 0px 40px;
+	padding: 0px;
 }
