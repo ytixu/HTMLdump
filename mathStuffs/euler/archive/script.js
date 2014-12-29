@@ -17,6 +17,7 @@ function createLink(name, src, dir){
 }
 
 function setIndex(domele, dir){
+	domele.appendChild(createChild("Index", "h2"));
 	domele.appendChild(createLink("Multiples of 3 and 5", "1", dir));
 	domele.appendChild(document.createElement("br"));
 	domele.appendChild(createLink("Even Fibonacci Number", "2", dir));
