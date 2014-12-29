@@ -20,3 +20,11 @@
   (if (= n 0) '()
     (cons (head stream)
     (stream-section (- n 1) (tail stream)))))
+
+(define (stream-filter p? s)
+  (if (empty-stream? s) '()
+      (let ((h (head s))
+            (t (tail s)))
+        (if (p? h)
+            (cons-stream h (stream-filter p? t))
+            (stream-filter p? t)))))
