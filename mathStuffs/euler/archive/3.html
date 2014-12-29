@@ -16,17 +16,60 @@
 			<h3>Largest prime factor</h3>
 			<div class="question">
 				<p>The prime factors of 13195 are 5, 7, 13 and 29.</p>
-				<p>What is the largest prime factor of the number 600851475143 ?</p>
+				<p>What is the largest prime factor of the number 600851475143?</p>
 			</div>
 			<div class="answer">
-				<p>
+				<p>One approach is to use the Sieve of Eratosthenes to enumerate all the prime numbers and check one by one for factors of 600851475143. Of course, we can also add certain hacks, such as 
+					<ul>
+						<li>omit checking primes greater than 600851475143/$a$ if $a$ is not a divisor of 600851475143;</li>
+						<li>check the factors of its factors, i.e.: if $a$ is a factor of 600851475143, then factors of 600851475143/$a$ are factors of 600851475143;</li>
+						<li>omit checking repeated factors, i.e.: if $a$ is a factor of 600851475143, only check factors of 600851475143/$a^k$ for some $k$ such that $a^k$ is the greatest power of $a$ that is a factor of 600851475143.</li>
+					</ul>
 				</p>
 			</div>
-	<h4>smlnj Code</h4>
+	<h4>Scheme Code</h4>
 <div class="code">
-<pre><code class="smlnj"></code></pre>
+<pre><code class="scheme">(define (stream-filter p? s)
+  (if (empty-stream? s) '()
+      (let ((h (head s))
+            (t (tail s)))
+        (if (p? h)
+            (cons-stream h (stream-filter p? t))
+            (stream-filter p? t)))))
+            
+(define (sieve stream)
+  (cons-stream
+     (head stream)
+     (sieve 
+      (stream-filter
+         (lambda (x) (not (= (mod x (head stream)) 0)))
+         (tail stream)))))
+
+(define (root n d)
+    (if (= (mod n d) 0) (root (/ n d) d) n))
+
+(define (nat n) (cons-stream n (nat (+ n 1))))
+
+(define startSieve (sieve (nat 2)))
+
+(define (primeDivisors n str bound)
+    (let ((h (head str))
+            (t (tail str)))
+        (if (> h bound) (cons n '())
+            (if (= (mod n h) 0) 
+                (cons h (primeDivisors (root n h) t bound))
+                (primeDivisors n t (/ n h))
+            )
+        )
+    )
+)
+(primeDivisors 600851475143 startSieve 600851475143)</code></pre>
 </div>
-			<p class="date"></p>
+			<div class="answer">
+				<p>But this number is just too big for Eratosthenes... on <a target="blank" href="http://repl.it/">repl.it</a>. But it runs hell fast on <a target="blank" href="http://www.tutorialspoint.com/execute_scheme_online.php">CodingGround</a>.</p>
+				<p>Output: 71, 839, 1471, 6857</p>
+			</div>
+			<p class="date">Dec 29, 2014</p>
 		</div>
 	</body>
 	<script src="script.js"> </script>
