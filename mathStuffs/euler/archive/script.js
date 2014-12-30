@@ -1,8 +1,12 @@
-var title = "solvelikeamoderneuler";
-var pageTitle = "Project ProjectEuler";
-var originalLink = "https://projecteuler.net/";
+var title = ":3";
+var pageTitle = "Project Archimedes";
 
-var about = "<a target=\"blanck\" href=\"" + originalLink + "\">Project Euler</a>";
+var about = "Questions taken from<br><a target=\"blanck\" "+
+			"href=\"https://projecteuler.net/\">Project Euler</a><br><a target=\"blank\"" + 
+			"href=\"http://www.mktechnicalclasses.com/Notes/" +
+			"Cracking%20the%20Coding%20Interview,%204%20Edition%20-%20150%20"+
+			"Programming%20Interview%20Questions%20and%20Solutions.pdf\">"+
+			"Cracking the Coding Interview</a>" ;
 
 function createChild(cont, type){
 	var stuff = document.createElement(type);
@@ -23,6 +27,8 @@ function setIndex(domele, dir){
 	domele.appendChild(createLink("Even Fibonacci Number", "2", dir));
 	domele.appendChild(document.createElement("br"));
 	domele.appendChild(createLink("Largest prime factor", "3", dir));
+	domele.appendChild(document.createElement("br"));
+	domele.appendChild(createLink("Swapping Numbers", "4", dir));
 }
 
 function setup(dir){

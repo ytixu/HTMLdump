@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script> var DIRECTORY = ""; </script>
+	</head>
+	<body>
+		<div id="text">
+				<div class="sequence">
+				<a href="3.html">previous</a> /
+				<a href="#">next</a></div>
+				<h3>Swapping Numbers</h3>
+			<div class="question">
+				<p>Write a function to swap a number in place without temporary variables.</p>
+			</div>
+			<div class="answer">
+				<p>One way to do this is to use arithmetics.</p>
+			</div>
+	<h4>Ruby Code</h4>
+<div class="code">
+<pre><code class="ruby">def swap(a, b)
+    a = a+b
+    b = a-b
+    a = a-b
+    puts("#{a} #{b}")
+end</code></pre>
+</div>
+			<div class="answer">
+				<p>But in binary, we can use another type of operation to obtain the same effect. Given two binary numbers $a$ and $b$, $a$ XOR $b$ is similar to $a+b$ up to the carry. That is, if $a=1$ and $b=0$, $a$ XOR $b = a+b = 1$; but if $a=1$ and $b=1$, $a$ XOR $b = 0$ while $a+b = 10$.</p>
+				<p>Because we discarded the carry, when we try to retrieve the original values we also need to omit borrows as in the substractions. To do so, we can also use XOR. Indeed, XOR is similar to addition and substraction. This property allows us to XOR two numbers, and then XOR the result with one of the original number to get back the other.</p>
+			</div>
+	<h4>Ruby Code</h4>
+<div class="code">
+<pre><code class="ruby">def swapp(a, b)
+    a = a^b
+    b = a^b
+    a = a^b
+    puts("#{a} #{b}")
+end</code></pre>
+</div>
+			<div class="answer">
+				<p>This property of XOR can be also useful for reversing strings.</p>
+			</div>
+	<h4>Ruby Code</h4>
+<div class="code">
+<pre><code class="ruby">def reverse(str)
+    $l = str.length
+    for i in 0..$l/2 do
+        str[i] = str[i]^str[$l-i-1]
+        str[$l-i-1] = str[i]^str[$l-i-1]
+        str[i] = str[i]^str[$l-i-1]
+    end
+    return str
+end
+
+puts(reverse("wahahahahha!~~~"))</code></pre>
+</div>
+			<br>
+			<div class="sequence">
+				<span class="date">Dec 29, 2014 ~ </span>
+				<a href="3.html">previous</a> / <a href="#">next</a>
+			</div>
+		</div>
+	</body>
+	<script src="script.js"> </script>
+</html> 
