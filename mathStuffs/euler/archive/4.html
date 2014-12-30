@@ -23,7 +23,7 @@
 			<div class="answer">
 				<p>One way to do this is to use arithmetics.</p>
 			</div>
-	<h4>Ruby Code</h4>
+	<h4>Ruby</h4>
 <div class="code">
 <pre><code class="ruby">def swap(a, b)
     a = a+b
@@ -36,7 +36,7 @@ end</code></pre>
 				<p>But in binary, we can use another type of operation to obtain the same effect. Given two binary numbers $a$ and $b$, $a$ XOR $b$ is similar to $a+b$ up to the carry. That is, if $a=1$ and $b=0$, $a$ XOR $b = a+b = 1$; but if $a=1$ and $b=1$, $a$ XOR $b = 0$ while $a+b = 10$.</p>
 				<p>Because we discarded the carry, when we try to retrieve the original values we also need to omit borrows as in the substractions. To do so, we can also use XOR. Indeed, XOR is similar to addition and substraction. This property allows us to XOR two numbers, and then XOR the result with one of the original number to get back the other.</p>
 			</div>
-	<h4>Ruby Code</h4>
+	<h4>Ruby</h4>
 <div class="code">
 <pre><code class="ruby">def swapp(a, b)
     a = a^b
@@ -48,7 +48,7 @@ end</code></pre>
 			<div class="answer">
 				<p>This property of XOR can be also useful for reversing strings.</p>
 			</div>
-	<h4>Ruby Code</h4>
+	<h4>Ruby</h4>
 <div class="code">
 <pre><code class="ruby">def reverse(str)
     $l = str.length

@@ -88,7 +88,7 @@
 				you'll get $\heartsuit\approx 33$. Then you can use Benet's formula to verrify it. Indeed, $f_{33} \approx 3'500'000$ and $f_{34}$ exceeds 4 million by more than a million. Conveniently, $f_{33}$ is an even term.  
 				</p>
 			</div>
-<h4>SML Code</h4>
+<h4>SML</h4>
 <div class="code"><pre><code class = "sml">fun fib (n, a, b)=
     if n=0 then
         a
@@ -114,7 +114,7 @@ fib(34, 0, 1);
 				<p style="text-align:right;">$\blacksquare$</p>
 				<p>Ergo, the solution is $\frac{1}{2}(f_{35}-1)$, which if you know $\phi$ exactly, then you can get the exact value. But you probably don't. That's why you can forget about everything above and use the following code instead.</p>
 			</div>
-	<h4>SML Code</h4>
+	<h4>SML</h4>
 <div class="code">
 <pre><code class = "sml">fun sumfib (a, b, sum)=
     if a>4000000 then
@@ -130,7 +130,7 @@ sumfib(0, 1, 0);
 (fib(35, 0, 1)-1) div 2;</code></pre>
 </div>
 
-<h4>Haskell Code</h4>
+<h4>Haskell</h4>
 <div class="code">
 <pre><code class = "haskell">sumfib a b s
     | a > 4000000 = s
