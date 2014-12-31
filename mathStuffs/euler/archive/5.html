@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script> var DIRECTORY = ""; </script>
+		<style>
+			.button {
+			   border-top: 1px solid #000000;
+			   background: #ffffff;
+			   width: 100px;
+			   height: 100px;
+			   font-size: 24px;
+			   vertical-align: middle;
+			   }
+		</style>
+		<script src="titato/titato.js"> </script>
+	</head>
+	<body>
+		<div id="text">
+				<div class="sequence">
+				<a href="4.html">previous</a> /
+				<a href="6.html">next</a></div>
+				<h3>Tic-Tac-Toe</h3>
+			<div class="question">
+				<p>Design an algorithm to figure out if someone has won in a game of tic-tac-toe.
+				</p>
+			</div>
+			<div class="answer">
+				<p>This smells like we can use something similar to the minimax algorithm. The tic-tac-toe grid is 3$\times $3, each cell taking three possible symbols: $\circ$, $\times$, empty. Thus the total possible number of configurations is 
+				\begin{equation*}
+					2\sum_{i=0}^4 \left({9 \choose i}{9-i \choose i} + {9 \choose i+1}{9-(i+1) \choose i}\right) - 1
+				\end{equation*}
+				The minimax algorithm computes all the possible configurations. If you are a robot playing against another robot, your brain will start by simulating all possible outcomes and at each of you turn, pick the best move to maximize your score. Of course, if your opponent uses the same algorithm, the game will be boring. Nonetheless, you'll be programmed to enjoy it.
+				</p>
+				<p>The simulation can be illustrated with a tree. Each level corresponds to a player's turn. Each node represents a configuration of the grid and each edge, a move. The "max" player, yourself, picks the move that maximize the score while the "min" player, your adversary, minimizes the score. The score is computed at the leaves of the tree with some heuristic function. This function can be simply
+					\begin{equation*}
+						h(e) = \begin{cases} 1 & \mbox{if you win}\\
+											-1 & \mbox{if you loses}\\
+											0 & \mbox{otherwise}\end{cases}
+					\end{equation*}
+				for some "end-game" configuration $e$. For "in-game" configuration $i$, 
+				\begin{equation*}
+					h(i) = \begin{cases} 1 & \mbox{if $i$ is at a max player level and a child of $i$ has score } 1\\
+											-1 & \mbox{if $i$ is at a min player level and a child of $i$ has score } -1\\
+											0 & \mbox{otherwise}\end{cases}
+				\end{equation*}
+				</p>
+				<p>The score are backed up to the root of the tree according to the rules followed by the min/max players. Note that Minimax assumes that the adversary behaves like a min player. In the case this assumption does not holds, then thing may get messed up... Apart from that, minimax is not exactly what we are looking for, as what we are looking for is to tell when a player is winning.</p>
+				<p>The approach is to modify minimax is a way such that we can predict that a player is a winnder. For in-game configuration, the heuritics is replaced to
+				\begin{equation*}
+					h'(i) = \begin{cases} 1 & \mbox{if $i$ is at a max player level and all children of $i$ have score } 1\\
+											-1 & \mbox{if $i$ is at a min player level and all children of $i$ have score } -1\\
+											0 & \mbox{otherwise}\end{cases}
+				\end{equation*}
+				</p>
+				<p>Combining $h$ and $h'$, we get a powerful robot player that can win and tell when it's winning. 
+				</p>
+				<h4>Demo</h4>
+				<table width=80%><tr><td><form>
+			          <label>Choose your symbol</label>            
+			          <input type = "radio" name = "symbol"
+			                 id = "cross" value = "o"
+			                 checked = "checked" />
+			          <label for = "cross">$\times$</label>
+			          
+			          <input type = "radio" name = "symbol"
+			                 id = "circle" value = "x" />
+			          <label for = "circle">$\circ$</label>
+			    </form>
+			    <form>
+			          <label>Do you want to start?</label>            
+			          <input type = "radio" name = "starting"
+			                 id = "start" value = "t"
+			                 onclick = "setTurn(true);"
+			                 checked = "checked" />
+			          <label for = "start">yes</label>
+			          
+			          <input type = "radio" name = "starting"
+			                 id = "notstart" value = "f" 
+			                 onclick = "setTurn(false);"/>
+			          <label for = "notstart">no</label>
+			    </form></td><td>
+			    <button type="button" onclick="resetGrid();">Restart</button></td></tr></table>
+				<center> 
+				<button type="button" class="button" id="1" onclick="clickedCell(this.id);"></button>
+				<button type="button" class="button" id="2" onclick="clickedCell(this.id);"></button> 
+				<button type="button" class="button" id="3" onclick="clickedCell(this.id);"></button><br> 
+				<button type="button" class="button" id="4" onclick="clickedCell(this.id);"></button> 
+				<button type="button" class="button" id="5" onclick="clickedCell(this.id);"></button> 
+				<button type="button" class="button" id="6" onclick="clickedCell(this.id);"></button><br> 
+				<button type="button" class="button" id="7" onclick="clickedCell(this.id);"></button> 
+				<button type="button" class="button" id="8" onclick="clickedCell(this.id);"></button> 
+				<button type="button" class="button" id="9" onclick="clickedCell(this.id);"></button> 
+				</center>
+			</div>
+	<h4>Ruby Code</h4>
+<div class="code">
+<pre><code class="ruby">
+</code></pre>
+</div>
+			<div class="sequence">
+				<span class="date">Dec 29, 2014 ~ </span>
+				<a href="4.html">previous</a> / <a href="6.html">next</a>
+			</div>
+		</div>
+	</body>
+	<script src="script.js"> </script>
+	<script>reset();</script>
+</html> 
