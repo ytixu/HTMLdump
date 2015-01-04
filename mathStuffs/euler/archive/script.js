@@ -29,6 +29,8 @@ function setIndex(domele, dir){
 	domele.appendChild(createLink("Largest prime factor", "3", dir));
 	domele.appendChild(document.createElement("br"));
 	domele.appendChild(createLink("Swapping Numbers", "4", dir));
+	domele.appendChild(document.createElement("br"));
+	domele.appendChild(createLink("Tic-Tac-Toe", "5", dir));
 }
 
 function setup(dir){
