@@ -1,4 +1,5 @@
-var symbol = "";
+var yourSymbol = "";
+var mySymbol = "";
 var turn = true;
 
 var config = {
@@ -10,27 +11,44 @@ var config = {
 				this.grid[i].push(0);
 			}
 		}
+		console.log(this.grid);
 	},
 	get: function(k){
-		return this.grid[int(k/3)][k$3];
+		return this.grid[parseInt(k/3)][k%3];
 	},
 	set: function(k, val){
-		this.grid[int(k/3)][k$3]; = val;
+		this.grid[parseInt(k/3)][k%3] = val;
 	},
 	match: function(k, val){ // check if it matches 
-		
+		// checking row
+		if (this.grid[parseInt(k/3)][0] == val &&
+			this.grid[parseInt(k/3)][1] == val &&
+			this.grid[parseInt(k/3)][2] == val) return true;
+		// checking column
+		if (this.grid[0][k%3] == val &&
+			this.grid[1][k%3] == val &&
+			this.grid[2][k%3] == val) return true;
+		// checking diag
+		if (this.grid[0][0] == val &&
+			this.grid[1][1] == val &&
+			this.grid[2][2] == val) return true;
+		if (this.grid[0][2] == val &&
+			this.grid[1][1] == val &&
+			this.grid[2][0] == val) return true;
+		return false;
 	}
 }
 
 config.init();
 
 function resetGrid(){
-	for (var i=1; i<10; i++){
+	for (var i=0; i<9; i++){
 		var btn = document.getElementById(i.toString());
 		btn.disabled = false;
 		btn.innerHTML = "";
 	}
-	symbol = "";
+	yourSymbol = "";
+	mySymbol = "";
 	if (document.getElementById("start").checked){
 		turn = true;
 	}else{
@@ -45,29 +63,51 @@ function reset(){
 }
 
 function setTurn(bool){
-	if (symbol == "") turn = bool;
+	if (yourSymbol == "") turn = bool;
 }
+
+var lastMove = -1;
 
 function clickedCell(btnID){
+	var intID =  parseInt(btnID);
 	if (!turn) return;
 	turn = false;
-	if (symbol == ""){
+	if (yourSymbol == ""){
 		if (document.getElementById("cross").checked){
-			symbol = "&times;";
+			yourSymbol = "&times;";
 		}else{
-			symbol = "&#9675;";
+			yourSymbol = "&#9675;";
 		}
 	}
-	var btn = document.getElementById(int(btnID));
-	btn.innerHTML = symbol;
+	var btn = document.getElementById(intID);
+	btn.innerHTML = yourSymbol;
 	btn.disabled = true;
+	lastMove = intID;
+	robotMove();
 }
 
-/**
-check if a move ends a game
-*/
-function checkWin(move, val){
-
+function robotMove(){
+	var res = minimax(true, lastMove);
+	if (res.hStart == 1){
+		document.getElementById("result").innerHTML = "You lose!";
+	}else if(res.hStart == -1){
+		document.getElementById("result").innerHTML = "You win!";
+	}else if(res.move == 9){
+		document.getElementById("result").innerHTML = "Tie!";
+	}else{
+		if (mySymbol = ""){
+			if (document.getElementById("cross").checked){
+				mySymbol = "&#9675;";
+			}else{
+				mySymbol = "&times;";
+			}
+		}
+		console.log(res.move.toString());
+		var btn = document.getElementById(res.move.toString());
+		btn.innerHTML = mySymbol;
+		btn.disabled = true;
+	}
+	turn = true;
 }
 
 /**
@@ -104,10 +144,10 @@ function minimax(maxPlayer, lastMove){
 		}
 	}
 	if (childNotOpt == 0){
-		if (moveValue == -1){ // leaf
-			if (checkWin(moveValue, lastMove)){
+		if (bestMove == 123){ // leaf
+			if (config.match(lastMove, moveValue)){
 				return {
-					h: win, hStar: win, move: 9
+					h: moveValue, hStar: moveValue, move: 9
 				}
 			}
 			return {
