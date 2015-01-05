@@ -42,6 +42,8 @@
 				<p>In this answer, we will assume that this algorithm is run many times during a tic-tac-toe game. In this case, we can just consider the changes made on the grid by the player when adding a $\circ$ or a $\times$. </p>
 
 				</p>Call a row, column or a diagonal of three tiles "matched" if its tiles all contain the same symbol. For each new $\circ$ or $\times$, we check the row, the column that it is placed on. We can also check if it is on a diagonal and then check if the diagonal is matched. However, we can simply check if any diagonal is matched at every call. This makes $3\times 4$ tiles to check, which is constant time.</p>
+
+				<p>This can also be optimized by checking the center cell. That is, if the center cell does not contains the symbol associated to the player that played previously, then we don't need to check the diagonals.</p>
 			</div>
 			<h4>Demo</h4>
 			<table width=80%><tr><td><form>
@@ -106,25 +108,24 @@ var config = {
 
 	// input: the tile index and the symbol
 	match: function(k, val){
-		if (k < 0) return null;
+		if (k < 0) return false;
 		var row = parseInt(k/3);
 		var col = k%3;
 		// checking row
 		if (this.grid[row][0] == val &&
 			this.grid[row][1] == val &&
-			this.grid[row][2] == val) return [row*3, row*3+1, row*3+2];
+			this.grid[row][2] == val) return true;
 		// checking column
 		if (this.grid[0][col] == val &&
 			this.grid[1][col] == val &&
-			this.grid[2][col] == val) return [col, col+3, col+6];
+			this.grid[2][col] == val) return true;
 		// checking diag
+		if (this.grid[1][1] != val) return false;
 		if (this.grid[0][0] == val &&
-			this.grid[1][1] == val &&
-			this.grid[2][2] == val) return [0,4,8];
+			this.grid[2][2] == val) return true;
 		if (this.grid[0][2] == val &&
-			this.grid[1][1] == val &&
-			this.grid[2][0] == val) return [2,4,6];
-		return null;
+			this.grid[2][0] == val) return true;
+		return false;
 	}
 }
 </code></pre>

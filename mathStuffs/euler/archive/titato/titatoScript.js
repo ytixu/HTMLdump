@@ -39,11 +39,10 @@ var config = {
 			this.grid[1][col] == val &&
 			this.grid[2][col] == val) return [col, col+3, col+6];
 		// checking diag
+		if (this.grid[1][1] != val) return null;
 		if (this.grid[0][0] == val &&
-			this.grid[1][1] == val &&
 			this.grid[2][2] == val) return [0,4,8];
 		if (this.grid[0][2] == val &&
-			this.grid[1][1] == val &&
 			this.grid[2][0] == val) return [2,4,6];
 		return null;
 	},
