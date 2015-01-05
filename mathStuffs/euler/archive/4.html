@@ -9,6 +9,7 @@
 		<script type="text/javascript"
 		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ruby"></script>
 		<script> var DIRECTORY = ""; </script>
 	</head>
 	<body>
@@ -25,7 +26,7 @@
 			</div>
 	<h4>Ruby</h4>
 <div class="code">
-<pre><code class="ruby">def swap(a, b)
+<pre><code class="prettyprint">def swap(a, b)
     a = a+b
     b = a-b
     a = a-b
@@ -38,7 +39,7 @@ end</code></pre>
 			</div>
 	<h4>Ruby</h4>
 <div class="code">
-<pre><code class="ruby">def swapp(a, b)
+<pre><code class="prettyprint">def swapp(a, b)
     a = a^b
     b = a^b
     a = a^b
@@ -50,7 +51,7 @@ end</code></pre>
 			</div>
 	<h4>Ruby</h4>
 <div class="code">
-<pre><code class="ruby">def reverse(str)
+<pre><code class="prettyprint">def reverse(str)
     $l = str.length
     for i in 0..$l/2 do
         str[i] = str[i]^str[$l-i-1]

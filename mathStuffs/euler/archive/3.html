@@ -9,6 +9,7 @@
 		<script type="text/javascript"
 		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=scm"></script>
 		<script> var DIRECTORY = ""; </script>
 	</head>
 	<body>
@@ -32,7 +33,8 @@
 			</div>
 	<h4>Scheme</h4>
 <div class="code">
-<pre><code class="scheme">(define (stream-filter p? s)
+<?prettify lang=scm?>
+<pre><code>(define (stream-filter p? s)
   (if (empty-stream? s) '()
       (let ((h (head s))
             (t (tail s)))
@@ -61,11 +63,8 @@
         (if (> h bound) (cons n '())
             (if (= (mod n h) 0) 
                 (cons h (primeDivisors (root n h) t bound))
-                (primeDivisors n t (/ n h))
-            )
-        )
-    )
-)
+                (primeDivisors n t (/ n h))))))
+
 (primeDivisors 600851475143 startSieve 600851475143)</code></pre>
 </div>
 			<div class="answer">
