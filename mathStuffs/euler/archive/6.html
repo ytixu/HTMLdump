@@ -28,7 +28,7 @@
 			<div class="answer">
 				<p>The naive way to solve this is to find all possible sums and pick the max. If the array length is $n$, then there are 
 					\begin{equation*}
-						\sum_{i=1}^n i(n-i) = \frac{n^2(n+1)}{2} + \frac{n^2(n+1)(2n+1)}{6} \in O(n^2)
+						\sum_{i=1}^n i(n-i) = \frac{n^2(n+1)}{2} - \frac{n^2(n+1)(2n+1)}{6} \in O(n^2)
 					\end{equation*}
 				</p>
 				<p>Using dynamic programming, we can find a more efficient algorithm for this. We call the subsequence of the array that produced the maximum sum "maximum subarray". Consider the reduced problem where we need to indentify the maximum sum when the first element of the array is contributing. This element, called $x$, can either be the only element contributing the maximum sum or a subsequence of elements right after $x$ contributes also. Mathematically, maximum sum can be expressed as 
