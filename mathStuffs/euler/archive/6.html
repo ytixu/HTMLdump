@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=py"></script>
+		<script> var DIRECTORY = ""; </script>
+	</head>
+	<body>
+		<div id="text">
+				<div class="sequence">
+				<a href="5.html">previous</a> /
+				<a href="#">next</a></div>
+				<h3>Maximum Subarray Problem</h3>
+				<h5>from Cracking the Coding Interview</h5>
+			<div class="question">
+				<p>You are given an array of integers (both positive and negative). Find the continuous sequence with the largest sum. Return the sum.</p>
+				<p>EXAMPLE<br>
+				Input: {2, -8, 3, -2, 4, -10}<br>
+				Output: 5 (i.e., {3, -2, 4})</p>
+			</div>
+			<div class="answer">
+				<p>The naive way to solve this is to find all possible sums and pick the max. If the array length is $n$, then there are 
+					\begin{equation*}
+						\sum_{i=1}^n i(n-i) = \frac{n^2(n+1)}{2} + \frac{n^2(n+1)(2n+1)}{6} \in O(n^2)
+					\end{equation*}
+				</p>
+				<p>Using dynamic programming, we can find a more efficient algorithm for this. We call the subsequence of the array that produced the maximum sum "maximum subarray". Consider the reduced problem where we need to indentify the maximum sum when the first element of the array is contributing. This element, called $x$, can either be the only element contributing the maximum sum or a subsequence of elements right after $x$ contributes also. Mathematically, maximum sum can be expressed as 
+					\begin{equation*}
+						f(i) = \max\begin{cases} a_i \\ f(i+1)\end{cases}
+					\end{equation*}
+				where $i$ is the index of a sequence $\{a_1,\dots, a_n\}$.
+				</p><p>
+				Now, if $x$ does not contributes in the maximum subarray, then the maximum sum is one of the $f(i)$'s where $i\in \{2, \dots, n\}$. So this, this seems to work for the original problem as $x$ can always represent the starting element of a non-empty array. In fact, $f(i)$ computes the maximum sum when the maximum subarray starts at index $i$. So the solution of the problem is simply $\max_{i}(f(i))$. In total, this algorithm takes time $O(n)$.</p>
+				<p>To retrive the maximum subarray; we already know the start of this subarray. So simply iterate through the array starting from there, and add elements until we obtain the maximum sum again: that's where the subarray ends. This is still $O(n)$ time.</p>
+			</div>
+	<h4>Python</h4>
+<div class="code">
+<?prettify lang=py?>
+<pre><code>def recurseMaxSubArray(a):
+    if len(a) == 1: 
+        return (a[0], a[0], 0)
+        
+    maxSub, maxSum, st = recurseMaxSubArray(a[1:])
+    if a[0] < a[0] + maxSub:
+        maxSub = maxSub + a[0]
+    else:
+        maxSub = a[0]
+    if maxSum < maxSub:
+        maxSum = maxSub
+        st = 0
+    else:
+        st += 1
+    return (maxSub, maxSum, st)
+        
+def maxSubArray(a):
+    maxSub, maxSum, st = recurseMaxSubArray(a)
+    sumAgain = 0
+    for i, v in enumerate(a[st:]):
+        sumAgain += v
+        if sumAgain == maxSum:
+           return {"subarray" : a[st:st+i+1], "sum" : maxSum}
+    
+print maxSubArray([2, -8, 3, -2, 4, -10])
+</code></pre>
+</div><br>
+			<div class="sequence">
+				<span class="date">Jan 6, 2015 ~ </span>
+				<a href="5.html">previous</a> / <a href="#">next</a>
+			</div>
+		</div>
+	</body>
+	<script src="script.js"> </script>
+</html> 
+
+

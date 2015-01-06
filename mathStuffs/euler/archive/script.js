@@ -36,6 +36,8 @@ function setIndex(domele, dir){
 	domele.appendChild(createLink("Swapping Numbers", "4", dir));
 	domele.appendChild(document.createElement("br"));
 	domele.appendChild(createLink("Tic-Tac-Toe", "5", dir));
+	domele.appendChild(document.createElement("br"));
+	domele.appendChild(createLink("Maximum Subarray Problem", "6", dir));
 }
 
 function setup(dir){
