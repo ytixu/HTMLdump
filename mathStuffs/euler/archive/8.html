@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang="></script>
+	</head>
+	<body>
+		<div id="text">
+				<div class="sequence">
+				<a href="1.html">previous</a> /
+				<a href="3.html">next</a></div>
+				<h3>Bitwise Arithmetics</h3>
+				<h5>from Cracking the Coding Interview</h5>
+			<div class="question">
+				<p>Write a function that adds two numbers. You should not use + or any arithmetic operators</p>
+			</div>
+			<div class="answer">
+				<p>In the previous entry, <a target="blank" href="4.html">Swapping Numbers</a>, we discussed about the property of bit operation XOR that is similar to addition and subtraction up to the carry. The AND operation can fill this gap. Given two bit strings, e.g.: 101 and 110, $101\mathbin{\oplus}110=011$ and $101\land 110=100$. 100 is the carry when it is shifted to the right. After preforming the shift operation, all is left to do is to add the two resulting bit strings; and to go this, we XOR and AND again. This process keeps going until there is no more carry. 
+				</p>
+			</div>
+	<h4>Python</h4>
+<div class="code">
+<?prettify lang=py?>
+<pre><code>def add(a,b):
+    if not b: return a
+    return add(a^b, (a&b)<<1)</code></pre>
+</div>
+			<div class="answer">
+				<p>But this code has a problem. In fact, if you run it with any input of a pair of numbers with sum equaling to zero, it will give you stack overflow error. But if we run a similar Java problem on the same input, it'll spit out the right answer. Indeed, in this code,
+				</p>
+			</div>
+	<h4>Java</h4>
+<div class="code">
+<?prettify lang=java?>
+<pre><code>public static int add(int a, int b){
+	System.out.println(Integer.toBinaryString(a) + " " + Integer.toBinaryString(b));
+    if (b==0) return a;
+    return add(a^b, (a&b)<<1);
+}</code></pre>
+</div>
+			<div class="answer">
+				<p>the output is this beautiful trapezoid (or triangle).</p>
+				<pre><code>	11111111111111111111111111111111 1                                
+	11111111111111111111111111111110 10                               
+	11111111111111111111111111111100 100                              
+	11111111111111111111111111111000 1000                             
+	11111111111111111111111111110000 10000                            
+	11111111111111111111111111100000 100000                           
+	11111111111111111111111111000000 1000000                          
+	11111111111111111111111110000000 10000000                         
+	11111111111111111111111100000000 100000000                        
+	11111111111111111111111000000000 1000000000                       
+	11111111111111111111110000000000 10000000000                      
+	11111111111111111111100000000000 100000000000                     
+	11111111111111111111000000000000 1000000000000                    
+	11111111111111111110000000000000 10000000000000                   
+	11111111111111111100000000000000 100000000000000                  
+	11111111111111111000000000000000 1000000000000000                 
+	11111111111111110000000000000000 10000000000000000                
+	11111111111111100000000000000000 100000000000000000               
+	11111111111111000000000000000000 1000000000000000000              
+	11111111111110000000000000000000 10000000000000000000             
+	11111111111100000000000000000000 100000000000000000000            
+	11111111111000000000000000000000 1000000000000000000000           
+	11111111110000000000000000000000 10000000000000000000000          
+	11111111100000000000000000000000 100000000000000000000000         
+	11111111000000000000000000000000 1000000000000000000000000        
+	11111110000000000000000000000000 10000000000000000000000000       
+	11111100000000000000000000000000 100000000000000000000000000      
+	11111000000000000000000000000000 1000000000000000000000000000     
+	11110000000000000000000000000000 10000000000000000000000000000    
+	11100000000000000000000000000000 100000000000000000000000000000   
+	11000000000000000000000000000000 1000000000000000000000000000000  
+	10000000000000000000000000000000 10000000000000000000000000000000 
+	0 0</code></pre>
+				<p>Both Java and Python are based on 2's complement to represent signed integers. Since Java's <code>int</code> is restricted in size, i.e.: 32 bits, the carry eventually disappears. But in Python, number size is only limited by the memory capacity of our machine, thus the stack runs out of space before the carry disappears. So one way to solve this problem in Python is to use a while loop instead of a recursion and to wait until you run out of memory on your hard drive...</p>
+				<p>
+				Another approach is to detect that in an input pair of numbers, one is the opposite of the other. To do so, we can check if the 2's complement of one is equal to the other. The 2's complement of a number $x$ can be expressed as $\lnot x + 1$. The danger in here, is when we have $\lnot x + 1 = 0$, i.e.: $x=1$, in which case we would have the same problem as before. Fortunately, we can easily check for equivalence. 
+				</p>
+			</div>
+	<h4>Python</h4>
+<div class="code">
+<?prettify lang=py?>
+<pre><code>def addd(a,b): # same code as before
+    if not b: return a
+    return addd(a^b, (a&b)<<1)
+def add(a,b):
+    if a==b: return addd(a,b)
+    if a==1: return add(b,a)
+    if addd(~a, 1)==b: return 0
+    return addd(a,b)</code></pre>
+</div><br>
+			<div class="sequence">
+				<span class="date">Jan 7, 2015 ~ </span>
+				<a href="1.html">previous</a> / <a href="3.html">next</a>
+			</div>
+		</div>
+	</body>
+	<script src="script.js"> </script>
+</html> 
+
+
