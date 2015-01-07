@@ -19,9 +19,9 @@ function createChild(cont, type){
 	return stuff;
 }
 
-function createLink(name, src, dir){
+function createLink(name, src){
 	var link = createChild(name, "a");
-	link.href = dir+src+".html";
+	link.href = src+".html";
 	return link;
 }
 
@@ -35,13 +35,19 @@ function setIndex(domele, dir){
 				  "Maximum Subarray Problem",
 				  "Integer Pairs in Array"
 				 ]
+	var currPage = document.URL;
+	currPage = parseInt(currPage[currPage.length-6]) - 1;
 	for (var i=0; i<titles.length; i++){	
-		domele.appendChild(createLink(titles[i], (i+1).toString(), dir));
+		if (currPage == i){
+			domele.appendChild(createLink(titles[i]+" <span class=\"sym\">&#8715;</span>", (i+1).toString()));
+		}else{
+			domele.appendChild(createLink(titles[i], (i+1).toString()));
+		}
 		domele.appendChild(document.createElement("br"));
 	}
 }
 
-function setup(dir){
+function setup(){
 	document.title = title;
 	var content = document.createElement("div");
 	content.id = "content";
@@ -54,9 +60,9 @@ function setup(dir){
 	index.id = "index";
 	document.body.appendChild(index);
 	document.body.appendChild(content);
-	setIndex(index, dir);
+	setIndex(index);
 	return content;
 }
 
-var content = setup(DIRECTORY);
+var content = setup();
 

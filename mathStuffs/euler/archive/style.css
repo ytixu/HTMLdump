@@ -94,3 +94,8 @@ div.sequence{
 	text-align: right;
 	padding-right: 100px;
 }
+
+.sym{
+	color:#EBD699;
+	font-weight:900;
+}
