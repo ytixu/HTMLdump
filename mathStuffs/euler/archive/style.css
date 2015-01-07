@@ -62,7 +62,10 @@ a:hover{
 } 
 
 div.code{
-	padding: 2px;
+	border-left: 24px solid;
+	border-right: 24px solid;
+	padding: 1px 0px 1px 0px;
+	border-color: #dddddd;
 	background-color: #dddddd;
 }
 
