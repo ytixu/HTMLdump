@@ -27,17 +27,18 @@ function createLink(name, src, dir){
 
 function setIndex(domele, dir){
 	domele.appendChild(createChild("Index", "h2"));
-	domele.appendChild(createLink("Multiples of 3 and 5", "1", dir));
-	domele.appendChild(document.createElement("br"));
-	domele.appendChild(createLink("Even Fibonacci Number", "2", dir));
-	domele.appendChild(document.createElement("br"));
-	domele.appendChild(createLink("Largest prime factor", "3", dir));
-	domele.appendChild(document.createElement("br"));
-	domele.appendChild(createLink("Swapping Numbers", "4", dir));
-	domele.appendChild(document.createElement("br"));
-	domele.appendChild(createLink("Tic-Tac-Toe", "5", dir));
-	domele.appendChild(document.createElement("br"));
-	domele.appendChild(createLink("Maximum Subarray Problem", "6", dir));
+	var titles = ["Multiples of 3 and 5", 
+				  "Even Fibonacci Number",
+				  "Largest prime factor",
+				  "Swapping Numbers",
+				  "Tic-Tac-Toe",
+				  "Maximum Subarray Problem",
+				  "Integer Pairs in Array"
+				 ]
+	for (var i=0; i<titles.length; i++){	
+		domele.appendChild(createLink(titles[i], (i+1).toString(), dir));
+		domele.appendChild(document.createElement("br"));
+	}
 }
 
 function setup(dir){
