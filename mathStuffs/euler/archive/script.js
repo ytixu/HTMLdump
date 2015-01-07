@@ -33,7 +33,8 @@ function setIndex(domele, dir){
 				  "Swapping Numbers",
 				  "Tic-Tac-Toe",
 				  "Maximum Subarray Problem",
-				  "Integer Pairs in Array"
+				  "Integer Pairs in Array",
+				  "Bitwise Arithmetics"
 				 ]
 	var currPage = document.URL;
 	currPage = parseInt(currPage[currPage.length-6]) - 1;
