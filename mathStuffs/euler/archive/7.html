@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=py"></script>
+		<script> var DIRECTORY = ""; </script>
+	</head>
+	<body>
+		<div id="text">
+				<div class="sequence">
+				<a href="6.html">previous</a> /
+				<a href="#">next</a></div>
+				<h3>Integer Pairs in Array</h3>
+				<h5>from Cracking the Coding Interview</h5>
+			<div class="question">
+				<p>Design an algorithm to find all pairs of integers within an array which sum to a specified value.</p>
+			</div>
+			<div class="answer">
+				<p>This problem can be thought as a "graph drawing problem" where each pair of numbers that sums up to the given value must be set as neighbouring nodes on a bipartite graph. The solution would be all the edges. But of course, we don't need to draw a graph to do solve this problem algorithmically.</p>
+				<p>Assume that repeated pairs are only returned once. In the case when we are allowed to use extra memory, we can use a hash table to save numbers who's partner has not been seen before as we iterate through the array. Given a value $x$, at element $a_i$ of the input array, check if $a_i$ is in the array, if it is, then we can add $(a_i,x-a_i)$ to the result; otherwise, we add $x-a_i$ to the hash table. This algorithm, will take $O(n)$ time, where $n$ is the input array's length.</p>
+			</div>
+<h4>Python</h4>
+<div class="code">
+<?prettify lang=py?>
+<pre><code>def findPairs(a, x):
+    res = {}
+    singles = {}
+    for i in a:
+        if i in singles:
+            res[i] = x-i
+        else:
+            singles[x-i] = 0
+    return res</code></pre>
+</div>
+			<div class="answer">
+				<p>In the case we cannot use extra data stucture, we can rearrange the elements in the array such that the pairs are nested one inside of the other. This occure exactly when the array is sorted. For example, {-1,1,3,5} have "nested pairs" (-1,5), (1,3) that sum to 4. Matching the pairs takes two index counters. Given input array $a$ and value $x$, at indices $i and j$ such that $i < j$, if $a_i+a_j > x$, then we move the second counter to a smaller number. On the other hand, if if $a_i+a_j < x$, then we move the first counter to a larger number.</p>
+			</div>
+<h4>Python</h4>
+<div class="code">
+<?prettify lang=py?>
+<pre><code>def findPairsInPlace(a, x):
+    if len(a) < 2: 
+        return None
+    res = {}
+    a.sort()
+    i=0
+    j=len(a)-1
+    while (i!=j):
+        s = a[i]+a[j]
+        if s == x:
+            res[a[i]] = a[j]
+            i += 1
+            j -= 1
+        elif s < x:
+            i += 1
+        else:
+            j -= 1
+    return res </code></pre>
+</div><br>
+			<div class="sequence">
+				<span class="date">Jan 6, 2015 ~ </span>
+				<a href="6.html">previous</a> / <a href="#">next</a>
+			</div>
+		</div>
+	</body>
+	<script src="script.js"> </script>
+</html> 
+
+

@@ -16,7 +16,7 @@
 		<div id="text">
 				<div class="sequence">
 				<a href="5.html">previous</a> /
-				<a href="#">next</a></div>
+				<a href="7.html">next</a></div>
 				<h3>Maximum Subarray Problem</h3>
 				<h5>from Cracking the Coding Interview</h5>
 			<div class="question">
@@ -60,6 +60,7 @@
     return (maxSub, maxSum, st)
         
 def maxSubArray(a):
+    if not a: return None
     maxSub, maxSum, st = recurseMaxSubArray(a)
     sumAgain = 0
     for i, v in enumerate(a[st:]):
@@ -72,7 +73,7 @@ print maxSubArray([2, -8, 3, -2, 4, -10])
 </div><br>
 			<div class="sequence">
 				<span class="date">Jan 6, 2015 ~ </span>
-				<a href="5.html">previous</a> / <a href="#">next</a>
+				<a href="5.html">previous</a> / <a href="7.html">next</a>
 			</div>
 		</div>
 	</body>
