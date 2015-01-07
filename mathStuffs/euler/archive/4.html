@@ -9,7 +9,7 @@
 		<script type="text/javascript"
 		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 		</script>
-		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ruby"></script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 		<script> var DIRECTORY = ""; </script>
 	</head>
 	<body>
@@ -35,8 +35,8 @@
 end</code></pre>
 </div>
 			<div class="answer">
-				<p>But in binary, we can use another type of operation to obtain the same effect. Given two binary numbers $a$ and $b$, $a$ XOR $b$ is similar to $a+b$ up to the carry. That is, if $a=1$ and $b=0$, $a$ XOR $b = a+b = 1$; but if $a=1$ and $b=1$, $a$ XOR $b = 0$ while $a+b = 10$.</p>
-				<p>Because we discarded the carry, when we try to retrieve the original values we also need to omit borrows as in the substractions. To do so, we can also use XOR. Indeed, XOR is similar to addition and substraction. This property allows us to XOR two numbers, and then XOR the result with one of the original number to get back the other.</p>
+				<p>But in binary, we can use another type of operation to obtain the same effect: XOR. Given two binary numbers $a$ and $b$, $a\mathbin{\oplus}b$ is similar to $a+b$ up to the carry. That is, if $a=1$ and $b=0$, $a\mathbin{\oplus}b = a+b = 1$; but if $a=1$ and $b=1$, $a\mathbin{\oplus}b = 0$ while $a+b = 10$.</p>
+				<p>Because we discarded the carry, when we try to retrieve the original values we also need to omit borrows as in the substractions. To do so, we can also use XOR. Indeed, this operation is "similar" to addition and substraction. More formally, take any number $y$, create a function $f(x) = x\mathbin{\oplus}y$; and $f$ is self-inverse, i.e.: $f = f^{-1}$ as $x = x\mathbin{\oplus}y\mathbin{\oplus}y = f(f(x))$ (which is similar to $x = x+y-y$.) This property allows us to XOR two numbers, and then XOR the result with one of the original number to get back the other.</p>
 			</div>
 	<h4>Ruby</h4>
 <div class="code">
@@ -48,7 +48,7 @@ end</code></pre>
 end</code></pre>
 </div>
 			<div class="answer">
-				<p>This property of XOR can be also useful for reversing strings.</p>
+				<p>This algorithm can be also useful for reversing strings.</p>
 			</div>
 	<h4>Ruby</h4>
 <div class="code">
