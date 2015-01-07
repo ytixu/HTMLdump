@@ -22,7 +22,7 @@
 				<p>Write a function to swap a number in place without temporary variables.</p>
 			</div>
 			<div class="answer">
-				<p>One way to do this is to use arithmetics.</p>
+				<p>One way to do this is to use arithmetic.</p>
 			</div>
 	<h4>Ruby</h4>
 <div class="code">
@@ -35,7 +35,7 @@ end</code></pre>
 </div>
 			<div class="answer">
 				<p>But in binary, we can use another type of operation to obtain the same effect: XOR. Given two binary numbers $a$ and $b$, $a\mathbin{\oplus}b$ is similar to $a+b$ up to the carry. That is, if $a=1$ and $b=0$, $a\mathbin{\oplus}b = a+b = 1$; but if $a=1$ and $b=1$, $a\mathbin{\oplus}b = 0$ while $a+b = 10$.</p>
-				<p>Because we discarded the carry, when we try to retrieve the original values we also need to omit borrows as in the substractions. To do so, we can also use XOR. Indeed, this operation is "similar" to addition and substraction. More formally, take any number $y$, create a function $f(x) = x\mathbin{\oplus}y$; and $f$ is self-inverse, i.e.: $f = f^{-1}$ as $x = x\mathbin{\oplus}y\mathbin{\oplus}y = f(f(x))$ (which is similar to $x = x+y-y$.) This property allows us to XOR two numbers, and then XOR the result with one of the original number to get back the other.</p>
+				<p>Because we discarded the carry, when we try to retrieve the original values we also need to omit borrows as in the subtractions. To do so, we can also use XOR. Indeed, this operation is "similar" to addition and subtraction. More formally, take any number $y$, create a function $f(x) = x\mathbin{\oplus}y$; and $f$ is self-inverse, i.e.: $f = f^{-1}$ as $x = x\mathbin{\oplus}y\mathbin{\oplus}y = f(f(x))$ (which is similar to $x = x+y-y$.) This property allows us to XOR two numbers, and then XOR the result with one of the original number to get back the other.</p>
 			</div>
 	<h4>Ruby</h4>
 <div class="code">
@@ -71,4 +71,4 @@ puts(reverse("wahahahahha!~~~"))</code></pre>
 		</div>
 	</body>
 	<script src="script.js"> </script>
-</html> 
+</html>

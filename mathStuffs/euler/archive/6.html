@@ -30,14 +30,14 @@
 						\sum_{i=1}^n i(n-i) = \frac{n^2(n+1)}{2} - \frac{n^2(n+1)(2n+1)}{6} \in O(n^2)
 					\end{equation*}
 				</p>
-				<p>Using dynamic programming, we can find a more efficient algorithm for this. We call the subsequence of the array that produced the maximum sum "maximum subarray". Consider the reduced problem where we need to indentify the maximum sum when the first element of the array is contributing. This element, called $x$, can either be the only element contributing the maximum sum or a subsequence of elements right after $x$ contributes also. Mathematically, maximum sum can be expressed as 
+				<p>Using dynamic programming, we can find a more efficient algorithm for this. We call the subsequence of the array that produced the maximum sum "maximum subarray". Consider the reduced problem where we need to identify the maximum sum when the first element of the array is contributing. This element, called $x$, can either be the only element contributing the maximum sum or a subsequence of elements right after $x$ contributes also. Mathematically, maximum sum can be expressed as 
 					\begin{equation*}
 						f(i) = \max\begin{cases} a_i \\ f(i+1)\end{cases}
 					\end{equation*}
 				where $i$ is the index of a sequence $\{a_1,\dots, a_n\}$.
 				</p><p>
 				Now, if $x$ does not contributes in the maximum subarray, then the maximum sum is one of the $f(i)$'s where $i\in \{2, \dots, n\}$. So this, this seems to work for the original problem as $x$ can always represent the starting element of a non-empty array. In fact, $f(i)$ computes the maximum sum when the maximum subarray starts at index $i$. So the solution of the problem is simply $\max_{i}(f(i))$. In total, this algorithm takes time $O(n)$.</p>
-				<p>To retrive the maximum subarray; we already know the start of this subarray. So simply iterate through the array starting from there, and add elements until we obtain the maximum sum again: that's where the subarray ends. This is still $O(n)$ time.</p>
+				<p>To retrieve the maximum subarray; we already know the start of this subarray. So simply iterate through the array starting from there, and add elements until we obtain the maximum sum again: that's where the subarray ends. This is still $O(n)$ time.</p>
 			</div>
 	<h4>Python</h4>
 <div class="code">
