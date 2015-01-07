@@ -38,7 +38,7 @@ function setIndex(domele, dir){
 				 ]
 	var currPage = document.URL;
 	currPage = parseInt(currPage[currPage.length-6]) - 1;
-	for (var i=0; i<titles.length; i++){	
+	for (var i=titles.length-1; i>-1; i--){	
 		if (currPage == i){
 			domele.appendChild(createLink(titles[i]+" <span class=\"sym\">&#8715;</span>", (i+1).toString()));
 		}else{
