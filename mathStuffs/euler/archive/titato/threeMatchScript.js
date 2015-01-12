@@ -89,26 +89,31 @@ var board = {
 		if (preScore < score) return true;
 		return false;
 	},
-	shiftDownOneCol: function(i, j, func){ // helper function
+	shiftDownOneCol: function(i, j, func, t){ // helper function
 		if (i==0){
 			this.setColor(i,j,randColor());
-			func(i,j);
+			window.setTimeout(function(){
+				func(i,j); }
+			, t*1000);
 			return;
 		}
-		if (this.getColor(i-1,j) == defColor) this.shiftDownOneCol(i-1,j,func);
+		if (this.getColor(i-1,j) == defColor) this.shiftDownOneCol(i-1,j,func, t++);
 		this.setColor(i, j, this.getColor(i-1,j));
-		func(i,j);
-		this.shiftDownOneCol(i-1,j,func);
+		window.setTimeout(function(){
+			func(i,j); }
+		, t*1000);
+		this.shiftDownOneCol(i-1,j,func, t++);
 	},
 	shiftDown: function(func){ // func for animate the tile
+		t = 1;
 		this.doForall(function(i,j){
 			if (board.getColMat(i,j)){
-				board.shiftDownOneCol(i+1,j,func);
+				board.shiftDownOneCol(i+1,j,func,t++);
 			}else if (board.getRowMat(i,j)){
-				board.shiftDownOneCol(i,j-1,func);
+				board.shiftDownOneCol(i,j-1,func,t++);
 				if (!board.getRowMat(i,j+1)){
-					board.shiftDownOneCol(i,j,func);
-					board.shiftDownOneCol(i,j+1,func);
+					board.shiftDownOneCol(i,j,func,t++);
+					board.shiftDownOneCol(i,j+1,func,t++);
 				}
 			}
 			// reset state
@@ -144,6 +149,7 @@ function convert(x){
 }
 
 function printTile(x,y,color){
+	// console.log(x,y);
 	ctx.beginPath();
 	ctx.fillStyle=color;
 	ctx.rect(x,y,x+tileSize,y+tileSize);
@@ -152,22 +158,24 @@ function printTile(x,y,color){
 
 function paintGrid(){
 	board.doForall(function(i,j){
+		console.log(i,j, board.getColor(i,j));
 		printTile(convert(j),convert(i),COLOR[board.getColor(i,j)]);
 	});
 }
 
-var SPEED = tileSize/6;
+var SPEED = tileSize;
 
 function shiftTile(sx,sy,fx,fy,tilei,tilej){
-	console.log(board.getColor(tilei,tilej));
+	// console.log(sx,sy,fx,fy, SPEED, board.getColor(tilei,tilej));
 	if (sx == fx && sy == fy) return;
-	printTile(sx,sy,"#FFFFFF");
+	// printTile(sx,sy,"#FFFFFF");
 	if (sx < fx) xs += SPEED;
 	else if (sy < fy) sy+= SPEED;
+	// console.log(sx,sy,fx,fy);
 	printTile(sx,sy,COLOR[board.getColor(tilei,tilej)]);
 	window.setTimeout(function(){
 			shiftTile(sx,sy,fx,fy,tilei,tilej); }
-		, 100);
+		, 1000);
 }
 
 function autoMatch(){
@@ -175,10 +183,10 @@ function autoMatch(){
 		board.shiftDown(function(i,j){
 			shiftTile(convert(j), convert(i-1), convert(j), convert(i), i,j);
 		});
-		paintGrid();
 		board.printGrid();
 		// setTimeout(function(){ autoMatch() },500);
 	}
+	// paintGrid();
 }
 
 function setCanvas(x, y){
@@ -187,7 +195,7 @@ function setCanvas(x, y){
 	canvas.width = y*tileSize;
 	ctx = canvas.getContext("2d");
 	paintGrid();
-	// board.printGrid();
+	board.printGrid();
 	setTimeout(function(){ autoMatch() },500);
 }
 
