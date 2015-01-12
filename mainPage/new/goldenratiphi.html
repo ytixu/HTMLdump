@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Goldenratiphi</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style>
+		body{
+			background-image: url("images/back.png");
+			background-repeat: no-repeat;
+			background-size: 100%;
+			margin-top: 13%;
+		}
+		#banner{
+			background-image: url("images/menu.png");
+			background-repeat: no-repeat;
+			background-size: 100%;
+			min-height: 400px;
+			height:50%;
+			margin-left: -1%;
+			margin-right: -1%;
+			padding-top: 6.5%;
+		}
+		#title{
+			width:28%;
+			text-align: left;
+		}
+		#menu{
+			width:"100%";
+			max-width:"100%";
+			margin-left: -4%;
+		}
+		td {
+		    vertical-align: baseline;
+		}
+		td img {
+		    vertical-align: bottom;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="banner">
+	<center>
+		<table id="menu" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="26%"></td>
+		<td id="title">
+			<img src="images/icons_03.png" alt=""></td>
+		<td>
+			<img src="images/icons_07.png" alt=""></td>
+		<td>
+			<img src="images/icons_08.png" alt=""></td>
+		<td>
+			<img src="images/icons_09.png" alt=""></td>
+		<td>
+			<img src="images/icons_10.png" alt=""></td>
+		<td>
+			<img src="images/icons_11.png" alt=""></td>
+		<td width="34%"></td>
+	</tr>
+</table>
+	</center>
+</div>
+<script>
+$( window ).resize(function() {
+	if ($( window ).width() < 1000){	
+		$( "#banner" ).css( { "margin-left" : "-50%", "margin-right" : "-50%" } );
+		smallScreen = true;
+	}else{	
+		$( "#banner" ).css( { "margin-left" : "-1%", "margin-right" : "-1%" } );
+	}
+});
+</script>
+</body>
+</html>
