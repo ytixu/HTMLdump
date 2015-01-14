@@ -12,6 +12,7 @@
 		font-family: 'Roboto Slab', serif;
 		font-weight: 100;
 	    overflow: hidden;
+	    margin: 0;
 	}
 	.content{
 		position:absolute;
@@ -19,6 +20,7 @@
 	    top: 0;
 	    width: 100%;
 		height:100%;
+		resize: none;
 	}
 	td{
 		padding-left: 10px;
@@ -45,7 +47,22 @@
 	}
 	#page6{
 		z-index:1;
+		background-color: #91D6D5;
+	}
+	#page7{
+		z-index:0;
 		background-color: #F6EEE3;
+	}
+	div#skipper{
+		top:0;
+		left:50%;
+		color:black;
+		position:absolute;
+		z-index: 10;
+	}
+	div#skipper:hover{
+		color:#AAAAAA;
+		cursor:pointer;
 	}
 	div.slider{
 		position:absolute;
@@ -57,7 +74,6 @@
 		cursor:pointer;
 	}
 	#sliderV{
-	    right: 0;
 	    top: 0;
 		height: 100%;
 		width: 0;
@@ -73,7 +89,6 @@
 	}
 	#sliderH{
 	    left: 0;
-	    bottom: 0;
 		width: 100%;
 		height: 0;
 		background-color: #C7C9BE;
@@ -88,55 +103,126 @@
 	}
 </style>
 </head>
-<body>	
+<body>
+	<div id="skipper">skip</div>
 	<div id="page1" class="content"></div>
 	<div id="page2" class="content"></div>
 	<div id="page3" class="content"></div>
 	<div id="page4" class="content"></div>
 	<div id="page5" class="content"></div>
 	<div id="page6" class="content"></div>
+	<div id="page7" class="content"></div>
 	<div id="sliderV" class="slider"><div id="click1"></div></div>
 	<div id="sliderH" class="slider"><div id="click2"></div></div>
 </body>
 <script>
 var page = 1;
-var showBarV = function(){setTimeout(function() {
-    $( "#sliderV" ).animate({ "width": "+=70px" }, "slow" );
-    setTimeout(function() {
-    	$( "#click1" ).html("click");
-    }, 500);
-}, 1000);
+var pos = false;
+
+loadPage = function(){
+	page = 0;
+	while(page++<8){
+		$( "#page"+page.toString()).css({
+			"position":"relative", 
+			"top":"auto",
+			"left":"auto"});
+	}
+	$( "#sliderV" ).remove();
+	$( "#sliderH" ).remove();
+}
+
+var showBarV = function(){
+	$( "#sliderV" ).animate({ "width": "+=70px" }, "slow" );
+	setTimeout(function() {
+		$( "#click1" ).html("click");
+	}, 500);
 };
 
-var showBarH = function(){setTimeout(function() {
-    $( "#sliderH" ).animate({ "height": "+=50px" }, "slow" );
+var showBarH = function(){
+	$( "#sliderH" ).animate({ "height": "+=50px" }, "slow" );
     setTimeout(function() {
     	$( "#click2" ).html("click");
     }, 500);
-}, 1000);
 };
 
-$("#sliderV").click(function() {
-	$( "#page"+page.toString() ).animate({ "left": "-=100%" }, "slow" );
+var showBarVRight = function(){
+	pos = false;
 	setTimeout(function() {
-		$( "#click1" ).html("");
-		$( "#sliderV" ).css("width", "0");
-		showBarH();
-	}, 500);
+		$( "#sliderV" ).css({"left": "auto","right": "0"});
+		showBarV();
+	}, 1000);
+};
+
+var showBarVLeft = function(){
+	pos = true;
+	setTimeout(function() {
+		$( "#sliderV" ).css("left", "0");
+		$( "#sliderV" ).css("background-color", 
+			$("#page"+(page+1).toString()).css("background-color"));
+	    showBarV();
+	}, 1000);
+};
+
+
+var showBarHUp = function(){
+	$( "#skipper" ).remove();
+	pos = true;
+	setTimeout(function() {
+   		$( "#sliderH" ).css("top", "0");
+   		$( "#sliderH" ).css("background-color", "#FFFFFF");
+   		showBarH();
+   	}, 1000);
+};
+
+var showBarHDown = function(){
+	pos = false;
+	setTimeout(function() {
+		$( "#sliderH" ).css("bottom", "0");
+   		showBarH();
+   	}, 1000);
+}
+var func = [showBarHDown, showBarVLeft, showBarHDown, showBarVRight, showBarVLeft, showBarHUp];
+
+$("#sliderV").click(function() {
+	if (pos){
+		$("#page"+page.toString()).animate({"left": "+=100%"}, "slow");
+	}else{
+		$("#page"+page.toString()).animate({"left": "-=100%"}, "slow");
+	}
 	page++;
+	console.log(page);
+	setTimeout(function() {
+		$("#click1").html("");
+		$("#sliderV").css("width", "0");
+		func[page-2]();
+	}, 500);
 });
 
 $("#sliderH").click(function() {
-	$( "#page"+page.toString() ).animate({ "top": "-=100%" }, "slow" );
-	setTimeout(function() {
-		$( "#click2" ).html("");
-		$( "#sliderH" ).css("height", "0");
-		showBarV();
-	}, 500);
+	if (pos){
+		$("#page"+page.toString()).animate({"top": "+=100%"}, "slow");
+	}else{
+		$("#page"+page.toString()).animate({"top": "-=100%"}, "slow");
+	}
 	page++;
+	console.log(page);
+	setTimeout(function() {
+		$("#click2").html("");
+		$("#sliderH").css("height", "0");
+		if (page < 8){
+			func[page-2]();
+		}else{
+			setTimeout(function() {loadPage(); }, 500);
+		}
+	}, 500);
 });
 
-showBarV();
+$("#skipper").click(function(){
+	$( "#skipper" ).remove();
+	loadPage();
+});
+
+showBarVRight();
 // $("#slider1").click(function(){
 // 	$( "#main" ).slideToggle( "slow", function(){
 // 		$('#page1').css("background-color", "#91D6D5");
