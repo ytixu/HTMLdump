@@ -9,8 +9,12 @@ function loadPage1(){
 	var lastname = createStuff("span", "Xu");
 	name.appendChild(lastname);
 	$("#name").append(name);
-	$("#name").append(createStuff("h2", "Joint Bachelor of Statistics<br>and Computer Science"));
+	$("#name").append(createStuff("h2", ""));
 	$("#pic").append("<img id='imagePic' src='images/pic.png'/>");
-	$("#imagePic").animate({"width": "+=65%"}, "slow");
-	$("#titleTable").animate({"margin-left": "-=25%"}, "slow");
+	$("#imagePic").animate({"width": "+=60%"}, "slow");
+	$("#titleTable").animate({"margin-left": "-=22%"}, "slow");
+}
+
+function loadPage2(){
+
 }
