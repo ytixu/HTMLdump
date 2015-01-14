@@ -3,13 +3,13 @@
 <title>Goldenratiphi</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:100,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 <script>
 	var COLOR=["#F4F5ED", "#91D6D5", "#F9A5A1", "#C7C9BE", "#00CC99"]
 </script>
 <style>
 	body {
-		font-family: 'Roboto Slab', serif;
+		font-family: 'Raleway', serif;
 		font-weight: 100;
 	    overflow: hidden;
 	    margin: 0;
@@ -21,6 +21,7 @@
 	    width: 100%;
 		height:100%;
 		resize: none;
+		text-align: center;
 	}
 	td{
 		padding-left: 10px;
@@ -102,10 +103,16 @@
 	    margin: -15% 0 0 -25%;
 	}
 </style>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="cover.js"></script>
 </head>
 <body>
 	<div id="skipper">skip</div>
-	<div id="page1" class="content"></div>
+	<div id="page1" class="content">
+		<center><table id="titleTable" width="100%" height="100%"><tr>
+			<td width="60%" id="name"></td>
+			<td id="pic"></td></tr></center></table>
+	</div>
 	<div id="page2" class="content"></div>
 	<div id="page3" class="content"></div>
 	<div id="page4" class="content"></div>
@@ -127,6 +134,7 @@ loadPage = function(){
 			"top":"auto",
 			"left":"auto"});
 	}
+	$( "body" ).css("overflow-y","scroll");
 	$( "#sliderV" ).remove();
 	$( "#sliderH" ).remove();
 }
@@ -221,7 +229,7 @@ $("#skipper").click(function(){
 	$( "#skipper" ).remove();
 	loadPage();
 });
-
+loadPage1();
 showBarVRight();
 // $("#slider1").click(function(){
 // 	$( "#main" ).slideToggle( "slow", function(){

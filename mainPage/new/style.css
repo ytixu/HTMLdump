@@ -1,0 +1,22 @@
+#page1 h1{
+	font-weight: 100;
+	font-size: 55px;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+}
+#page1 h1 span{
+	color: #D86E3E;
+	font-weight: 100;
+}
+#page1 h2{
+	font-weight: 100;
+	font-size: 21px;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+}
+
+#page1 img{
+	width:0%;
+}
