@@ -5,7 +5,7 @@
 	padding: 0;
 	margin: 0;
 }
-#page1 h1 span, #text5 span {
+#page1 h1 span{
 	color: #D86E3E;
 	font-weight: 100;
 }
@@ -21,13 +21,62 @@
 	width:0%;
 }
 
+#page2, #page3, #page4{
+	overflow-y:auto;
+}
+#page2 a, #page3 a, #page4 a{
+	color:black;
+}
+#page2 a:hover, #page3 a:hover, #page4 a:hover{
+	color:white;
+}
+h3{
+	display:block;
+    position: fixed;
+	top:1%;
+	font-weight: 100;
+	font-size: 55px;
+	text-align: left;
+	width: 30%;
+}
+#page2 h3{
+	left:2%;
+}
+#page3 h3{
+	right:2%;
+}
+#page4 h3{
+	position: relative;
+	margin: 2% 0 0 0;
+	left:2%;
+}
+#text2, #text3, #text4, #text44, #text444{
+	text-align: left;
+	font-weight: 200;
+	font-size: 21px;
+	padding: 0% 21% 5% 21%;
+	display: none;
+	overflow-y:none;
+}
+
+.titleNote{
+	font-size: 15px;
+	color:#D86E3E;
+}
+#page5, #page5 a{
+	color: #F6EEE3;
+}
+
 #page5 h1{
-	margin-top:13%;
 	font-weight: 100;
 	font-size: 34px;
 }
+#text5 span {
+	color: #F6A472;
+	font-weight: 100;
+}
 
-#text2, #text6, #text7{
+#text6, #text7{
 	font-size: 34px;
 	padding-top: 30%;
 	display: none;
@@ -44,8 +93,8 @@
 }
 a{
 	text-decoration: none;
-	color:#888888;
+	color:#445566;
 }
-a:hover{
+a:hover, #page5 a:hover{
 	color:white;
 }

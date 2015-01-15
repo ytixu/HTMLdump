@@ -3,7 +3,7 @@
 <title>Goldenratiphi</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:200,100' rel='stylesheet' type='text/css'>
 <script>
 	var COLOR=["#F4F5ED", "#91D6D5", "#F9A5A1", "#C7C9BE", "#00CC99"]
 </script>
@@ -44,7 +44,7 @@
 	}
 	#page5{
 		z-index:2;
-		background-color: #C7C9BE;
+		background-color: #8E8B84;
 	}
 	#page6{
 		z-index:1;
@@ -111,21 +111,85 @@
 	<div id="skipper">skip</div>
 	<div id="page1" class="content">
 		<center><table id="titleTable" width="100%" height="100%"><tr>
-			<td width="60%" id="name"><h1>Yi Tian <span>Xu</span></h1><h2>Bachelor of Statistics<br>and Computer Science<br>@McGill university</h2></td>
+			<td width="60%" id="name"><h2 id="toRemove">Hi there! I'm</h2><h1>Yi Tian <span>Xu</span></h1><h2>student in Statistics and Computer Science<br>passionate in AI, games, design and arts</h2></td>
 			<td id="pic"><img id='imagePic' src='images/pic.png'/></td></tr></center></table>
 	</div>
-	<div id="page2" class="content"><div id="text2"></div></div>
-	<div id="page3" class="content"></div>
-	<div id="page4" class="content"></div>
-	<div id="page5" class="content"><h1>My next step?</h1>
+	
+	<div id="page2" class="content">
+		<h3 id="projectTitle">Projects</h3>
+			<div id="text2">
+			 <h4><a target="blank" href="http://ytixu.github.io/HTMLdump/mathStuffs/euler/archive/2.html">Project Archimedes</a> <span class="titleNote">(2015, on going)</span></h4>
+                Solve math and programming problems. Review and lean programming various languages (including SML, Scheme, Haskell, Ruby, ...)
+                <ul>
+                <li><a target="blank" href="http://ytixu.github.io/HTMLdump/mathStuffs/euler/archive/5.html">Implemented Minimax algorithm for a tic-tac-toe game</a></li>
+                </ul>
+            <h4>GRE Nexus <span class="titleNote">(2014, on going)</span></h4>
+                Constructing a network for Barron's 800 High-Frequency GRE words using word relations to define connections, such as synonyms, antonyms, homophone, lexicographical order. Creating a Windows 8 app that allows user to navigate through this graph. Desired version supports randomized quiz, dynamic word selection and grouping. 
+            <h4><a target="blank" href="https://github.com/ytixu/HTMLdump/tree/gh-pages/book_reader">E-Book Reader</a> <span class="titleNote">(2014, on going)</span></h4>
+                Commissioned by a friend, build a webpage to display local e-book, supporting bookmarking features. Conversion of books in .txt files to .js files done using python program. Familiarized with web local storage.
+            <h4><a target="blank" href="http://ytixu.github.io/HTMLdump/mines/bomb.html">Keyboard Minesweeper</a> <span class="titleNote">(2014)</span></h4>
+                Explore game making using HTML canvas. Redesign classical minesweeper game such that all movements are performed using keyboard only.
+            <h4><a target="black" href="http://ytixu.github.io/HTMLdump/GRE_Nexus/gre.html">GREvocPrep</a> <span class="titleNote">(2014)</span></h4>
+                Collected GRE words from online source and designed a randomized quiz with Javascript, HTLM, CSS with scoring system and dynamic word removal feature.
+            <h4><a target="black" href="https://goldenratiphi.wordpress.com/2014/02/02/tweets-scrapping/">Twitter Tweet Scraping</a> <span class="titleNote">(2014)</span></h4>
+                Experiment data scraping with Python, implemented a red-black tree (with only insertion supported), analysis the frequency of course name mentions and generated result using Turtle graphics.
+            <h4><a target="black" href="https://goldenratiphi.wordpress.com/tag/stochastics/">Simulation of Stochastics Processes</a> <span class="titleNote">(2013)</span></h4>
+                Discussed of mathematical models of stochastic processes learned in class and programed simple Python simulation of these processes.
+		</div></div>
+	<div id="page3" class="content">
+		<h3 id="worksTitle">Other works</h3>
+		<div id="text3">
+            <h4>Note taker</h4>
+                <a target="blank" href="http://ytixu.github.io/HTMLdump/courseNotes/math524/cheatsheet.html">MATH 524 Nonparametric Statistics</a><span class="titleNote"> (2014)</span><br>
+                <a target="blank" href="http://ytixu.github.io/HTMLdump/courseNotes/math423/notes.html">MATH 423 Regression and Analysis of Variance</a><span class="titleNote"> (2014)</span><br>
+                <a target="blank" href="https://goldenratiphi.wordpress.com/amadstudent/">Latex notes</a> <span class="titleNote"> (2013, 2014)</span>
+                <ul>
+                <li>MATH 223 linear algebra (final review)</li>
+                <li>MATH 340 discrete structure II</li>
+                <li>COMP 360 algorithm design techniques</li>
+                </ul>
+            <h4><a target="blank" href="https://github.com/ytixu/rummyGin">Gin Rummy</a> <span class="titleNote">(2014, on going)</span></h4> 
+                Software Development (COMP 303) course project on building a card game using Java-8 and Eclipse Luna. Exploring design patterns and graphics APIs (Swing, JavaFX). 
+            <h4><a target="blank" href="http://ytixu.github.io/courseDump/term_project/417course_project.html">Study on Network Calibration</a> <span class="titleNote">(2014)</span></h4> 
+                Introduction to Robotics and Intelligent Systems (COMP 417) course research project based on a paper in robotics. Explored and implemented the presented method using Python and R.
+            <h4><a target="blank" href="http://ytixu.github.io/HTMLdump/bigGap/bigGap.html">The Big Gap</a> <span class="titleNote">(2012)</span></h4>
+                First-year seminars course research on geometric methods to measure the distance of the Moon.
+            <h4><a target="blank" href="http://sandbox.yoyogames.com/games/114030-impossible-treasure---one-piece-parody-solo">Dungeon Crawling Game Making</a> <span class="titleNote">(2010)</span></h4>
+                Game designed with Game Maker for high school art project.
+        </div>
+	</div>
+	<div id="page4" class="content">
+		<h3 class="expTitle">Experience</h4>
+			<div id="text4">
+            <h4>Summer research assistanship (Network Dynamics, McGill University)</a> <span class="titleNote">(Summer 2014)</h4> 
+                Implemented six existent methods to infer Twitter tweet or user location in Python. Familiarized with machine learning algorithms, optimization and regression models. Analysed noisy tweet messages, extract location indicative terms.
+          	</div>
+        <h3 class="hackTitle">Hackathons</h4>
+        	<div id="text44">
+            <h4><a target="blank" href="http://challengepost.com/software/pyjot">YHack (Yale University)</a> <span class="titleNote">(October 2014)</span></h4> 
+                Help in building a text editor for course notes using Kivy and Wolfram|Alpha API.
+            <h4>CoCode (internal hackathon @ Network Dynamics, McGill University) <span class="titleNote">(August 2014)</span></h4> 
+                Designed a tool to annotate toponyms in tweets using ark-nlp and phonetics according to location data gathered on DBPedia using SPARQL. Attempted to map GADM shapefiles to DBPedia data using RDF files.
+       		</div>
+       	<h3 class="expTitle">Education</h4>
+       		<div id="text444">
+            <h4>Bachelor of Statistics and Computer Science <span class="titleNote">(2012, 2015 expected)</span> ~ GPA: 3.80</h4>
+
+       		</div>
+    </div>
+	<div id="page5" class="content"><h1 id="nextTitle">My next step?</h1>
 		<div id="text5">It might be to work with <span>you</span>!</div>
 		<div id="text55">Contact me if you're interested.<br><br>
 			<center><table><tr><td><img src='images/icons_10.png'/><br><br></td>
 				<td><a href="mailto:goldenratioesp@gmail.com" target="_top">goldenratioesp@gmail.com</a><br><br></td></tr><tr>
 			<td><img src='images/icons_09.png'/><br><br></td>
 				<td><a href="https://ca.linkedin.com/in/yitianxu" target="blank">ca.linkedin.com/in/yitianxu</a><br><br></td></tr><tr>
-			<td><img src='images/icons_08.png'/></td>
-				<td><a href="https://github.com/ytixu" target="blank">github.com/ytixu</a></td></tr></table></center>
+			<td><img src='images/icons_08.png'/><br><br></td>
+				<td><a href="https://github.com/ytixu" target="blank">github.com/ytixu</a><br><br></td></tr><tr>
+			<td><img src='images/icons_07.png'/><br><br></td>
+				<td><a href="https://goldenratiphi.wordpress.com" target="blank">goldenratiphi.wordpress.com</a><br><br></td></tr><tr>
+			<td><img src='images/icons_11.png'/><br><br></td>
+				<td><a href="CV-2015.pdf" target="blank">resume</a><br><br></td></tr></table></center>
 			</div></div>
 	<div id="page6" class="content"><div id="text6">and before you go</div></div>
 	<div id="page7" class="content"><div id="text7">Thank you for visiting my personal website<br>and I hope you enjoyed it as much as<br>I enjoyed creating it.</div></div>
@@ -135,18 +199,37 @@
 <script>
 var page = 1;
 var pos = false;
-
+var funcLoadPage = [loadPage2, loadPage3, loadPage4, loadPage5, loadPage6, loadPage7];
 loadPage = function(){
+	while(page<5){
+		funcLoadPage[page-1]();
+		page++;
+	}
 	page = 0;
 	while(page++<8){
 		$( "#page"+page.toString()).css({
 			"position":"relative", 
 			"top":"auto",
-			"left":"auto"});
+			"left":"auto",
+			"height":"auto",
+			"overflow": "none"});
 	}
 	$( "body" ).css("overflow-y","scroll");
 	$( "#sliderV" ).remove();
+	$( "#page6" ).remove();
 	$( "#sliderH" ).remove();
+	$( "#text7" ).remove();
+	$( "#toRemove").remove();
+	$( "#titleTable" ).css("height","auto");
+	$( "#imagePic" ).css({
+		"position":"absolute",
+		"top":"2%",
+		"left":"50%",
+		"width":"21%"
+	})
+	$( "#name" ).css("padding-top","10%");
+	$( "#page5" ).css({"padding-bottom": "4%",
+						"padding-top": "2%"});
 }
 
 var showBarV = function(){
@@ -202,7 +285,6 @@ var showBarHDown = function(){
    	}, 1000);
 }
 var func = [showBarHDown, showBarVLeft, showBarHDown, showBarVRight, null, showBarHUp];
-var funcLoadPage = [loadPage2, loadPage3, loadPage4, loadPage5, loadPage6, loadPage7];
 
 $("#sliderV").click(function() {
 	if (pos){
@@ -211,7 +293,6 @@ $("#sliderV").click(function() {
 		$("#page"+page.toString()).animate({"left": "-=100%"}, "slow");
 	}
 	page++;
-	console.log(page);
 	setTimeout(function() {
 		$("#click1").html("");
 		$("#sliderV").css("width", "0");
@@ -228,7 +309,6 @@ $("#sliderH").click(function() {
 		$("#page"+page.toString()).animate({"top": "-=100%"}, "slow");
 	}
 	page++;
-	console.log(page);
 	setTimeout(function() {
 		$("#click2").html("");
 		$("#sliderH").css("height", "0");

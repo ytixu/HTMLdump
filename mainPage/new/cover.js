@@ -13,14 +13,19 @@ function loadPage2(){
 	$("#text2").slideDown( "slow" );
 }
 
-
 function loadPage3(){
-
+	$("#projectTitle").css("position", "relative");
+	$("#text3").slideDown( "slow" );
 }
 
 
 function loadPage4(){
-
+	$("#worksTitle").css("position", "relative");
+	$("#worksTitle").css("right", "auto");
+	$("#worksTitle").css("left", "2%");
+	$("#text4").slideDown( "slow" );
+	$("#text44").slideDown( "slow" );
+	$("#text444").slideDown( "slow" );
 }
 
 
@@ -30,11 +35,12 @@ function loadPage5(){
 		setTimeout(function(){
 			$("#text55").slideDown( "slow" );
 		}, 500);
-	}, 1000);
+	}, 500);
 }
 
 
 function loadPage6(){
+	$("nextTitle").css("padding-top","0");
 	$("#text6").slideDown( "slow" );
 	pos = true;
 	setTimeout(function(){
@@ -45,4 +51,8 @@ function loadPage6(){
 
 function loadPage7(){
     $( "#text7" ).slideDown( "slow" );
+}
+
+function loadFullPage(){
+	// <h2>Bachelor of Statistics<br>and Computer Science<br>@McGill university</h2>
 }
