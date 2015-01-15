@@ -22,6 +22,7 @@
 		height:100%;
 		resize: none;
 		text-align: center;
+		min-width: 1080px;
 	}
 	td{
 		padding-left: 10px;
@@ -244,7 +245,7 @@ loadPage = function(){
 			"height":"auto",
 			"overflow": "none"});
 	}
-	$( "body" ).css("overflow-y","scroll");
+	$( "body" ).css("overflow","auto");
 	$( "#sliderV" ).remove();
 	$( "#page6" ).remove();
 	$( "#sliderH" ).remove();
