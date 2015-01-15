@@ -60,6 +60,13 @@ h3{
 	display: none;
 	overflow-y:none;
 }
+#text2, #text3, #text444 .tpPad{ 
+	padding-bottom:6%;
+}
+.tpPad td{
+	vertical-align: top;
+	font-size: 20px;
+}
 
 .titleNote{
 	font-size: 15px;

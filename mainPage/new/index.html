@@ -176,8 +176,8 @@
             <h4>Bachelor of Statistics and Computer Science <span class="titleNote">(2012, 2015 expected)</span> ~ GPA: 3.80</h4>
             	Participated in editing the undergraduate math journal, Delta-Epsilon. <br><br>
             	Relevant courses:
-            	<div>
-            	<div style="float:left">
+            	<table class="tpPad">
+            	<tr><td>
    					<ul>
    						<li>Software Development (COMP 303)</li>
    						<li>Algorithm Design Techniques (COMP 360)</li>
@@ -187,15 +187,13 @@
    						<li>Cryptography and Data Security (COMP 547)</li>
    						<li>Computer Graphics (COMP 557)</li>
    					</ul>
-   				</div>
-   				<div style="float:left">
+   				</td><td>
    					<ul>
    						<li>Introduction to Stochastic Processes (MATH 447)</li>
    						<li>Generalized Linear Models (MATH 523)</li>
    						<li>Nonparametric Statistics (MATH 524)</li>
    					</ul>
-   				</div>
-       			</div>
+   				</td></tr></table>
        		</div>
     </div>
 	<div id="page5" class="content"><h1 id="nextTitle">My next step?</h1>
@@ -233,8 +231,7 @@ loadPage = function(){
 			"top":"auto",
 			"left":"auto",
 			"height":"auto",
-			"overflow": "none", 
-			"padding-bottom":"4%"});
+			"overflow": "none"});
 	}
 	$( "body" ).css("overflow-y","scroll");
 	$( "#sliderV" ).remove();
@@ -251,7 +248,8 @@ loadPage = function(){
 	})
 	$( "#name" ).css("padding-top","6%");
 	$( "h1" ).css("padding-top","0");
-	$( "#page5" ).css({"padding-top": "2%"});
+	$( "#page5" ).css({"padding-top": "2%",
+						"padding-bottom": "4%"});
 }
 
 var showBarV = function(){
