@@ -102,6 +102,10 @@
 	    width: 50%;
 	    margin: -15% 0 0 -25%;
 	}
+	#menu{
+		display: none;
+		/*margin-left:20%;*/
+	}
 </style>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="cover.js"></script>
@@ -116,7 +120,14 @@
 	</div>
 	
 	<div id="page2" class="content">
-		<h3 id="projectTitle">Projects</h3>
+		<table id="menu" border="0" cellpadding="0" cellspacing="10px">
+			<tr><td><a href="#projects">Projects</a></td><td>|</td>
+				<td><a href="#experience">Experience</td><td>|</td>
+				<td><a href="#education">Education</a></td><td>|</td>
+				<td><a href="#contact">Contact</a></td><td>|</td>
+				<td><a href="../CV-2015.pdf" target="blank">Resume</a></td></tr>
+		</table>
+		<a name="projects"></a><h3 id="projectTitle">Projects</h3>
 			<div id="text2">
 			 <h4><a target="blank" href="http://ytixu.github.io/HTMLdump/mathStuffs/euler/archive/2.html">Project Archimedes</a> <span class="titleNote">(2015, on going)</span></h4>
                 Solve math and programming problems. Review and lean programming various languages (including SML, Scheme, Haskell, Ruby, ...)
@@ -140,14 +151,14 @@
 		<h3 id="worksTitle">Other works</h3>
 		<div id="text3">
             <h4>Note taker</h4>
-                <a target="blank" href="http://ytixu.github.io/HTMLdump/courseNotes/math524/cheatsheet.html">MATH 524 Nonparametric Statistics</a><span class="titleNote"> (2014)</span><br>
-                <a target="blank" href="http://ytixu.github.io/HTMLdump/courseNotes/math423/notes.html">MATH 423 Regression and Analysis of Variance</a><span class="titleNote"> (2014)</span><br>
-                <a target="blank" href="https://goldenratiphi.wordpress.com/amadstudent/">Latex notes</a> <span class="titleNote"> (2013, 2014)</span>
+                <a target="blank" href="http://ytixu.github.io/HTMLdump/courseNotes/math524/cheatsheet.html">Nonparametric Statistics (MATH 524)</a><span class="titleNote"> (2014)</span><br>
+                <a target="blank" href="http://ytixu.github.io/HTMLdump/courseNotes/math423/notes.html">Regression and Analysis of Variance (MATH 423)</a><span class="titleNote"> (2014)</span><br>
+                <a target="blank" href="https://goldenratiphi.wordpress.com/amadstudent/">Latex notes <span class="titleNote"> (2013, 2014)</span>
                 <ul>
-                <li>MATH 223 linear algebra (final review)</li>
-                <li>MATH 340 discrete structure II</li>
-                <li>COMP 360 algorithm design techniques</li>
-                </ul>
+                <li>Linear Algebra (MATH 223) - final review</li>
+                <li>Discrete Structure II (MATH 340)</li>
+                <li>Algorithm Design Techniques (COMP 360)</li>
+                </ul></a>
             <h4><a target="blank" href="https://github.com/ytixu/rummyGin">Gin Rummy</a> <span class="titleNote">(2014, on going)</span></h4> 
                 Software Development (COMP 303) course project on building a card game using Java-8 and Eclipse Luna. Exploring design patterns and graphics APIs (Swing, JavaFX). 
             <h4><a target="blank" href="http://ytixu.github.io/courseDump/term_project/417course_project.html">Study on Network Calibration</a> <span class="titleNote">(2014)</span></h4> 
@@ -159,7 +170,7 @@
         </div>
 	</div>
 	<div id="page4" class="content">
-		<h3 class="expTitle">Experience</h4>
+		<a name="experience"></a><h3 class="expTitle">Experience</h4>
 			<div id="text4">
             <h4>Summer research assistanship (Network Dynamics, McGill University)</a> <span class="titleNote">(Summer 2014)</h4> 
                 Implemented six existent methods to infer Twitter tweet or user location in Python. Familiarized with machine learning algorithms, optimization and regression models. Analysed noisy tweet messages, extract location indicative terms.
@@ -171,7 +182,7 @@
             <h4>CoCode (internal hackathon @ Network Dynamics, McGill University) <span class="titleNote">(August 2014)</span></h4> 
                 Designed a tool to annotate toponyms in tweets using ark-nlp and phonetics according to location data gathered on DBPedia using SPARQL. Attempted to map GADM shapefiles to DBPedia data using RDF files.
        		</div>
-       	<h3 class="expTitle">Education</h4>
+       <a name="education"></a>	<h3 class="expTitle">Education</h4>
        		<div id="text444">
             <h4>Bachelor of Statistics and Computer Science <span class="titleNote">(2012, 2015 expected)</span> ~ GPA: 3.80</h4>
             	Participated in editing the undergraduate math journal, Delta-Epsilon. <br><br>
@@ -196,7 +207,7 @@
    				</td></tr></table>
        		</div>
     </div>
-	<div id="page5" class="content"><h1 id="nextTitle">My next step?</h1>
+	<a name="contact"></a><div id="page5" class="content"><h1 id="nextTitle">My next step?</h1>
 		<div id="text5">It might be to work with <span>you</span>!</div>
 		<div id="text55">Contact me if you're interested.<br><br>
 			<center><table><tr><td><img src='images/icons_10.png'/><br><br></td>
@@ -208,7 +219,7 @@
 			<td><img src='images/icons_07.png'/><br><br></td>
 				<td><a href="https://goldenratiphi.wordpress.com" target="blank">goldenratiphi.wordpress.com</a><br><br></td></tr><tr>
 			<td><img src='images/icons_11.png'/><br><br></td>
-				<td><a href="CV-2015.pdf" target="blank">resume</a><br><br></td></tr></table></center>
+				<td><a href="../CV-2015.pdf" target="blank">resume</a><br><br></td></tr></table></center>
 			</div></div>
 	<div id="page6" class="content"><div id="text6">and before you go</div></div>
 	<div id="page7" class="content"><div id="text7">Thank you for visiting my personal website<br>and I hope you enjoyed it as much as<br>I enjoyed creating it.</div></div>
@@ -250,6 +261,7 @@ loadPage = function(){
 	$( "h1" ).css("padding-top","0");
 	$( "#page5" ).css({"padding-top": "2%",
 						"padding-bottom": "4%"});
+	$( "#menu" ).css("display", "block");
 }
 
 var showBarV = function(){
