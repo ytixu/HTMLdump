@@ -14,15 +14,12 @@ function loadPage2(){
 }
 
 function loadPage3(){
-	$("#projectTitle").css("position", "relative");
 	$("#text3").slideDown( "slow" );
 }
 
 
 function loadPage4(){
-	$("#worksTitle").css("position", "relative");
-	$("#worksTitle").css("right", "auto");
-	$("#worksTitle").css("left", "2%");
+	$("#worksTitle").css("text-align", "left");
 	$("#text4").slideDown( "slow" );
 	$("#text44").slideDown( "slow" );
 	$("#text444").slideDown( "slow" );

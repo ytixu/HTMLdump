@@ -174,7 +174,28 @@
        	<h3 class="expTitle">Education</h4>
        		<div id="text444">
             <h4>Bachelor of Statistics and Computer Science <span class="titleNote">(2012, 2015 expected)</span> ~ GPA: 3.80</h4>
-
+            	Participated in editing the undergraduate math journal, Delta-Epsilon. <br><br>
+            	Relevant courses:
+            	<div>
+            	<div style="float:left">
+   					<ul>
+   						<li>Software Development (COMP 303)</li>
+   						<li>Algorithm Design Techniques (COMP 360)</li>
+   						<li>Introduction Robotics and Intelligent Systems (COMP 417)</li>
+   						<li>Artificial Intelligence (COMP 424)</li>
+   						<li>Modern Computer Games (COMP 521)</li>
+   						<li>Cryptography and Data Security (COMP 547)</li>
+   						<li>Computer Graphics (COMP 557)</li>
+   					</ul>
+   				</div>
+   				<div style="float:left">
+   					<ul>
+   						<li>Introduction to Stochastic Processes (MATH 447)</li>
+   						<li>Generalized Linear Models (MATH 523)</li>
+   						<li>Nonparametric Statistics (MATH 524)</li>
+   					</ul>
+   				</div>
+       			</div>
        		</div>
     </div>
 	<div id="page5" class="content"><h1 id="nextTitle">My next step?</h1>
@@ -212,13 +233,14 @@ loadPage = function(){
 			"top":"auto",
 			"left":"auto",
 			"height":"auto",
-			"overflow": "none"});
+			"overflow": "none", 
+			"padding-bottom":"4%"});
 	}
 	$( "body" ).css("overflow-y","scroll");
 	$( "#sliderV" ).remove();
 	$( "#page6" ).remove();
 	$( "#sliderH" ).remove();
-	$( "#text7" ).remove();
+	$( "#page7" ).remove();
 	$( "#toRemove").remove();
 	$( "#titleTable" ).css("height","auto");
 	$( "#imagePic" ).css({
@@ -227,9 +249,9 @@ loadPage = function(){
 		"left":"50%",
 		"width":"21%"
 	})
-	$( "#name" ).css("padding-top","10%");
-	$( "#page5" ).css({"padding-bottom": "4%",
-						"padding-top": "2%"});
+	$( "#name" ).css("padding-top","6%");
+	$( "h1" ).css("padding-top","0");
+	$( "#page5" ).css({"padding-top": "2%"});
 }
 
 var showBarV = function(){

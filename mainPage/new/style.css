@@ -31,30 +31,32 @@
 	color:white;
 }
 h3{
-	display:block;
-    position: fixed;
-	top:1%;
+	/*display:block;*/
+    /*position: fixed;*/
+	/*top:1%;*/
 	font-weight: 100;
 	font-size: 55px;
 	text-align: left;
-	width: 30%;
+	margin-left: 4%;
+	margin-right: 4%;
+	/*width: 30%;*/
+	/*margin: 2% 0 0 0;*/
 }
-#page2 h3{
-	left:2%;
+#worksTitle{
+	/*right:2%;*/
+	text-align: right;
 }
-#page3 h3{
-	right:2%;
-}
-#page4 h3{
+/*#page4 h3{
 	position: relative;
+	margin-left: 2%;
 	margin: 2% 0 0 0;
 	left:2%;
-}
+}*/
 #text2, #text3, #text4, #text44, #text444{
 	text-align: left;
 	font-weight: 200;
 	font-size: 21px;
-	padding: 0% 21% 5% 21%;
+	padding: 0% 21% 0% 21%;
 	display: none;
 	overflow-y:none;
 }
@@ -69,6 +71,7 @@ h3{
 
 #page5 h1{
 	font-weight: 100;
+	padding-top: 13%;
 	font-size: 34px;
 }
 #text5 span {
