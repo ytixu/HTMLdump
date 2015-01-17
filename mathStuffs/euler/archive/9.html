@@ -29,7 +29,34 @@ template
 			</div>
 
 	<h4>Demo</h4><center>
-	<canvas id="demo"></canvas>
+	<table cellspacing="50"><tr><td>
+		<form>
+	          <label>Color number</label>            
+	          <input type = "radio" name = "colNumb"
+	                 id = "two" value = "two" checked = "checked" />
+	          <label for = "two">2</label>
+	          
+	          <input type = "radio" name = "colNumb"
+	                 id = "three" value = "three" />
+	          <label for = "three">3</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "four" value = "four" />
+	          <label for = "four">4</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "five" value = "five" />
+	          <label for = "five">5</label>
+	    </form>
+	    <form>
+			Width: <input type="text" id="boardWidth" value="10"><br>
+			Height: <input type="text" id="boardHeight" value="10"><br>
+		</form>
+		<button type="button" onclick="initialize();">Restart</button>
+		<p id="errorMess"></p>
+	</td><td>
+		<canvas id="demo"></canvas>
+	</td></tr></table>
 	</center>
 
 	<h4>SML</h4>
@@ -44,7 +71,8 @@ template
 		</div>
 	</body>
 	<script src="script.js"> </script>
-	<script src="titato/threeMatchScript.js"> </script>
+	<script src="titato/threeMatch.js"> </script>
+	<script src="titato/animateThreeMatch.js"> </script>
 </html> 
 
 
