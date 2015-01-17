@@ -1,4 +1,4 @@
-var COLOR = ["#ff4d4d", "#3399ff", "#99cc00", "#ff9933", "#cc66ff", "#00cc99"];
+var COLOR = ["#3399ff", "#ff9933", "#99cc00", "#ff4d4d", "#cc66ff", "#00cc99"];
 var defColor = COLOR.length;
 var score = 0;
 var tileSize = 45;
@@ -169,10 +169,6 @@ function fadeInPrint(alpha){
 }
 
 function paintGrid(){
-	// board.doForall(function(i,j){
-	// 	// console.log(convert(j),convert(i), board.getColor(i,j));
-	// 	printTile(convert(j),convert(i),COLOR[board.getColor(i,j)]);
-	// });
 	fadeInPrint(0.2);
 }
 

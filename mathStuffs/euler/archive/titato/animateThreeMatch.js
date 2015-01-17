@@ -3,6 +3,8 @@ var TIMES = 5;
 var SPEED = tileSize/TIMES;
 var TIMEQUO = 20;
 var NEXTCALL = 0;
+var reset = false;
+var running = false;
 
 function paintSlice(x, y, xf, yf, color){
 	ctx.beginPath();
@@ -78,7 +80,14 @@ function checkValid(){
 }
 
 function autoMatch(){
+	if (reset){
+		reset = false;
+		running = false;
+		restart();
+		return;
+	}
 	if (board.markAllMatches()){
+		running = true;
 		// board.printGrid();
 		slideDown(board.copyColor());
 		board.shiftDown();
@@ -89,15 +98,21 @@ function autoMatch(){
 			paintGrid();
 			callAutomatch();
 		},NEXTCALL);
+	}else{
+		running = false;
 	}
 	// paintGrid();
 }
 
 function setCanvas(x, y){
 	var canvas = document.getElementById("demo");
+	if (ctx == null){
+		ctx = canvas.getContext("2d");
+	}else{
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
 	canvas.height = y*tileSize;
 	canvas.width = x*tileSize;
-	ctx = canvas.getContext("2d");
 	paintGrid();
 	// board.printGrid();
 	callAutomatch()
@@ -109,32 +124,44 @@ function eraseError(){
 	}, 2000);
 }
 
-function initialize(){
-	if (document.getElementById('two').checked){
-		colorNumb = 2;
-	}else if (document.getElementById('three').checked){
-		colorNumb = 3;
-	}else if (document.getElementById('four').checked){
-		colorNumb = 4;
-	}else{
-		colorNumb = 5;
-	}
-	try{
-		x = parseInt(document.getElementById('boardHeight').value);
-		y = parseInt(document.getElementById('boardWidth').value);
-		if (x > 10 || y > 10){
-			document.getElementById("errorMess").innerHTML = "max size is 10";
-			eraseError();
-			return;
-		}
-	}catch(e){
-		document.getElementById("errorMess").innerHTML = "invalid input";
-		eraseError();
-	}
+function initialize(x,y){
 	NEXTCALL = TIMES*TIMEQUO*y;
 	board.init(x,y);
 	board.distributeColor()
 	setCanvas(x,y);
 }
 
-initialize(10,10,4);
+function restart(){
+	if (document.getElementById('two').checked){
+		colorNumb = 2;
+	}else if (document.getElementById('three').checked){
+		colorNumb = 3;
+	}else if (document.getElementById('four').checked){
+		colorNumb = 4;
+	}else if (document.getElementById('five').checked){
+		colorNumb = 5;
+	}else{
+		colorNumb = 6;
+	}
+	var x = parseInt(document.getElementById('boardHeight').value);
+	var y = parseInt(document.getElementById('boardWidth').value);
+	console.log(document.getElementById("errorMess"), x, y);
+	if (x > 10 || y > 10){
+		document.getElementById("errorMess").innerHTML = "max size is 10";
+		eraseError();
+		return;
+	}
+	if (isNaN(x) || isNaN(y)){
+		document.getElementById("errorMess").innerHTML = "invalid input";
+		eraseError();
+		return;
+	}
+	console.log(running);
+	if (running){
+		reset = true;
+	}else{
+		initialize(x,y);
+	}
+}
+
+restart();
