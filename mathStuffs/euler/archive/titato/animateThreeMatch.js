@@ -125,7 +125,7 @@ function eraseError(){
 }
 
 function initialize(x,y){
-	NEXTCALL = TIMES*TIMEQUO*y;
+	NEXTCALL = (TIMES+1)*TIMEQUO*y;
 	board.init(x,y);
 	board.distributeColor()
 	setCanvas(x,y);
@@ -145,7 +145,6 @@ function restart(){
 	}
 	var x = parseInt(document.getElementById('boardHeight').value);
 	var y = parseInt(document.getElementById('boardWidth').value);
-	console.log(document.getElementById("errorMess"), x, y);
 	if (x > 10 || y > 10){
 		document.getElementById("errorMess").innerHTML = "max size is 10";
 		eraseError();
@@ -156,7 +155,6 @@ function restart(){
 		eraseError();
 		return;
 	}
-	console.log(running);
 	if (running){
 		reset = true;
 	}else{
