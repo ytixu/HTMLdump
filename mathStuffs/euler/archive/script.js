@@ -6,7 +6,8 @@ var about = "Questions taken from<br><a target=\"blanck\" "+
 			"href=\"http://www.mktechnicalclasses.com/Notes/" +
 			"Cracking%20the%20Coding%20Interview,%204%20Edition%20-%20150%20"+
 			"Programming%20Interview%20Questions%20and%20Solutions.pdf\">"+
-			"Cracking the Coding Interview</a><br><br>" +
+			"Cracking the Coding Interview</a><br>" +
+			"and from myself<br><br>" +
 			"Display engine for Latex: " +
 			"<a target=\"blank\" href=\"http://www.mathjax.org/\">mathjax</a><br><br>"+
 			"Syntax highlight engine for<br>code: " +
@@ -34,7 +35,8 @@ function setIndex(domele, dir){
 				  "Tic-Tac-Toe",
 				  "Maximum Subarray Problem",
 				  "Integer Pairs in Array",
-				  "Bitwise Arithmetics"
+				  "Bitwise Arithmetics",
+				  "Match-Three Puzzle"
 				 ]
 	var currPage = document.URL;
 	currPage = parseInt(currPage[currPage.length-6]) - 1;
