@@ -1,4 +1,4 @@
-var BASECOL = "#999999";
+var BASECOL = "#ffffff";
 var TIMES = 5;
 var SPEED = tileSize/TIMES;
 var TIMEQUO = 20;
