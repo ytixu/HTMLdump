@@ -194,7 +194,7 @@ function paintGrid(){
 var BASECOL = "#ffffff";
 var TIMES = 5;
 var SPEED = tileSize/TIMES;
-var TIMEQUO = 20;
+var TIMEQUO = 15;
 var NEXTCALL = 0;
 var reset = false;
 var running = false;
@@ -334,8 +334,8 @@ function restart(){
 	}else{
 		colorNumb = 6;
 	}
-	var x = parseInt(document.getElementById('boardHeight').value);
-	var y = parseInt(document.getElementById('boardWidth').value);
+	var x = parseInt(document.getElementById('boardWidth').value);
+	var y = parseInt(document.getElementById('boardHeight').value);
 	if (x > 15 || y > 15 || x < 1 || y < 1){
 		document.getElementById("errorMess").innerHTML = "size is between 1 and 15";
 		eraseError();

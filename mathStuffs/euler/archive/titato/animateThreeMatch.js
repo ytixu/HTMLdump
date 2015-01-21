@@ -141,8 +141,8 @@ function restart(){
 	}else{
 		colorNumb = 6;
 	}
-	var x = parseInt(document.getElementById('boardHeight').value);
-	var y = parseInt(document.getElementById('boardWidth').value);
+	var x = parseInt(document.getElementById('boardWidth').value);
+	var y = parseInt(document.getElementById('boardHeight').value);
 	if (x > 15 || y > 15 || x < 1 || y < 1){
 		document.getElementById("errorMess").innerHTML = "size is between 1 and 15";
 		eraseError();
