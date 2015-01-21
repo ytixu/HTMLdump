@@ -141,7 +141,7 @@ var board = {
 };
 
 
-function reset(){
+function resetStates(){
 	score = 0;
 	board.grid = [];
 }

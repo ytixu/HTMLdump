@@ -91,8 +91,6 @@ function autoMatch(){
 		// board.printGrid();
 		slideDown(board.copyColor());
 		board.shiftDown();
-		// setTimeout(paintGrid(),600);
-		// printTile(convert(0),convert(0),"#FFFFFF");
 		setTimeout(function(){ 
 			// checkValid();
 			paintGrid();
@@ -145,8 +143,8 @@ function restart(){
 	}
 	var x = parseInt(document.getElementById('boardHeight').value);
 	var y = parseInt(document.getElementById('boardWidth').value);
-	if (x > 10 || y > 10){
-		document.getElementById("errorMess").innerHTML = "max size is 10";
+	if (x > 15 || y > 15 || x < 1 || y < 1){
+		document.getElementById("errorMess").innerHTML = "size is between 1 and 15";
 		eraseError();
 		return;
 	}
@@ -158,6 +156,7 @@ function restart(){
 	if (running){
 		reset = true;
 	}else{
+		resetStates();
 		initialize(x,y);
 	}
 }
