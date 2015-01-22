@@ -33,7 +33,7 @@
 			</div>
 			<div class="answer">
 				<p>In the previous problem (<a href="9.html">Match-Three Puzzle</a>), we investigated on how to automatically remove the tiles that are already matched. Here, we'll extend the code to make it into a game where player can move the tiles to create matches. As in many match-three games, when the player stops playing for a while, the game reveals to the player a valid move.</p> 
-				<p>In a $n\times m$ game grid, there are $2(n-1)(m-1)+n+m$ possible moves. Search a valid move one by one through simulating the move and calling the auto-matching method we wrote previously would cost O(n^2m^2). We can create a mini auto-matching method to that only considers a $k\times k$ sub-grid to ignore searching tiles that are not affected by the simulated move. Since $k$ is constant, this would give us O(nm). 
+				<p>In a $n\times m$ game grid, there are $2(n-1)(m-1)+n+m$ possible moves. Search a valid move one by one through simulating the move and calling the auto-matching method we wrote previously would cost $O(n^2m^2)$. We can create a mini auto-matching method to that only considers a $k\times k$ sub-grid to ignore searching tiles that are not affected by the simulated move. Since $k$ is constant, this would give us $O(nm)$. 
 				</p>
 				<p>To further simplify the algorithm, we can consider a set of neighbors of the simulated move. After contemplating on it, we figure that each valid move has at least one of the following:
 					<ul>
