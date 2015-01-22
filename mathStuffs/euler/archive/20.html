@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	</head>
+	<body>
+		<div id="text">
+				<div class="sequence">
+				<a href="3.html">previous</a> /
+				<a href="5.html">next</a></div>
+				<h3>Largest palindrome product</h3>
+			<div class="question">
+				<p>A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 $\times$ 99.</p>
+				<p>Find the largest palindrome made from the product of two 3-digit numbers.
+				</p>
+			</div>
+			<div class="answer">
+				<p>
+				</p>
+			</div>
+	<h4>Ruby Code</h4>
+<div class="code">
+<pre><code class="ruby">$a = 999
+$b = 999
+
+while $a > 0 do
+    until $b < $a do
+        $prod = ($a*$b).to_s
+        $l = $prod.length
+        $isPal = true
+        for i in 0..$l/2 do
+            if $prod[i] != $prod[$l-i-1] then
+                $isPal = false
+                break;
+            end
+        end
+        if $isPal then
+            puts("#{$prod} = #{$a} * #{$b}")
+            exit
+        end
+        $b = $b - 1
+    end
+    $a = $a - 1
+    $b = 999
+end </code></pre>
+</div>
+			<div class="sequence">
+				<span class="date">Dec 29, 2014 ~ </span>
+				<a href="3.html">previous</a> / <a href="5.html">next</a>
+			</div>
+		</div>
+	</body>
+	<script src="script.js"> </script>
+</html> 

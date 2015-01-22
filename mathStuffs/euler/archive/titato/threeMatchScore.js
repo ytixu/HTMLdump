@@ -18,6 +18,7 @@ var board = {
 	grid: [],
 	width: 0,
 	height:0,
+	validMove: null,
 	init: function(sizeX, sizeY){
 		for (var i=0; i<sizeY; i++){
 			this.grid.push([]);
@@ -31,6 +32,7 @@ var board = {
 			this.height = sizeY;
 			this.width = sizeX;
 		}
+		validMove = null;
 	},
 	getColor: function(i,j){ return this.grid[i][j].color; },
 	setColor: function(i,j,v){ this.grid[i][j].color = v; },
@@ -40,6 +42,7 @@ var board = {
 	getRowMat: function(i,j){ return this.grid[i][j].rowMatch; },
 	incRowMat: function(i,j){ this.grid[i][j].rowMatch += 1; },
 	resetRowMat: function(i,j){ this.grid[i][j].rowMatch = 0; },
+	getHint: function(){ return this.validMove; },
 
 	doForall: function(func){
 		for (var i=0; i<this.height; i++){
@@ -52,14 +55,6 @@ var board = {
 		this.setColor(icol, irow, this.getColor(icol, irow)^this.getColor(jcol, jrow));
 		this.setColor(jcol, jrow, this.getColor(icol, irow)^this.getColor(jcol, jrow));
 		this.setColor(icol, irow, this.getColor(icol, irow)^this.getColor(jcol, jrow));
-	},
-	shuffle: function(){
-		var size = this.height*this.width;
-		for (var i=0; i<size; i++){
-			var j = Math.round(Math.random()*size);
-			this.swap(Math.floor(i/this.height), i%this.width,
-				 Math.floor(j/this.height), j%this.width);
-		}
 	},
 	distributeColor: function(){
 		this.doForall(function(i,j){
@@ -107,7 +102,7 @@ var board = {
 				score += lMatch;
 			}
 		})
-		console.log(score);
+		// console.log(score);
 		// check if there are matches 
 		if (preScore < score) return true;
 		return false;
@@ -143,7 +138,7 @@ var board = {
 			else str += "0 ";
 			if (j==board.width-1) str += "\n";
 		});
-		console.log(str);
+		// console.log(str);
 	},
 	copyColor: function(){
 		var copy = [];
@@ -154,6 +149,62 @@ var board = {
 		    }
 		}
 		return copy;
+	},
+	shuffleTiles: function(){
+		var size = this.width*this.height;
+		for (var i=0; i < size-1; i++){
+			var ind = Math.floor(Math.random()*(size-i)) + i;
+			this.swap(Math.floor(i/this.width), i%this.width, 
+					  Math.floor(ind/this.width), ind%this.width);
+		}
+	},
+	isMatchingTile: function(x,y,xo,yo,color){
+		if (-1<x && -1<y && x < this.height && y < this.width &&
+			this.getColor(x,y) == color){
+			this.validMove = [x,y,xo,yo];
+			return true;
+		}
+		return false;
+	},
+	autoFindMove : function(){
+		this.validMove = null;
+		var size = this.width*this.height;
+		var start = Math.floor(Math.random()*size);
+		for (var i=0; i<size; i++){
+			var x = Math.floor(start/this.width)
+			var y = start%this.width
+			// console.log(start, x, y, size);
+			var col = this.getColor(x,y);
+			if (x < this.height-1){
+				if (this.getColor(x+1, y) == col){
+					if (this.isMatchingTile(x+2, y-1, x+2, y, col)) return;
+					if (this.isMatchingTile(x+2, y+1, x+2, y, col)) return;
+					if (this.isMatchingTile(x+3, y, x+2, y, col)) return;
+					if (this.isMatchingTile(x-1, y-1, x-1, y, col)) return;
+					if (this.isMatchingTile(x-1, y+1, x-1, y, col)) return;
+					if (this.isMatchingTile(x-2, y, x-1, y, col)) return;
+				}
+				if (x < this.height-2 && this.getColor(x+2, y) == col){
+					if (this.isMatchingTile(x+1, y-1, x+1, y, col)) return;
+					if (this.isMatchingTile(x+1, y+1, x+1, y, col)) return;
+				}
+			}
+			if (y < this.width-1){
+				if (this.getColor(x, y+1) == col){
+					if (this.isMatchingTile(x-1, y+2, x, y+2, col)) return;
+					if (this.isMatchingTile(x+1, y+2, x, y+2, col)) return;
+					if (this.isMatchingTile(x, y+3, x, y+2, col)) return;
+					if (this.isMatchingTile(x-1, y-1, x, y-1, col)) return;
+					if (this.isMatchingTile(x+1, y-1, x, y-1, col)) return;
+					if (this.isMatchingTile(x, y-2, x, y-1, col)) return;
+				}
+				if (y < this.width-2 && this.getColor(x, y+2) == col){
+					if (this.isMatchingTile(x-1, y+1, x, y+1, col)) return;
+					if (this.isMatchingTile(x+1, y+1, x, y+1, col)) return;
+				}
+			}
+			start = (start+1)%size;
+		}
 	}
 };
 
@@ -361,13 +412,61 @@ restart();
 // click 
 
 var tilesSelected = null;
+var nextHint = null;
+var hintFreq = 5000;
+
+function getHint(){
+	ctx.globalAlpha = 0.5;
+	printTile(convert(board.getHint()[1]), convert(board.getHint()[0]), "white");
+	printTile(convert(board.getHint()[3]), convert(board.getHint()[2]), "white");
+	ctx.globalAlpha = 1;
+	nextHint = setTimeout( function(){
+		printTile(convert(board.getHint()[1]), convert(board.getHint()[0]), 
+			COLOR[board.getColor(board.getHint()[0], board.getHint()[1])]);
+		printTile(convert(board.getHint()[3]), convert(board.getHint()[2]), 
+			COLOR[board.getColor(board.getHint()[2], board.getHint()[3])]);
+		nextHint = setTimeout( getHint , hintFreq);
+	} , 1000);
+}
+
+function setNextHint(){
+	if (hintFreq != null){
+		clearTimeout(nextHint);
+	}
+	nextHint = setTimeout( getHint , hintFreq);
+}
+
+function noMatchScreen(){
+	ctx.beginPath();
+	ctx.fillStyle="white";
+	ctx.globalAlpha = 0.5;
+	ctx.rect(0,0,canvas.width, canvas.height);
+	ctx.fill();
+	ctx.fillStyle="black";
+	ctx.globalAlpha = 1;
+	ctx.font="20px Verdana";
+	ctx.fillText("no more match", 5, canvas.height-5);
+	setTimeout(function(){ 
+			paintGrid();
+			callAutomatch();
+	},700);
+}
 
 function bindCanvasToMouse(){
 	canvas.addEventListener('mousedown', selectTile, false);
-	canvas.addEventListener('mouseup',	 selectTile, false)
+	canvas.addEventListener('mouseup',	 selectTile, false);
+	board.autoFindMove();
+	if(board.getHint() == null){
+		unbindCanvasToMouse();
+		board.shuffleTiles();
+		noMatchScreen();
+	}else{
+		setNextHint();
+	}
 }
 
 function unbindCanvasToMouse(){
+	clearTimeout(nextHint);
 	canvas.removeEventListener('mousedown', selectTile);
 	canvas.removeEventListener('mouseup', selectTile);
 }
@@ -385,7 +484,7 @@ function animateSwap(s1, s2, d1, d2, t){
 		d1 += SPEED;
 		d2 -= SPEED;
 	}
-	console.log(d1, d2);
+	// console.log(d1, d2);
 	if (s1[0] != s2[0]){
 		printTile(convert(s1[1]), d1, COLOR[board.getColor(s1[0], s1[1])]);
 		printTile(convert(s2[1]), d2, COLOR[board.getColor(s2[0], s2[1])]);
@@ -408,11 +507,12 @@ function performSwap(s1, s2){
 
 function play(s1, s2){
 	unbindCanvasToMouse();
-	console.log(s1,s2);
+	// console.log(s1,s2);
 	if (s1[0] == s2[0] && s1[1] == s2[1] ||
 		Math.abs(s1[0] - s2[0]) > 1 || 
 		Math.abs(s1[1] - s2[1]) > 1){
 			bindCanvasToMouse();
+			paintGrid();
 			return;
 	}
 	performSwap(s1,s2);

@@ -46,14 +46,6 @@ var board = {
 		this.setColor(jcol, jrow, this.getColor(icol, irow)^this.getColor(jcol, jrow));
 		this.setColor(icol, irow, this.getColor(icol, irow)^this.getColor(jcol, jrow));
 	},
-	shuffle: function(){
-		var size = this.height*this.width;
-		for (var i=0; i<size; i++){
-			var j = Math.round(Math.random()*size);
-			this.swap(Math.floor(i/this.height), i%this.width,
-				 Math.floor(j/this.height), j%this.width);
-		}
-	},
 	distributeColor: function(){
 		this.doForall(function(i,j){
 			board.setColor(i,j,randColor());
