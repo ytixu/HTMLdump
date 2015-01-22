@@ -36,10 +36,12 @@ function setIndex(domele, dir){
 				  "Maximum Subarray Problem",
 				  "Integer Pairs in Array",
 				  "Bitwise Arithmetics",
-				  "Match-Three Puzzle"
+				  "Match-Three Puzzle",
+				  "Match-Three Game"
 				 ]
-	var currPage = document.URL;
-	currPage = parseInt(currPage[currPage.length-6]) - 1;
+	var url = document.URL.split("/");
+	var currPage = url[url.length-1];
+	currPage = parseInt(currPage.split(".")[0]) - 1;
 	for (var i=titles.length-1; i>-1; i--){	
 		if (currPage == i){
 			domele.appendChild(createLink(titles[i]+" <span class=\"sym\">&#8715;</span>", (i+1).toString()));
