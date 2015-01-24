@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * This script manage the generation of maze when starting, restarting and ending game.
+ */
+
 public class MazeManager : MonoBehaviour {
 	public Maze aMaze;
 	private Maze generatedMaze;
