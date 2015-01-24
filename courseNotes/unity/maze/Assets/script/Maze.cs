@@ -11,8 +11,8 @@ public class Maze : MonoBehaviour {
 	public MazeCell aCell;
 	private MazeCell[,] cells;
 
-	private static int FloorHeight = -20;
-	private enum Color{
+	public static int FloorHeight = -20;
+	public enum Color{
 		WHITE, BLUE, GREEN, RED, YELLOW, BLACK
 	}
 
