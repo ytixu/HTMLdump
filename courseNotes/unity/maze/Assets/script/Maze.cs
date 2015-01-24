@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/**
+ * This is the script that creates a random maze
+ */
+
 public class Maze : MonoBehaviour {
 	public int width, depth;
 	public MazeCell aCell;
@@ -51,13 +55,6 @@ public class Maze : MonoBehaviour {
 			                     x, z, children.Count);
 		}
 	}
-
-	/**
-	 * Assumes that the coords paremter has lenght 2
-	 */
-	private MazeCellVector getCell(int[] coords, MazeCellVector[,] grid){
-		return grid [coords [0], coords [1]];
-	}
 	
 	public Vector3 convertToVector3(int x, int z){
 		return new Vector3 (x * aCell.x, FloorHeight, z * aCell.z);
@@ -80,6 +77,18 @@ public class Maze : MonoBehaviour {
 		return grid;
 	}
 
+
+	/**
+	 * Below are helper methods for generating a random maze
+	 * getDirections: get all possible neighbours of a cell in a random order
+	 * isInBound: check if a cell's coordinate is withing the valid range
+	 * getCell: given grid, get the cell specified by a coordinate input in int[] format
+	 * isFronter: check if a cell (assumed to be from the output of getDirections) is
+	 * 			withiing the bound (calling isInBound) and is not connected
+	 * randomBranch: generate a random path in the grid starting at some specified cell
+	 * addFrontier: update the set of fronter cells
+	 */
+
 	private int[][] getDirections(int i, int j){
 		int[][] output = new int[][]{new int[]{i,j - 1}, 
 									new int[]{i - 1,j}, 
@@ -99,6 +108,11 @@ public class Maze : MonoBehaviour {
 						return false;
 		return true;
 	}
+	
+	private MazeCellVector getCell(int[] coords, MazeCellVector[,] grid){
+		// Assumes that the coords paremter has lenght 2
+		return grid [coords [0], coords [1]];
+	}
 
 	private bool isFrontier(int[] nb, MazeCellVector[,] grid){
 		if (!isInBound(nb) || grid [nb [0], nb [1]].connected)
@@ -112,12 +126,13 @@ public class Maze : MonoBehaviour {
 		int tempX = x;
 		int tempZ = z;
 		List<int[]> output = new List<int[]> ();
-		while (alpha > Random.value){
+		while (alpha > Random.value){ // 1-alpha chance of breacking this loop
 			int[][] nbs = getDirections(grid[tempX,tempZ].x, grid[tempX,tempZ].z);
 			foreach (int[] nb in nbs){
 				if (isFrontier(nb, grid)){
 					output.Add(nb);
 					grid[tempX, tempZ].children.Add(getCell(nb, grid));
+					getCell(nb, grid).connected = true;
 					tempX = nb[0];
 					tempZ = nb[1];
 					break;
@@ -128,6 +143,14 @@ public class Maze : MonoBehaviour {
 		return output;
 	}
 
+	private void addFrontier(int x, int z, Queue<int[]> f, MazeCellVector[,] grid){
+		foreach (int[] nb in getDirections(x, z)){
+			if (isFrontier(nb, grid)){
+				f.Enqueue(nb);
+			}
+		}
+	}
+	
 	/**
 	 * The algorithm to construct random perfect maze. 
 	 * We start at random place. The goal cell is the furtest end of a path from the start. 
@@ -135,18 +158,17 @@ public class Maze : MonoBehaviour {
 	 */
 	private MazeCellVector AldowsBroderWilson(MazeCellVector[,] grid){
 		Queue<int[]> frontier = new Queue<int[]>();
+		// get starting position
 		MazeCellVector startCell = grid [Random.Range (0, width), Random.Range (0, depth)];
 		startCell.connected = true;
-		foreach (int[] nb in getDirections(startCell.x, startCell.z)){
-			if (isFrontier(nb, grid)){
-				frontier.Enqueue(nb);
-			}
-		}
+		addFrontier (startCell.x, startCell.z, frontier, grid);
+		// iteratively add branches
 		int[] temp;
 		while (frontier.Count > 0) {
 			temp = frontier.Dequeue();
 			// check if it's connected
 			if (getCell(temp, grid).connected) continue;
+			getCell(temp, grid).connected = true;
 			// get a random path in the maze
 			List<int[]> branch = randomBranch(temp[0], temp[1], grid);
 			// connect to a parent
@@ -158,11 +180,7 @@ public class Maze : MonoBehaviour {
 			}
 			// add frontier cells
 			foreach (int[] b in branch){
-				foreach (int[] nb in getDirections(b[0], b[1])){
-					if (isFrontier(nb, grid)){
-						frontier.Enqueue(nb);
-					}
-				}
+				addFrontier(b[0], b[1], frontier, grid);
 			}
 		}
 		return startCell;
