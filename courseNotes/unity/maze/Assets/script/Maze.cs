@@ -34,20 +34,30 @@ public class Maze : MonoBehaviour {
 		public int z;
 		public Color color;
 		public List<MazeCellVector> children;
-		public bool connected;
+		public bool traversed;
 
 		public MazeCellVector(int a, int b){
 			x = a;
 			z = b;
 			color = Color.WHITE;
 			children = new List<MazeCellVector>();
-			connected = false;
+			traversed = false;
 		}
 
 		public bool equals(MazeCellVector v){
 			if (x == v.x && z == v.z)
 								return true;
 			return false;
+		}
+
+		/**
+		 * Heuristic distance
+		 */
+		public int getDistance(MazeCellVector b){
+			return (int)(Mathf.Abs (x - b.x) + Mathf.Abs (z - b.z));
+		}
+		public int getDistance(int[] b){
+			return (int)(Mathf.Abs(x - b[0]) + Mathf.Abs (z - b[1]));
 		}
 
 		public string toString(){
@@ -115,7 +125,7 @@ public class Maze : MonoBehaviour {
 	}
 
 	private bool isFrontier(int[] nb, MazeCellVector[,] grid){
-		if (!isInBound(nb) || grid [nb [0], nb [1]].connected)
+		if (!isInBound(nb) || grid [nb [0], nb [1]].traversed)
 						return false;
 		return true;
 	}
@@ -132,7 +142,7 @@ public class Maze : MonoBehaviour {
 				if (isFrontier(nb, grid)){
 					output.Add(nb);
 					grid[tempX, tempZ].children.Add(getCell(nb, grid));
-					getCell(nb, grid).connected = true;
+					getCell(nb, grid).traversed = true;
 					tempX = nb[0];
 					tempZ = nb[1];
 					break;
@@ -150,55 +160,86 @@ public class Maze : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	/**
 	 * The algorithm to construct random perfect maze. 
 	 * We start at random place. The goal cell is the furtest end of a path from the start. 
-	 * Returns the starting cell (root of tree);
+	 * Returns the starting cell (root of tree) and ending cell.;
 	 */
-	private MazeCellVector AldowsBroderWilson(MazeCellVector[,] grid){
+	private MazeCellVector[] AldowsBroderWilson(MazeCellVector[,] grid){
 		Queue<int[]> frontier = new Queue<int[]>();
 		// get starting position
 		MazeCellVector startCell = grid [Random.Range (0, width), Random.Range (0, depth)];
-		startCell.connected = true;
+		startCell.traversed = true;
 		addFrontier (startCell.x, startCell.z, frontier, grid);
+		// set up ending position 
+		MazeCellVector endCell = startCell;
+		int maxDist = startCell.getDistance (endCell);
+		int newDist;
 		// iteratively add branches
 		int[] temp;
 		while (frontier.Count > 0) {
 			temp = frontier.Dequeue();
 			// check if it's connected
-			if (getCell(temp, grid).connected) continue;
-			getCell(temp, grid).connected = true;
-			// get a random path in the maze
-			List<int[]> branch = randomBranch(temp[0], temp[1], grid);
+			if (getCell(temp, grid).traversed) continue;
+			getCell(temp, grid).traversed = true;
 			// connect to a parent
 			foreach (int[] nb in getDirections(temp[0], temp[1])){
-				if (isInBound(nb) && getCell(nb, grid).connected){
+				if (isInBound(nb) && getCell(nb, grid).traversed){
 					getCell(nb, grid).children.Add(getCell(temp, grid));
 					break;
 				}
 			}
+			// get a random path in the maze
+			List<int[]> branch = randomBranch(temp[0], temp[1], grid);
+			if (branch.Count == 0) continue;
 			// add frontier cells
 			foreach (int[] b in branch){
 				addFrontier(b[0], b[1], frontier, grid);
 			}
+			// update ending cell
+			newDist = startCell.getDistance(branch[branch.Count-1]);
+			if (newDist > maxDist){
+				endCell = getCell(branch[branch.Count-1], grid);
+				maxDist = newDist;
+			}
 		}
-		return startCell;
+		return new MazeCellVector[] {startCell, endCell};
+	}
+
+	/**
+	 * frunctions for traversing the graph
+	 */
+
+	private void resetGridTraverse(MazeCellVector[,] grid){
+		for (int i=0; i<width; i++){
+			for (int j=0; j<depth; j++){
+				grid[i,j].traversed = false;
+			}
+		}
 	}
 
 	/**
 	 * Add walls
 	 */
+	private void traverseWallAdded(){
+
+	}
+
+	// for debugging purposes
 	private void traverseMaze(MazeCellVector v){
 		print (v.toString ());
 		foreach(MazeCellVector c in v.children){
-			traverseMaze(c);
+			if (!c.traversed){
+				c.traversed = true;
+				traverseMaze(c);
+			}
 		}
 	}
 
 	public void initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();
-		MazeCellVector startCell = AldowsBroderWilson (grid);
-		traverseMaze (startCell);
+		MazeCellVector[] twoCells = AldowsBroderWilson (grid);
+		//traverseMaze (twoCells[0]);
 	}
 }
