@@ -24,6 +24,6 @@ public class MazeGenerator : MonoBehaviour {
 
 	public void CreateMaze (){
 		generatedMaze = Instantiate (aMaze) as Maze;
-		generatedMaze.initializeMazeCell ();
+		generatedMaze.initializeMaze ();
 	}
 }
