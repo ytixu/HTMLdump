@@ -8,6 +8,7 @@ using System.Collections;
 public class MazeManager : MonoBehaviour {
 	public Maze aMaze;
 	private Maze generatedMaze;
+	public Player player;
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +27,14 @@ public class MazeManager : MonoBehaviour {
 		CreateMaze ();
 	}
 
+	private void movePlayer(IntVector2 pos){
+		player.transform.localPosition = new Vector3 (pos.x, -20f, pos.z);
+	}
+
 	public void CreateMaze (){
 		generatedMaze = Instantiate (aMaze) as Maze;
-		generatedMaze.initializeMaze ();
+		IntVector2 startPosition = generatedMaze.initializeMaze ();
+		player.transform.parent = aMaze.transform;
+		movePlayer (startPosition);
 	}
 }

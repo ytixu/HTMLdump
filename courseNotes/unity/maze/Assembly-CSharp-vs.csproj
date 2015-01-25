@@ -52,6 +52,7 @@
      <Compile Include="Assets\script\MazeManager.cs" />
      <Compile Include="Assets\script\MazeRoom.cs" />
      <Compile Include="Assets\script\MazeWall.cs" />
+     <Compile Include="Assets\script\Player.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

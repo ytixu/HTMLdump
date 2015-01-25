@@ -31,6 +31,14 @@ public class IntVector2 {
 		return new IntVector2 (v.x + x, v.z + z);
 	}
 
+	public IntVector2 mult(int a){
+		return new IntVector2 (a * x, a * z);
+	}
+
+	public IntVector2 mult(int a, int b){
+		return new IntVector2 (a * x, b * z);
+	}
+
 	// shuffling algorithm
 	public static void shuffle(List<IntVector2> lst){
 		int l = lst.Count;

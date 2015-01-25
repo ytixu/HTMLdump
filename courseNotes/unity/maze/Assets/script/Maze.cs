@@ -335,12 +335,14 @@ public class Maze : MonoBehaviour {
 	}
 
 	// the function to call by MazeManager
-	public void initializeMaze(){
+	public IntVector2 initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();
 		AldowsBroderWilson (grid);
 		addWalls (grid);
 		//traverseMaze (twoCells[0]);
 		print (startCell.toString ());
 		print (endCell.toString ());
+		return new IntVector2(startCell.x*aCell.x + aCell.x/2, 
+		                      startCell.z*aCell.z + aCell.z/2);
 	}
 }
