@@ -15,10 +15,10 @@ public class MazeRoom {
 	} 
 
 	private IntVector2 randomDoor(int lowX, int highX, int lowZ, int highZ){
-		if (lowX < 0) lowX = 0;
-		if (highX > Maze.width) highX = Maze.width-1;
-		if (lowZ < 0) lowZ = 0;
-		if (highZ > Maze.depth) highZ = Maze.depth-1;
+		if (lowX < 1) lowX = 1;
+		if (highX > Maze.width-1) highX = Maze.width-2;
+		if (lowZ < 1) lowZ = 1;
+		if (highZ > Maze.depth-1) highZ = Maze.depth-2;
 		return new IntVector2 (Random.Range (lowX, highX), 
 		                   Random.Range (lowZ, highZ));
 	}

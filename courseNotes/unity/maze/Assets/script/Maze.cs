@@ -78,7 +78,7 @@ public class Maze : MonoBehaviour {
 				MazeCell newCell = Instantiate(aCell) as MazeCell;
 				cells[i,j] = newCell;
 				grid[i,j] = new MazeCellVector(i,j);
-				newCell.name = "cell"+i+"-";
+				newCell.name = "cell"+i+"-"+j;
 				newCell.transform.localScale = new Vector3(newCell.x, 1, newCell.z);
 				newCell.transform.parent = transform;
 				newCell.transform.localPosition = convertToVector3(i,j);
@@ -127,14 +127,13 @@ public class Maze : MonoBehaviour {
 	}
 
 	private List<IntVector2> randomBranch(IntVector2 v, MazeCellVector[,] grid){
-		double alpha = 0.95; // prbability of continueing the branch
+		double alpha = 1.0; // prbability of continueing the branch
 		double epsilon = 0.9; // rate of decrease for alpha
 		// with this combination, length of a branch is around 0-7 
 		IntVector2 temp = v;
 		List<IntVector2> output = new List<IntVector2> ();
 		//int length = 0;
 		while (alpha > Random.value){ // 1-alpha chance of breacking this loop
-			//length += 1;
 			List<IntVector2> nbs = getDirections(getCell(temp, grid).coord, grid);
 			foreach (IntVector2 nb in nbs){
 				if (!getCell(nb, grid).traversed){
@@ -142,6 +141,7 @@ public class Maze : MonoBehaviour {
 					getCell(temp, grid).addFamily(getCell(nb, grid));
 					getCell(nb, grid).traversed = true;
 					temp = nb;
+					//length += 1;
 					break;
 				}
 			}
@@ -198,7 +198,7 @@ public class Maze : MonoBehaviour {
 			IntVector2 temp;
 			foreach(IntVector2 v in MazeRoom.getSecondPos()){
 				temp = v.add(randC);
-				if (temp.x == 0 || temp.x == width-1 || temp.z == 0 || temp.z == depth-1)
+				if (temp.x < 1 || temp.x >= width-1 || temp.z < 1 || temp.z >= depth-1)
 					continue;
 				isIntersecting = false;
 				foreach (MazeRoom r in rooms){
@@ -266,12 +266,14 @@ public class Maze : MonoBehaviour {
 			}
 			// update starting position
 			IntVector2 leaf = branch[branch.Count-1];
+			if (leaf.x > width-5 || leaf.x <5 || leaf.z > depth-5 || leaf.z < 5) continue;
 			int newDist = startCell.mDistance(leaf);
 			if (newDist > maxDist){
 				maxDist = newDist;
 				startCell = leaf;
 			}
 		}
+		getCell (startCell, grid).color = Color.TURQUOIS;
 	}
 	
 	private void resetGridTraverse(MazeCellVector[,] grid){
@@ -316,5 +318,7 @@ public class Maze : MonoBehaviour {
 		AldowsBroderWilson (grid);
 		addWalls (grid);
 		//traverseMaze (twoCells[0]);
+		print (startCell.toString ());
+		print (endCell.toString ());
 	}
 }

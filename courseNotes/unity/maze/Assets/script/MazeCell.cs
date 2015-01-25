@@ -50,7 +50,6 @@ public class MazeCell : MonoBehaviour {
 	}
 
 	public void colorCell(Maze.Color c){
-		print (c.ToString());
 		if (c.Equals(Maze.Color.BLACK)){
 			transform.GetChild(0).GetComponent<Renderer>().material = roomColors[0];
 		}else if (c.Equals(Maze.Color.GREEN)){
