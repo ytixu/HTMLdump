@@ -36,7 +36,7 @@ public class Maze : MonoBehaviour {
 	private class MazeCellVector{
 		public IntVector2 coord;
 		public Color color;
-		public List<MazeCellVector> children;
+		public List<IntVector2> children;
 		public bool traversed;
 
 		public MazeCellVector(int a, int b){
@@ -51,13 +51,13 @@ public class Maze : MonoBehaviour {
 
 		private void _init_(){
 			color = Color.WHITE;
-			children = new List<MazeCellVector>();
+			children = new List<IntVector2>();
 			traversed = false;
 		}
 
 		public void addFamily(MazeCellVector v){
-			v.children.Add (this);
-			children.Add (v);
+			v.children.Add (coord);
+			children.Add (v.coord);
 		}
 
 		public string toString(){
@@ -96,7 +96,7 @@ public class Maze : MonoBehaviour {
 	 * getDirections: get all possible neighbours of a cell in a random order
 	 * randomBranch: generate a random path in the grid starting at some specified cell
 	 * addFrontier: update the set of fronter cells
-	 * randomCell: get a random cell coordinate that is not colored
+	 * randomRoom: get a random cell coordinate that is not colored and that can be the center of a room
 	 * colorRoom: color a 3x3 room in grid
 	 */
 
@@ -158,21 +158,22 @@ public class Maze : MonoBehaviour {
 			}
 		}
 	}
-
-	private IntVector2 randomCell(MazeCellVector[,] grid){
-		IntVector2 cell = new IntVector2 (Random.Range (0, width), Random.Range (0, depth));
-		if (getCell(cell, grid).color != Color.WHITE)
-			return randomCell(grid);
-		return cell;
-	}
 	
 	private void colorRoom(IntVector2 roomC, Color c, MazeCellVector[,] grid){
-		for (int i=roomC.x-MazeRoom.sizeX/2; i < roomC.x+MazeRoom.sizeX/2; i++){
-			for (int j=roomC.z-MazeRoom.sizeX/2; i < roomC.x+MazeRoom.sizeX/2; i++){
+		for (int i=roomC.x-MazeRoom.sizeX/2; i < roomC.x+MazeRoom.sizeX/2+1; i++){
+			for (int j=roomC.z-MazeRoom.sizeZ/2; j < roomC.z+MazeRoom.sizeZ/2+1; j++){
 				grid[i,j].color = c;
 				grid[i,j].traversed = true;
 			}
 		}
+	}
+
+	private IntVector2 randomRoom(MazeCellVector[,] grid){
+		IntVector2 cell = new IntVector2 (Random.Range (MazeRoom.sizeX/2+1, width-MazeRoom.sizeX/2), 
+		                                  Random.Range (MazeRoom.sizeZ/2+1, depth-MazeRoom.sizeZ/2));
+		if (getCell(cell, grid).color != Color.WHITE)
+			return randomRoom(grid);
+		return cell;
 	}
 
 	/**
@@ -184,7 +185,7 @@ public class Maze : MonoBehaviour {
 		Color[] roomsCol = new Color[] {Color.GREEN, Color.PINK, Color.YELLOW};
 		rooms = new List<MazeRoom>();
 		while (rooms.Count < RoomNumb){
-			IntVector2 randC = randomCell(grid);
+			IntVector2 randC = randomRoom(grid);
 			bool isIntersecting = false;
 			foreach (MazeRoom r in rooms){
 				if (r.intersects(randC)){
@@ -196,8 +197,10 @@ public class Maze : MonoBehaviour {
 			IntVector2 sRoom = null;
 			IntVector2 temp;
 			foreach(IntVector2 v in MazeRoom.getSecondPos()){
-				isIntersecting = false;
 				temp = v.add(randC);
+				if (temp.x == 0 || temp.x == width-1 || temp.z == 0 || temp.z == depth-1)
+					continue;
+				isIntersecting = false;
 				foreach (MazeRoom r in rooms){
 					if (r.intersects(temp)){
 						isIntersecting = true;
@@ -270,11 +273,7 @@ public class Maze : MonoBehaviour {
 			}
 		}
 	}
-
-	/**
-	 * frunctions for traversing the graph
-	 */
-
+	
 	private void resetGridTraverse(MazeCellVector[,] grid){
 		for (int i=0; i<width; i++){
 			for (int j=0; j<depth; j++){
@@ -284,17 +283,29 @@ public class Maze : MonoBehaviour {
 	}
 
 	// add walls
-	private void traverseWallAdded(){
-
-	}
-
-	// for debugging purposes
-	private void traverseMaze(MazeCellVector v){
-		print (v.toString ());
-		foreach(MazeCellVector c in v.children){
-			if (!c.traversed){
-				c.traversed = true;
-				traverseMaze(c);
+	private void addWalls(MazeCellVector[,] grid){
+		Hashtable clearDir = new Hashtable();
+		foreach (IntVector2 d in directions){
+			clearDir.Add(d, true);
+		}
+		for (int i=0; i<width; i++){
+			for (int j=0; j<depth; j++){
+				foreach (IntVector2 d in directions){
+					foreach (IntVector2 c in grid[i,j].children){
+						if (grid[i,j].coord.add(d).equals(c)){
+							clearDir[d] = false;
+							break;
+						}
+					}
+				}
+				foreach (IntVector2 d in directions){
+					if ((bool) clearDir[d]){
+						//cells[i,j].addWall(d);
+					}else{
+						clearDir[d] = true;
+					}
+				}
+				cells[i,j].colorCell(grid[i,j].color);
 			}
 		}
 	}
@@ -303,6 +314,7 @@ public class Maze : MonoBehaviour {
 	public void initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();
 		AldowsBroderWilson (grid);
+		addWalls (grid);
 		//traverseMaze (twoCells[0]);
 	}
 }

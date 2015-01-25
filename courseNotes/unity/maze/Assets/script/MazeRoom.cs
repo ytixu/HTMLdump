@@ -52,12 +52,12 @@ public class MazeRoom {
 		if (secondRoomPos == null){
 			secondRoomPos = new IntVector2[2*sizeX+2*sizeZ];
 			for (int i=0; i<sizeX; i++){
-				secondRoomPos[i] = new IntVector2(i-sizeX/2, sizeZ/2+1);
-				secondRoomPos[sizeX+i] = new IntVector2(i-sizeX/2, -sizeZ/2-1);
+				secondRoomPos[i] = new IntVector2(i-sizeX/2, sizeZ/2+2);
+				secondRoomPos[sizeX+i] = new IntVector2(i-sizeX/2, -sizeZ/2-2);
 			}
 			for (int j=0; j<sizeZ; j++){
-				secondRoomPos[2*sizeX+j] = new IntVector2(sizeX/2+1, j-sizeZ/2);
-				secondRoomPos[2*sizeX+sizeZ+j] = new IntVector2(-sizeX/2-1, j-sizeZ/2);
+				secondRoomPos[2*sizeX+j] = new IntVector2(sizeX/2+2, j-sizeZ/2);
+				secondRoomPos[2*sizeX+sizeZ+j] = new IntVector2(-sizeX/2-2, j-sizeZ/2);
 			}
 		}
 		IntVector2.shuffle(secondRoomPos);
