@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MazeCell : MonoBehaviour {
-	public int x, z;
+	public int x, y, z;
 	public MazeWall doorWall;
 	public MazeWall plainWall;
 
@@ -24,6 +24,8 @@ public class MazeCell : MonoBehaviour {
 		}
 		w.transform.parent = side.transform;
 		w.transform.localScale = new Vector3 (1, 1, 1);
+		w.transform.localPosition = Vector3.zero;
+		w.transform.localRotation = Quaternion.identity;
 	}
 
 	private void addEastWall(bool door, Material m){
@@ -43,8 +45,8 @@ public class MazeCell : MonoBehaviour {
 	}
 
 	public void addWall(IntVector2 d, bool door, Material m){
-		if (d.x < 0) addWestWall (door, m);
-		else if (d.x > 0) addEastWall (door, m);
+		if (d.x < 0) addEastWall (door, m);
+		else if (d.x > 0) addWestWall (door, m);
 		else if (d.z < 0) addNorthWall(door, m);
 		else addSouthWall(door, m);
 	}

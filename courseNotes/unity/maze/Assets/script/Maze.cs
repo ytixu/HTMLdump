@@ -83,7 +83,7 @@ public class Maze : MonoBehaviour {
 				cells[i,j] = newCell;
 				grid[i,j] = new MazeCellVector(i,j);
 				newCell.name = "cell"+i+"-"+j;
-				newCell.transform.localScale = new Vector3(newCell.x, 1, newCell.z);
+				newCell.transform.localScale = new Vector3(newCell.x, newCell.y, newCell.z);
 				newCell.transform.parent = transform;
 				newCell.transform.localPosition = convertToVector3(i,j);
 			}
@@ -306,16 +306,25 @@ public class Maze : MonoBehaviour {
 		for (int i=0; i<width; i++){
 			for (int j=0; j<depth; j++){
 				foreach (IntVector2 d in directions){
-					foreach (IntVector2 c in grid[i,j].children){
-						if (grid[i,j].coord.add(d).equals(c)){
+					IntVector2 temp = grid[i,j].coord.add(d);
+					try{
+						if (!grid[i,j].color.Equals(Color.WHITE) && 
+						    getCell (temp, grid).color.Equals(grid[i,j].color)){
 							clearDir[d] = false;
-							break;
+						}
+					}catch(System.IndexOutOfRangeException e){}
+					if ((bool) clearDir[d]){
+						foreach (IntVector2 c in grid[i,j].children){
+							if (temp.equals(c)){
+								clearDir[d] = false;
+								break;
+							}
 						}
 					}
 				}
 				foreach (IntVector2 d in directions){
 					if ((bool) clearDir[d]){
-						//cells[i,j].addWall(d);
+						cells[i,j].addWall(d, false, getColorMat(grid[i,j].color));
 					}else{
 						clearDir[d] = true;
 					}

@@ -1,13 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\MazeCell.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\Maze.cs">
     <Files>
-      <File FileName="Assets\script\MazeManager.cs" Line="6" Column="4" />
-      <File FileName="Assets\script\MazeWall.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\Maze.cs" Line="305" Column="1" />
-      <File FileName="Assets\script\MazeCell.cs" Line="41" Column="53" />
-      <File FileName="Assets\script\MazeRoom.cs" Line="4" Column="22" />
-      <File FileName="Assets\script\IntVector2.cs" Line="59" Column="1" />
+      <File FileName="Assets\script\MazeManager.cs" Line="13" Column="17" />
+      <File FileName="Assets\script\MazeCell.cs" Line="48" Column="27" />
+      <File FileName="Assets\script\Maze.cs" Line="312" Column="11" />
+      <File FileName="Assets\script\MazeRoom.cs" Line="61" Column="5" />
+      <File FileName="Assets\script\MazeWall.cs" Line="5" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
