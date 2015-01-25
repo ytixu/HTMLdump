@@ -11,12 +11,16 @@ public class Maze : MonoBehaviour {
 	public static int depth = 30;
 	public MazeCell aCell;
 	public int RoomNumb;
-
+	public Material[] roomColors;
 	private MazeCell[,] cells;
 
 	public static int FloorHeight = -20;
 	public enum Color{
-		WHITE, TURQUOIS, GREEN, PINK, YELLOW, BLACK
+		GREEN, PINK, YELLOW, BLACK, TURQUOIS, WHITE
+	}
+
+	public Material getColorMat(Color c){
+		return roomColors[(int) c];
 	}
 
 	private List<MazeRoom> rooms;
@@ -182,7 +186,7 @@ public class Maze : MonoBehaviour {
 	 * Secondary rooms have color BLACK.
 	 */
 	private void roomPartitioner(MazeCellVector[,] grid){
-		Color[] roomsCol = new Color[] {Color.GREEN, Color.PINK, Color.YELLOW};
+		//Color[] roomsCol = new Color[] {Color.GREEN, Color.PINK, Color.YELLOW};
 		rooms = new List<MazeRoom>();
 		while (rooms.Count < RoomNumb){
 			IntVector2 randC = randomRoom(grid);
@@ -215,7 +219,7 @@ public class Maze : MonoBehaviour {
 			if (sRoom != null){
 				rooms.Add (new MazeRoom(randC, sRoom));
 				// color 
-				colorRoom (randC, roomsCol[rooms.Count-1], grid);
+				colorRoom (randC, (Color) rooms.Count-1, grid);
 				colorRoom (sRoom, Color.BLACK, grid);
 			}
 		}
@@ -223,13 +227,22 @@ public class Maze : MonoBehaviour {
 
 	// get the goal cell using the first secondary room in the list of rooms
 	private void getEndCell(List<IntVector2> f, MazeCellVector[,] grid){
-		MazeRoom temp = new MazeRoom (rooms [0].secondCenter, rooms [0].center);
-		IntVector2 door = temp.randomRoomDoor ();
-		List<IntVector2> branch = randomBranch (door, grid);
-		endCell = branch [branch.Count - 1];
-		getCell (endCell, grid).color = Color.TURQUOIS;
-		foreach (IntVector2 b in branch){
-			addFrontier(b, f, grid);
+		for (int i = 0; i< RoomNumb ;i++){
+			MazeRoom temp = new MazeRoom (rooms [i].secondCenter, rooms [i].center);
+			IntVector2 door = temp.randomRoomDoor ();
+			List<IntVector2> branch = randomBranch (door, grid);
+			for (int j=0; j<5; j++){
+				if (branch.Count > 0) break;
+				door = temp.randomRoomDoor ();
+				branch = randomBranch (door, grid);
+			}
+			if (branch.Count == 0) continue;
+			endCell = branch [branch.Count - 1];
+			getCell (endCell, grid).color = Color.TURQUOIS;
+			foreach (IntVector2 b in branch){
+				addFrontier(b, f, grid);
+			}
+			break;
 		}
 	}
 
@@ -307,7 +320,7 @@ public class Maze : MonoBehaviour {
 						clearDir[d] = true;
 					}
 				}
-				cells[i,j].colorCell(grid[i,j].color);
+				cells[i,j].colorCell(getColorMat(grid[i,j].color));
 			}
 		}
 	}

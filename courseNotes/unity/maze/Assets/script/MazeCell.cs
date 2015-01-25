@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class MazeCell : MonoBehaviour {
-	public MazeWall aWall;
 	public int x, z;
-	public Material[] roomColors;
+	public MazeWall doorWall;
+	public MazeWall plainWall;
 
 	/**
 	 * Each cell has four wall.
@@ -14,52 +14,42 @@ public class MazeCell : MonoBehaviour {
 	public MazeWall westWall;
 	public MazeWall northWall;
 
-	private MazeWall instantiateWall(Vector3 scale, Vector3 position){
-		MazeWall w = Instantiate (aWall) as MazeWall;
-		w.transform.parent = transform;
-		w.transform.localScale = scale;
-		w.transform.localPosition = position;
-		return w;
+	private void instantiateWall(bool door, Material m, MazeWall side){
+		MazeWall w;
+		if (door){
+			w = Instantiate (doorWall) as MazeWall;
+			w.transform.FindChild("door").renderer.material = m;
+		}else{
+			w = Instantiate (plainWall) as MazeWall;
+		}
+		w.transform.parent = side.transform;
+		w.transform.localScale = new Vector3 (1, 1, 1);
 	}
 
-	private void addEastWall(){
-		eastWall = instantiateWall (new Vector3 (1f, Maze.FloorHeight, z), 
-		                            new Vector3 (x*0.5f - 0.5f, Maze.FloorHeight*0.5f, 0f));
+	private void addEastWall(bool door, Material m){
+		instantiateWall (door, m, eastWall);
 	}
 
-	private void addSouthWall(){
-		southWall = instantiateWall (new Vector3 (x, Maze.FloorHeight, 1f), 
-		                            new Vector3 (0f, Maze.FloorHeight*0.5f, -z*0.5f+0.5f));
+	private void addSouthWall(bool door, Material m){
+		instantiateWall (door, m, southWall);
 	}	
 
-	private void addNorthWall(){
-		northWall = instantiateWall (new Vector3 (x, Maze.FloorHeight, 1f), 
-		                             new Vector3 (0f, Maze.FloorHeight*0.5f, z*0.5f-0.5f));
+	private void addNorthWall(bool door, Material m){
+		instantiateWall (door, m, northWall);
 	}
 
-	private void addWestWall(){
-		westWall = instantiateWall (new Vector3 (1f, Maze.FloorHeight, z), 
-		                            new Vector3 (-x*0.5f + 0.5f, Maze.FloorHeight*0.5f, 0f));
+	private void addWestWall(bool door, Material m){
+		instantiateWall (door, m, westWall);
 	}
 
-	public void addWall(IntVector2 d){
-		if (d.x < 0) addWestWall ();
-		else if (d.x > 0) addEastWall ();
-		else if (d.z < 0) addNorthWall();
-		else addSouthWall();
+	public void addWall(IntVector2 d, bool door, Material m){
+		if (d.x < 0) addWestWall (door, m);
+		else if (d.x > 0) addEastWall (door, m);
+		else if (d.z < 0) addNorthWall(door, m);
+		else addSouthWall(door, m);
 	}
 
-	public void colorCell(Maze.Color c){
-		if (c.Equals(Maze.Color.BLACK)){
-			transform.GetChild(0).GetComponent<Renderer>().material = roomColors[0];
-		}else if (c.Equals(Maze.Color.GREEN)){
-			transform.GetChild(0).GetComponent<Renderer>().material = roomColors[1];
-		}else if (c.Equals(Maze.Color.PINK)){
-			transform.GetChild(0).GetComponent<Renderer>().material = roomColors[2];
-		}else if (c.Equals(Maze.Color.TURQUOIS)){
-			transform.GetChild(0).GetComponent<Renderer>().material = roomColors[3];
-		}else if (c.Equals(Maze.Color.YELLOW)){
-			transform.GetChild(0).GetComponent<Renderer>().material = roomColors[4];
-		}
+	public void colorCell(Material m){
+		transform.GetChild(0).GetComponent<Renderer>().material = m;
 	}
 }
