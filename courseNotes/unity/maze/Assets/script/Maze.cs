@@ -7,8 +7,10 @@ using System.Collections.Generic;
  */
 
 public class Maze : MonoBehaviour {
-	public int width, depth;
+	public static int width = 30;
+	public static int depth = 30;
 	public MazeCell aCell;
+	public int RoomNumb;
 
 	private MazeCell[,] cells;
 
@@ -16,6 +18,9 @@ public class Maze : MonoBehaviour {
 	public enum Color{
 		WHITE, TURQUOIS, GREEN, PINK, YELLOW, BLACK
 	}
+
+	private List<MazeRoom> rooms;
+	private IntVector2 startCell, endCell;
 
 	// Use this for initialization
 	void Start () {
@@ -27,32 +32,6 @@ public class Maze : MonoBehaviour {
 	
 	}
 
-	// 2D vector of integers
-	private struct IntVector2{
-		public int x;
-		public int z;
-
-		public IntVector2(int a, int b){
-			x = a;
-			z = b;
-		}
-
-		public bool equals(IntVector2 v){
-			if (x == v.x && z == v.z) 
-				return true;
-			return false;
-		}
-
-		// Manhattan distance
-		public int mDistance(IntVector2 v){
-			return (int)(Mathf.Abs (x - v.x) + Mathf.Abs (z - v.z));
-		}
-
-		public IntVector2 add(IntVector2 v){
-			return new IntVector2 (v.x + x, v.z + z);
-		}
-	}
-
 	// Tree for the maze
 	private class MazeCellVector{
 		public IntVector2 coord;
@@ -61,14 +40,12 @@ public class Maze : MonoBehaviour {
 		public bool traversed;
 
 		public MazeCellVector(int a, int b){
-			coord.x = a;
-			coord.z = b;
+			coord = new IntVector2(a,b);
 			_init_();
 		}
 
 		public MazeCellVector(IntVector2 c){
-			coord.z = c.z;
-			coord.x = c.x;
+			coord = new IntVector2(c);
 			_init_();
 		}
 
@@ -96,8 +73,8 @@ public class Maze : MonoBehaviour {
 	private MazeCellVector[,] initializeMazeCell(){
 		cells = new MazeCell[width, depth];
 		MazeCellVector[,] grid = new MazeCellVector[width, depth];
-		for (int i=0; i<depth; i++){
-			for (int j=0; j<width; j++){
+		for (int i=0; i<width; i++){
+			for (int j=0; j<depth; j++){
 				MazeCell newCell = Instantiate(aCell) as MazeCell;
 				cells[i,j] = newCell;
 				grid[i,j] = new MazeCellVector(i,j);
@@ -119,7 +96,8 @@ public class Maze : MonoBehaviour {
 	 * getDirections: get all possible neighbours of a cell in a random order
 	 * randomBranch: generate a random path in the grid starting at some specified cell
 	 * addFrontier: update the set of fronter cells
-	 * randomCell: get a random cell coordinate
+	 * randomCell: get a random cell coordinate that is not colored
+	 * colorRoom: color a 3x3 room in grid
 	 */
 
 	private IntVector2[] directions = new IntVector2[]{
@@ -130,7 +108,7 @@ public class Maze : MonoBehaviour {
 		return grid [coords.x, coords.z];
 	}
 
-	private bool isInBound(IntVector2 nb){
+	public static bool isInBound(IntVector2 nb){
 		if (nb.x >= width || nb.z >= depth || nb.x < 0 || nb.z < 0) 
 			return false;
 		return true;
@@ -144,14 +122,7 @@ public class Maze : MonoBehaviour {
 				output.Add(getCell(t, grid).coord);
 			}
 		}
-		// shuffle 
-		int l = output.Count;
-		for (int k=0; k<l-1; k++){
-			int index = Random.Range(0,l-k)+k;
-			IntVector2 temp = output[k];
-			output[k] = output[index];
-			output[index] = temp;
-		}
+		IntVector2.shuffle (output);
 		return output;
 	}
 
@@ -180,39 +151,99 @@ public class Maze : MonoBehaviour {
 		return output;
 	}
 
-	private void addFrontier(IntVector2 v, Queue<IntVector2> f, MazeCellVector[,] grid){
+	private void addFrontier(IntVector2 v, List<IntVector2> f, MazeCellVector[,] grid){
 		foreach (IntVector2 nb in getDirections(v, grid)){
 			if (!getCell(nb, grid).traversed){
-				f.Enqueue(nb);
+				f.Add(nb);
 			}
 		}
 	}
 
-	private IntVector2 randomCell(){
-		return new IntVector2 (Random.Range (0, width), Random.Range (0, depth));
+	private IntVector2 randomCell(MazeCellVector[,] grid){
+		IntVector2 cell = new IntVector2 (Random.Range (0, width), Random.Range (0, depth));
+		if (getCell(cell, grid).color != Color.WHITE)
+			return randomCell(grid);
+		return cell;
+	}
+	
+	private void colorRoom(IntVector2 roomC, Color c, MazeCellVector[,] grid){
+		for (int i=roomC.x-MazeRoom.sizeX/2; i < roomC.x+MazeRoom.sizeX/2; i++){
+			for (int j=roomC.z-MazeRoom.sizeX/2; i < roomC.x+MazeRoom.sizeX/2; i++){
+				grid[i,j].color = c;
+				grid[i,j].traversed = true;
+			}
+		}
 	}
 
 	/**
-	 * The algorithm to construct random perfect maze. 
-	 * We start at random place. The goal cell is the furtest end of a path from the start. 
-	 * Returns the starting cell (root of tree) and ending cell.
-	 * Create a list of potential dead end cells to make rooms.
+	 * This algorithm randomly selects 3 sets of connected room pairs in the grid.
+	 * Primary rooms have color GREEN, PINK and YELLOW.
+	 * Secondary rooms have color BLACK.
 	 */
-	private IntVector2[] AldowsBroderWilson(MazeCellVector[,] grid){
-		Queue<IntVector2> frontier = new Queue<IntVector2>();
-		List<IntVector2> deadEnds = new List<IntVector2>();
-		// get starting position
-		IntVector2 startCell = getCell(randomCell(), grid).coord;
-		getCell (startCell, grid).traversed = true;
-		addFrontier (startCell, frontier, grid);
-		// set up ending position 
-		IntVector2 endCell = startCell;
-		int maxDist = startCell.mDistance (endCell);
-		int newDist;
+	private void roomPartitioner(MazeCellVector[,] grid){
+		Color[] roomsCol = new Color[] {Color.GREEN, Color.PINK, Color.YELLOW};
+		rooms = new List<MazeRoom>();
+		while (rooms.Count < RoomNumb){
+			IntVector2 randC = randomCell(grid);
+			bool isIntersecting = false;
+			foreach (MazeRoom r in rooms){
+				if (r.intersects(randC)){
+					isIntersecting = true;
+					break;
+				}
+			}
+			if (isIntersecting) continue;
+			IntVector2 sRoom = null;
+			IntVector2 temp;
+			foreach(IntVector2 v in MazeRoom.getSecondPos()){
+				isIntersecting = false;
+				temp = v.add(randC);
+				foreach (MazeRoom r in rooms){
+					if (r.intersects(temp)){
+						isIntersecting = true;
+						break;
+					}
+				}
+				if (!isIntersecting){
+					sRoom = temp;
+					break;
+				}
+			}
+			if (sRoom != null){
+				rooms.Add (new MazeRoom(randC, sRoom));
+				// color 
+				colorRoom (randC, roomsCol[rooms.Count-1], grid);
+				colorRoom (sRoom, Color.BLACK, grid);
+			}
+		}
+	}
+
+	// get the goal cell using the first secondary room in the list of rooms
+	private void getEndCell(List<IntVector2> f, MazeCellVector[,] grid){
+		MazeRoom temp = new MazeRoom (rooms [0].secondCenter, rooms [0].center);
+		IntVector2 door = temp.randomRoomDoor ();
+		List<IntVector2> branch = randomBranch (door, grid);
+		endCell = branch [branch.Count - 1];
+		getCell (endCell, grid).color = Color.TURQUOIS;
+		foreach (IntVector2 b in branch){
+			addFrontier(b, f, grid);
+		}
+	}
+
+	// The algorithm that generate random maze without the rooms. 
+	private void AldowsBroderWilson(MazeCellVector[,] grid){
+		roomPartitioner (grid);
+		List<IntVector2> frontier = new List<IntVector2>();
+		// set up ending position
+		getEndCell (frontier, grid);
+		// find the furthest "leaf" as the starting position
+		startCell = endCell;
+		int maxDist = 0;
 		// iteratively add branches
 		IntVector2 temp;
 		while (frontier.Count > 0) {
-			temp = frontier.Dequeue();
+			temp = frontier[Random.Range(0, frontier.Count)];
+			frontier.Remove(temp);
 			// check if it's connected
 			if (getCell(temp, grid).traversed) continue;
 			getCell(temp, grid).traversed = true;
@@ -230,49 +261,14 @@ public class Maze : MonoBehaviour {
 			foreach (IntVector2 b in branch){
 				addFrontier(b, frontier, grid);
 			}
-			// update ending cell
-			int lastInd = branch.Count-1;
-			newDist = startCell.mDistance(branch[lastInd]);
+			// update starting position
+			IntVector2 leaf = branch[branch.Count-1];
+			int newDist = startCell.mDistance(leaf);
 			if (newDist > maxDist){
-				endCell = branch[lastInd];
 				maxDist = newDist;
+				startCell = leaf;
 			}
-			// update deadEnds
-			deadEnds.Add(branch[lastInd]);
 		}
-		return new IntVector2[] {startCell, endCell};
-	}
-
-	/**
-	 * This algorithm finds 3 primary rooms in the maze by removing dead ends.
-	 * And it randomly picks a cell in each room to be the secondary room.
-	 * Start and end cells are always TURQUOIS.
-	 * Primary rooms have color GREEN, PINK and YELLOW.
-	 * Secondary rooms have color BLACK.
-	 */
-	private void roomPartitioner(List<IntVector2> deadends, IntVector2[] startEndCells, 
-	                             MazeCellVector[,] grid){
-		// assign start and end cells color
-		getCell (startEndCells [0], grid).color = Color.TURQUOIS;
-		getCell (startEndCells [1], grid).color = Color.TURQUOIS;
-		// three random rooms
-		List<IntVector2> rooms = new List<IntVector2> ();
-		while (rooms.Count < 3){
-			int index = Random.Range(0, deadends.Count);
-			if (deadends[index].equals(startEndCells[1])) continue;
-			rooms.Add(deadends[index]);
-		}
-		// iteratively expand the rooms
-		double alpha = 1.0; // probability of expansion
-		double epsilon = 0.9; // rate of expansion decrease
-		while (alpha > 0.1) { // loop for 22 times
-			for(int i=0; i<3; i++){
-				// exapand on random neighbour with chance alpha
-
-			}
-			alpha *= epsilon;
-		}
-
 	}
 
 	/**
@@ -306,7 +302,7 @@ public class Maze : MonoBehaviour {
 	// the function to call by MazeManager
 	public void initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();
-		IntVector2[] twoCells = AldowsBroderWilson (grid);
+		AldowsBroderWilson (grid);
 		//traverseMaze (twoCells[0]);
 	}
 }
