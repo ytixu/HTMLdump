@@ -141,6 +141,7 @@ public class Maze : MonoBehaviour {
 			List<IntVector2> nbs = getDirections(getCell(temp, grid).coord, grid);
 			foreach (IntVector2 nb in nbs){
 				if (!getCell(nb, grid).traversed){
+					//if (!getCell(nb, grid).color.Equals(Color.WHITE)) print (nb.toString() + "NOTADDED" );
 					output.Add(nb);
 					getCell(temp, grid).addFamily(getCell(nb, grid));
 					getCell(nb, grid).traversed = true;
@@ -226,7 +227,7 @@ public class Maze : MonoBehaviour {
 	}
 
 	// get the goal cell using the first secondary room in the list of rooms
-	private void getEndCell(List<IntVector2> f, MazeCellVector[,] grid){
+	private void getEndCell(MazeCellVector[,] grid){
 		for (int i = 0; i< RoomNumb ;i++){
 			MazeRoom temp = new MazeRoom (rooms [i].secondCenter, rooms [i].center);
 			IntVector2 door = temp.randomRoomDoor ();
@@ -238,9 +239,8 @@ public class Maze : MonoBehaviour {
 			}
 			if (branch.Count == 0) continue;
 			endCell = branch [branch.Count - 1];
-			getCell (endCell, grid).color = Color.TURQUOIS;
 			foreach (IntVector2 b in branch){
-				addFrontier(b, f, grid);
+				getCell (b, grid).color = Color.TURQUOIS;
 			}
 			break;
 		}
@@ -251,11 +251,12 @@ public class Maze : MonoBehaviour {
 		roomPartitioner (grid);
 		List<IntVector2> frontier = new List<IntVector2>();
 		// set up ending position
-		getEndCell (frontier, grid);
+		getEndCell(grid);
 		// find the furthest "leaf" as the starting position
 		startCell = endCell;
 		int maxDist = 0;
 		// iteratively add branches
+		frontier.Add (randomRoom (grid));
 		IntVector2 temp;
 		while (frontier.Count > 0) {
 			temp = frontier[Random.Range(0, frontier.Count)];
@@ -265,7 +266,7 @@ public class Maze : MonoBehaviour {
 			getCell(temp, grid).traversed = true;
 			// connect to a parent
 			foreach (IntVector2 nb in getDirections(temp, grid)){
-				if (getCell(nb, grid).traversed){
+				if (getCell(nb, grid).traversed && getCell(nb, grid).color.Equals(Color.WHITE)){
 					getCell(nb, grid).addFamily(getCell(temp, grid));
 					break;
 				}
@@ -296,44 +297,96 @@ public class Maze : MonoBehaviour {
 			}
 		}
 	}
+	
+	private void addRoomEntrance(MazeCellVector[,] grid){
+		foreach (MazeRoom r in rooms){
+			IntVector2 door = r.randomRoomDoor();
+			while (grid[door.x, door.z].children.Count > 0){
+				door = r.randomRoomDoor();
+			}
+			IntVector2 dir = r.center.sub (door);
+			int x = (int)Mathf.Sign(dir.x);
+			int z = (int)Mathf.Sign(dir.z);
+			if (x != 0 && z != 0){
+				if (Random.value > 0.5){
+					x = 0;
+				}else{
+					z = 0;
+				}
+			}
+			grid[door.x, door.z].addFamily(grid[door.x+x,door.z+z]);
+		}
+	}
+	
+	private void addSecondRoomEntrance(MazeCellVector[,] grid){
+		foreach (MazeRoom r in rooms){
+			IntVector2 door = r.randomSecondRoomDoor();
+			IntVector2 dir = r.center.sub (door);
+
+			int x = (int)Mathf.Sign(dir.x);
+			int z = (int)Mathf.Sign(dir.z);
+			if ((int)(Mathf.Abs (r.center.x - r.secondCenter.x)) == -MazeRoom.sizeX){
+				x = 0;
+			}else{
+				z = 0;
+			}
+			grid[door.x, door.z].addFamily(grid[door.x+x,door.z+z]);
+		}
+	}
 
 	// add walls
 	private void addWalls(MazeCellVector[,] grid){
-		Hashtable clearDir = new Hashtable();
-		foreach (IntVector2 d in directions){
-			clearDir.Add(d, true);
-		}
+		//addRoomEntrance (grid);
+		//addSecondRoomEntrance (grid);
+		IntVector2[] dir = new IntVector2[]{new IntVector2 (0, 1), new IntVector2 (1, 0)};
 		for (int i=0; i<width; i++){
 			for (int j=0; j<depth; j++){
-				foreach (IntVector2 d in directions){
+				bool printID = false;
+				if (!grid[i,j].color.Equals(Color.WHITE)){
+					printID = true;
+					print (i.ToString() + " " + j.ToString());
+				}
+				foreach (IntVector2 d in dir){
+					bool clear = false;
 					IntVector2 temp = grid[i,j].coord.add(d);
-					try{
-						if (!grid[i,j].color.Equals(Color.WHITE) && 
-						    getCell (temp, grid).color.Equals(grid[i,j].color)){
-							clearDir[d] = false;
-						}
-					}catch(System.IndexOutOfRangeException e){}
-					if ((bool) clearDir[d]){
+					if (temp.x >= width || temp.z >= depth) continue;
+					if (!grid[i,j].color.Equals(Color.WHITE) && !grid[i,j].color.Equals(Color.TURQUOIS) && 
+						getCell (temp, grid).color.Equals(grid[i,j].color)){
+						//clearDir[d] = false;
+						if (printID) print (temp.toString() + " EQUAL");
+						clear = true;
+					}
+					if (!clear){
 						foreach (IntVector2 c in grid[i,j].children){
 							if (temp.equals(c)){
-								clearDir[d] = false;
+								if (printID) print (c.toString());
+								clear = true;
 								break;
 							}
 						}
 					}
-				}
-				foreach (IntVector2 d in directions){
-					if ((bool) clearDir[d]){
-						cells[i,j].addWall(d, false, getColorMat(grid[i,j].color));
+					if (!clear){
+						//print (temp.toString());
+						//if (printID) print (d.toString());
+						cells[i,j].addWall(i, j, d, false, grid[i,j].color, getColorMat(grid[i,j].color));
+						cells[temp.x,temp.z].addWall(temp, d.mult(-1), false,  getCell (temp, grid).color, getColorMat(getCell (temp, grid).color));
 					}else{
-						clearDir[d] = true;
+						cells[i,j].addBoarders(i,j, getCell (temp, grid).color, getColorMat(getCell (temp, grid).color));
 					}
 				}
-				cells[i,j].colorCell(getColorMat(grid[i,j].color));
+			}
+		}
+		// for tile 29, 29
+		cells[29,29].addBoarders(29,29, grid[29,29].color, getColorMat(grid[29,29].color));
+	}
+
+	private void printGrid (MazeCellVector[,] grid){
+		for (int i=0; i<width; i++){
+			for (int j=0; j<depth; j++){
+				print (grid[i,j].traversed.ToString() + " " + grid[i,j].color.ToString());
 			}
 		}
 	}
-
 	// the function to call by MazeManager
 	public IntVector2 initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();
@@ -342,6 +395,7 @@ public class Maze : MonoBehaviour {
 		//traverseMaze (twoCells[0]);
 		print (startCell.toString ());
 		print (endCell.toString ());
+		print (rooms [0].center.toString ());
 		cells [startCell.x, startCell.z].removeCeil ();
 		cells [endCell.x, endCell.z].removeCeil ();
 		return new IntVector2(startCell.x*aCell.x + aCell.x/2, 

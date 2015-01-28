@@ -31,6 +31,10 @@ public class IntVector2 {
 		return new IntVector2 (v.x + x, v.z + z);
 	}
 
+	public IntVector2 sub(IntVector2 v){
+		return new IntVector2(x-v.x, z-v.z);
+	}
+
 	public IntVector2 mult(int a){
 		return new IntVector2 (a * x, a * z);
 	}

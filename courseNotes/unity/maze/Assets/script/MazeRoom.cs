@@ -36,15 +36,28 @@ public class MazeRoom {
 	}
 
 	public IntVector2 randomSecondRoomDoor(){
-		int lowX = center.x - sizeX / 2;
-		int highX = center.x + sizeX / 2 + 1;
-		int lowZ = center.z - sizeZ / 2;
-		int highZ = center.z - sizeZ / 2 + 1;
-		if (center.x < secondCenter.x) lowX = highX;
-		if (center.x > secondCenter.x) highX = lowX;
-		if (center.z < secondCenter.z) lowZ = highZ;
-		if (center.z > secondCenter.z) highZ = lowZ;
-		return randomDoor (lowX, highX, lowZ, highZ);
+		if (center.x - secondCenter.x == -sizeX && center.z + sizeZ / 2 < secondCenter.z){
+			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.z + sizeZ / 2, center.z + sizeZ / 2 + 1);
+		}
+		if (center.x - secondCenter.x == -sizeX && center.z + sizeZ / 2 < secondCenter.z){
+			return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.z + sizeZ / 2, center.z + sizeZ / 2 + 1);
+		}
+		if (center.x - secondCenter.x == sizeX && center.z - sizeZ / 2 > secondCenter.z){
+			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.z - sizeZ / 2, center.z - sizeZ / 2 + 1);
+		}
+		if (center.x - secondCenter.x == sizeX && center.z - sizeZ / 2 > secondCenter.z){
+			return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.z - sizeZ / 2, center.z - sizeZ / 2 + 1);
+		}
+		if (center.x - secondCenter.x == -sizeX && center.x + sizeX / 2 < secondCenter.z){
+			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.x + sizeX / 2, center.x + sizeX / 2 + 1);
+		}
+		if (center.x - secondCenter.x == -sizeX && center.x + sizeX / 2 < secondCenter.z){
+			return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.x + sizeX / 2, center.x + sizeX / 2 + 1);
+		}
+		if (center.x - secondCenter.x == sizeX && center.x - sizeX / 2 > secondCenter.z){
+			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.x - sizeX / 2, center.x - sizeX / 2 + 1);
+		}
+		return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.x - sizeX / 2, center.x - sizeX / 2 + 1);
 	}
 
 	// get all the possible relative positions where we can add the secondary room
