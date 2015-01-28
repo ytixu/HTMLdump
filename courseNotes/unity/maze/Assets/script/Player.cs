@@ -4,6 +4,8 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	private float speed = 0.3f;
 
+	public Bullet aBullet;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -19,13 +21,15 @@ public class Player : MonoBehaviour {
 			transform.Rotate (new Vector3 (0, -1, 0));
 		}else if (Input.GetKey (KeyCode.RightArrow)){
 			transform.Rotate(new Vector3(0,1,0));
+		}else if (Input.GetKeyDown(KeyCode.Space)){
+			Bullet b = Instantiate(aBullet) as Bullet;
+			b.transform.parent = transform;
+			b.initTransform();
 		}
 	}
-	void OnCollisionEnter (Collision col)
+	void OnCollisionStay(Collision collisionInfo)
 	{
-		if(col.gameObject.name == "plainWall")
-		{
-			Destroy(col.gameObject);
-		}
+		if (collisionInfo.collider.GetType().Equals(MazeWall)){
+
 	}
 }

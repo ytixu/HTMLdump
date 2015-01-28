@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\script\Bullet.cs" />
      <Compile Include="Assets\script\IntVector2.cs" />
      <Compile Include="Assets\script\Maze.cs" />
      <Compile Include="Assets\script\MazeCell.cs" />
