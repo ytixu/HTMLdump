@@ -326,8 +326,12 @@ public class Maze : MonoBehaviour {
 	private void addSecondRoomEntrance(MazeCellVector[,] grid){
 		foreach (MazeRoom r in rooms){
 			IntVector2[] doorWay = r.randomSecondRoomDoor();
-			print (doorWay[0].toString() + " " + doorWay[1].toString());
+			//print (doorWay[0].toString() + " " + doorWay[1].toString());
 			grid[doorWay[0].x, doorWay[0].z].addFamily(grid[doorWay[1].x, doorWay[1].z]);
+			// add door 
+			cells[doorWay[0].x, doorWay[0].z].addWall(doorWay[1].sub (doorWay[0]), true, 
+			            							  grid[doorWay[0].x, doorWay[0].z].color,
+			                                          getColorMat( grid[doorWay[0].x, doorWay[0].z].color));
 		}
 	}
 
@@ -338,33 +342,23 @@ public class Maze : MonoBehaviour {
 		IntVector2[] dir = new IntVector2[]{new IntVector2 (0, 1), new IntVector2 (1, 0)};
 		for (int i=0; i<width; i++){
 			for (int j=0; j<depth; j++){
-				//bool printID = false;
-				//if (!grid[i,j].color.Equals(Color.WHITE)){
-				//	printID = true;
-				//	print (i.ToString() + " " + j.ToString());
-				//}
 				foreach (IntVector2 d in dir){
 					bool clear = false;
 					IntVector2 temp = grid[i,j].coord.add(d);
 					if (temp.x >= width || temp.z >= depth) continue;
 					if (!grid[i,j].color.Equals(Color.WHITE) && !grid[i,j].color.Equals(Color.TURQUOIS) && 
 						getCell (temp, grid).color.Equals(grid[i,j].color)){
-						//clearDir[d] = false;
-						//if (printID) print (temp.toString() + " EQUAL");
 						clear = true;
 					}
 					if (!clear){
 						foreach (IntVector2 c in grid[i,j].children){
 							if (temp.equals(c)){
-								//if (printID) print (c.toString());
 								clear = true;
 								break;
 							}
 						}
 					}
 					if (!clear){
-						//print (temp.toString());
-						//if (printID) print (d.toString());
 						cells[i,j].addWall(i, j, d, false, grid[i,j].color, getColorMat(grid[i,j].color));
 						cells[temp.x,temp.z].addWall(temp, d.mult(-1), false,  getCell (temp, grid).color, getColorMat(getCell (temp, grid).color));
 					}else{
@@ -377,13 +371,6 @@ public class Maze : MonoBehaviour {
 		cells[29,29].addBoarders(29,29, grid[29,29].color, getColorMat(grid[29,29].color));
 	}
 
-	private void printGrid (MazeCellVector[,] grid){
-		for (int i=0; i<width; i++){
-			for (int j=0; j<depth; j++){
-				print (grid[i,j].traversed.ToString() + " " + grid[i,j].color.ToString());
-			}
-		}
-	}
 	// the function to call by MazeManager
 	public IntVector2 initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();
@@ -395,6 +382,7 @@ public class Maze : MonoBehaviour {
 		print (rooms [0].center.toString ());
 		cells [startCell.x, startCell.z].removeCeil ();
 		cells [endCell.x, endCell.z].removeCeil ();
+		// return center coordinate of the start position
 		return new IntVector2(startCell.x*aCell.x + aCell.x/2, 
 		                      startCell.z*aCell.z + aCell.z/2);
 	}

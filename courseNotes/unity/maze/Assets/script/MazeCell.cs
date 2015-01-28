@@ -20,6 +20,8 @@ public class MazeCell : MonoBehaviour {
 		MazeWall w;
 		if (door){
 			w = Instantiate (doorWall) as MazeWall;
+			w.door.renderer.material = m;
+			side.setColor (c);
 		}else{
 			w = Instantiate (plainWall) as MazeWall;
 			w.renderer.material = m;
@@ -29,7 +31,6 @@ public class MazeCell : MonoBehaviour {
 		w.transform.localPosition = Vector3.zero;
 		w.transform.localRotation = Quaternion.identity;
 		side.collider.isTrigger = false;
-		side.setColor (c);
 	}
 
 	private void addEastWall(bool door, Maze.Color c, Material m){
