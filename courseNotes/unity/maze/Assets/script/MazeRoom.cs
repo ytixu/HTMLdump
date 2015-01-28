@@ -35,30 +35,22 @@ public class MazeRoom {
 		return randomDoor (lowX, highX, lowZ, highZ);
 	}
 
-	public IntVector2 randomSecondRoomDoor(){
-		if (center.x - secondCenter.x == -sizeX && center.z + sizeZ / 2 < secondCenter.z){
-			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.z + sizeZ / 2, center.z + sizeZ / 2 + 1);
+	public IntVector2[] randomSecondRoomDoor(){
+		// this only works for 3x3 rooms
+		int dX = center.x - secondCenter.x;
+		int dZ = center.z - secondCenter.z;
+		int inv;
+		if ((int)Mathf.Abs (dX) == 3){
+			inv = Random.Range((int)Mathf.Min(center.z, secondCenter.z), 
+			                               (int)Mathf.Max(center.z, secondCenter.z));
+			return new IntVector2[]{new IntVector2(center.x - dX/2, inv),
+									new IntVector2(center.x - dX/3*2, inv)};
 		}
-		if (center.x - secondCenter.x == -sizeX && center.z + sizeZ / 2 < secondCenter.z){
-			return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.z + sizeZ / 2, center.z + sizeZ / 2 + 1);
-		}
-		if (center.x - secondCenter.x == sizeX && center.z - sizeZ / 2 > secondCenter.z){
-			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.z - sizeZ / 2, center.z - sizeZ / 2 + 1);
-		}
-		if (center.x - secondCenter.x == sizeX && center.z - sizeZ / 2 > secondCenter.z){
-			return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.z - sizeZ / 2, center.z - sizeZ / 2 + 1);
-		}
-		if (center.x - secondCenter.x == -sizeX && center.x + sizeX / 2 < secondCenter.z){
-			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.x + sizeX / 2, center.x + sizeX / 2 + 1);
-		}
-		if (center.x - secondCenter.x == -sizeX && center.x + sizeX / 2 < secondCenter.z){
-			return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.x + sizeX / 2, center.x + sizeX / 2 + 1);
-		}
-		if (center.x - secondCenter.x == sizeX && center.x - sizeX / 2 > secondCenter.z){
-			return randomDoor (secondCenter.x - sizeX / 2, center.x + sizeX / 2 + 1, center.x - sizeX / 2, center.x - sizeX / 2 + 1);
-		}
-		return randomDoor (center.x - sizeX / 2, secondCenter.x + sizeX / 2 + 1, center.x - sizeX / 2, center.x - sizeX / 2 + 1);
-	}
+		inv = Random.Range((int)Mathf.Min(center.x, secondCenter.x),
+			                       (int)Mathf.Max(center.x, secondCenter.x));
+		return new IntVector2[]{new IntVector2(inv, center.z - dZ/2),
+									new IntVector2(inv, center.z - dZ/3*2)};
+	} 
 
 	// get all the possible relative positions where we can add the secondary room
 	public static IntVector2[] getSecondPos(){

@@ -325,23 +325,9 @@ public class Maze : MonoBehaviour {
 	
 	private void addSecondRoomEntrance(MazeCellVector[,] grid){
 		foreach (MazeRoom r in rooms){
-			IntVector2 door = r.randomSecondRoomDoor();
-			while (grid[door.x, door.z].children.Count == 0){
-				IntVector2 dir = r.center.sub (door);
-				// this only works for 3x3 rooms
-				if (dir.isZero()){
-					door = r.randomSecondRoomDoor();
-					continue;
-				}
-				int x = dir.x;
-				int z = dir.z;
-				if ((int)(Mathf.Abs (r.center.x - r.secondCenter.x)) == -MazeRoom.sizeX){
-					x = 0;
-				}else{
-					z = 0;
-				}
-				grid[door.x, door.z].addFamily(grid[door.x+x,door.z+z]);
-			}
+			IntVector2[] doorWay = r.randomSecondRoomDoor();
+			print (doorWay[0].toString() + " " + doorWay[1].toString());
+			grid[doorWay[0].x, doorWay[0].z].addFamily(grid[doorWay[1].x, doorWay[1].z]);
 		}
 	}
 
@@ -352,11 +338,11 @@ public class Maze : MonoBehaviour {
 		IntVector2[] dir = new IntVector2[]{new IntVector2 (0, 1), new IntVector2 (1, 0)};
 		for (int i=0; i<width; i++){
 			for (int j=0; j<depth; j++){
-				bool printID = false;
-				if (!grid[i,j].color.Equals(Color.WHITE)){
-					printID = true;
-					print (i.ToString() + " " + j.ToString());
-				}
+				//bool printID = false;
+				//if (!grid[i,j].color.Equals(Color.WHITE)){
+				//	printID = true;
+				//	print (i.ToString() + " " + j.ToString());
+				//}
 				foreach (IntVector2 d in dir){
 					bool clear = false;
 					IntVector2 temp = grid[i,j].coord.add(d);
@@ -364,13 +350,13 @@ public class Maze : MonoBehaviour {
 					if (!grid[i,j].color.Equals(Color.WHITE) && !grid[i,j].color.Equals(Color.TURQUOIS) && 
 						getCell (temp, grid).color.Equals(grid[i,j].color)){
 						//clearDir[d] = false;
-						if (printID) print (temp.toString() + " EQUAL");
+						//if (printID) print (temp.toString() + " EQUAL");
 						clear = true;
 					}
 					if (!clear){
 						foreach (IntVector2 c in grid[i,j].children){
 							if (temp.equals(c)){
-								if (printID) print (c.toString());
+								//if (printID) print (c.toString());
 								clear = true;
 								break;
 							}
