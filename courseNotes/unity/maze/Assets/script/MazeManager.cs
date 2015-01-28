@@ -10,6 +10,9 @@ public class MazeManager : MonoBehaviour {
 	private Maze generatedMaze;
 	public Player player;
 
+	// enviromnent 
+	public buildings b;
+
 	// Use this for initialization
 	void Start () {
 		CreateMaze ();
@@ -28,7 +31,11 @@ public class MazeManager : MonoBehaviour {
 	}
 
 	private void movePlayer(IntVector2 pos){
-		player.transform.localPosition = new Vector3 (pos.x+10, 0.5f, pos.z-20);
+		player.transform.localPosition = new Vector3 (pos.x + 3, 1f, pos.z+3);
+		b.transform.localPosition = new Vector3 (pos.x-20, 70f, pos.z+10);
+		//buildings bb = Instantiate (b) as buildings;
+		//bb.transform.localPosition = new Vector3 (pos.x-10, 33f, pos.z+10);
+		//bb.transform.Rotate(new Vector3(0,90,0));
 	}
 
 	public void CreateMaze (){

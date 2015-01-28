@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 			Bullet b = Instantiate(aBullet) as Bullet;
 			b.transform.parent = transform;
 			b.initTransform();
+			b.fire();
 		}
 	}
 	void OnCollisionStay(Collision collisionInfo)

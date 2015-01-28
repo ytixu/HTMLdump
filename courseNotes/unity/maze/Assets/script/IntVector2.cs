@@ -43,6 +43,12 @@ public class IntVector2 {
 		return new IntVector2 (a * x, b * z);
 	}
 
+	public bool isZero(){
+		if (x == 0 && z == 0)
+						return true;
+		return false;
+	}
+
 	// shuffling algorithm
 	public static void shuffle(List<IntVector2> lst){
 		int l = lst.Count;

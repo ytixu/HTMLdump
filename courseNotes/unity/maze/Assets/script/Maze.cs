@@ -281,7 +281,7 @@ public class Maze : MonoBehaviour {
 			// update starting position
 			IntVector2 leaf = branch[branch.Count-1];
 			if (leaf.x > width-5 || leaf.x <5 || leaf.z > depth-5 || leaf.z < 5) continue;
-			int newDist = startCell.mDistance(leaf);
+			int newDist = endCell.mDistance(leaf);
 			if (newDist > maxDist){
 				maxDist = newDist;
 				startCell = leaf;
@@ -301,43 +301,54 @@ public class Maze : MonoBehaviour {
 	private void addRoomEntrance(MazeCellVector[,] grid){
 		foreach (MazeRoom r in rooms){
 			IntVector2 door = r.randomRoomDoor();
-			while (grid[door.x, door.z].children.Count > 0){
-				door = r.randomRoomDoor();
-			}
-			IntVector2 dir = r.center.sub (door);
-			int x = (int)Mathf.Sign(dir.x);
-			int z = (int)Mathf.Sign(dir.z);
-			if (x != 0 && z != 0){
-				if (Random.value > 0.5){
-					x = 0;
-				}else{
-					z = 0;
+			while (grid[door.x, door.z].children.Count == 0){
+
+				IntVector2 dir = r.center.sub (door);
+				// this only works for 3x3 rooms
+				if (dir.isZero()){
+					door = r.randomRoomDoor();
+					continue;
 				}
+				int x = dir.x;
+				int z = dir.z;
+				if (x != 0 && z != 0){
+					if (Random.value > 0.5){
+						x = 0;
+					}else{
+						z = 0;
+					}
+				}
+				grid[door.x, door.z].addFamily(grid[door.x-x,door.z-z]);
 			}
-			grid[door.x, door.z].addFamily(grid[door.x+x,door.z+z]);
 		}
 	}
 	
 	private void addSecondRoomEntrance(MazeCellVector[,] grid){
 		foreach (MazeRoom r in rooms){
 			IntVector2 door = r.randomSecondRoomDoor();
-			IntVector2 dir = r.center.sub (door);
-
-			int x = (int)Mathf.Sign(dir.x);
-			int z = (int)Mathf.Sign(dir.z);
-			if ((int)(Mathf.Abs (r.center.x - r.secondCenter.x)) == -MazeRoom.sizeX){
-				x = 0;
-			}else{
-				z = 0;
+			while (grid[door.x, door.z].children.Count == 0){
+				IntVector2 dir = r.center.sub (door);
+				// this only works for 3x3 rooms
+				if (dir.isZero()){
+					door = r.randomSecondRoomDoor();
+					continue;
+				}
+				int x = dir.x;
+				int z = dir.z;
+				if ((int)(Mathf.Abs (r.center.x - r.secondCenter.x)) == -MazeRoom.sizeX){
+					x = 0;
+				}else{
+					z = 0;
+				}
+				grid[door.x, door.z].addFamily(grid[door.x+x,door.z+z]);
 			}
-			grid[door.x, door.z].addFamily(grid[door.x+x,door.z+z]);
 		}
 	}
 
 	// add walls
 	private void addWalls(MazeCellVector[,] grid){
-		//addRoomEntrance (grid);
-		//addSecondRoomEntrance (grid);
+		addRoomEntrance (grid);
+		addSecondRoomEntrance (grid);
 		IntVector2[] dir = new IntVector2[]{new IntVector2 (0, 1), new IntVector2 (1, 0)};
 		for (int i=0; i<width; i++){
 			for (int j=0; j<depth; j++){
