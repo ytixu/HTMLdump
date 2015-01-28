@@ -28,7 +28,7 @@ public class MazeManager : MonoBehaviour {
 	}
 
 	private void movePlayer(IntVector2 pos){
-		player.transform.localPosition = new Vector3 (pos.x+10, -10f, pos.z+10);
+		player.transform.localPosition = new Vector3 (pos.x+10, 0.5f, pos.z-20);
 	}
 
 	public void CreateMaze (){

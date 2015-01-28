@@ -342,6 +342,8 @@ public class Maze : MonoBehaviour {
 		//traverseMaze (twoCells[0]);
 		print (startCell.toString ());
 		print (endCell.toString ());
+		cells [startCell.x, startCell.z].removeCeil ();
+		cells [endCell.x, endCell.z].removeCeil ();
 		return new IntVector2(startCell.x*aCell.x + aCell.x/2, 
 		                      startCell.z*aCell.z + aCell.z/2);
 	}

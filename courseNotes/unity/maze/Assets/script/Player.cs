@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
 	}
 	void OnCollisionStay(Collision collisionInfo)
 	{
-		if (collisionInfo.collider.GetType().Equals(MazeWall)){
+		//if (collisionInfo.collider.GetType().Equals(MazeWall)){
 
 	}
 }

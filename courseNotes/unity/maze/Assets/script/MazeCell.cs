@@ -14,6 +14,8 @@ public class MazeCell : MonoBehaviour {
 	public MazeWall westWall;
 	public MazeWall northWall;
 
+	public MazeWall ceil;
+
 	private void instantiateWall(bool door, Material m, MazeWall side){
 		MazeWall w;
 		if (door){
@@ -53,5 +55,9 @@ public class MazeCell : MonoBehaviour {
 
 	public void colorCell(Material m){
 		transform.GetChild(0).GetComponent<Renderer>().material = m;
+	}
+
+	public void removeCeil(){
+		ceil.transform.localScale = new Vector3 (0, 0, 0);
 	}
 }
