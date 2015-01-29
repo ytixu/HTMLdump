@@ -17,6 +17,8 @@ public class MazeCell : MonoBehaviour {
 	public MazeWall ceil;
 
 	private void instantiateWall(bool door, Maze.Color c, Material m, MazeWall side){
+		if (side.transform.childCount > 0)
+						return;
 		MazeWall w;
 		if (door){
 			w = Instantiate (doorWall) as MazeWall;

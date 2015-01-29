@@ -12,6 +12,7 @@ public class MazeManager : MonoBehaviour {
 	public Player player;
 	// in the order of the enum in Maze
 	public Bullet[] bulletItems;
+	public float bulletSize = 2f;
 
 	private int thr = 5;
 
@@ -28,7 +29,12 @@ public class MazeManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Tab)) {
 			Restart();
 		}else if (Input.GetKey(KeyCode.Comma)){
-			player.drop(aMaze);
+			Bullet b = player.drop();
+			if (b!= null){
+				resizeBullet(aMaze.transform, b);
+				Vector3 temp = player.transform.position;
+				b.transform.position = new Vector3(temp.x, temp.y, temp.z);
+			}
 		}else if (Input.GetKey(KeyCode.Period)){
 			checkPickUp();
 		}
@@ -52,6 +58,12 @@ public class MazeManager : MonoBehaviour {
 		CreateMaze ();
 	}
 
+	private void resizeBullet(Transform t, Bullet b){
+		b.transform.parent = t;
+		b.transform.localPosition = new Vector3(0,0.1f,0);
+		b.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+	}
+
 	// for 3 rooms
 	private void distributeBullets(){
 		int currInd = aMaze.LastRoom;
@@ -59,14 +71,12 @@ public class MazeManager : MonoBehaviour {
 		IntVector2 temp;
 		for (int i=0; i<aMaze.RoomNumb; i++){
 			temp = aMaze.rooms[currInd].secondCenter;
-			bulletItems[prevInd].transform.parent = aMaze.cells[temp.x, temp.z].transform;
-			bulletItems [prevInd].transform.localPosition = new Vector3(0,0.1f,0);
+			resizeBullet(aMaze.cells[temp.x, temp.z].transform, bulletItems[prevInd]);
 			prevInd = currInd;
 			currInd = (currInd+1)%aMaze.RoomNumb;
 		}
 		temp = aMaze.startCell;
-		bulletItems [prevInd].transform.parent = aMaze.cells [temp.x, temp.z].transform;
-		bulletItems [prevInd].transform.localPosition = new Vector3(0,0.1f,0);
+		resizeBullet(aMaze.cells[temp.x, temp.z].transform, bulletItems[prevInd]);
 	}
 
 	private void movePlayer(IntVector2 pos){

@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	private float speed = 0.3f;
+	public Status stat;
+	public Gun gun;
+
+	private float speed = 0.4f;
 
 	private Bullet item = null;
 
@@ -34,16 +37,22 @@ public class Player : MonoBehaviour {
 	//	print (collisionInfo.collider.name);
 	//}
 
-	public void drop(Maze m){
+	public Bullet drop(){
 		print ("Dropping");
 		if (item!= null){
-			item.transform.parent = m.transform;
-			item.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+			Bullet t = item;
+			item = null;
+			return t;
 		}
+		return null;
 	}
 
 	public void pickUp(Bullet b){
 		print ("Picking");
 		item = b;
+		item.transform.parent = gun.transform;
+		item.transform.localPosition = new Vector3(-0.5f, 0.7f, 0);
+		item.transform.localScale = new Vector3(0.5f,0.1f,0.5f);
+		item.transform.localRotation = Quaternion.Euler(0,0,0);
 	}
 }

@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Gun.cs" />
+     <Compile Include="Assets\Status.cs" />
      <Compile Include="Assets\buildings.cs" />
      <Compile Include="Assets\script\Bullet.cs" />
      <Compile Include="Assets\script\IntVector2.cs" />
