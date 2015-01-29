@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
 
 	private Bullet item = null;
 
+	public Bullet testBullet;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -29,6 +31,10 @@ public class Player : MonoBehaviour {
 				item.transform.parent = transform;
 				item.initTransform();
 				item.fire();
+			}else{
+				testBullet.transform.parent = transform;
+				testBullet.initTransform();
+				testBullet.fire();
 			}
 		}
 	}
