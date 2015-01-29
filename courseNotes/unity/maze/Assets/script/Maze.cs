@@ -12,7 +12,7 @@ public class Maze : MonoBehaviour {
 	public MazeCell aCell;
 	public int RoomNumb;
 	public Material[] roomColors;
-	private MazeCell[,] cells;
+	public MazeCell[,] cells;
 
 	public static int FloorHeight = -20;
 	public enum Color{
@@ -23,8 +23,9 @@ public class Maze : MonoBehaviour {
 		return roomColors[(int) c];
 	}
 
-	private List<MazeRoom> rooms;
-	private IntVector2 startCell, endCell;
+	public List<MazeRoom> rooms;
+	public int LastRoom;
+	public IntVector2 startCell, endCell;
 
 	// Use this for initialization
 	void Start () {
@@ -187,7 +188,6 @@ public class Maze : MonoBehaviour {
 	 * Secondary rooms have color BLACK.
 	 */
 	private void roomPartitioner(MazeCellVector[,] grid){
-		//Color[] roomsCol = new Color[] {Color.GREEN, Color.PINK, Color.YELLOW};
 		rooms = new List<MazeRoom>();
 		while (rooms.Count < RoomNumb){
 			IntVector2 randC = randomRoom(grid);
@@ -242,8 +242,12 @@ public class Maze : MonoBehaviour {
 			foreach (IntVector2 b in branch){
 				getCell (b, grid).color = Color.TURQUOIS;
 			}
+			cells[door.x, door.z].addWall(branch[0].sub (door), true, Color.TURQUOIS,
+			                              getColorMat(Color.TURQUOIS));
+			LastRoom = i;
 			break;
 		}
+
 	}
 
 	// The algorithm that generate random maze without the rooms. 
@@ -370,7 +374,7 @@ public class Maze : MonoBehaviour {
 		// for tile 29, 29
 		cells[29,29].addBoarders(29,29, grid[29,29].color, getColorMat(grid[29,29].color));
 	}
-
+	
 	// the function to call by MazeManager
 	public IntVector2 initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();

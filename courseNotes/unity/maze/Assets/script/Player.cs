@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	private float speed = 0.3f;
 
-	public Bullet aBullet;
+	private Bullet item = null;
 
 	// Use this for initialization
 	void Start () {
@@ -21,15 +21,29 @@ public class Player : MonoBehaviour {
 			transform.Rotate (new Vector3 (0, -1, 0));
 		}else if (Input.GetKey (KeyCode.RightArrow)){
 			transform.Rotate(new Vector3(0,1,0));
-		}else if (Input.GetKeyDown(KeyCode.Space)){
-			Bullet b = Instantiate(aBullet) as Bullet;
-			b.transform.parent = transform;
-			b.initTransform();
-			b.fire();
+		}else if (Input.GetMouseButton(0)){
+			if (item != null){
+				item.transform.parent = transform;
+				item.initTransform();
+				item.fire();
+			}
 		}
 	}
-	void OnCollisionStay(Collision collisionInfo)
-	{			
-		print (collisionInfo.collider.name);
+	//void OnCollisionStay(Collision collisionInfo)
+	//{			
+	//	print (collisionInfo.collider.name);
+	//}
+
+	public void drop(Maze m){
+		print ("Dropping");
+		if (item!= null){
+			item.transform.parent = m.transform;
+			item.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+		}
+	}
+
+	public void pickUp(Bullet b){
+		print ("Picking");
+		item = b;
 	}
 }

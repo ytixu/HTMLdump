@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour {
 	public void initTransform(){
 		transform.localScale = new Vector3 (0.5f, 0.25f, 0.5f);
 		transform.localPosition = new Vector3(0.5f, 0.55f, 1f);
+		transform.localRotation = Quaternion.Euler(0,0,0);
 	}
 
 	public void fire(){
