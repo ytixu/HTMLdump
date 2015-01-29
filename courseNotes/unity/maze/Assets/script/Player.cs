@@ -28,12 +28,10 @@ public class Player : MonoBehaviour {
 			transform.Rotate(new Vector3(0,1,0));
 		}else if (Input.GetMouseButton(0)){
 			if (item != null){
-				item.transform.parent = transform;
-				item.initTransform();
+				item.initTransform(gun.getNuzzlePos(), transform.forward);
 				item.fire();
 			}else{
-				testBullet.transform.parent = transform;
-				testBullet.initTransform();
+				testBullet.initTransform(gun.getNuzzlePos(), transform.forward);
 				testBullet.fire();
 			}
 		}

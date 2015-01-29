@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
 	private float speed = 0.3f;
 	private bool fired;
+	private Vector3 aFoward;
 
 	private Rect textbox = new Rect (10f, 10f, 100f, 20f);
 
@@ -17,13 +18,14 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (fired){
-			transform.position += transform.forward*speed;
+			transform.position += aFoward*speed;
 		}
 	}
 
-	public void initTransform(){
-		transform.localScale = new Vector3 (0.5f, 0.25f, 0.5f);
-		transform.localPosition = new Vector3(0.5f, 0.55f, 1f);
+	public void initTransform(Vector3 pos, Vector3 fow){
+		aFoward = new Vector3 (fow.x, fow.y, fow.z);
+		transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
+		transform.position = pos;
 		transform.localRotation = Quaternion.Euler(0,0,0);
 	}
 
@@ -35,6 +37,7 @@ public class Bullet : MonoBehaviour {
 	{		
 		GUI.Label (textbox, "Hello World!");
 		print (collisionInfo.collider.name);//if (collisionInfo.collider.GetType);
+		Destroy (this);
 	}
 
 	void OnGUI () {
