@@ -28,6 +28,8 @@ public class Player : MonoBehaviour {
 			transform.Rotate(new Vector3(0,1,0));
 		}else if (Input.GetMouseButton(0)){
 			if (item != null){
+				item.rigidbody.useGravity = true;
+				item.rigidbody.WakeUp();
 				item.initTransform(gun.getNuzzlePos(), transform.forward);
 				item.fire();
 			}else{
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour {
 		print ("Dropping");
 		if (item!= null){
 			Bullet t = item;
+			t.rigidbody.useGravity = true;
+			t.rigidbody.WakeUp();
 			item = null;
 			return t;
 		}
@@ -54,6 +58,8 @@ public class Player : MonoBehaviour {
 	public void pickUp(Bullet b){
 		print ("Picking");
 		item = b;
+		b.rigidbody.useGravity = false;
+		b.rigidbody.Sleep();
 		item.transform.parent = gun.transform;
 		item.transform.localPosition = new Vector3(-0.5f, 0.7f, 0);
 		item.transform.localScale = new Vector3(0.5f,0.1f,0.5f);

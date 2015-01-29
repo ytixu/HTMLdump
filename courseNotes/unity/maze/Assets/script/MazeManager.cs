@@ -8,13 +8,11 @@ using System.Collections.Generic;
 
 public class MazeManager : MonoBehaviour {
 	public Maze aMaze;
-	private Maze generatedMaze;
 	public Player player;
 	// in the order of the enum in Maze
 	public Bullet[] bulletItems;
-	public float bulletSize = 2f;
 
-	private int thr = 5;
+	private int thr = 10;
 
 	// enviromnent 
 	public buildings b;
@@ -26,12 +24,11 @@ public class MazeManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Tab)) {
-			Restart();
-		}else if (Input.GetKey(KeyCode.Comma)){
+		if (Input.GetKey(KeyCode.Comma)){
 			Bullet b = player.drop();
 			if (b!= null){
-				resizeBullet(aMaze.transform, b);
+				Vector3 pos = player.transform.position;
+				resizeBullet(b, new Vector3(pos.x, pos.y, pos.z));
 				Vector3 temp = player.transform.position;
 				b.transform.position = new Vector3(temp.x, temp.y, temp.z);
 			}
@@ -52,16 +49,10 @@ public class MazeManager : MonoBehaviour {
 		}
 	}
 
-
-	public void Restart(){
-		Destroy (generatedMaze.gameObject);
-		CreateMaze ();
-	}
-
-	private void resizeBullet(Transform t, Bullet b){
-		b.transform.parent = t;
-		b.transform.localPosition = new Vector3(0,0.1f,0);
-		b.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+	private void resizeBullet(Bullet b, Vector3 pos){
+		b.transform.parent = aMaze.transform;
+		b.transform.localPosition = pos;
+		b.transform.localScale = new Vector3(5f, 5f, 5f);
 	}
 
 	// for 3 rooms
@@ -69,14 +60,17 @@ public class MazeManager : MonoBehaviour {
 		int currInd = aMaze.LastRoom;
 		int prevInd = 3;
 		IntVector2 temp;
+		Vector3 pos;
 		for (int i=0; i<aMaze.RoomNumb; i++){
 			temp = aMaze.rooms[currInd].secondCenter;
-			resizeBullet(aMaze.cells[temp.x, temp.z].transform, bulletItems[prevInd]);
+			pos = aMaze.cells[temp.x, temp.z].transform.position;
+			resizeBullet(bulletItems[prevInd], new Vector3(pos.x, pos.y+0.1f, pos.z));
 			prevInd = currInd;
 			currInd = (currInd+1)%aMaze.RoomNumb;
 		}
 		temp = aMaze.startCell;
-		resizeBullet(aMaze.cells[temp.x, temp.z].transform, bulletItems[prevInd]);
+		pos = aMaze.cells[temp.x, temp.z].transform.position;
+		resizeBullet(bulletItems[prevInd], new Vector3(pos.x, pos.y+0.1f, pos.z));
 	}
 
 	private void movePlayer(IntVector2 pos){

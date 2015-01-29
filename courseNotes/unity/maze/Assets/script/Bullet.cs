@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 	public Maze.Color c;
 
-	private float speed = 0.3f;
+	private float speed = 0.5f;
 	private bool fired;
 	private Vector3 aFoward;
 
@@ -19,6 +19,8 @@ public class Bullet : MonoBehaviour {
 	void Update () {
 		if (fired){
 			transform.position += aFoward*speed;
+			//if (transform.localScale.z > 10) return;
+			//transform.localScale += new Vector3(transform.localScale.z*speed, transform.localScale.y*speed, transform.localScale.z*speed);
 		}
 	}
 
@@ -32,15 +34,15 @@ public class Bullet : MonoBehaviour {
 	public void fire(){
 		fired = true;
 	}
-
-	void OnCollisionStay(Collision collisionInfo)
-	{		
-		GUI.Label (textbox, "Hello World!");
-		print (collisionInfo.collider.name);//if (collisionInfo.collider.GetType);
-		Destroy (this);
+	
+	void OnTriggerEnter(Collider collider)
+	{	if (fired)
+			transform.localScale = Vector3.zero;
+		//GUI.Label (textbox, "Hello World!");
+		//print (collider.collider.name);//if (collisionInfo.collider.GetType);
 	}
 
-	void OnGUI () {
+	//void OnGUI () {
 		//GUI.Label (n "Hello World!");
-	}
+	//}
 }
