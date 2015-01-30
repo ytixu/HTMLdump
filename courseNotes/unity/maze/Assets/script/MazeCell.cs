@@ -24,7 +24,7 @@ public class MazeCell : MonoBehaviour {
 			w = Instantiate (doorWall) as MazeWall;
 			w.door.renderer.material = m;
 			w.door.tag = c.ToString();
-			side.setColor (c);
+			//side.setColor (c);
 			side.collider.enabled = false;
 		}else{
 			w = Instantiate (plainWall) as MazeWall;
@@ -83,5 +83,11 @@ public class MazeCell : MonoBehaviour {
 
 	public void removeCeil(){
 		ceil.transform.localScale = new Vector3 (0, 0, 0);
+	}
+
+	public void lowerCeil(Material m, Goal g){
+		ceil.transform.localPosition = Vector3.zero;
+		ceil.renderer.material = m;
+		g.setPlatform (ceil);
 	}
 }

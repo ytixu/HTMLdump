@@ -3,11 +3,11 @@ using System.Collections;
 
 public class MazeWall : MonoBehaviour {
 	public Door door;
-	public Maze.Color color = Maze.Color.WHITE;
+	//public Maze.Color color = Maze.Color.WHITE;
 
-	public void setColor(Maze.Color c){
-		color = c;
-	}
+	//public void setColor(Maze.Color c){
+	//	color = c;
+	//}
 
 	////public void OnTriggerEnter(Collider collider)
 	//{	

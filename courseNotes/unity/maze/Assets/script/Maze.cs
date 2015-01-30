@@ -13,6 +13,7 @@ public class Maze : MonoBehaviour {
 	public int RoomNumb;
 	public Material[] roomColors;
 	public MazeCell[,] cells;
+	public Goal goal;
 
 	public static int FloorHeight = -20;
 	public enum Color{
@@ -385,7 +386,7 @@ public class Maze : MonoBehaviour {
 		print (endCell.toString ());
 		print (rooms [0].center.toString ());
 		cells [startCell.x, startCell.z].removeCeil ();
-		cells [endCell.x, endCell.z].removeCeil ();
+		cells [endCell.x, endCell.z].lowerCeil (roomColors[(int)Color.TURQUOIS], goal);
 		// return center coordinate of the start position
 		return new IntVector2(startCell.x*aCell.x + aCell.x/2, 
 		                      startCell.z*aCell.z + aCell.z/2);
