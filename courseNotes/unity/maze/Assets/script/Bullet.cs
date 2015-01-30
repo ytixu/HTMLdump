@@ -34,16 +34,25 @@ public class Bullet : MonoBehaviour {
 		transform.localRotation = Quaternion.identity;
 		fired = true;
 	}
-	
-	void OnTriggerEnter(Collider collider)
-	{	
-		if (fired && collider.tag.Equals(tag)){
+
+	void OnCollisionEnter(Collision collision)
+	{
+		print ("COL " + collision.collider.name);
+		if(collision.collider.tag==c.ToString()){
 			print ("COLLISION");
-			collider.transform.localScale = Vector3.zero;
+			collision.collider.transform.localScale = Vector3.zero;
 		}
+	}
+	
+	//void OnTriggerEnter(Collider collider)
+	//{	
+	//	if (fired && collider.tag.Equals(tag)){
+	//		print ("COLLISION");
+	//		collider.transform.localScale = Vector3.zero;
+	//	}
 		//GUI.Label (textbox, "Hello World!");
 		//print (collider.collider.name);//if (collisionInfo.collider.GetType);
-	}
+	//}
 
 	//void OnGUI () {
 		//GUI.Label (n "Hello World!");

@@ -25,15 +25,17 @@ public class MazeCell : MonoBehaviour {
 			w.door.renderer.material = m;
 			w.door.tag = c.ToString();
 			side.setColor (c);
+			side.collider.enabled = false;
 		}else{
 			w = Instantiate (plainWall) as MazeWall;
 			w.renderer.material = m;
+			side.collider.isTrigger = false;
 		}
 		w.transform.parent = side.transform;
 		w.transform.localScale = new Vector3 (1, 1, 1);
 		w.transform.localPosition = Vector3.zero;
 		w.transform.localRotation = Quaternion.identity;
-		side.collider.isTrigger = false;
+		side.transform.localScale = new Vector3 (1, 2, 0.02f);
 	}
 
 	private void addEastWall(bool door, Maze.Color c, Material m){
