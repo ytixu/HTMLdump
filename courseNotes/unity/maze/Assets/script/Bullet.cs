@@ -6,8 +6,14 @@ public class Bullet : MonoBehaviour {
 
 	private float speed = 0.5f;
 	private float growSpeed = 0.3f;
-	private bool fired;
+	private int mazSize = 5;
+	private int minSize = 1;
+
+	private bool fired = false;
+	private bool deflating = false;
+
 	private Vector3 aFoward;
+	private Vector3 lastPos;
 
 	private Rect textbox = new Rect (10f, 10f, 100f, 20f);
 
@@ -19,11 +25,26 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (fired){
+			Vector3 dPos = lastPos - transform.position;
+			print (dPos.ToString());
+			if (dPos.magnitude < 0.01){
+				deflate();
+				return;
+			}
+			lastPos = transform.position;
 			transform.position += aFoward*speed;
-			if (transform.localScale.z > 5) return;
+			if (transform.localScale.z > mazSize) return;
 			transform.localScale += new Vector3(transform.localScale.z*growSpeed, 
 			                                    transform.localScale.y*growSpeed, 
 			                                    transform.localScale.z*growSpeed);
+		}else if(deflating){
+			if (transform.localScale.z < minSize){
+				deflating = false;
+				return;
+			}
+			transform.localScale -= new Vector3(transform.localScale.z*growSpeed, 
+				                                transform.localScale.y*growSpeed, 
+				                                transform.localScale.z*growSpeed);
 		}
 	}
 
@@ -35,6 +56,11 @@ public class Bullet : MonoBehaviour {
 		fired = true;
 	}
 
+	public void deflate(){
+		deflating = true;
+		fired = false;
+	}
+
 	void OnCollisionEnter(Collision collision)
 	{
 		print ("COL " + collision.collider.name);
@@ -43,7 +69,7 @@ public class Bullet : MonoBehaviour {
 			collision.collider.transform.localScale = Vector3.zero;
 		}
 	}
-	
+
 	//void OnTriggerEnter(Collider collider)
 	//{	
 	//	if (fired && collider.tag.Equals(tag)){

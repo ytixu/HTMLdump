@@ -26,20 +26,28 @@ public class Player : MonoBehaviour {
 			transform.Rotate (new Vector3 (0, -1, 0));
 		}else if (Input.GetKey (KeyCode.RightArrow)){
 			transform.Rotate(new Vector3(0,1,0));
-		}else if (Input.GetMouseButton(0)){
-			if (item != null){
-				item.rigidbody.useGravity = true;
-				item.rigidbody.WakeUp();
-				item.fire(gun.getNuzzlePos(), transform.forward);
-			}else{
-				testBullet.fire(gun.getNuzzlePos(), transform.forward);
-			}
 		}
 	}
 	//void OnCollisionStay(Collision collisionInfo)
 	//{			
 	//	print (collisionInfo.collider.name);
 	//}
+
+	public Bullet fire(){
+		if (item != null){
+			Bullet b = item;
+			item.rigidbody.useGravity = true;
+			item.rigidbody.WakeUp();
+			item.fire(gun.getNuzzlePos(), transform.forward);
+			item = null;
+			gun.disload();
+			return b;
+		}else{
+			// for testing
+			testBullet.fire(gun.getNuzzlePos(), transform.forward);
+			return null;
+		}
+	}
 
 	public Bullet drop(){
 		print ("Dropping");
@@ -48,6 +56,7 @@ public class Player : MonoBehaviour {
 			t.rigidbody.useGravity = true;
 			t.rigidbody.WakeUp();
 			item = null;
+			gun.disload();
 			return t;
 		}
 		return null;

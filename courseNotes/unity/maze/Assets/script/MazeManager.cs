@@ -10,7 +10,8 @@ public class MazeManager : MonoBehaviour {
 	public Maze aMaze;
 	public Player player;
 	// in the order of the enum in Maze
-	public Bullet[] bulletItems;
+	// green, pink, yellow, turq
+	public List<Bullet> bulletItems;
 
 	private int thr = 10;
 
@@ -34,6 +35,12 @@ public class MazeManager : MonoBehaviour {
 			}
 		}else if (Input.GetKey(KeyCode.Period)){
 			checkPickUp();
+		}else if (Input.GetKeyDown (KeyCode.Space)){
+		//}else if (Input.GetMouseButton(0)){
+			Bullet b = player.fire();
+			if (b != null){
+				bulletItems.Remove(b);
+			}
 		}
 	}
 
