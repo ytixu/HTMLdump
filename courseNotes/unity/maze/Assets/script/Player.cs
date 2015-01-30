@@ -30,11 +30,9 @@ public class Player : MonoBehaviour {
 			if (item != null){
 				item.rigidbody.useGravity = true;
 				item.rigidbody.WakeUp();
-				item.initTransform(gun.getNuzzlePos(), transform.forward);
-				item.fire();
+				item.fire(gun.getNuzzlePos(), transform.forward);
 			}else{
-				testBullet.initTransform(gun.getNuzzlePos(), transform.forward);
-				testBullet.fire();
+				testBullet.fire(gun.getNuzzlePos(), transform.forward);
 			}
 		}
 	}
@@ -60,9 +58,7 @@ public class Player : MonoBehaviour {
 		item = b;
 		b.rigidbody.useGravity = false;
 		b.rigidbody.Sleep();
-		item.transform.parent = gun.transform;
-		item.transform.localPosition = new Vector3(-0.5f, 0.7f, 0);
-		item.transform.localScale = new Vector3(0.5f,0.1f,0.5f);
-		item.transform.localRotation = Quaternion.Euler(0,0,0);
+		b.transform.localScale = Vector3.zero;
+		gun.loadBullet (b);
 	}
 }
