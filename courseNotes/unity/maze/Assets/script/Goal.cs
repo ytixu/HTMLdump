@@ -22,7 +22,7 @@ public class Goal : MonoBehaviour {
 	public void setPlatform(MazeWall o){
 		platform = o;
 		transform.parent = platform.transform;
-		transform.localPosition = Vector3.zero;
+		transform.localPosition = new Vector3 (0, 10, 0);
 		transform.localScale = new Vector3 (0.5f, 10, 0.5f);
 	}
 

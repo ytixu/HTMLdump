@@ -50,6 +50,7 @@ public class Bullet : MonoBehaviour {
 	}
 
 	public void fire(Vector3 pos, Vector3 fow){
+		tag = c.ToString ();
 		aFoward = new Vector3 (fow.x, fow.y, fow.z);
 		transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
 		transform.position = pos;

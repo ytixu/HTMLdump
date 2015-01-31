@@ -77,10 +77,7 @@ public class Player : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collision)
 	{
-		if (collision.collider.tag == "YELLOW" || 
-		    collision.collider.tag == "GREEN" || 
-		    collision.collider.tag == "PINK" || 
-		    collision.collider.tag == "TURQUOIS"){
+		if (collision.collider.tag == "bullet"){
 				//stat.emptyQueue();
 				stat.update ("This big ball looks perfect to fit your pink gun. Try press \".\" to pick it up.");
 		}else if (collision.collider.tag == "YELLOW_w" || 
