@@ -33,13 +33,12 @@ public class MazeManager : MonoBehaviour {
 			if (b!= null){
 				Vector3 pos = player.transform.position;
 				resizeBullet(b, new Vector3(pos.x, pos.y, pos.z));
-				Vector3 temp = player.transform.position;
-				b.transform.position = new Vector3(temp.x, temp.y, temp.z);
+				b.transform.position = new Vector3(pos.x, pos.y, pos.z)+player.transform.forward;
 			}
 		}else if (Input.GetKey(KeyCode.Period)){
 			checkPickUp();
-		}else if (Input.GetKeyDown (KeyCode.Space)){
-		//}else if (Input.GetMouseButton(0)){
+		//}else if (Input.GetKeyDown (KeyCode.Space)){
+		}else if (Input.GetMouseButton(0)){
 			Bullet b = player.fire();
 			if (b != null){
 				bulletItems.Remove(b);

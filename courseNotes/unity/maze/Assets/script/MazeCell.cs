@@ -81,13 +81,14 @@ public class MazeCell : MonoBehaviour {
 		transform.GetChild(0).GetComponent<Renderer>().material = m;
 	}
 
-	public void removeCeil(){
+	public MazeWall removeCeil(){
 		ceil.transform.localScale = new Vector3 (0, 0, 0);
+		return ceil;
 	}
 
-	public void lowerCeil(Material m, Goal g){
+	public void lowerCeil(Material m, Goal g, MazeWall c){
 		ceil.transform.localPosition = Vector3.zero;
 		ceil.renderer.material = m;
-		g.setPlatform (ceil);
+		g.setPlatform (ceil, c);
 	}
 }

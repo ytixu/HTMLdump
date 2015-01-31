@@ -44,7 +44,7 @@ public class Player : MonoBehaviour {
 			return b;
 		}else{
 			// for testing
-			testBullet.fire(gun.getNuzzlePos(), transform.forward);
+			//testBullet.fire(gun.getNuzzlePos(), transform.forward);
 			return null;
 		}
 	}

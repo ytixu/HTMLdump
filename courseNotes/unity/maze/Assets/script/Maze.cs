@@ -384,8 +384,7 @@ public class Maze : MonoBehaviour {
 		print (startCell.toString ());
 		print (endCell.toString ());
 		print (rooms [0].center.toString ());
-		cells [startCell.x, startCell.z].removeCeil ();
-		cells [endCell.x, endCell.z].lowerCeil (roomColors[(int)Color.TURQUOIS], goal);
+		cells [endCell.x, endCell.z].lowerCeil (roomColors[(int)Color.TURQUOIS], goal, cells [startCell.x, startCell.z].removeCeil ());
 		// return center coordinate of the start position
 		return new IntVector2(startCell.x*aCell.x + aCell.x/2, 
 		                      startCell.z*aCell.z + aCell.z/2);
