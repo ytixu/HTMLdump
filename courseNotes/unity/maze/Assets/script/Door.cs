@@ -4,11 +4,12 @@ using System.Collections;
 public class Door : MonoBehaviour {
 	public MazeManager mm;
 
+	/**
+	 * If hit by a projectile of the same color, then open. 
+	 */
 	void OnCollisionEnter(Collision collision)
 	{
-		print ("COL " + collision.collider.name);
 		if(collision.collider.tag+"_w"==tag){
-			print ("COLLISION");
 			transform.localScale = Vector3.zero;
 			mm.updateScore(1);
 		}

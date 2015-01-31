@@ -1,19 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * This stores a set of two connected rooms. 
+ * Note: after I finished the entire game, I realized that connected rooms only means there exists a path from one room to the other. 
+ * In here, the primary room and the secondary room are adjacent. 
+ * Unfortunately, I didn't have time to correct this. 
+ */
+
 public class MazeRoom {
+	// size of the room 
+	// Note: I wanted to generalize the size of the room but I ran out of time to do so.
+	// So some methods are only valid for 3x3 room size. 
 	public static int sizeX = 3;
 	public static int sizeZ = 3;
-	public IntVector2 center;
+
+	public IntVector2 center; // center of primary room
 	public IntVector2 secondCenter; // secondary room
 
+	// all positions that the second center could be relative to the primary center
 	private static IntVector2[] secondRoomPos = null;
 
 	public MazeRoom(IntVector2 v, IntVector2 sv){
 		center = new IntVector2 (v);
 		secondCenter = new IntVector2 (sv);
 	} 
-
+	
 	private IntVector2 randomDoor(int lowX, int highX, int lowZ, int highZ){
 		if (lowX < 1) lowX = 1;
 		if (highX > Maze.width-1) highX = Maze.width-2;
@@ -23,6 +35,9 @@ public class MazeRoom {
 		                   Random.Range (lowZ, highZ));
 	}
 
+	// get a random cell to put a door for the primary room
+	// this may fail to generate a cell at the border of the room 
+	// for 3x3 room, failure is 1/9
 	public IntVector2 randomRoomDoor(){
 		int lowX = center.x - sizeX / 2;
 		int highX = center.x + sizeX / 2 + 1;
@@ -35,6 +50,7 @@ public class MazeRoom {
 		return randomDoor (lowX, highX, lowZ, highZ);
 	}
 
+	// get a random cell to put a door to the secondary room
 	public IntVector2[] randomSecondRoomDoor(){
 		// this only works for 3x3 rooms
 		int dX = center.x - secondCenter.x;
@@ -69,6 +85,8 @@ public class MazeRoom {
 		return secondRoomPos;
 	}
 
+	// check if two rooms are intersecting
+	// input is assumed to be another center of a room
 	public bool intersects(IntVector2 v){
 		if (Mathf.Abs (center.x - v.x) < sizeX || 
 			Mathf.Abs (center.z - v.z) < sizeZ || 

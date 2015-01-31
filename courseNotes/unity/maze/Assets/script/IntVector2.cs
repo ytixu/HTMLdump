@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/**
+ * Integer 2D vector for maze cell coordinate.
+ */
+
 public class IntVector2 {
 	public int x;
 	public int z;

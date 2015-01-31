@@ -26,19 +26,20 @@ public class MazeManager : MonoBehaviour {
 		CreateMaze ();
 	}
 	
-	// Update is called once per frame
+	// We handle drop, pick and fire here
 	void Update () {
-		if (Input.GetKey(KeyCode.Comma)){
+		if (Input.GetKeyDown(KeyCode.Comma)){ // drop
 			Bullet b = player.drop();
 			if (b!= null){
+				b.rigidbody.isKinematic = true; // this is to avoid bouncing the ball out of the maze
 				Vector3 pos = player.transform.position;
 				resizeBullet(b, new Vector3(pos.x, pos.y, pos.z));
 				b.transform.position = new Vector3(pos.x, pos.y, pos.z)+player.transform.forward;
 			}
-		}else if (Input.GetKey(KeyCode.Period)){
+		}else if (Input.GetKeyDown(KeyCode.Period)){ //pick
 			checkPickUp();
-		//}else if (Input.GetKeyDown (KeyCode.Space)){
-		}else if (Input.GetMouseButton(0)){
+		//}else if (Input.GetKeyDown (KeyCode.Space)){ // for testing
+		}else if (Input.GetMouseButton(0)){ // fire
 			Bullet b = player.fire();
 			if (b != null){
 				bulletItems.Remove(b);
@@ -64,6 +65,11 @@ public class MazeManager : MonoBehaviour {
 		b.transform.localScale = new Vector3(5f, 5f, 5f);
 	}
 
+	/**
+	 * Score: is to determine whether fire results in opening a door. 
+	 * Fire decrement the score value and opening a door increment the score value
+	 */
+
 	public void updateScore(int n){
 		score += n;
 	}
@@ -76,10 +82,10 @@ public class MazeManager : MonoBehaviour {
 		}
 	}
 
-	// for 3 rooms
+	// distribute the projectiles for each room according to the order of the colors. 
 	private void distributeBullets(){
 		int currInd = aMaze.LastRoom;
-		int prevInd = 3;
+		int prevInd = aMaze.RoomNumb;
 		IntVector2 temp;
 		Vector3 pos;
 		for (int i=0; i<aMaze.RoomNumb; i++){

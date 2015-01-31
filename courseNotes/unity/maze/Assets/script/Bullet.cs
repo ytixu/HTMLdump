@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * The projectile, once fired, deflates when it stops moving. 
+ */
+
 public class Bullet : MonoBehaviour {
 	public Maze.Color c;
 
@@ -14,11 +18,6 @@ public class Bullet : MonoBehaviour {
 
 	private Vector3 aFoward;
 	private Vector3 lastPos;
-
-	// Use this for initialization
-	void Start () {
-
-	}
 	
 	// Update is called once per frame
 	void Update () {

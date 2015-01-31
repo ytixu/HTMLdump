@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * This class is mainly used to handle walls.
+ */ 
+
 public class MazeCell : MonoBehaviour {
 	public int x, y, z;
 	public MazeWall doorWall;
 	public MazeWall plainWall;
-
-	/**
-	 * Each cell has four wall.
-	 */
+	
 	public MazeWall eastWall;
 	public MazeWall southWall;
 	public MazeWall westWall;
@@ -24,7 +25,6 @@ public class MazeCell : MonoBehaviour {
 			w = Instantiate (doorWall) as MazeWall;
 			w.door.renderer.material = m;
 			w.door.tag = c.ToString()+"_w";
-			//side.setColor (c);
 			side.collider.enabled = false;
 		}else{
 			w = Instantiate (plainWall) as MazeWall;

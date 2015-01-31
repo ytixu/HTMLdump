@@ -7,15 +7,19 @@ using System.Collections.Generic;
  */
 
 public class Maze : MonoBehaviour {
+	// size of maze
 	public static int width = 30;
 	public static int depth = 30;
-	public MazeCell aCell;
 	public int RoomNumb;
+	
+	public MazeCell aCell;
 	public Material[] roomColors;
 	public MazeCell[,] cells;
 	public Goal goal;
 
 	public static int FloorHeight = -20;
+
+	// color for the rooms and cooridoors
 	public enum Color{
 		GREEN, PINK, YELLOW, BLACK, TURQUOIS, WHITE
 	}
@@ -71,11 +75,14 @@ public class Maze : MonoBehaviour {
 			                     coord.x, coord.z, children.Count);
 		}
 	}
-	
+
+	// convert relative cell coordinate in maze to coordinates in the game environment
 	public Vector3 convertToVector3(int x, int z){
 		return new Vector3 (x * aCell.x, FloorHeight, z * aCell.z);
 	}
 
+
+	// set up the cells
 	private MazeCellVector[,] initializeMazeCell(){
 		cells = new MazeCell[width, depth];
 		MazeCellVector[,] grid = new MazeCellVector[width, depth];
@@ -142,7 +149,7 @@ public class Maze : MonoBehaviour {
 		while (alpha > Random.value){ // 1-alpha chance of breacking this loop
 			List<IntVector2> nbs = getDirections(getCell(temp, grid).coord, grid);
 			foreach (IntVector2 nb in nbs){
-				if (!getCell(nb, grid).traversed || 
+				if (!getCell(nb, grid).traversed || // the following condition makes the maze braided
 				    	(!getCell (nb, grid).color.Equals(Color.BLACK) && !getCell (nb, grid).color.Equals(Color.TURQUOIS) && Random.value < 0.05)){
 					output.Add(nb);
 					getCell(temp, grid).addFamily(getCell(nb, grid));
@@ -193,6 +200,7 @@ public class Maze : MonoBehaviour {
 		while (rooms.Count < RoomNumb){
 			IntVector2 randC = randomRoom(grid);
 			bool isIntersecting = false;
+			// check if it's intesecting with rooms that we have previously added 
 			foreach (MazeRoom r in rooms){
 				if (r.intersects(randC)){
 					isIntersecting = true;
@@ -200,6 +208,7 @@ public class Maze : MonoBehaviour {
 				}
 			}
 			if (isIntersecting) continue;
+			// get a position for the secondary room
 			IntVector2 sRoom = null;
 			IntVector2 temp;
 			foreach(IntVector2 v in MazeRoom.getSecondPos()){
@@ -227,19 +236,27 @@ public class Maze : MonoBehaviour {
 		}
 	}
 
-	// get the goal cell using the first secondary room in the list of rooms
+	/**
+	 * This algorithm sets up the position of the goal cell
+	 * It creates a random exit for the first secondary room that allows it to do so. 
+	 * It colors the branch in TURQUOISE.
+	 */
 	private void getEndCell(MazeCellVector[,] grid){
 		for (int i = 0; i< RoomNumb ;i++){
+			// we convert the secondary room to a primary room so we can use the random 
+			// door generating algorithm to get an exit
 			MazeRoom temp = new MazeRoom (rooms [i].secondCenter, rooms [i].center);
 			IntVector2 door = temp.randomRoomDoor ();
 			List<IntVector2> branch = randomBranch (door, grid);
+			// try five times to get a branch with at least one cell
 			for (int j=0; j<5; j++){
 				if (branch.Count > 0) break;
 				door = temp.randomRoomDoor ();
 				branch = randomBranch (door, grid);
 			}
 			if (branch.Count == 0) continue;
-			endCell = branch [branch.Count - 1];
+			endCell = branch [branch.Count - 1]; // goal cell
+			// coloring
 			foreach (IntVector2 b in branch){
 				getCell (b, grid).color = Color.TURQUOIS;
 			}
@@ -248,10 +265,15 @@ public class Maze : MonoBehaviour {
 			LastRoom = i;
 			break;
 		}
-
 	}
 
-	// The algorithm that generate random maze without the rooms. 
+	/**
+	 * The algorithm that generate random maze. 
+	 * It first pick the rooms, then the exit, then use the remaining cells to 
+	 * generate the braided maze. It sets up the entrance as, from the exit, the furthest end 
+	 * of a random branch generated during the process on the condition that it is at most
+	 * 5 cells aways from the boarder of the maze. It colors the start with TURQUOISE.
+	 */
 	private void AldowsBroderWilson(MazeCellVector[,] grid){
 		roomPartitioner (grid);
 		List<IntVector2> frontier = new List<IntVector2>();
@@ -294,15 +316,14 @@ public class Maze : MonoBehaviour {
 		}
 		getCell (startCell, grid).color = Color.TURQUOIS;
 	}
-	
-	private void resetGridTraverse(MazeCellVector[,] grid){
-		for (int i=0; i<width; i++){
-			for (int j=0; j<depth; j++){
-				grid[i,j].traversed = false;
-			}
-		}
-	}
-	
+
+
+
+	/**
+	 * Below are for setting up the walls.
+	 */
+
+	// Create a random doorway for the primary room.
 	private void addRoomEntrance(MazeCellVector[,] grid){
 		foreach (MazeRoom r in rooms){
 			IntVector2 door = r.randomRoomDoor();
@@ -327,7 +348,8 @@ public class Maze : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	// Create a random door for the secondary room.
 	private void addSecondRoomEntrance(MazeCellVector[,] grid){
 		foreach (MazeRoom r in rooms){
 			IntVector2[] doorWay = r.randomSecondRoomDoor();
@@ -342,31 +364,35 @@ public class Maze : MonoBehaviour {
 
 	// add walls
 	private void addWalls(MazeCellVector[,] grid){
+		// add doors
 		addRoomEntrance (grid);
 		addSecondRoomEntrance (grid);
+		// for each cell we check its right and bottom neighbours
 		IntVector2[] dir = new IntVector2[]{new IntVector2 (0, 1), new IntVector2 (1, 0)};
 		for (int i=0; i<width; i++){
 			for (int j=0; j<depth; j++){
 				foreach (IntVector2 d in dir){
 					bool clear = false;
-					IntVector2 temp = grid[i,j].coord.add(d);
+					IntVector2 temp = grid[i,j].coord.add(d); // neighbour coordinate
 					if (temp.x >= width || temp.z >= depth) continue;
 					if (!grid[i,j].color.Equals(Color.WHITE) && !grid[i,j].color.Equals(Color.TURQUOIS) && 
-						getCell (temp, grid).color.Equals(grid[i,j].color)){
+						getCell (temp, grid).color.Equals(grid[i,j].color)){ // if they are both part of the same room
 						clear = true;
 					}
 					if (!clear){
-						foreach (IntVector2 c in grid[i,j].children){
+						foreach (IntVector2 c in grid[i,j].children){ // check children in tree
 							if (temp.equals(c)){
 								clear = true;
 								break;
 							}
 						}
 					}
-					if (!clear){
+					if (!clear){ 
+						// add wall and color
 						cells[i,j].addWall(i, j, d, false, grid[i,j].color, getColorMat(grid[i,j].color));
 						cells[temp.x,temp.z].addWall(temp, d.mult(-1), false,  getCell (temp, grid).color, getColorMat(getCell (temp, grid).color));
-					}else{
+					}else{ 
+						// add wall if cell is at the boarder of the maze
 						cells[i,j].addBoarders(i,j, getCell (temp, grid).color, getColorMat(getCell (temp, grid).color));
 					}
 				}
@@ -381,10 +407,9 @@ public class Maze : MonoBehaviour {
 		MazeCellVector[,] grid = initializeMazeCell ();
 		AldowsBroderWilson (grid);
 		addWalls (grid);
-		//traverseMaze (twoCells[0]);
-		print (startCell.toString ());
-		print (endCell.toString ());
-		print (rooms [0].center.toString ());
+		//print (startCell.toString ());
+		//print (endCell.toString ());
+		//print (rooms [0].center.toString ());
 		cells [endCell.x, endCell.z].lowerCeil (roomColors[(int)Color.TURQUOIS], goal, cells [startCell.x, startCell.z].removeCeil ());
 		// return center coordinate of the start position
 		return new IntVector2(startCell.x*aCell.x + aCell.x/2, 

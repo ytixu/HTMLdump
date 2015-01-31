@@ -1,0 +1,4 @@
+Doorway/projectile behavior and interaction
+
+1) Stragy for setting up the sequence of doorways the player need to take
+The three set of rooms are randomly chosen before the braided maze is generated. This allows the player to go to any primary room from the start of the maze. Each 

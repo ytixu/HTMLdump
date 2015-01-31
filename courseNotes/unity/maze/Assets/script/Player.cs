@@ -58,21 +58,25 @@ public class Player : MonoBehaviour {
 	}
 
 	public Bullet drop(){
-		print ("Dropping");
 		if (item!= null){
 			Bullet t = item;
 			t.rigidbody.useGravity = true;
 			t.rigidbody.WakeUp();
 			item = null;
 			gun.disload();
+			stat.update ("Deep in the ground so you'll know that it'll still be here when you need it.");
 			return t;
 		}
 		return null;
 	}
 
 	public void pickUp(Bullet b){
-		print ("Picking");
+		if (item != null){
+			stat.update ("Can't load two balls in one gun..."); // may never happen 
+			return;
+		}
 		item = b;
+		b.rigidbody.isKinematic = false;
 		b.rigidbody.useGravity = false;
 		b.rigidbody.Sleep();
 		b.transform.localScale = Vector3.zero;
@@ -85,8 +89,7 @@ public class Player : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collision)
 	{
-		if (collision.collider.tag == "bullet"){
-				//stat.emptyQueue();
+		if (collision.collider.tag == "bullet" && !collision.collider.rigidbody.isKinematic){
 				stat.update ("This big ball looks perfect to fit your pink gun. Try press \".\" to pick it up.");
 		}else if (collision.collider.tag == "YELLOW_w" || 
 		          collision.collider.tag == "GREEN_w" || 

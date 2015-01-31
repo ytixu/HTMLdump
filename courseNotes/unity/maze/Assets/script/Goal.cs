@@ -5,13 +5,13 @@ public class Goal : MonoBehaviour {
 	public float speed = 0.01f;
 	public GameObject colliderBox;
 	private bool lift = false;
-	private MazeWall platform;
+	private MazeWall platform; // a ceiling that has been lower down
 	private MazeWall startCeil;
 
 
 	// Update is called once per frame
 	void Update () {
-		if (lift){
+		if (lift){ // lift up the platform
 			platform.transform.localPosition += new Vector3(0,speed,0);
 			if (platform.transform.localPosition.y >= 1){
 				lift = false;
@@ -28,6 +28,10 @@ public class Goal : MonoBehaviour {
 		transform.localScale = new Vector3 (0.5f, 10, 0.5f);
 	}
 
+	/**
+	 * Once player hits the goal, it move the platform up to the ground level and locks 
+	 * player insider the platform so player cannot jump off from it.
+	 */
 	void OnTriggerEnter(Collider collider){
 		if (collider.tag == "Player"){
 			lift = true;

@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/**
+ * Message display.
+ * Implemented as a queue of strings. 
+ * Display until the queue is empty. 
+ */
+
 public class Status : MonoBehaviour {
 	private Text textField;
 	private Queue<string> textQueue;
