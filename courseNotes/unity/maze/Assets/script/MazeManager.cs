@@ -12,8 +12,11 @@ public class MazeManager : MonoBehaviour {
 	// in the order of the enum in Maze
 	// green, pink, yellow, turq
 	public List<Bullet> bulletItems;
-
+	public Status stat;
+	
 	private int thr = 10;
+	private int score = 0; // this keeps track if a bullet is used for nothing
+
 
 	// enviromnent 
 	public buildings b;
@@ -62,6 +65,18 @@ public class MazeManager : MonoBehaviour {
 		b.transform.localScale = new Vector3(5f, 5f, 5f);
 	}
 
+	public void updateScore(int n){
+		score += n;
+	}
+
+	public void checkScore(){
+		if (score < 0){
+			stat.update ("Looks like you wasted it.");
+			stat.update ("This ball was important. It's the key to determine whether you live or die.");
+			stat.update ("Now you are stucked here forever........");
+		}
+	}
+
 	// for 3 rooms
 	private void distributeBullets(){
 		int currInd = aMaze.LastRoom;
@@ -82,6 +97,7 @@ public class MazeManager : MonoBehaviour {
 
 	private void movePlayer(IntVector2 pos){
 		player.transform.localPosition = new Vector3 (pos.x + 3, 1f, pos.z+3);
+		player.transform.localRotation = Quaternion.Euler(new Vector3(0,-135,0));
 		b.transform.localPosition = new Vector3 (pos.x-20, 70f, pos.z+10);
 	}
 

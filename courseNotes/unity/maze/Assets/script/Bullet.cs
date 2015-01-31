@@ -10,12 +10,10 @@ public class Bullet : MonoBehaviour {
 	private int minSize = 1;
 
 	private bool fired = false;
-	private bool deflating = false;
+	private bool deflated = false;
 
 	private Vector3 aFoward;
 	private Vector3 lastPos;
-
-	private Rect textbox = new Rect (10f, 10f, 100f, 20f);
 
 	// Use this for initialization
 	void Start () {
@@ -25,10 +23,21 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (fired){
+			if(deflated){
+				transform.localScale -= new Vector3(transform.localScale.z*growSpeed, 
+				                                    transform.localScale.y*growSpeed, 
+				                                    transform.localScale.z*growSpeed);
+				if (transform.localScale.z < minSize){
+					tag = "deflated";
+					fired = false;
+					return;
+				}
+				return;
+			}
 			Vector3 dPos = lastPos - transform.position;
 			print (dPos.ToString());
 			if (dPos.magnitude < 0.01){
-				deflate();
+				deflated = true;
 				return;
 			}
 			lastPos = transform.position;
@@ -37,14 +46,6 @@ public class Bullet : MonoBehaviour {
 			transform.localScale += new Vector3(transform.localScale.z*growSpeed, 
 			                                    transform.localScale.y*growSpeed, 
 			                                    transform.localScale.z*growSpeed);
-		}else if(deflating){
-			if (transform.localScale.z < minSize){
-				deflating = false;
-				return;
-			}
-			transform.localScale -= new Vector3(transform.localScale.z*growSpeed, 
-				                                transform.localScale.y*growSpeed, 
-				                                transform.localScale.z*growSpeed);
 		}
 	}
 
@@ -56,31 +57,13 @@ public class Bullet : MonoBehaviour {
 		fired = true;
 	}
 
-	public void deflate(){
-		deflating = true;
-		fired = false;
-	}
-
 	void OnCollisionEnter(Collision collision)
 	{
+		if (deflated) return;
 		print ("COL " + collision.collider.name);
-		if(collision.collider.tag==c.ToString()){
+		if(collision.collider.tag==c.ToString()+"_w"){
 			print ("COLLISION");
 			collision.collider.transform.localScale = Vector3.zero;
 		}
 	}
-
-	//void OnTriggerEnter(Collider collider)
-	//{	
-	//	if (fired && collider.tag.Equals(tag)){
-	//		print ("COLLISION");
-	//		collider.transform.localScale = Vector3.zero;
-	//	}
-		//GUI.Label (textbox, "Hello World!");
-		//print (collider.collider.name);//if (collisionInfo.collider.GetType);
-	//}
-
-	//void OnGUI () {
-		//GUI.Label (n "Hello World!");
-	//}
 }

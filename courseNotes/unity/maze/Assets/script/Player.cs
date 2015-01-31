@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 	public Status stat;
 	public Gun gun;
-
+	public MazeManager mm;
+	
 	private float speed = 0.4f;
-
 	private Bullet item = null;
 
 	public Bullet testBullet;
 
+
 	// Use this for initialization
 	void Start () {
-	
+		stat.update ("The world is going against you.");
+		stat.update ("You see no where else to go except that empty swimming pool.");
 	}
-	
-	// Update is called once per frame
+		
+		// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			transform.localPosition += transform.forward*speed;
@@ -28,10 +31,6 @@ public class Player : MonoBehaviour {
 			transform.Rotate(new Vector3(0,1,0));
 		}
 	}
-	//void OnCollisionStay(Collision collisionInfo)
-	//{			
-	//	print (collisionInfo.collider.name);
-	//}
 
 	public Bullet fire(){
 		if (item != null){
@@ -41,6 +40,7 @@ public class Player : MonoBehaviour {
 			item.fire(gun.getNuzzlePos(), transform.forward);
 			item = null;
 			gun.disload();
+			mm.updateScore(-1);
 			return b;
 		}else{
 			// for testing
@@ -69,5 +69,34 @@ public class Player : MonoBehaviour {
 		b.rigidbody.Sleep();
 		b.transform.localScale = Vector3.zero;
 		gun.loadBullet (b);
+		stat.emptyQueue();
+		stat.update ("So pretty~~ This must be used for something important. CLINK to fire (when you need to) and press \",\" to drop.");
+	}
+
+
+
+	void OnTriggerEnter(Collider collision)
+	{
+		if (collision.collider.tag == "YELLOW" || 
+		    collision.collider.tag == "GREEN" || 
+		    collision.collider.tag == "PINK" || 
+		    collision.collider.tag == "TURQUOIS"){
+				//stat.emptyQueue();
+				stat.update ("This big ball looks perfect to fit your pink gun. Try press \".\" to pick it up.");
+		}else if (collision.collider.tag == "YELLOW_w" || 
+		          collision.collider.tag == "GREEN_w" || 
+		          collision.collider.tag == "PINK_w" || 
+		          collision.collider.tag == "TURQUOIS_w"){
+			//stat.emptyQueue();
+			stat.update ("The color of the door boarder is the same as your gun. So pretty~~ :3");
+			if (item == null){
+				stat.update ("Unfortunartely your gun is empty now.");
+			}
+		}else if (collision.collider.tag == "deflated"){
+			stat.update ("Deflated, it can no longer fit your gun.");
+			mm.checkScore();
+		}else if (collision.collider.tag == "Finish"){
+			stat.update ("The end! Finally free~~~");
+		}
 	}
 }

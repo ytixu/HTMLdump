@@ -23,7 +23,7 @@ public class MazeCell : MonoBehaviour {
 		if (door){
 			w = Instantiate (doorWall) as MazeWall;
 			w.door.renderer.material = m;
-			w.door.tag = c.ToString();
+			w.door.tag = c.ToString()+"_w";
 			//side.setColor (c);
 			side.collider.enabled = false;
 		}else{

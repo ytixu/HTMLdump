@@ -143,7 +143,6 @@ public class Maze : MonoBehaviour {
 			List<IntVector2> nbs = getDirections(getCell(temp, grid).coord, grid);
 			foreach (IntVector2 nb in nbs){
 				if (!getCell(nb, grid).traversed){
-					//if (!getCell(nb, grid).color.Equals(Color.WHITE)) print (nb.toString() + "NOTADDED" );
 					output.Add(nb);
 					getCell(temp, grid).addFamily(getCell(nb, grid));
 					getCell(nb, grid).traversed = true;
