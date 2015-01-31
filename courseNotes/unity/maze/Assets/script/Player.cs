@@ -22,13 +22,21 @@ public class Player : MonoBehaviour {
 		// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.UpArrow)) {
-			transform.localPosition += transform.forward*speed;
+			updatePos(transform.position + transform.forward*speed);
 		} else if (Input.GetKey (KeyCode.DownArrow)) {
-			transform.localPosition -= transform.forward*speed;
+			updatePos(transform.position - transform.forward*speed);
 		} else if (Input.GetKey (KeyCode.LeftArrow)) {
 			transform.Rotate (new Vector3 (0, -1, 0));
 		}else if (Input.GetKey (KeyCode.RightArrow)){
 			transform.Rotate(new Vector3(0,1,0));
+		}
+	}
+
+	private void updatePos(Vector3 newPos){
+		if (Mathf.Abs(newPos.x) < 700 && Mathf.Abs(newPos.z) < 700){
+			transform.position = newPos;
+		}else{
+			stat.update ("You're going too far in this small universe.");
 		}
 	}
 
