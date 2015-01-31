@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\MazeManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\Maze.cs">
     <Files>
       <File FileName="Assets\script\Goal.cs" Line="38" Column="34" />
-      <File FileName="Assets\script\Maze.cs" Line="378" Column="40" />
+      <File FileName="Assets\script\Maze.cs" Line="146" Column="131" />
       <File FileName="Assets\script\MazeCell.cs" Line="84" Column="17" />
       <File FileName="Assets\script\Bullet.cs" Line="10" Column="20" />
-      <File FileName="Assets\script\Gun.cs" Line="14" Column="45" />
+      <File FileName="Assets\script\Gun.cs" Line="1" Column="1" />
       <File FileName="Assets\script\MazeManager.cs" Line="40" Column="5" />
-      <File FileName="Assets\script\Player.cs" Line="48" Column="16" />
-      <File FileName="Assets\script\Status.cs" Line="52" Column="1" />
-      <File FileName="Assets\script\Door.cs" Line="5" Column="24" />
+      <File FileName="Assets\script\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\Status.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\Door.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -142,7 +142,8 @@ public class Maze : MonoBehaviour {
 		while (alpha > Random.value){ // 1-alpha chance of breacking this loop
 			List<IntVector2> nbs = getDirections(getCell(temp, grid).coord, grid);
 			foreach (IntVector2 nb in nbs){
-				if (!getCell(nb, grid).traversed){
+				if (!getCell(nb, grid).traversed || 
+				    	(!getCell (nb, grid).color.Equals(Color.BLACK) && !getCell (nb, grid).color.Equals(Color.TURQUOIS) && Random.value < 0.05)){
 					output.Add(nb);
 					getCell(temp, grid).addFamily(getCell(nb, grid));
 					getCell(nb, grid).traversed = true;
