@@ -274,7 +274,7 @@ public class Maze : MonoBehaviour {
 	 * of a random branch generated during the process on the condition that it is at most
 	 * 5 cells aways from the boarder of the maze. It colors the start with TURQUOISE.
 	 */
-	private void AldowsBroderWilson(MazeCellVector[,] grid){
+	private void AldousBroderWilson(MazeCellVector[,] grid){
 		roomPartitioner (grid);
 		List<IntVector2> frontier = new List<IntVector2>();
 		// set up ending position
@@ -405,7 +405,7 @@ public class Maze : MonoBehaviour {
 	// the function to call by MazeManager
 	public IntVector2 initializeMaze(){
 		MazeCellVector[,] grid = initializeMazeCell ();
-		AldowsBroderWilson (grid);
+		AldousBroderWilson (grid);
 		addWalls (grid);
 		//print (startCell.toString ());
 		//print (endCell.toString ());
