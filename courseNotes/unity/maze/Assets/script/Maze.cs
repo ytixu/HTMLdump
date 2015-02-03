@@ -238,7 +238,7 @@ public class Maze : MonoBehaviour {
 
 	/**
 	 * This algorithm sets up the position of the goal cell
-	 * It creates a random exit for the first secondary room that allows it to do so. 
+	 * It creates a random branch with an exit at the end for the first secondary room that allows it to do so. 
 	 * It colors the branch in TURQUOISE.
 	 */
 	private void getEndCell(MazeCellVector[,] grid){
@@ -344,6 +344,8 @@ public class Maze : MonoBehaviour {
 						z = 0;
 					}
 				}
+				// in the case where the cell we're linking the room with is not traverse (may happen with really small probability).
+				if (!grid[door.x-x,door.z-z].traversed) continue;
 				grid[door.x, door.z].addFamily(grid[door.x-x,door.z-z]);
 			}
 		}
