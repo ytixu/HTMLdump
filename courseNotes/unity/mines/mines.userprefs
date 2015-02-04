@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Selector.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\maze\Assets\script\Maze.cs">
     <Files>
-      <File FileName="Assets\Script\Selector.cs" Line="24" Column="2" />
+      <File FileName="..\maze\Assets\script\IntVector2.cs" Line="1" Column="1" />
+      <File FileName="..\maze\Assets\script\Door.cs" Line="1" Column="1" />
+      <File FileName="..\maze\Assets\script\MazeCell.cs" Line="1" Column="1" />
+      <File FileName="..\maze\Assets\script\Maze.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

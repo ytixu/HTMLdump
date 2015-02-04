@@ -25,6 +25,17 @@ public class Player : MonoBehaviour {
 			return i + " " + j + " " + k;
 		}
 	}
+
+	private Position selectorPosition;
+	public Position selectorPos{
+		get { return selectorPosition; }
+	}
+
+	public void setSelectorPos(int i, int j, int k){
+		selectorPosition.i = i;
+		selectorPosition.j = j;
+		selectorPosition.k = k;
+	}
 	
 	// Use this for initialization
 	void Start () {
@@ -54,11 +65,20 @@ public class Player : MonoBehaviour {
 		newLocation (p.i, p.j, p.k);
 	}
 
+	public Position getLocation(){
+		return new Position(
+			(int)Mathf.Round (transform.localPosition.x/cloud.stepSize), 
+			(int)Mathf.Round (transform.localPosition.y/cloud.stepSize), 
+			(int)Mathf.Round (transform.localPosition.z/cloud.stepSize));
+
+	}
+
 	public Position getNextStep(int direction){
+		Position temp = getLocation ();
 		return new Position (
-			(int)Mathf.Round (transform.localPosition.x/cloud.stepSize + direction * transform.forward.x), 
-			(int)Mathf.Round (transform.localPosition.y/cloud.stepSize + direction * transform.forward.y), 
-			(int)Mathf.Round (transform.localPosition.z/cloud.stepSize + direction * transform.forward.z));
+			(int)Mathf.Round (temp.i + direction * transform.forward.x), 
+			(int)Mathf.Round (temp.j + direction * transform.forward.y), 
+			(int)Mathf.Round (temp.k + direction * transform.forward.z));
 	}
 
 	public void Jump() { 

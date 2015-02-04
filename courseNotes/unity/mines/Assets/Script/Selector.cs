@@ -13,12 +13,17 @@ public class Selector : MonoBehaviour {
 	
 	}
 
-	public void showInCubi(Cubi c){
-		transform.parent = c.transform;
-		renderer.enabled = true;
+	public bool toggleEnabled(){
+		if (renderer.enabled){
+			renderer.enabled = false;
+		}else{
+			renderer.enabled = true;
+		}
+		return renderer.enabled;
 	}
 
-	public void hide(){
-		renderer.enabled = false;
+	public void showInCubi(Cubi c){
+		transform.parent = c.transform;
+		transform.localPosition = Vector3.zero;
 	}
 }
