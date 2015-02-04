@@ -7,6 +7,7 @@ var about = "Questions taken from<br><a target=\"blanck\" "+
 			"Cracking%20the%20Coding%20Interview,%204%20Edition%20-%20150%20"+
 			"Programming%20Interview%20Questions%20and%20Solutions.pdf\">"+
 			"Cracking the Coding Interview</a><br>" +
+			"Quora<br>" + 
 			"and from myself<br><br>" +
 			"Display engine for Latex: " +
 			"<a target=\"blank\" href=\"http://www.mathjax.org/\">mathjax</a><br><br>"+
@@ -37,7 +38,8 @@ function setIndex(domele, dir){
 				  "Integer Pairs in Array",
 				  "Bitwise Arithmetics",
 				  "Match-Three Puzzle",
-				  "Match-Three Game"
+				  "Match-Three Game",
+				  "Find Duplicate in Array"
 				 ]
 	var url = document.URL.split("/");
 	var currPage = url[url.length-1];
