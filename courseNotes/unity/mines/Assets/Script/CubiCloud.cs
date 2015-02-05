@@ -14,6 +14,8 @@ public class CubiCloud: MonoBehaviour {
 	public int cubiSize;
 	// size of player step
 	public int stepSize;
+	// radius of explosion
+	public int radius;
 	
 	// Use this for initialization
 	public void Start () {
@@ -48,6 +50,7 @@ public class CubiCloud: MonoBehaviour {
 				}
 			}
 		}
+		//print (a+" " + b + " " + c);
 		grid[a,b,c].isBomb = true;
 	}
 	// center is 3x3x3

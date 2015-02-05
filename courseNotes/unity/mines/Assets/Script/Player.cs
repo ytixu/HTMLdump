@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	public Camera camera;
-
+	public GameManager gm;
+	public Inventory inv;
+	public TextDisplay displayer;
 	private Vector3 rotation = new Vector3 (0, 1, 0);
 	private Vector3 cameraRotation = new Vector3 (1, 0, 0);
 
@@ -26,32 +28,44 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	private Position selectorPosition;
-	public Position selectorPos{
-		get { return selectorPosition; }
-	}
-
-	public void setSelectorPos(int i, int j, int k){
-		selectorPosition.i = i;
-		selectorPosition.j = j;
-		selectorPosition.k = k;
-	}
-	
 	// Use this for initialization
 	void Start () {
 	
 	}
+
+	private bool toogleCamera = true;
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(KeyCode.LeftArrow)){
+		if (/*Input.GetKey(KeyCode.LeftArrow) ||*/ Input.GetKey(KeyCode.A)){
 			transform.Rotate(-rotation);
-		}else if (Input.GetKey(KeyCode.RightArrow)){
+		}else if (/*Input.GetKey(KeyCode.RightArrow) ||*/ Input.GetKey(KeyCode.D)){
 			transform.Rotate(rotation);
-		}else if (Input.GetKey(KeyCode.W)){
-			camera.transform.Rotate(-cameraRotation);
-		}else if (Input.GetKey(KeyCode.S)){
-			camera.transform.Rotate(cameraRotation);
+		}else if (Input.GetKeyDown(KeyCode.Space)){
+			Jump();
+		//}else if (Input.GetKeyDown(KeyCode.UpArrow)){
+		//	gm.canMove(1);
+		//}else if (Input.GetKeyDown(KeyCode.DownArrow)){
+		//	gm.canMove (-1);
+		}else if (Input.GetKeyDown(KeyCode.Q)){
+			if (toogleCamera) toogleCamera = false;
+			else toogleCamera = true;
+		}else if(Input.GetKeyDown(KeyCode.Z)){
+			inv.triggerAnimation();
+		}else{
+			if (toogleCamera){
+				if (Input.GetKey(KeyCode.W)){
+					camera.transform.Rotate(-cameraRotation);
+				}else if (Input.GetKey(KeyCode.S)){
+					camera.transform.Rotate(cameraRotation);
+				} 
+			}else{
+				if (Input.GetKeyDown(KeyCode.W)){
+					gm.canMove(1);
+				}else if (Input.GetKeyDown(KeyCode.S)){
+					gm.canMove (-1);
+				}
+			}
 		}
 	}
 

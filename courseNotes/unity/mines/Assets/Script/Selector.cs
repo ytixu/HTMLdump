@@ -23,7 +23,6 @@ public class Selector : MonoBehaviour {
 	}
 
 	public void showInCubi(Cubi c){
-		transform.parent = c.transform;
-		transform.localPosition = Vector3.zero;
+		transform.position = c.transform.position;
 	}
 }
