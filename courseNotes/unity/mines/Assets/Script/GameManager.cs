@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	public CubiCloud cloud;
 	public Selector selector;
 	public Material[] tileColor;
+
+	public static int ItemNumb = 12;
 	
 	private Cubi[,,] matrix;
 
@@ -70,8 +72,13 @@ public class GameManager : MonoBehaviour {
 		temp.x = i;
 		temp.y = j;
 		temp.z = k;
-		if (temp.Value < 12)
-				temp.renderer.material = tileColor [temp.Value];
+		if (temp.Value < ItemNumb){
+			temp.renderer.material = tileColor [temp.Value];
+			temp.ID = temp.Value;
+		}else{
+			temp.renderer.material = tileColor [ItemNumb-1];
+			temp.ID = ItemNumb-1;
+		}
 		return temp;
 	}
 		
@@ -125,8 +132,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void openCubi(Cubi c){
-		player.inv.updateScore (c.score ());
-		player.displayer.updateScore (c.score ());
+		player.inv.updateScore (c.score (), c.ID, player.displayer);
 		if (c.Bomb){
 			c.transform.localScale = Vector3.zero;
 			print (c.x+" " + c.y+ " " +c.z + " BLOW");

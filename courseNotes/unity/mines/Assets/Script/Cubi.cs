@@ -4,6 +4,12 @@ using System.Collections;
 public class Cubi : MonoBehaviour {
 	public int x, y, z;
 	public GameManager gm;
+
+	private int _id = 0;
+	public int ID{
+		get { return _id;}
+		set { _id = value;}
+	}
 	private int _value = 0;
 	public int Value{
 		get { return _value;}
