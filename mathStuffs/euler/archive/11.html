@@ -1,7 +1,4 @@
-
-template
-
-<!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
@@ -13,101 +10,58 @@ template
 		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 		</script>
 		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang="></script>
-		<style>
-			canvas:active{
-				cursor: default;
-			}
-		</style>
 	</head>
 	<body>
 		<div id="text">
 				<div class="sequence">
-				<a href="8.html">previous</a> /
-				<a href="9.html">next</a></div>
-				<h3>Match-Three Game </h3>
+				<a href="10.html">previous</a> /
+				<a href="11.html">next</a></div>
+				<h3>Find Duplicate in Array</h3>
+				<h5>from <a href="http://qr.ae/BGVfs" target="blank">Quora</a></h5>
 			<div class="question">
-				<p>In a match-three game, implement a method to search which tiles are matched.</p>
+				<p>Given a long immutable array of $N+1$ integers, knowing that the elements in the array are between $a$ and a+N$, and that there is at least one deplicated element, find a duplicated element.</p>
 			</div>
 			<div class="answer">
-				<center>
-					<canvas id="example1"></canvas>
-				</center>
-				<p>The corresponding matrix would be</p>
-				\begin{equation*}
-					\left( \begin{array}{cccc}
-					(0,0) & (0,0) & (0,0) & (0,0)\\
-					(0,0) & (0,1) & (1,1) & (0,0)\\
-					(0,0) & (0,0) & (0,0) & (0,0)\end{array} \right)
-				\end{equation*}
-				
+				<p>
+					To optimize memory efficiency, we cannot use extra memory storage for a hash table or a binary search tree. Since the array is immutable, we cannot use in-place sort either.
+				</p><p>
+					The solution to this problem is to use binary search on which number is duplicated. Starting with the full array, we assume that the middle number, $N/2 + a$, is duplicated. If that number is indeed duplicated, then it's easy to check where the copies are in the array. Otherwise, we can infer the following:
+					<ul>
+						<li>if there are more than $N/2$ numbers below $N/2 + a$, then the duplicated element is smalled than $N/2 + a$;</li>
+						<li>otherwise, the duplicated element is bigger than $N/2 + a$.
+					</ul>
+					This is guaranteed to happen by the Pigeonhole principle.
+				</p><p>
+					Then we can recurse on one of the halves of the ranges. The time complexity is $O(n\log(n))$ and space complexity is $O(1)$. 
+				</p>
 			</div>
-
-	<h4>Demo</h4><center>
-	<table cellspacing="50"><tr><td>
-		<form>
-	          <label>Color number</label>            
-	          <input type = "radio" name = "colNumb"
-	                 id = "three" value = "three"/>
-	          <label for = "three">3</label>
-
-	          <input type = "radio" name = "colNumb"
-	                 id = "four" value = "four" />
-	          <label for = "four">4</label>
-
-	          <input type = "radio" name = "colNumb"
-	                 id = "five" value = "five" checked = "checked" />
-	          <label for = "five">5</label>
-
-	          <input type = "radio" name = "colNumb"
-	                 id = "six" value = "six" />
-	          <label for = "six">6</label>
-	    </form>
-	    <form>
-			Width: <input type="text" id="boardWidth" value="10"><br>
-			Height: <input type="text" id="boardHeight" value="10"><br>
-		</form>
-		<button type="button" onclick="restart();">Restart</button>
-		<p id="errorMess"></p>
-		<p>Score: <span id="scoreNumb"></span></p>
-	</td><td>
-		<canvas id="demo"></canvas>
-	</td></tr></table>
-	</center>
-
-	<h4>Javascript</h4>
+	<h4>Python</h4>
 <div class="code">
-<?prettify lang=js?>
-<pre><code>
+<?prettify lang=py?>
+<pre><code>def _find_duplicate_recurse(lst, a, N):
+	if N == 0: return a
+	half = N//2
+	middle = half + a
+	count = 0
+	same = 0
+	for i in lst:
+		if i < middle: count += 1
+		elif i == middle: same += 1
+	if same > 1: return middle
+	if count > half: return _find_duplicate_recurse(lst, a, half-1)
+	return _find_duplicate_recurse(lst, middle+1, N-half)
+
+def find_duplicate(lst, a):
+	return _find_duplicate_recurse(lst, a, len(lst)-1)
 </code></pre>
 </div><br>
 			<div class="sequence">
-				<span class="date">Jan 17, 2015 ~ </span>
-				<a href="8.html">previous</a> / <a href="9.html">next</a>
+				<span class="date">Feb 4, 2015 ~ </span>
+				<a href="10.html">previous</a> / <a href="11.html">next</a>
 			</div>
 		</div>
 	</body>
 	<script src="script.js"> </script>
-	<script src="titato/threeMatchScore.js"> </script>
-	<script>
-		function drawExample(){
-			var canvas = document.getElementById("example1");
-			var ctx = canvas.getContext("2d");
-			var values = [[0, 0, 1, 2],
-						  [1, 1, 1, 1], 
-						  [3, 1, 1, 2]]
-			canvas.height = tileSize*3;
-			canvas.width = tileSize*4;
-			for (i in values){
-				for (j in values[i]){
-					ctx.beginPath();
-					ctx.fillStyle=COLOR[values[i][j]];
-					ctx.rect(convert(j), convert(i),tileSize,tileSize);
-					ctx.fill();
-				}
-			}
-		}
-		drawExample();
-	</script>
 </html> 
 
 
