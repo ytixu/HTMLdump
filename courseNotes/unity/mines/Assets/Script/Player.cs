@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	public Camera camera;
+	public Camera camera; 
 	public GameManager gm;
 	public Inventory inv;
 	public TextDisplay displayer;
@@ -26,6 +26,10 @@ public class Player : MonoBehaviour {
 		public string toString(){
 			return i + " " + j + " " + k;
 		}
+	}
+	private Position prevPos = new Position (); // to check if player is falling
+	public Position BackPos{
+		get { return prevPos; } 
 	}
 
 	// Use this for initialization
@@ -67,9 +71,37 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
+		if (turnup){
+			if ((int)camera.transform.localEulerAngles.x%180!=90){
+				camera.transform.Rotate(-cameraRotation);
+			}
+		}else if (transform.localPosition.y < 0){
+			turnup = true;
+			displayer.displayBadMove ();
+			Invoke ("returnToGroud", tGround);
+		}
+	}
+
+	// check if player has fell
+	private bool turnup = false;
+	public static int tGround = 3;
+	
+	private void returnToGroud(){
+		if (inv.Lives > 0){
+			if (gm.randomGround()){
+				turnup = false;
+				camera.transform.localEulerAngles = new Vector3(40,0,0);
+				inv.Lives -= 1;
+			}else{
+				displayer.displayNoCubi ();
+			}
+			return;
+		}
+		displayer.displayDeath ();
 	}
 
 	public void newLocation(int i, int j, int k){
+		print (i+" "+ j+" "+ k);
 		transform.localPosition = new Vector3 (cloud.stepSize * i, 
 		                                       cloud.stepSize * j,
 		                                       cloud.stepSize * k);
@@ -86,6 +118,7 @@ public class Player : MonoBehaviour {
 			(int)Mathf.Round (transform.localPosition.z/cloud.stepSize));
 
 	}
+	
 
 	public Position getNextStep(int direction){
 		Position temp = getLocation ();

@@ -141,4 +141,33 @@ public class GameManager : MonoBehaviour {
 		Destroy (c);
 		Destroy (c.gameObject);
 	}
+
+	// for when the player falls
+	// place it to a random position if there is a place in the cloud
+	public bool randomGround(){
+		int a = Random.Range (0, cloud.width);
+		int b = Random.Range (0, cloud.height);
+		int c = Random.Range (0, cloud.depth);
+		for (int i = 0; i <cloud.width; i++){
+			for (int j = 0; j <cloud.height; j++){
+				for (int k = 0; k <cloud.depth; k++){
+					if (matrix[a,b,c] != null && (b==cloud.height-1 || matrix[a,b+1,c] == null)){
+						player.rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+						player.newLocation(a,b+1,c);
+						Invoke("unfreeze", 0.2f);
+						return true;
+					}
+					c = (c+1)%cloud.depth;
+				}
+				b = (b+1)%cloud.depth;
+			}
+			a = (a+1)%cloud.depth;
+		}
+		return false;
+	}
+
+	private void unfreeze(){
+		player.rigidbody.constraints = RigidbodyConstraints.None;
+		player.rigidbody.freezeRotation = true;
+	}
 }
