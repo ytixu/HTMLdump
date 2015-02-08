@@ -27,7 +27,7 @@
 				<p>Design an algorithm to draw a flower.</p>
 			</div>
 			<div class="answer">
-				<p>When you draw a flower, you may start drawing a 5-petal flower like those pretty pink sakura blossoms. Then you may think what if you want 8 petals? or 11 petals? or 79 petals? Now maybe you think of an algorithm to cut your canvas into sections like how professional chefs cut their pizza. Or do they cut their pizza into 79 petals?
+				<p>When you draw a flower, you may start drawing a 5-petal flower like those pretty pink sakura blossoms. Then you may think what if you want 8 petals? or 11 petals? or 89 petals? Now maybe you think of an algorithm to cut your canvas into sections like how professional chefs cut their pizza. Or do they cut their pizza into 89 petals?
 				</p><p>
 				What if you want a daisy, or a rose, with overlapping petals? Now, you may think an algorithm that after some threshold, starts overlapping the petals. Then you can paint the flower layer by layer, shifting the angles of the petals every time you reach the threshold. But how much do you need to shift? What if you cycle back to the shift you began with? You may think you want the shift to be inversely proportional to the number of layer you need. But are all this computations really what nature do to grow a flower?
 				</p><p>
@@ -43,7 +43,7 @@
 		Petal size: 
 		<input id="size" type="range" min="50" max="250" value="250" step="1" onchange="showValue(this.value, 'sliderSize')" /> <span id="sliderSize">250</span><br>
 		Number of petals: 
-		<input id="freq" type="range" min="1" max="200" value="54" step="1" onchange="showValue(this.value, 'sliderPetal')" /> <span id="sliderPetal">54</span>
+		<input id="freq" type="range" min="1" max="200" value="55" step="1" onchange="showValue(this.value, 'sliderPetal')" /> <span id="sliderPetal">54</span>
 		Rate of decrease: 
 		<input id="rate" type="range" min="1" max="10" value="3" step="1" onchange="showValue(this.value, 'sliderRate')" /> <span id="sliderRate">3</span></br><br>
 		<center><input type="button" value="DRAW" onclick="start()"></input></center>
