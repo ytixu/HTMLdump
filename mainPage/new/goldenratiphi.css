@@ -1,0 +1,17 @@
+#page1 h1{
+	font-weight: 100;
+	font-size: 340%;
+	padding: 0;
+	margin: 0;
+}
+#page1 h1 span{
+	color: #D86E3E;
+	font-weight: 100;
+}
+a{
+	text-decoration: none;
+	color:#445566;
+}
+a:hover, #page5 a:hover{
+	color:white;
+}

@@ -2,70 +2,105 @@
 <head>
 <title>Goldenratiphi</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<style>
-		body{
-			background-image: url("images/back.png");
-			background-repeat: no-repeat;
-			background-size: 100%;
-			margin-top: 13%;
-		}
-		#banner{
-			background-image: url("images/menu.png");
-			background-repeat: no-repeat;
-			background-size: 100%;
-			min-height: 400px;
-			height:50%;
-			margin-left: -1%;
-			margin-right: -1%;
-			padding-top: 6.5%;
-		}
-		#menu{
-			width:"100%";
-			max-width:"100%";
-			margin-left: -4%;
-		}
-		td {
-		    vertical-align: baseline;
-		}
-		td img {
-		    vertical-align: bottom;
-		}
-	</style>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-</head>
-<body>
-<div id="banner">
-	<center>
-		<table id="menu" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td width="34%"></td>
-		<td id="title">
-			<img src="images/icons_03.png" alt=""></td>
-		<td width="14%"></td>
-		<td>
-			<img src="images/icons_07.png" alt=""></td>
-		<td>
-			<img src="images/icons_08.png" alt=""></td>
-		<td>
-			<img src="images/icons_09.png" alt=""></td>
-		<td>
-			<img src="images/icons_10.png" alt=""></td>
-		<td>
-			<img src="images/icons_11.png" alt=""></td>
-		<td width="34%"></td>
-	</tr>
-</table>
-	</center>
-</div>
-<script>
-$( window ).resize(function() {
-	if ($( window ).width() < 1000){	
-		$( "#banner" ).css( { "margin-left" : "-50%", "margin-right" : "-50%" } );
-		smallScreen = true;
-	}else{	
-		$( "#banner" ).css( { "margin-left" : "-1%", "margin-right" : "-1%" } );
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Raleway:200,100' rel='stylesheet' type='text/css'>
+<style>
+	body {
+		font-family: 'Raleway', serif;
+		font-weight: 100;
+	    overflow: hidden;
+	    margin: 0;
 	}
-});
-</script>
+	.content{
+		position:absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+		height:100%;
+		resize: none;
+		min-width: 1080px;
+	}
+	#page1{
+		background-image: url("images/background.png");
+		background-repeat: no-repeat;
+		background-size: 100%;
+		color: white;
+		z-index: 10;
+	}
+	#page2{
+		background-color: #91D6D5;
+	}
+	#page3{
+		background-color: #C7C9BE;
+	}
+	#page4{
+		background-color: #91D6D5;
+	}
+	/*#page5{
+		background-color: #8E8B84;
+	}
+	#page6{
+		background-color: #91D6D5;
+	}
+	#page7{
+		background-color: #F6EEE3;
+	}*/
+	.blackbox{
+		background-color: rgba(0,0,0,0.3);
+		display: table-cell;
+		color: white;
+		padding: 10px;
+	}
+
+	div.slider{
+		position:absolute;
+    	text-align: center;
+	}
+	div.slider:hover{
+		color:#FFFFFF;
+		cursor:pointer;
+	}
+	#sliderV{
+	    top: 0;
+		height: 100%;
+		width: 0;
+		background-color: rgba(0,0,0,0.3);
+		/*background-color: #91D6D5;*/
+	}
+	#sliderV div{
+		position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    height: 20px;
+	    width: 50%;
+	    margin: -15% 0 0 -25%;
+	}
+	table{
+		text-align: center;
+		vertical-align: middle;
+		color: white;
+		font-size: 20px;
+	}
+</style>
+<script src="goldenratiphi.js"></script>
+<link rel="stylesheet" type="text/css" href="goldenratiphi.css">
+</head>
+<!-- <embed src="" height="300" width="300" /> -->
+<body>
+	<div id="page1" class="content">
+		<center><table width="100%" height="100%">
+			<tr><td colspan="2" height="23%"></td></tr>
+			<tr><td width="34%"></td>
+				<td><h1>&lt;/Goldenati<span>&Phi;</span>&gt;</h1>Capture the curve</td>
+			</tr></center></table>
+			<canvas id="flower"></canvas>
+	</div>
+	<div id="page2" class="content"></div>
+	<div id="page3" class="content"></div>
+	<div id="page4" class="content"></div>
+	<div id="sliderV" class="slider"><div id="click1"></div>
 </body>
+<script>
+
+</script>
 </html>
