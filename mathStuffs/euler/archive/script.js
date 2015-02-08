@@ -39,7 +39,8 @@ function setIndex(domele, dir){
 				  "Bitwise Arithmetics",
 				  "Match-Three Puzzle",
 				  "Match-Three Game",
-				  "Find Duplicate in Array"
+				  "Find Duplicate in Array",
+				  "Drawing Flowers"
 				 ]
 	var url = document.URL.split("/");
 	var currPage = url[url.length-1];
