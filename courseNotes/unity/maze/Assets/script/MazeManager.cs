@@ -89,7 +89,7 @@ public class MazeManager : MonoBehaviour {
 		IntVector2 temp;
 		Vector3 pos;
 		for (int i=0; i<aMaze.RoomNumb; i++){
-			temp = aMaze.rooms[currInd].secondCenter;
+			temp = aMaze.rooms[currInd].SecondRoom.center;
 			pos = aMaze.cells[temp.x, temp.z].transform.position;
 			resizeBullet(bulletItems[prevInd], new Vector3(pos.x, pos.y+0.1f, pos.z));
 			prevInd = currInd;

@@ -25,6 +25,12 @@ public class IntVector2 {
 			return true;
 		return false;
 	}
+
+	public bool equals(int i, int j){
+		if (x == i && z == j)
+						return true;
+		return false;
+	}
 	
 	// Manhattan distance
 	public int mDistance(IntVector2 v){

@@ -110,6 +110,7 @@ public class Maze : MonoBehaviour {
 	 * randomBranch: generate a random path in the grid starting at some specified cell
 	 * addFrontier: update the set of fronter cells
 	 * randomRoom: get a random cell coordinate that is not colored and that can be the center of a room
+	 * colorBranch: color a branch (hallway) in TURQUOISE
 	 * colorRoom: color a 3x3 room in grid
 	 */
 
@@ -141,7 +142,7 @@ public class Maze : MonoBehaviour {
 
 	private List<IntVector2> randomBranch(IntVector2 v, MazeCellVector[,] grid){
 		double alpha = 1.0; // prbability of continueing the branch
-		double epsilon = 0.9; // rate of decrease for alpha
+		double epsilon = 0.95; // rate of decrease for alpha
 		// with this combination, length of a branch is around 0-7 
 		IntVector2 temp = v;
 		List<IntVector2> output = new List<IntVector2> ();
@@ -150,7 +151,7 @@ public class Maze : MonoBehaviour {
 			List<IntVector2> nbs = getDirections(getCell(temp, grid).coord, grid);
 			foreach (IntVector2 nb in nbs){
 				if (!getCell(nb, grid).traversed || // the following condition makes the maze braided
-				    	(!getCell (nb, grid).color.Equals(Color.BLACK) && !getCell (nb, grid).color.Equals(Color.TURQUOIS) && Random.value < 0.05)){
+				    	(getCell (nb, grid).color.Equals(Color.WHITE) && Random.value < 0.05)){
 					output.Add(nb);
 					getCell(temp, grid).addFamily(getCell(nb, grid));
 					getCell(nb, grid).traversed = true;
@@ -176,17 +177,25 @@ public class Maze : MonoBehaviour {
 	private void colorRoom(IntVector2 roomC, Color c, MazeCellVector[,] grid){
 		for (int i=roomC.x-MazeRoom.sizeX/2; i < roomC.x+MazeRoom.sizeX/2+1; i++){
 			for (int j=roomC.z-MazeRoom.sizeZ/2; j < roomC.z+MazeRoom.sizeZ/2+1; j++){
+				print (i+" " + j + " " + roomC.toString());
 				grid[i,j].color = c;
 				grid[i,j].traversed = true;
 			}
 		}
 	}
 
+	private void colorBranch(List<IntVector2> branch, MazeCellVector[,] grid){
+		foreach (IntVector2 b in branch){
+			getCell (b, grid).color = Color.TURQUOIS;
+		}
+	}
+
 	private IntVector2 randomRoom(MazeCellVector[,] grid){
-		IntVector2 cell = new IntVector2 (Random.Range (MazeRoom.sizeX/2+1, width-MazeRoom.sizeX/2), 
-		                                  Random.Range (MazeRoom.sizeZ/2+1, depth-MazeRoom.sizeZ/2));
+		IntVector2 cell = new IntVector2 (Random.Range (MazeRoom.sizeX/2+2, width-MazeRoom.sizeX/2-1), // avoid generating at the boarder of the maze
+		                                  Random.Range (MazeRoom.sizeZ/2+2, depth-MazeRoom.sizeZ/2-1));
 		if (getCell(cell, grid).color != Color.WHITE)
 			return randomRoom(grid);
+		print (cell.toString() + "+++++");
 		return cell;
 	}
 
@@ -208,58 +217,91 @@ public class Maze : MonoBehaviour {
 				}
 			}
 			if (isIntersecting) continue;
-			// get a position for the secondary room
-			IntVector2 sRoom = null;
-			IntVector2 temp;
-			foreach(IntVector2 v in MazeRoom.getSecondPos()){
-				temp = v.add(randC);
-				if (temp.x < 1 || temp.x >= width-1 || temp.z < 1 || temp.z >= depth-1)
-					continue;
-				isIntersecting = false;
-				foreach (MazeRoom r in rooms){
-					if (r.intersects(temp)){
-						isIntersecting = true;
-						break;
-					}
-				}
-				if (!isIntersecting){
-					sRoom = temp;
+			// get a door for the secondary room
+			MazeRoom room = new MazeRoom(randC);
+			IntVector2 doorID = room.randomDoor(); // relative position to the center
+			IntVector2 doorI = doorID.add(room.center); // cell inside the room
+			IntVector2 door = doorID.mult(2).add(room.center); // cell outside of the room
+			// get a branch out of this door
+			List<IntVector2> branch = randomBranch(door, grid);
+			// try five times to get a branch with at least two cell
+			for (int j=0; j<5; j++){
+				if (branch.Count > 1) break;
+				branch = randomBranch (door, grid);
+			}
+			if (branch.Count < 2) continue;
+			IntVector2 end = branch[branch.Count-1]; // the last one in the branch
+			if (room.intersects(end)) continue;
+			foreach (MazeRoom r in rooms){
+				if (r.intersects(end)){
+					isIntersecting = true;
 					break;
 				}
 			}
-			if (sRoom != null){
-				rooms.Add (new MazeRoom(randC, sRoom));
-				// color 
-				colorRoom (randC, (Color) rooms.Count-1, grid);
-				colorRoom (sRoom, Color.BLACK, grid);
-			}
+			if (isIntersecting) continue;
+			// this room is valid
+			room.SecondRoom = new MazeRoom(end);
+			rooms.Add (room);
+			// color 
+			colorBranch(branch, grid);
+			colorRoom (room.center, (Color) rooms.Count-1, grid);
+			colorRoom (room.SecondRoom.center, Color.BLACK, grid);
+			// update grid
+			getCell (door, grid).addFamily(getCell(doorI, grid));
+			// add door 
+			cells[doorI.x, doorI.z].addWall(doorID, true, (Color) rooms.Count-1, getColorMat( (Color) rooms.Count-1));
 		}
 	}
 
 	/**
-	 * This algorithm sets up the position of the goal cell
-	 * It creates a random branch with an exit at the end for the first secondary room that allows it to do so. 
+	 * These algorithms set up the position of the goal cell
+	 * Creates a door at the opposite end of the door from the primary room to the secondary room
 	 * It colors the branch in TURQUOISE.
 	 */
+
+	// this find where's the entrance of the secondary room
+	private IntVector2 findDoor(MazeRoom r, MazeCellVector[,] grid){
+		IntVector2 roomC = r.center;
+		IntVector2 temp = null;
+		for (int i=roomC.x-MazeRoom.sizeX/2; i < roomC.x+MazeRoom.sizeX/2+1; i++){
+			for (int j=roomC.z-MazeRoom.sizeZ/2; j < roomC.z+MazeRoom.sizeZ/2+1; j++){
+				if (roomC.equals(i,j)) continue;
+				if (grid[i,j].children.Count > 0){
+					if (temp == null || grid[i,j].children.Contains(temp)){ 
+						temp = new IntVector2(i,j);
+					}
+				}
+			}
+		}
+		return temp;
+	}
+
+	// this finds the exit
 	private void getEndCell(MazeCellVector[,] grid){
 		for (int i = 0; i< RoomNumb ;i++){
-			// we convert the secondary room to a primary room so we can use the random 
-			// door generating algorithm to get an exit
-			MazeRoom temp = new MazeRoom (rooms [i].secondCenter, rooms [i].center);
-			IntVector2 door = temp.randomRoomDoor ();
+			MazeRoom temp = rooms [i].SecondRoom;
+			// door at the opposite end 
+			IntVector2 enterDoor = findDoor(temp, grid);
+			IntVector2 door = new IntVector2(-enterDoor.x, -enterDoor.z);
 			List<IntVector2> branch = randomBranch (door, grid);
-			// try five times to get a branch with at least one cell
+			// try five times to get a branch with at least two cell
 			for (int j=0; j<5; j++){
-				if (branch.Count > 0) break;
-				door = temp.randomRoomDoor ();
+				if (branch.Count > 1) break;
 				branch = randomBranch (door, grid);
 			}
-			if (branch.Count == 0) continue;
+			if (branch.Count < 2) continue;
 			endCell = branch [branch.Count - 1]; // goal cell
-			// coloring
-			foreach (IntVector2 b in branch){
-				getCell (b, grid).color = Color.TURQUOIS;
+			// check if putting a room there intersects with another room
+			bool isIntersecting = false;
+			foreach (MazeRoom r in rooms){
+				if (r.intersects(endCell)) 
+					isIntersecting = true;
 			}
+			if (isIntersecting) continue;
+			// coloring
+			colorBranch(branch, grid);
+			colorRoom(endCell, Color.TURQUOIS, grid);
+			// add door
 			cells[door.x, door.z].addWall(branch[0].sub (door), true, Color.TURQUOIS,
 			                              getColorMat(Color.TURQUOIS));
 			LastRoom = i;
@@ -323,52 +365,29 @@ public class Maze : MonoBehaviour {
 	 * Below are for setting up the walls.
 	 */
 
-	// Create a random doorway for the primary room.
+	// Create random doorways for the primary room.
 	private void addRoomEntrance(MazeCellVector[,] grid){
 		foreach (MazeRoom r in rooms){
-			IntVector2 door = r.randomRoomDoor();
-			while (grid[door.x, door.z].children.Count == 0){
-
-				IntVector2 dir = r.center.sub (door);
-				// this only works for 3x3 rooms
-				if (dir.isZero()){
-					door = r.randomRoomDoor();
-					continue;
+			int count = 0;
+			float alpha = 1;
+			while (count == 0 || Random.value < alpha){
+				IntVector2 doorID = r.randomDoor(); // relative position to the center
+				IntVector2 doorI = doorID.add(r.center); // cell inside the room
+				IntVector2 door = doorID.mult(2).add(r.center); // cell outside of the room
+				if (getCell(doorI, grid).children.Count == 0){ // if it wasn't linked to a secondary room
+					if (!getCell(door, grid).traversed) continue; // this may happen with small probability
+					getCell (door, grid).addFamily(getCell (doorI, grid));
+					count += 1;
 				}
-				int x = dir.x;
-				int z = dir.z;
-				if (x != 0 && z != 0){
-					if (Random.value > 0.5){
-						x = 0;
-					}else{
-						z = 0;
-					}
-				}
-				// in the case where the cell we're linking the room with is not traverse (may happen with really small probability).
-				if (!grid[door.x-x,door.z-z].traversed) continue;
-				grid[door.x, door.z].addFamily(grid[door.x-x,door.z-z]);
+				alpha *= 0.5f;
 			}
-		}
-	}
-
-	// Create a random door for the secondary room.
-	private void addSecondRoomEntrance(MazeCellVector[,] grid){
-		foreach (MazeRoom r in rooms){
-			IntVector2[] doorWay = r.randomSecondRoomDoor();
-			//print (doorWay[0].toString() + " " + doorWay[1].toString());
-			grid[doorWay[0].x, doorWay[0].z].addFamily(grid[doorWay[1].x, doorWay[1].z]);
-			// add door 
-			cells[doorWay[0].x, doorWay[0].z].addWall(doorWay[1].sub (doorWay[0]), true, 
-			            							  grid[doorWay[0].x, doorWay[0].z].color,
-			                                          getColorMat( grid[doorWay[0].x, doorWay[0].z].color));
 		}
 	}
 
 	// add walls
 	private void addWalls(MazeCellVector[,] grid){
-		// add doors
+		// add doorways
 		addRoomEntrance (grid);
-		addSecondRoomEntrance (grid);
 		// for each cell we check its right and bottom neighbours
 		IntVector2[] dir = new IntVector2[]{new IntVector2 (0, 1), new IntVector2 (1, 0)};
 		for (int i=0; i<width; i++){
