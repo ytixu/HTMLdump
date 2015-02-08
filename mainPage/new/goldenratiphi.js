@@ -15,7 +15,6 @@ function drawPetal(n, size){
     ctx.bezierCurveTo(size*0.4,size*0.5,size*0.4,size*0.8,0,size);
     ctx.bezierCurveTo(-size*0.4,size*0.8,-size*0.4,size*0.5,0,0);
     ctx.fill();
-    ctx.moveTo(0,0);
 }
 
 function drawFlower(c){
