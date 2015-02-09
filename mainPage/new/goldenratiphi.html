@@ -10,25 +10,28 @@
 		font-weight: 100;
 	    overflow: hidden;
 	    margin: 0;
+	    color: white;
 	}
 	.content{
 		position:absolute;
 	    left: 0;
 	    top: 0;
-	    width: 100%;
 		height:100%;
+	    width: 100%;
 		resize: none;
-		min-width: 1080px;
+		/*min-width: 1080px;*/
 	}
 	#page1{
 		background-image: url("images/background.png");
 		background-repeat: no-repeat;
 		background-size: 100%;
-		color: white;
-		z-index: 10;
+		z-index: 2;
 	}
 	#page2{
-		background-color: #91D6D5;
+		display: table-cell;
+		padding:8% 0 8% 0;
+		background-color: #8E8B84;
+		z-index: 1;
 	}
 	#page3{
 		background-color: #C7C9BE;
@@ -81,26 +84,51 @@
 		color: white;
 		font-size: 20px;
 	}
+
+	#title{
+		position:fixed;
+		bottom: 21%;
+		left: 55%;
+		display: table-cell;
+		text-align: center;
+		z-index: 3;
+	}
+
+	#contact{
+		position:fixed;
+		left: 1%;
+		top: 1%;
+		display: table-cell;
+		text-align: center;
+		z-index: 3;
+	}
+	.links:hover{
+		-webkit-filter: brightness(0.1);
+	}
 </style>
 <script src="goldenratiphi.js"></script>
 <link rel="stylesheet" type="text/css" href="goldenratiphi.css">
 </head>
 <!-- <embed src="" height="300" width="300" /> -->
 <body>
-	<div id="page1" class="content">
-		<center><table width="100%" height="100%">
-			<tr><td colspan="2" height="23%"></td></tr>
-			<tr><td width="34%"></td>
-				<td><h1>&lt;/Goldenati<span>&Phi;</span>&gt;</h1>Capture the curve</td>
-			</tr></center></table>
-			<canvas id="flower"></canvas>
+	<div id="title"><h1>&lt;/Goldenati<span>&Phi;</span>&gt;</h1>Capture the curve</div>
+	<div id="contact">
+		<a class="links" href="mailto:goldenratioesp@gmail.com" target="_top">
+			<img src='images/icons_10.png'/></a>
+		<a class="links" href="https://ca.linkedin.com/in/yitianxu" target="blank">
+			<img src='images/icons_09.png'/></a>
+		<a class="links" href="https://github.com/ytixu" target="blank">
+			<img src='images/icons_08.png'/></a>
+		<a class="links" href="https://goldenratiphi.wordpress.com" target="blank">
+			<img src='images/icons_07.png'/></a>
+		<a class="links" href="../CV-2015.pdf" target="blank">
+			<img src='images/icons_11.png'/></a>
 	</div>
-	<div id="page2" class="content"></div>
+	<div id="page1" class="content">
+	</div>
+	<div id="page2" class="content"><center><canvas id="flower"></canvas></center></div>
 	<div id="page3" class="content"></div>
-	<div id="page4" class="content"></div>
+	<!-- <div id="page4" class="content"></div> -->
 	<div id="sliderV" class="slider"><div id="click1"></div>
 </body>
-<script>
-
-</script>
 </html>

@@ -1,7 +1,7 @@
 var maxSize = 300;
 var canvas;
 var ctx;
-var cvsSize = 1000;
+var cvsSize = 600;
 var halfSize = cvsSize/2;
 var gr = 1.61803398875;
 var flcol = [100,35,0];
@@ -27,6 +27,7 @@ function drawFlower(c){
 	if (s==0) return;
 	drawPetal(recN,s);
 	recN+=1;
+	if (recN == 78) showThree();
 	// setTimeout(function(){ drawFlower(c); }, 110);
 }
 
@@ -38,17 +39,33 @@ function getCanvas(){
     ctx.translate(halfSize,halfSize);
 }
 
-var maxOffset = 0;
+var scrollVal = false;
 
-window.onscroll = function () {
-	drawFlower(flcol);
-	console.log($("#page1").height());
-	if (window.pageYOffset < 250 && maxOffset < window.pageYOffset){
-		$("#page1").css("top", "-=85px");
-		$("#page1").height($("#page1").height() - 155);
-		maxOffset = window.pageYOffset;
-	}
+function showThree(){
+	$( "#page2" ).animate({
+	   	width: "600px"
+	}, 500);
+	$( "#title" ).animate({
+	   	left: "3%"
+	}, 500);
 }
+
+window.addEventListener ("mousewheel", function (event) {
+	console.log(scrollVal);
+	if (event.wheelDelta > 0 || scrollVal > 0) return;
+	if (scrollVal == 0){
+		scrollVal = true;
+		$( "#page1" ).animate({
+	   		height: "-=100%"
+	 	}, 500);
+	  	$( "#title" ).animate({
+	   		left: "34%"
+	 	}, 500);
+	}else if (scrollVal < -200){
+		drawFlower(flcol);
+	}
+	scrollVal += event.wheelDelta;
+}, false);
 
 window.onload = function(){
 	getCanvas();
