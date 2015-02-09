@@ -1,13 +1,113 @@
-h1{
+body {
+	font-family: 'Raleway', serif;
+	font-weight: 100;
+    overflow: hidden;
+    margin: 0;
+    color: white;
+}
+.content{
+	position:absolute;
+    left: 0;
+    top: 0;
+	height:100%;
+    width: 100%;
+}
+#page1{
+	background-image: url("images/background.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	z-index: 2;
+}
+#page2{
+	display: table-cell;
+	padding:8% 0 8% 0;
+	background-color: rgba(142, 139, 132, 0.8);
+	z-index: 1;
+}
+#page3{
+	background-color: rgba(199, 201, 190, 0.5);
+}
+#c0,#c2,#c4{
+	background-color: rgba(255, 148, 77, 0.9);
+}
+#c1,#c3,#c5{
+	background-color: rgba(142, 139, 132, 0.9);
+}
+/*#page6{
+	background-color: #91D6D5;
+}
+#page7{
+	background-color: #F6EEE3;
+}*/
+.blackbox{
+	background-color: rgba(0,0,0,0.3);
+	display: table-cell;
+	color: white;
+	padding: 10px;
+}
+
+div.slider{
+	position:absolute;
+	text-align: center;
+}
+div.slider:hover{
+	color:#FFFFFF;
+	cursor:pointer;
+}
+#sliderV{
+    top: 0;
+	height: 100%;
+	width: 0;
+	background-color: rgba(0,0,0,0.3);
+	/*background-color: #91D6D5;*/
+}
+#sliderV div{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 20px;
+    width: 50%;
+    margin: -15% 0 0 -25%;
+}
+table{
+	text-align: center;
+	vertical-align: middle;
+	color: white;
+	font-size: 20px;
+}
+
+#title{
+	position:fixed;
+	bottom: 21%;
+	right: 13%;
+	display: table-cell;
+	z-index: 3;
+	text-align: right;
 	font-weight: 100;
 	font-size: 340%;
-	padding: 0;
-	margin: 0;
-	line-height: 90%;
+	line-height: 60%;
+	text-align: right;
 }
-h1 span{
+#title span.phi{
 	color: #FF944D;
 	font-weight: 100;
+}
+
+#title .subtitle{
+	font-size: 34%;
+}
+
+#contact{
+	position:fixed;
+	left: 1%;
+	top: 2%;
+	display: table-cell;
+	text-align: center;
+	z-index: 3;
+}
+.links:hover{
+	-webkit-filter: brightness(0.1);
 }
 a{
 	text-decoration: none;
@@ -15,4 +115,12 @@ a{
 }
 a:hover, #page5 a:hover{
 	color:white;
+}
+
+#flower{
+	padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }

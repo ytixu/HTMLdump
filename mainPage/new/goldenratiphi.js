@@ -73,38 +73,80 @@ window.onload = function(){
 var divs = {};
 var spacing = 10;
 // left, top
-var pos = [[parseInt($(window).width()/gr), 60+parseInt($(window).height()*0.05)]]
+var pos = [];
 
-function createDivs(){
-	var h = parseInt($(window).height()*0.8);
-	$("body").append("<div id=\'c0\'></div>");
-	divs["#c0"] = 0;
-	h -= spacing/2;
-	pos[0][0] -= Math.round(h/2);
-	$("#c0").css({"width":h.toString(), 
-				"height":h.toString(),
-				"position":"absolute",
-				"left":pos[0][0]+"px",
-				"top":pos[0][1]+"px"});
-	$("#c0").hide().fadeIn("slow");
-	var left = parseInt($("#c0").css("left"));
-	var top = parseInt($("#c0").css("top"));
-	pos[0] = [left, top, h];
-	for (var i=1; i<6; i++){
+function initializeDivs(vertical){
+	var left;
+	var top;
+	var h;
+	if (vertical){
+		h = Math.min(parseInt($(window).height()*0.8),
+					 parseInt($(window).width()*0.8));
+		left = parseInt($(window).width()*0.13) + h;
+		top = 60+parseInt($(window).height()*0.08);
+		var temp = createDivs(h*gr, left, top, 0, 5);
+		console.log(temp);
+		h = temp[0];
+		left = temp[1];
+		top = temp[2]+h+spacing/2;
+		h = Math.round(h/gr);
+		// top -= h;
+		$("body").append("<div id=\'c5\'></div>");
+		divs["#c5"] = 5;
+		$("#c5").css({"width":h.toString(), 
+					"height":h.toString(),
+					"position":"absolute",
+					"left":left+"px",
+					"top":top+"px"});
+		$("#c5").hide().fadeIn("slow");
+		pos.push([left, top, h]);
+	}else{
+		pos = [[parseInt($(window).width()/gr), 
+				60+parseInt($(window).height()*0.05)]];
+		h = Math.min(parseInt($(window).height()*0.8),
+						 parseInt($(window).width()*0.45));
+		$("body").append("<div id=\'c0\'></div>");
+		divs["#c0"] = 0;
+		h -= spacing/2;
+		pos[0][0] -= Math.round(h/2);
+		$("#c0").css({"width":h.toString(), 
+					"height":h.toString(),
+					"position":"absolute",
+					"left":pos[0][0]+"px",
+					"top":pos[0][1]+"px"});
+		$("#c0").hide().fadeIn("slow");
+		left = parseInt($("#c0").css("left"));
+		top = parseInt($("#c0").css("top"));
+		pos[0] = [left, top, h];
+		createDivs(h, left, top, 1, 6);
+	}
+	window.addEventListener ("mousewheel", function (event) {
+		for (var d in divs){
+			$(d).finish();
+		}
+		turn(event.wheelDelta);
+	}, false);
+}
+
+function createDivs(h, left, top, s, e){
+	var f = 0;
+	if (s == 0) f = 1;
+	for (var i=s; i<e; i++){
 		console.log(left, top);
-		if (i == 2) top += h+spacing+spacing/2;
-		if (i == 3){
+		if (i+f == 2) top += h+spacing+spacing/2;
+		if (i+f == 3){
 			 left += h+spacing+Math.round(spacing/3);
 			 top += h+Math.round(spacing/3);
 		}
-		if (i == 4) left += h+spacing/2;
+		if (i+f == 4) left += h+spacing/2;
 		h = Math.round(h/gr);
-		if (i == 1 || i == 5) left -= h+spacing;
-		if (i == 4){
+		if (i+f == 1) left -= h+spacing;
+		if (i+f == 5) left -= h+spacing/2;
+		if (i+f == 4){
 			top -= h+spacing/2;
 			left -= h;
 		}
-		if (i == 3) top -= h;
+		if (i+f == 3) top -= h;
 		h -= spacing/2;
 		$("body").append("<div id=\'c"+i+"\'></div>");
 		divs["#c"+i] = i;
@@ -121,12 +163,7 @@ function createDivs(){
 	// });
 	console.log(pos);
 
-	window.addEventListener ("mousewheel", function (event) {
-		for (var d in divs){
-			$(d).finish();
-		}
-		turn(event.wheelDelta);
-	}, false);
+	return [h, left, top];
 }
 
 // function resizeDivs(){
@@ -145,7 +182,7 @@ function turn(dist){
 	for (var d in divs){
 		if (divs[d] == endInds[0]){
 			divs[d] = endInds[1];
-			$(d).fadeOut("slow", function(){
+			$(d).fadeOut("fast", function(){
 				$(this).css({
 					"left":pos[endInds[1]][0]+"px",
 					"top":pos[endInds[1]][1]+"px",
@@ -168,9 +205,14 @@ function turn(dist){
 
 
 function showThree(){
+	var vertical = parseInt($(window).width()) < parseInt($(window).height());
   	$( "#title" ).fadeOut( "fast", function(){
 		document.getElementById("flower").remove();
-		$( "#title" ).css({ "top": "1%", "right":"1%", "left":"auto"});
+		if (vertical){
+			$( "#title" ).css({ "top": "5%", "right":"1%", "left":"auto"});
+		}else{
+			$( "#title" ).css({ "top": "2%", "right":"1%", "left":"auto"});
+		}
 		$( "#page2" ).animate({
 		   	height: "60px",
 		   	padding: "0",
@@ -180,7 +222,7 @@ function showThree(){
 			$( "#page1" ).hide().css("height", "100%");	
 			$( "#page1" ).fadeIn( "slow");
 			$( "#title" ).fadeIn( "slow");
-			createDivs();
+			initializeDivs(vertical);
 		});
   	});
 }
