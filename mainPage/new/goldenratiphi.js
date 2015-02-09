@@ -42,12 +42,21 @@ function getCanvas(){
 var scrollVal = false;
 
 function showThree(){
-	$( "#page2" ).animate({
-	   	width: "600px"
-	}, 500);
-	$( "#title" ).animate({
-	   	left: "3%"
-	}, 500);
+  	$( "#title" ).fadeOut( "fast", function(){
+		document.getElementById("flower").remove();
+		$( "#title" ).css({ "top": "1%", "right":"1%", "left":"auto"});
+		$( "#page2" ).animate({
+		   	height: "60px",
+		   	padding: "0",
+
+		}, 500, function(){
+			$("#page1").css("z-index", "0");
+			$( "#page1" ).animate({
+			   	height: "100%",
+			}, 500);	
+			$( "#title" ).fadeIn( "slow");
+		});
+  	});
 }
 
 window.addEventListener ("mousewheel", function (event) {
@@ -61,6 +70,9 @@ window.addEventListener ("mousewheel", function (event) {
 	  	$( "#title" ).animate({
 	   		left: "34%"
 	 	}, 500);
+	 	$( "#title" ).animate({
+	   		left: "-=3%"
+		}, 4000);
 	}else if (scrollVal < -200){
 		drawFlower(flcol);
 	}
