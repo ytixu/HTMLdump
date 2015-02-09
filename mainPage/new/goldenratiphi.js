@@ -7,7 +7,7 @@ var gr = 1.61803398875;
 var flcol = [100,35,0];
 var overlaycol = [200,200,200];
 var recN = 0;
-var numP = 5; // 89
+var numP = 5; // 89;
 
 function drawPetal(n, size){
     ctx.beginPath();
@@ -70,24 +70,27 @@ window.onload = function(){
 //////////////////////////////
 
 
-var divs = [];
+var divs = {};
 var spacing = 10;
 // left, top
-var pos = [parseInt($(window).width()/gr), 60+parseInt($(window).height()*0.05)]
+var pos = [[parseInt($(window).width()/gr), 60+parseInt($(window).height()*0.05)]]
 
 function createDivs(){
 	var h = parseInt($(window).height()*0.8);
 	$("body").append("<div id=\'c0\'></div>");
-	divs.push($("#c0"));
+	divs["#c0"] = 0;
 	h -= spacing/2;
+	pos[0][0] -= Math.round(h/2);
 	$("#c0").css({"width":h.toString(), 
 				"height":h.toString(),
 				"position":"absolute",
-				"left":pos[0]-Math.round(h/2)+"px",
-				"top":pos[1]+"px"});
+				"left":pos[0][0]+"px",
+				"top":pos[0][1]+"px"});
+	$("#c0").hide().fadeIn("slow");
 	var left = parseInt($("#c0").css("left"));
 	var top = parseInt($("#c0").css("top"));
-	for (var i=1; i<5; i++){
+	pos[0] = [left, top, h];
+	for (var i=1; i<6; i++){
 		console.log(left, top);
 		if (i == 2) top += h+spacing+spacing/2;
 		if (i == 3){
@@ -96,20 +99,70 @@ function createDivs(){
 		}
 		if (i == 4) left += h+spacing/2;
 		h = Math.round(h/gr);
-		if (i == 1) left -= h+spacing;
+		if (i == 1 || i == 5) left -= h+spacing;
 		if (i == 4){
 			top -= h+spacing/2;
 			left -= h;
 		}
 		if (i == 3) top -= h;
 		h -= spacing/2;
-		divs.push(document.createElement("div"));
 		$("body").append("<div id=\'c"+i+"\'></div>");
+		divs["#c"+i] = i;
 		$("#c"+i).css({"width":h.toString(), 
 				"height":h.toString(),
 				"position":"absolute",
 				"left":left+"px",
 				"top":top+"px"});
+		$("#c"+i).hide().fadeIn("slow");
+		pos.push([left, top, h]);
+	}
+	// $(window).resize(function(){
+ //    	createDivs();
+	// });
+	console.log(pos);
+
+	window.addEventListener ("mousewheel", function (event) {
+		for (var d in divs){
+			$(d).finish();
+		}
+		turn(event.wheelDelta);
+	}, false);
+}
+
+// function resizeDivs(){
+// 	for (var d in divs){
+
+// 	}
+// }
+
+function turn(dist){
+	var endInds;
+	if (dist < 0){
+		endInds = [0,5,-1];
+	}else{
+		endInds = [5,0,1];
+	}
+	for (var d in divs){
+		if (divs[d] == endInds[0]){
+			divs[d] = endInds[1];
+			$(d).fadeOut("slow", function(){
+				$(this).css({
+					"left":pos[endInds[1]][0]+"px",
+					"top":pos[endInds[1]][1]+"px",
+					"width":pos[endInds[1]][2]+"px",
+					"height":pos[endInds[1]][2]+"px"
+				});
+				$(this).fadeIn("slow");
+			});
+			continue;
+		}
+		divs[d] += endInds[2];
+		$(d).animate({
+			"left":pos[divs[d]][0]+"px",
+			"top":pos[divs[d]][1]+"px",
+			"width":pos[divs[d]][2]+"px",
+			"height":pos[divs[d]][2]+"px"
+		},500);
 	}
 }
 
@@ -124,9 +177,8 @@ function showThree(){
 
 		}, 500, function(){
 			$("#page1").css("z-index", "0");
-			$( "#page1" ).animate({
-			   	height: "100%",
-			}, 500);	
+			$( "#page1" ).hide().css("height", "100%");	
+			$( "#page1" ).fadeIn( "slow");
 			$( "#title" ).fadeIn( "slow");
 			createDivs();
 		});
