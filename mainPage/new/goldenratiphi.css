@@ -13,33 +13,41 @@ body {
     width: 100%;
 }
 #page1{
+	/*background-color: rgba(142, 139, 132, 0.8);*/
 	background-image: url("images/background.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	z-index: 2;
+	z-index: 1;
 }
 #page2{
 	display: table-cell;
-	padding:8% 0 8% 0;
+	height: 0;
 	background-color: rgba(142, 139, 132, 0.8);
-	z-index: 1;
+	z-index: 3;
 }
 #page3{
 	background-color: rgba(199, 201, 190, 0.5);
 }
 #c0,#c2,#c4{
 	background-color: rgba(255, 148, 77, 0.9);
+	z-index: 4;
 }
 #c1,#c3,#c5{
 	background-color: rgba(142, 139, 132, 0.9);
+	z-index: 4;
 }
-/*#page6{
-	background-color: #91D6D5;
+#skipper{
+	background-color: rgba(142, 139, 132, 0.8);
+	width: 50px;
+	height: 0px;
+	position: absolute;
+	left: 50%;
+	margin-left: -25px;
+	padding-top: 5px;
+	text-align: center;
 }
-#page7{
-	background-color: #F6EEE3;
-}*/
+
 .blackbox{
 	background-color: rgba(0,0,0,0.3);
 	display: table-cell;
@@ -78,16 +86,16 @@ table{
 }
 
 #title{
-	position:fixed;
-	bottom: 21%;
-	right: 13%;
+	position:absolute;
 	display: table-cell;
-	z-index: 3;
-	text-align: right;
+	margin-top: 30%;
+	width:100%;
+	z-index: 5;
+	text-align: center;
 	font-weight: 100;
 	font-size: 340%;
 	line-height: 60%;
-	text-align: right;
+	vertical-align: middle;
 }
 #title span.phi{
 	color: #FF944D;
@@ -104,17 +112,18 @@ table{
 	top: 2%;
 	display: table-cell;
 	text-align: center;
-	z-index: 3;
+	z-index: 5;
 }
 .links:hover{
 	-webkit-filter: brightness(0.1);
 }
 a{
 	text-decoration: none;
-	color:#445566;
+	color:white;
 }
 a:hover, #page5 a:hover{
-	color:white;
+	color:black;
+	cursor:pointer;
 }
 
 #flower{
@@ -123,4 +132,49 @@ a:hover, #page5 a:hover{
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+div.tileCont{
+	visibility: hidden;
+	overflow: none;
+}
+
+div.tileDiscript{
+	visibility: hidden;
+	position:absolute;
+	z-index: 7;
+}
+
+div.tileImg{
+	visibility: hidden;
+	position:absolute;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 6;
+}
+
+.tileTitle{
+	visibility: hidden;
+	position:absolute;
+	left:0;
+	bottom:0;
+	z-index: 7;
+}
+
+#aboutImage{
+    background-image: url("images/profile.jpg");
+}
+
+.FadeAway{
+    position: absolute; top:0px; left:0px; width:100%; height:100%;
+    background:transparent;
+    background: linear-gradient(top, rgba( 255, 255, 255, 255 ) 0%, rgba( 255, 255, 255, 1 ) 100% );
+    background: -moz-linear-gradient(top, rgba( 255, 255, 255, 0) 0%, rgba( 255, 255, 255, 1 ) 100% );
+    background: -ms-linear-gradient(top, rgba( 255, 255, 255, 0 ) 0%, rgba( 255, 255, 255, 1 ) 100% );
+    background: -o-linear-gradient( top, rgba( 255, 255, 255, 0 ) 0%, rgba( 255, 255, 255, 1 ) 100% );
+    background: -webkit-linear-gradient( top, rgba( 255, 255, 255, 0 ) 0%, rgba( 255, 255, 255, 1 ) 100% );
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#550000FF, endColorstr=#550000FF);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff, endColorstr=#ffffffff);
 }
