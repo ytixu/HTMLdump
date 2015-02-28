@@ -26,12 +26,12 @@ body{
 	font-weight: normal;
 	font-size:30px;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 -15px 0;
 }
 #about{
 	color: #ddffff;
 	background-color: #666666;
-	padding: 10% 7% 4% 7%;
+	padding: 10% 7% 10% 7%;
 }
 #index a, #about a{ 
 	color: white; 

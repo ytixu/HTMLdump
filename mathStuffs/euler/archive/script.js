@@ -1,21 +1,7 @@
 var title = ":3";
 var pageTitle = "Project Archimedes";
 
-var about = "Questions taken from<br><a target=\"blanck\" "+
-			"href=\"https://projecteuler.net/\">Project Euler</a><br><a target=\"blank\"" + 
-			"href=\"http://www.mktechnicalclasses.com/Notes/" +
-			"Cracking%20the%20Coding%20Interview,%204%20Edition%20-%20150%20"+
-			"Programming%20Interview%20Questions%20and%20Solutions.pdf\">"+
-			"Cracking the Coding Interview</a><br>" +
-			// "<a href=\"http://www.algorithmsforinterviews.com/\">"+
-			// "Algorithms For Interviews\</a><br>"+
-			"Quora<br>" + 
-			"and from myself<br><br>" +
-			"Display engine for Latex: " +
-			"<a target=\"blank\" href=\"http://www.mathjax.org/\">mathjax</a><br><br>"+
-			"Syntax highlight engine for<br>code: " +
-			"<a target=\"blank\" href=\"https://code.google.com/p/google-code-prettify/\">"+
-			"google-code-prettify</a>";
+var about = "&lt;code>, &Mu;&alpha;&theta;h, and other random.ness";
 
 function createChild(cont, type){
 	var stuff = document.createElement(type);
