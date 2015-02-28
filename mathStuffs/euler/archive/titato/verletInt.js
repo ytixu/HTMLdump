@@ -1,4 +1,4 @@
-var timeStep = 0.01;
+var timeStep = 0.01; // squared already
 var thr = 0.01;
 var size=13;
 var deceleration = 0.99;
