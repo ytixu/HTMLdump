@@ -59,19 +59,25 @@ function setIndex(domele, dir){
 }
 
 function setup(){
-	document.title = title;
 	var content = document.createElement("div");
 	content.id = "content";
+	document.title = title;
+	var bar = document.createElement("div");
+	bar.id = "leftBar";
+	document.body.appendChild(bar);
+	document.body.appendChild(content);
 	var titlediv = document.createElement("div");
 	titlediv.id = "title";
 	titlediv.appendChild(createChild(pageTitle, "h1"));
-	titlediv.appendChild(createChild(about, "p"))
-	content.appendChild(titlediv);
+	var aboutdiv = document.createElement("div");
+	aboutdiv.id = "about";
+	aboutdiv.appendChild(titlediv);
+	aboutdiv.appendChild(createChild(about, "p"));
+	bar.appendChild(aboutdiv);
 	var index = document.createElement("div");
 	index.id = "index";
-	document.body.appendChild(index);
-	document.body.appendChild(content);
 	setIndex(index);
+	bar.appendChild(index);
 	return content;
 }
 
