@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang="></script>
+	</head>
+	<body>
+		<div id="text">
+				<div class="sequence">
+				<a href="1.html">previous</a> /
+				<a href="3.html">next</a></div>
+				<h3>Air Dancer</h3>
+			<div class="question">
+				<p>Model an air dancer with verlet integration.</p>
+			</div>
+			<div class="answer">
+				<p>An air dancer can be modeled with a set of connected circles. To reproduce their movement while maintaining their connectivity, we can simplify Newton's formula to this
+					\begin{align*} 
+					&p_{new}(i) = 2p_{curr}(i)-p_{old}(i)+a\Delta t\\
+					&p_{old}(i) = p_{curr}(i)
+					\end{align*}
+				where the $p(i)$'s are the new, current and old positions of the $i$th circles. The velocity is replaced by $p_{curr}(i)-p_{old}(i)$. In the real world, this may offend some physicists. But in a computer simulation where time is discretize, air dancers don't need to obey physic law; and those who don't are privilege to gain some computational efficiency.<p>
+
+				</p>The distance between two connected circles is contrained by a certain bound so that the body of the air dancer stays as a whole. If during the position-updating process, a constrain is violated, then we need to iterate an readjustment policy until there is no more violation. 
+					\begin{align*}
+						&d = distance(i,i+1)\\
+						&p_{curr}(i) = p_{curr}(i) + d/2\\
+						&p_{curr}(i+1) = p_{curr}(i+1) - d/2
+					\end{align*}
+				</p><p>
+				And that's basically verlet integration!</p>
+				<p>Next, we consider the acceleration of the air dancer because the first equation has an $a$ term. We can model this acceleration as function of sine and cosine to create the wave pattern.</p> <p>Finally we add some facial characteristics in an attempt to amplify the emotional aspect of dance.</p>
+			</div>
+	<h4>Demo</h4>
+	<center><table><tr>
+		<td>Tempo: 
+		<input id="size" type="range" min="1" max="10" value="1" step="1" onchange="tempo = this.value;" /><br>
+		Amplitude: 
+		<input id="freq" type="range" min="1" max="20" value="1" step="1" onchange="ampX = this.value;" /><br>
+		Frequency: 
+		<input id="freq" type="range" min="1" max="10" value="1" step="1" onchange="freX = this.value;" /><br>
+		<td><canvas id="demo"></canvas><td></tr></table></center>
+<div class="code">
+<?prettify lang=scm?>
+<pre><code></code></pre>
+</div>
+			<div class="sequence">
+				<span class="date">Jan 6, 2015 ~ </span>
+				<a href="1.html">previous</a> / <a href="3.html">next</a>
+			</div>
+		</div>
+	</body>
+	<script src="script.js"> </script>
+	<script src="titato/verletInt.js"> </script>
+</html> 
+
+

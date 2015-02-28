@@ -7,6 +7,8 @@ var about = "Questions taken from<br><a target=\"blanck\" "+
 			"Cracking%20the%20Coding%20Interview,%204%20Edition%20-%20150%20"+
 			"Programming%20Interview%20Questions%20and%20Solutions.pdf\">"+
 			"Cracking the Coding Interview</a><br>" +
+			// "<a href=\"http://www.algorithmsforinterviews.com/\">"+
+			// "Algorithms For Interviews\</a><br>"+
 			"Quora<br>" + 
 			"and from myself<br><br>" +
 			"Display engine for Latex: " +
