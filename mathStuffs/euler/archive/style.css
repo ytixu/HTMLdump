@@ -11,9 +11,8 @@ body{
 	font-size: 16px;
 	bottom:0;
 	background-color: #669999;
-	height:100%;
-	
 }
+
 #index{
 	overflow-y: scroll;
 	color: white;

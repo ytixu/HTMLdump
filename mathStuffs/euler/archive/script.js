@@ -59,13 +59,13 @@ function setIndex(domele, dir){
 }
 
 function setup(){
-	var content = document.createElement("div");
-	content.id = "content";
+	// var content = document.createElement("div");
+	// content.id = "content";
 	document.title = title;
 	var bar = document.createElement("div");
 	bar.id = "leftBar";
 	document.body.appendChild(bar);
-	document.body.appendChild(content);
+	// document.body.appendChild(content);
 	var titlediv = document.createElement("div");
 	titlediv.id = "title";
 	titlediv.appendChild(createChild(pageTitle, "h1"));
