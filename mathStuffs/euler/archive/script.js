@@ -42,7 +42,8 @@ function setIndex(domele, dir){
 				  "Match-Three Puzzle",
 				  "Match-Three Game",
 				  "Find Duplicate in Array",
-				  "Drawing Flowers"
+				  "Drawing Flowers",
+				  "Air Dancer"
 				 ]
 	var url = document.URL.split("/");
 	var currPage = url[url.length-1];
