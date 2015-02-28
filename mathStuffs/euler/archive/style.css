@@ -14,7 +14,7 @@ body{
 }
 
 #index{
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
 	color: white;
 	padding: 2% 7% 2% 7%;
 }
