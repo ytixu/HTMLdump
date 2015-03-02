@@ -1,0 +1,89 @@
+<html>
+<head>
+	<title>GenLin</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+	</script>
+	<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<style>
+		body{
+			font-family: 'Open Sans', sans-serif;
+			margin:10%;
+			font-size: 20px;
+		}
+		a{
+			color: #333333;
+			text-decoration: none;
+		}
+		a:hover{
+			color: #aaaaaa;
+		}
+	</style>
+</head>
+<body>
+<h1>Generalized Linear Models</h1>
+<hr>
+<h2>Content</h2>
+<ol>
+	<li><a href="#efam">Exponential Familiy</a></li>
+	<li><a href="#logm">Logistic Model</a></li>
+	<li><a href="#prom">Probit Model</a></li>
+	<li><a href="#poim">Poission Model</a></li>
+</ol>
+<hr>
+<a name="efam"></a><h2>Exponential Familiy</h2>
+Consider $Y_i$ with distribution belonging to the linear exponential family (EF), 
+\begin{equation}
+	f_{Y_i}(Y_i|\theta) = \exp(-b(\theta)+ \theta y_i + c(y_i))
+\end{equation}
+where $b(\theta)$ is a function of the parameters only and $c(y_i)$ is a function of the data only.
+Assuming that the first 2 partial derivatives exist for all $\theta$ in the define support of the paprameter space, let
+\begin{align}
+	&I(\theta;y_i) = \log(f_{Y_i}(Y_i|\theta))\\
+	&\dot{I}(\theta;y_i) = \frac{\partial I(\theta;y_i)}{\partial\theta}\\
+	&\ddot{I}(\theta;y_i) = \frac{\partial^2 I(\theta;y_i)}{\partial\theta^2}
+\end{align}
+In particular 
+\begin{equation}
+	\dot{I}(\theta;y_i) = \frac{\partial}{\partial \theta} (-b(\theta)+ \theta y_i + c(y_i)) = -\dot{b}(\theta) + y_i
+\end{equation}
+Here are some interesting properties.
+<ol><li>
+\begin{equation}
+  \label{eq:efexp}
+  E\left[\dot{I}(\theta;y_i)\right] = 0
+\end{equation}
+</li><li>
+	Let $E\left[m(y_i, \theta)\right] = 0$ for some function $m$, then 
+\begin{equation}
+	E\left[\frac{\partial m(y_i, \theta)}{\partial \theta'}\right] = 
+	-E\left[m(y_i, \theta)\frac{\partial I(\theta;y_i)}{\partial\theta'}\right]
+\end{equation}
+</li><li>
+	In the special case when $m(y_i, \theta) = \dot{I}(\theta;y_i)$,
+	\begin{equation}
+	E\left[\ddot{I}(\theta;y_i)\right] = 
+	-E\left[(\dot{I}(\theta;y_i))^2\right] = I(\theta;y_i) = Var(\theta, y_i)
+\end{equation} 
+</li>
+</ol>
+<!-- TODO: PROOFS -->
+Using these result, we can get the followings
+
+<!-- In equation \eqref{eq:sample}, we find the value of an
+interesting integral: -->
+<hr>
+<a name="logm"></a><h2>Probit Model</h2>
+<hr>
+<a name="prom"></a><h2>Logistic Model</h2>
+<hr>
+<a name="poim"></a><h2>Poission Model</h2>
+<hr>
+MATH 523 Generalized Linear Models, by Russell Steele<br>
+McGill University, Winter 2015<br>
+</body>
+</html>
