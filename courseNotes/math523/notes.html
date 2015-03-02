@@ -50,10 +50,10 @@
 	    ol { 
 	    	counter-reset: item 
 	    }
-		li { 
+		ol li { 
 			display: block 
 		}
-		li:before { 
+		ol li:before { 
 			content: counters(item, ".") "."; 
 			counter-increment: item; 
 			padding-right:10px; 
@@ -78,8 +78,20 @@
 			<li><a href="#mlee">Maximum Likelihood Estimates for EDF</a></li>
 			<li><a href="#algo"></a></li>
 			<li><a href="#fish">Fisher Information</a></li>
+			<li><a href="#delt">Delta Method</a></li>
+			<li><a href="#robo">Robustness</a></li>
 		</ol></li>
-	<li><a href="#magf">Model Assessment and Goodness of Fit</a></li>
+	<li><a href="#magf">Model Assessment and Goodness of Fit</a>
+		<ol>
+			<li><a href="#LRT">Likelihood-Ratio Test (LRT)</a></li>
+			<li><a href="#wald">Wald's Test</a></li>
+			<li><a href="#rao">Rao's Score Test</a></li>
+		</ol></li>
+	<li><a href="#infr">Inference</a>
+		<ol>
+			<li><a href="#cfit">Confidence Interval</a></li>
+			<li><a href="#plrt">Profile Log-Likelihood Ratio Test (PLRT)</a></li>
+		</ol></li>
 	<li><a href="#egmd">Relevant Models</a>
 		<ol>
 			<li><a href="#logm">Logistic Model</a></li>
@@ -223,9 +235,97 @@ Let $V$ be a diagonal matric of response variance, i.e.: $V_{ii} = Var(y_i)$, an
 In general, $D$ and $V$ may depend on $\mu$, and thus on $\beta$. Thus, an iterative method is required to solve for $\beta$. 
 <a name="algo"></a><h3>A</h3>
 <a name="fish"></a><h3>Fisher Information</h3>
-
+Under regularity conditions, the MLE of $\hat{\beta}$ converges in distribution to a multivariate normal random variable with mean equal to the true $\beta$ and covariance matrix equal to the inverse of the Fisher information. 
+\begin{equation*}
+	E\left[-\frac{\partial^2 l(\beta;y_i)}{\partial\beta_h\partial\beta_j}\right]= E\left[\left(\frac{\partial l(\beta;y_i)}{\partial\beta_h}\right)\left(\frac{\partial l(\beta;y_i)}{\partial\beta_j}\right)\right] = \sum_{i=1}^n\frac{x_{ih}x_{ij}}{Var(y_i)}\left(\frac{\partial\mu_i}{\partial\eta_i}\right)^2
+\end{equation*}
+Let $W$ be a diagonal matric with diagonal elements 
+\begin{equation*}
+w_{ii}=\frac{\left(\frac{\partial\mu_i}{\partial\eta_i}\right)^2}{Var(y_i)}
+\end{equation*}
+The Fisher information matrix can be written as 
+\begin{equation*}
+	\mathcal{I}(\beta) = X^\top WX
+\end{equation*}
+	Thus, for large sample, $\beta \sim N[\beta,(X^\top WX)^{-1}]$.
+<h4>Variance of the Estimators</h4>
+By plugging in $\hat{\beta}$ into $\partial \mu_i/\partial \eta_i$ and $Var(y_i)$ to obtain $\hat{W}$, we can estimate the variance of $\hat{\beta}$
+\begin{equation*}
+\hat{Var}(\hat{\beta}) = (X^\top \hat{W}X)^{-1}
+\end{equation*}
+If $a(\phi) \neq 1$, then the variance can be estimated using maximum likelihood.
+<a href="#delt"></a><h3>Delta Method</h3>
 <hr>
 <a name="magf"></a><h2>Model Assessment and Goodness of Fit</h2>
+<a name="LRT"></a><h3>Likelihood-Ratio Test (LRT)</h3>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta = \beta_0\\
+&H_{1} : \beta \neq \beta_0
+\end{align*}
+the statistic 
+\begin{equation*}
+	-2\log\Lambda = -2(l_1-l_0)
+\end{equation*}
+where $l_1$ and $l_0$ are the log-likelihood under $H_1$ and $H_0$ respectively, has assymptotic $\chi^2$ distribution with $dim(\beta)$ degrees of freedom, under regularity condition. 
+<a name="wald"></a><h3>Wald's Test</h3>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta_j = \beta_{j0}\\
+&H_{1} : \beta_j \neq \beta_{j0}
+\end{align*}
+the statistic 
+\begin{equation*}
+	W = \frac{\hat{\beta}_j - \beta_{j0}}{\sqrt{Var(\beta)_{jj}}}
+\end{equation*}
+has assymptotic standard normal distribution. 
+<h4>Multiple Parameters</h4>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta_a = 0\\
+&H_{1} : \beta_a \neq 0
+\end{align*}
+\begin{equation*}
+	W = \hat{\beta}_a^\top[\hat{Var}(\hat{\beta}_a)]^{-1}\hat{\beta}_a
+\end{equation*}
+<a name="rao"></a><h3>Rao's Score Test</h3>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta = \beta_0\\
+&H_{1} : \beta \neq \beta_0
+\end{align*}
+the statistic 
+\begin{equation*}
+	S= \frac{\frac{\partial l(\beta;y)^2}{\partial \beta_0}}{-E\left[\frac{\partial^2 l(\beta;y)^2}{\partial \beta_0^2}\right]}
+\end{equation*}
+has assymptotic $\chi^2_1$ distribution.
+<h4>Multiple Parameters</h4>
+\begin{equation*}
+	S = \frac{\partial l(\beta;y)^\top}{\partial \beta_0}\mathcal{I}(\hat{\beta}_0)\frac{\partial l(\beta;y)}{\partial \beta_0}
+\end{equation*}
+<hr>
+<a name="infr"></a><h2>Inference</h2>
+<a name="cfit"></a><h3>Confidence Interval</h3>
+For any of these hypothesis tests for one parameter models, we can invert the test to obtain a 95% confidence interval.
+<a name="plrt"></a><h3>Profile Log-Likelihood Ratio Test (PLRT)</h3>
+For multi-parameter models, assume that we can partition $\beta$ into $(\beta_0, \psi)$ where $\beta_0$ is the target parameter of interest for the interval and $\psi$ is the set of nuisance parameters. For null hypothesis $H_0: \beta=\beta_0$, construct the original and profile log-likelihood
+\begin{align*}
+&l(\beta, \psi; y)\\
+&l_1(\beta_0) = l_1(\beta_0, \hat{\psi}(\beta_0); y) = \max_{\psi}l(\beta_0, \hat{\psi}; y)
+\end{align*}
+The statistic 
+\begin{equation*}
+	-2[l_1(\beta_0, \hat{\psi}(\beta_0)) - l(\hat{\beta}, \hat{\psi})] \sim \chi_1^2
+\end{equation*}
+can be inverted to construct a confidence interval. 
+<br><br>
+Similarly, we can take the partial derivative of the profile log-likelihood to obtain a profile score function and construct an asymptotic profile score test and invert this score test to obtain a confidence interval.
+<br><br>
+The PLRT and the profile score tests are asymptotically equivalent except:
+<ul>
+	<li>The profile score interval requires computation of the profile Fisher information matrix, whereas the PLRT does not.</li>
+	<li>The PLRT requires maximization of the original log-likelihood, whereas the profile score only requires maximization of the profile log-likelihood</li>
+</ul>
 
 <hr>
 <a name="egmd"></a><h2>Relevant Models</h2>
