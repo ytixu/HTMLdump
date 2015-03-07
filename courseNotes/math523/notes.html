@@ -81,11 +81,12 @@
 			<li><a href="#delt">Delta Method</a></li>
 			<li><a href="#robo">Robustness</a></li>
 		</ol></li>
-	<li><a href="#magf">Model Assessment and Goodness of Fit</a>
+	<li><a href="#magf">Model Assessment and Goodness-of-Fit</a>
 		<ol>
 			<li><a href="#LRT">Likelihood-Ratio Test (LRT)</a></li>
 			<li><a href="#wald">Wald's Test</a></li>
 			<li><a href="#rao">Rao's Score Test</a></li>
+			<li><a herf="#gofi">Goodness-of-Fit</a></li>
 		</ol></li>
 	<li><a href="#infr">Inference</a>
 		<ol>
@@ -256,7 +257,7 @@ By plugging in $\hat{\beta}$ into $\partial \mu_i/\partial \eta_i$ and $Var(y_i)
 If $a(\phi) \neq 1$, then the variance can be estimated using maximum likelihood.
 <a href="#delt"></a><h3>Delta Method</h3>
 <hr>
-<a name="magf"></a><h2>Model Assessment and Goodness of Fit</h2>
+<a name="magf"></a><h2>Model Assessment and Goodness-of-Fit</h2>
 <a name="LRT"></a><h3>Likelihood-Ratio Test (LRT)</h3>
 For testing the hypothesis
 \begin{align*}
@@ -303,6 +304,17 @@ has assymptotic $\chi^2_1$ distribution.
 \begin{equation*}
 	S = \frac{\partial l(\beta;y)^\top}{\partial \beta_0}\mathcal{I}(\hat{\beta}_0)\frac{\partial l(\beta;y)}{\partial \beta_0}
 \end{equation*}
+<a name="gofi"></a><h3>Goodness-of-Fit</h3>
+Let $l(y,y)$ denote the ML for the <i>saturated model</i> and let $\tilde{\theta}_i$ be the estimate of $\theta_i$ with mean $\hat{\mu}_i$. The LRT goodness-of-fit statistic is 
+\begin{equation*}
+	-2[l(\hat{\mu}, y) - l(y,y)] = 2\sum_{i}[y_i(\tilde{\theta}_i) - b(\tilde{\theta}_i)]/a(\phi) -2\sum_{i}[y_i(\hat{\theta}_i) - b(\hat{\theta}_i)]/a(\phi)
+\end{equation*}
+If $a(\phi) = \phi/w_i$, then we obtain the <i>scaled deviance</i> 
+\begin{equation*}
+	2\sum_{i}w_i[y_i(\tilde{\theta}_i - \hat{\theta}_i) - b(\tilde{\theta}_i) + b(\hat{\theta}_i)]/\phi = D(y, \hat{\mu})/\phi
+\end{equation*}
+<h4>Deviance</h4>
+The deviance of the model is denoted by $D(y,\hat{\mu})$. Large value indicate worse fit. 
 <hr>
 <a name="infr"></a><h2>Inference</h2>
 <a name="cfit"></a><h3>Confidence Interval</h3>
