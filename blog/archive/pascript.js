@@ -1,7 +1,5 @@
 function setup(){
 	$("body").append('<div id="upScroll"><span class="glyphicon glyphicon-chevron-up"></span></div>');
-
-	$("#header").html('<div class="title"> GOLDENRATI&Phi; </div> <div class="menu"><div id="homeButton" class="menuButton"><span class="glyphicon glyphicon-home"></span></div></div>');
 	$("#upScroll").click(function() {
 	  $("html, body").animate({ scrollTop: 0 }, "fast");
 	  return false;
