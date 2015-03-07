@@ -1,0 +1,96 @@
+h3, h4{
+	color: #C2A385;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+h5{
+	padding-left: 10px;
+	margin-top: -5px;
+	color:#33ADAD;
+	font-weight: bold;
+}
+
+.postContainer{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+	padding-bottom: 200px;
+}
+
+.postContainer .glyphicon{
+	font-size: 15px;
+}
+
+.titleBar{
+	background-color: #669999;
+	padding:10px;
+	color:white;
+}
+
+.title{
+	-ms-transform: rotate(5deg); /* IE 9 */
+    -webkit-transform: rotate(5deg); /* Safari */
+    transform: rotate(5deg);
+    position: absolute;
+    top:-20px;
+    left:-10px;
+    padding-top: 50px;
+    padding-right: 10px;
+    background-color: #666666;
+    text-align: right;
+    width: 300px;
+    height:100px;
+	font-size: 30px;
+}
+
+.menu{
+	text-align: right;
+	font-size: 20px;
+}
+
+.menuButton{
+	padding:5px;
+}
+
+#upScroll{
+	position:fixed;
+	bottom:5px;
+	right: 5px;
+	color:#669999;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#upScroll:hover{
+	color:#99cccc;
+}
+
+.postContainer{
+	margin-top:100px;
+}
+
+#postTitle{
+	margin-bottom: 30px;
+}
+
+#navPost, #navPost2{
+	margin: 20px 0 20px 0;
+}
+
+form{
+	font-size: 15px;
+}
+
+table { 
+    border-spacing: 20px;
+    border-collapse: separate;
+}
+
+.date{
+	color:#888888;
+	margin-bottom: 50px;
+}
+
+p{
+	margin-left: 20px;
+}

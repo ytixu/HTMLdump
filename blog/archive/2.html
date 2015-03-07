@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="pastyle.css">
+	</head>
+<body>
+	<div id="header" class="container-fluid titleBar"></div>
+	<div class="col-md-8 col-md-offset-2 postContainer">
+		<div id="navPost" class="row"></div>
+		<div class="row">
+			<div id="postTitle">
+			<!-- START -->
+				<h3>Match-Three Puzzle</h3>
+				<h5>Implement a method to search which tiles are matched.</h5>
+			</div>
+			<div id="postContent">
+			<p>We can go with the approach that represents the game grid using $n$ by $m$ array. To check for matching, we can iterate through each element and check if is the head of a consecutive sequence of consecutive tiles of the same color. The head of such sequence can be defined as the leftmost or topmost tile of the sequence. But since a sequence of 4 or more tiles of the same color is also valid, after determining the head, another loop is needed to find the tail. This would take time $O(nm\max(n,m))$. Of course, we can ignore checking tiles that are in the middle of a detected sequence. But there are two directions where a valid sequence can be. So the solution would not look very simple.
+			</p>
+			<p>Furthermore, in the above approach, the return solution would also be not very practical. Whether we return a list of sequences or a set of matched tile, we won't get immediate information on how good the matches were to compute the score. (But score system will be considered another time.)</p>
+			<p>The approach I used is to compute a matrix that represents the matches. For each element in the grid, check if it has neighbor of the same color. If its top and bottom neighbors have the same color that it has, then it's matched vertically. If its left and right neighbors are matched then it's matched horizontally. For example, consider the following tile configuration.</p>
+			<center>
+				<canvas id="example1"></canvas>
+			</center>
+			<p>The corresponding matrix would be</p>
+			\begin{equation*}
+				\left( \begin{array}{cccc}
+				(0,0) & (0,0) & (0,0) & (0,0)\\
+				(0,0) & (0,1) & (1,1) & (0,0)\\
+				(0,0) & (0,0) & (0,0) & (0,0)\end{array} \right)
+			\end{equation*}
+			<p>With each tuple containing a boolean value for vertical match and horizontal match, this tells exactly where are the tiles that need to be removed (and a lot more about how the matches look like on the grid). Since checking the neighbor of a tile takes $O(1)$, this approach takes $O(nm)$.</p>
+
+	<h4>Demo</h4><center>
+	<table cellspacing="50"><tr><td>
+		<form>
+	          <label>Color number</label>            
+	          <input type = "radio" name = "colNumb"
+	                 id = "two" value = "two" checked = "checked" />
+	          <label for = "two">2</label>
+	          
+	          <input type = "radio" name = "colNumb"
+	                 id = "three" value = "three" />
+	          <label for = "three">3</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "four" value = "four" />
+	          <label for = "four">4</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "five" value = "five" />
+	          <label for = "five">5</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "six" value = "six" />
+	          <label for = "six">6</label>
+	    </form>
+	    <form>
+			Width: <input type="text" id="boardWidth" value="10"><br>
+			Height: <input type="text" id="boardHeight" value="10"><br>
+		</form>
+		<button type="button" onclick="restart();">Restart</button>
+		<p id="errorMess"></p>
+	</td><td>
+		<canvas id="demo"></canvas>
+	</td></tr></table>
+	</center>
+
+	<h4>Javascript</h4>
+<div class="code">
+<?prettify lang=js?>
+<pre><code>var board = {
+	grid: [],
+	width: 0,
+	height:0,
+	// more functions for setter, getter, ...
+	markAllMatches: function(){
+		var preScore = score;
+		for (var i=0; i < this.height-2; i++){
+			for (var j=0; j < this.width; j++){
+				var col = this.getColor(i,j);
+				if (this.getColor(i+1,j) == col && this.getColor(i+2,j) == col){
+					this.setColMat(i+1,j, true);
+				}
+			}
+		}
+		for (var j=0; j < this.width-2; j++){
+			for (var i=0; i < this.height; i++){
+				var col = this.getColor(i,j);
+				if (this.getColor(i,j+1) == col && this.getColor(i,j+2) == col){
+					this.setRowMat(i,j+1, true);
+				}
+			}
+		}
+	}
+}
+</code></pre>
+</div>
+		</div>
+		<div class="date row text-right">
+			Jan 17, 2015
+		</div>
+			<!-- END -->
+		<div id="navPost2" class="row"></div>
+	</div>
+<script src="pascript.js"> </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<script src="../script/threeMatch.js"> </script>
+<script src="../script/animateThreeMatch.js"> </script>
+	<script>
+		function drawExample(){
+			var canvas = document.getElementById("example1");
+			var ctx = canvas.getContext("2d");
+			var values = [[0, 0, 1, 2],
+						  [1, 1, 1, 1], 
+						  [3, 1, 1, 2]]
+			canvas.height = tileSize*3;
+			canvas.width = tileSize*4;
+			for (i in values){
+				for (j in values[i]){
+					ctx.beginPath();
+					ctx.fillStyle=COLOR[values[i][j]];
+					ctx.rect(convert(j), convert(i),tileSize,tileSize);
+					ctx.fill();
+				}
+			}
+		}
+		drawExample();
+	</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="pastyle.css">
+		<style>
+			canvas:active{
+				cursor: default;
+			}
+			table.eg{
+				border-spacing: 0px;
+				margin:10px;
+				border-collapse: collapse;
+			}
+			table.eg td{
+				border:1px solid;
+				width: 45px;
+				height: 45px;
+				text-align: center;
+			}
+		</style>
+		</style>
+	</head>
+<body>
+	<div id="header" class="container-fluid titleBar"></div>
+	<div class="col-md-8 col-md-offset-2 postContainer">
+		<div id="navPost" class="row"></div>
+		<div class="row">
+			<div id="postTitle">
+			<!-- START -->
+			<h3>Match-Three Game </h3>
+			<h5>Implement a method to find a valid move.</h5>
+			</div>
+			<div id="postContent">
+				<p>In the <a href="2.html">previous post</a>, we investigated on how to automatically remove the tiles that are already matched. Here, we'll extend the code to make it into a game where player can move the tiles to create matches. As in many match-three games, when the player stops playing for a while, the game reveals to the player a valid move.</p> 
+				<p>In a $n\times m$ game grid, there are $2(n-1)(m-1)+n+m$ possible moves. Search a valid move one by one through simulating the move and calling the auto-matching method we wrote previously would cost $O(n^2m^2)$. We can create a mini auto-matching method to that only considers a $k\times k$ sub-grid to ignore searching tiles that are not affected by the simulated move. Since $k$ is constant, this would give us $O(nm)$. 
+				</p>
+				<p>To further simplify the algorithm, we can consider a set of neighbors of the simulated move. After contemplating on it, we figure that each valid move has at least one of the following:
+					<ul>
+						<li>there are two consecutive tiles of the same color (with large x) and one tile of the same color at any of the 6 positions with small x
+							<center><table class="eg"><tr>
+								<td></td> <td>x</td> <td></td> <td></td> <td>x</td> <td></td></tr><tr>
+								<td>x</td> <td></td> <td><b>X</b></td> <td><b>X</b></td> <td></td> <td>x</td></tr><tr>
+								<td></td> <td>x</td> <td></td> <td></td> <td>x</td> <td></td></tr>
+							</table></center>
+						and similar if the consecutive tiles are matched vertically;
+						</li>
+						<li>there are two tiles of the same color on the same column or row, separated by exactly one tile between (large X), and another tile of the same color in any of the 2 positions with small x.
+							<center><table class="eg"><tr>
+								<td></td> <td>x</td> <td></td></tr><tr>
+								<td><b>X</b></td> <td></td> <td><b>X</b></td></tr><tr>
+								<td></td> <td>x</td> <td></td></tr>
+							</table></center>
+						</li>
+					</ul>
+				</p>
+				<p>In total, there are 16 configurations that we need to check. Compare this with $k\times k$ sub-grid, with the knowledge of the little drawing that we just did, $k$ must be at least 5, the mini auto-matching algorithm would checks exactly $(5-2)5 + 5(5-2) = 30$ sequences of 3 consecutive tiles (based on the code in last post).</p>
+			<h4>Demo</h4><center>
+	<table cellspacing="50"><tr><td>
+		<form>
+	          <label>Color number</label>            
+	          <input type = "radio" name = "colNumb"
+	                 id = "three" value = "three"/>
+	          <label for = "three">3</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "four" value = "four" />
+	          <label for = "four">4</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "five" value = "five" checked = "checked" />
+	          <label for = "five">5</label>
+
+	          <input type = "radio" name = "colNumb"
+	                 id = "six" value = "six" />
+	          <label for = "six">6</label>
+	    </form>
+	    <form>
+			Width: <input type="text" id="boardWidth" value="10"><br>
+			Height: <input type="text" id="boardHeight" value="10"><br>
+		</form>
+		<button type="button" onclick="restart();">Restart</button>
+		<p id="errorMess"></p>
+		<p>Score: <span id="scoreNumb"></span></p>
+	</td><td>
+		<canvas id="demo"></canvas>
+	</td></tr></table>
+	</center>
+
+	<h4>Javascript</h4>
+<div class="code">
+<?prettify lang=js?>
+<pre><code>var board = {
+	grid: [],
+	width: 0,
+	height:0,
+	validMove: null,
+	// more functions for setter, getter, ...
+	isMatchingTile: function(x,y,xo,yo,color){
+		if (-1 < x && -1 < y && x < this.height && y < this.width &&
+			this.getColor(x,y) == color){
+			this.validMove = [x,y,xo,yo];
+			return true;
+		}
+		return false;
+	},
+	autoFindMove : function(){
+		this.validMove = null;
+		// this is done to avoid prioritizing the first found valid move.
+		var size = this.width*this.height;
+		var start = Math.floor(Math.random()*size);
+		for (var i=0; i < size; i++){
+			var x = Math.floor(start/this.width)
+			var y = start%this.width
+			var col = this.getColor(x,y);
+			if (x < this.height-1){
+				if (this.getColor(x+1, y) == col){
+					if (this.isMatchingTile(x+2, y-1, x+2, y, col)) return;
+					if (this.isMatchingTile(x+2, y+1, x+2, y, col)) return;
+					if (this.isMatchingTile(x+3, y, x+2, y, col)) return;
+					if (this.isMatchingTile(x-1, y-1, x-1, y, col)) return;
+					if (this.isMatchingTile(x-1, y+1, x-1, y, col)) return;
+					if (this.isMatchingTile(x-2, y, x-1, y, col)) return;
+				}
+				if (x < this.height-2 && this.getColor(x+2, y) == col){
+					if (this.isMatchingTile(x+1, y-1, x+1, y, col)) return;
+					if (this.isMatchingTile(x+1, y+1, x+1, y, col)) return;
+				}
+			}
+			if (y < this.width-1){
+				if (this.getColor(x, y+1) == col){
+					if (this.isMatchingTile(x-1, y+2, x, y+2, col)) return;
+					if (this.isMatchingTile(x+1, y+2, x, y+2, col)) return;
+					if (this.isMatchingTile(x, y+3, x, y+2, col)) return;
+					if (this.isMatchingTile(x-1, y-1, x, y-1, col)) return;
+					if (this.isMatchingTile(x+1, y-1, x, y-1, col)) return;
+					if (this.isMatchingTile(x, y-2, x, y-1, col)) return;
+				}
+				if (y < this.width-2 && this.getColor(x, y+2) == col){
+					if (this.isMatchingTile(x-1, y+1, x, y+1, col)) return;
+					if (this.isMatchingTile(x+1, y+1, x, y+1, col)) return;
+				}
+			}
+			start = (start+1)%size;
+		}
+	}
+}
+</code></pre>
+</div>
+			<p>Aside from implementing the method in question. We also altered the strategy in last post to compute the score. Instead of a matrix of boolean pairs, we now have a matrix of integer pairs. When there is a match, all tiles contributing to the match will have their value increased in the matrix. Here's the same example to illustrate this.
+			<center>
+					<canvas id="example1"></canvas>
+				</center>
+				<p>The corresponding matrix would be</p>
+				\begin{equation*}
+					\left( \begin{array}{cccc}
+					(0,0) & (0,0) & (1,0) & (0,0)\\
+					(0,1) & (0,2) & (1,2) & (0,1)\\
+					(0,0) & (0,0) & (1,0) & (0,0)\end{array} \right)
+				\end{equation*}
+			Then for each entry in the matrix, we can easily check if we have a 4-tiles match or a T-shape match, etc, and update the score accordingly.
+			</p>
+		</div>
+		<div class="date row text-right">
+			Jan 21, 2015
+		</div>
+			<!-- END -->
+		<div id="navPost2" class="row"></div>
+	</div>
+<script src="pascript.js"> </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<script src="../script/threeMatchScore.js"> </script>
+	<script>
+		function drawExample(){
+			var canvas = document.getElementById("example1");
+			var ctx = canvas.getContext("2d");
+			var values = [[0, 0, 1, 2],
+						  [1, 1, 1, 1], 
+						  [3, 1, 1, 2]]
+			canvas.height = tileSize*3;
+			canvas.width = tileSize*4;
+			for (i in values){
+				for (j in values[i]){
+					ctx.beginPath();
+					ctx.fillStyle=COLOR[values[i][j]];
+					ctx.rect(convert(j), convert(i),tileSize,tileSize);
+					ctx.fill();
+				}
+			}
+		}
+		drawExample();
+	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="pastyle.css">
+		
+	</head>
+<body>
+	<div id="header" class="container-fluid titleBar"></div>
+	<div class="col-md-8 col-md-offset-2 postContainer">
+		<div id="navPost" class="row"></div>
+		<div class="row">
+			<div id="postTitle">
+			<!-- START -->
+				<h3>Air Dancer</h3>
+				<h5>Model an air dancer with verlet integration.</h5>
+			</div>
+			<div id="postContent">
+				<p>An air dancer can be modeled with a set of connected circles. To reproduce their movement while maintaining their connectivity, we can simplify Newton's formula to this
+					\begin{align*} 
+					&p_{new}(i) = 2p_{curr}(i)-p_{old}(i)+a\Delta t^2\\
+					&p_{old}(i) = p_{curr}(i)
+					\end{align*}
+				where the $p(i)$'s are the new, current and old positions of the $i$th circles, and the velocity is replaced by $p_{curr}(i)-p_{old}(i)$. In the real world, this may offend some physicists. But in a computer simulation where time is discretized, air dancers don't need to obey physic law; and those who don't are privilege to gain some computational efficiency.<p>
+
+				</p>The distance between two connected circles is constrained by a certain bound so that the body of the air dancer stays as a whole. If during the position-updating process a constrain is violated, then we need to iterate a readjustment policy until there is no more violation. 
+					\begin{align*}
+						&d = distance(i,i+1)\\
+						&p_{curr}(i) = p_{curr}(i) + d/2\\
+						&p_{curr}(i+1) = p_{curr}(i+1) - d/2
+					\end{align*}
+				</p><p>
+				And that's basically verlet integration!</p>
+				<p>Next, we consider the acceleration of the air dancer because the first equation has an $a$ term. We can model this acceleration as function of sine and cosine to create the wave pattern.</p> <p>Finally we add some facial characteristics in an attempt to amplify the emotional aspect of dance.</p>
+	<h4>Demo</h4>
+	<center><table><tr>
+		<td>Tempo: 
+		<input id="size" type="range" min="1" max="10" value="1" step="1" onchange="tempo = this.value;" /><br>
+		Amplitude: 
+		<input id="freq" type="range" min="1" max="20" value="1" step="1" onchange="ampX = this.value;" /><br>
+		Frequency: 
+		<input id="freq" type="range" min="1" max="10" value="1" step="1" onchange="freX = this.value;" /><br>
+		<td><canvas id="demo"></canvas><td></tr></table></center>
+
+		<h4>Code</h4>
+			<div class="answer"><a target="blank" href="https://github.com/ytixu/HTMLdump/blob/gh-pages/mathStuffs/euler/archive/titato/verletInt.js">view on github</a></div>
+
+		<div class="date row text-right">
+			Feb 27, 2015 
+		</div>
+
+			<!-- END -->
+			</div>
+		</div>
+		<div id="navPost2" class="row"></div>
+	</div>
+<script src="pascript.js"> </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<script src="../script/verletInt.js"> </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="pastyle.css">
+		
+	</head>
+<body>
+	<div id="header" class="container-fluid titleBar"></div>
+	<div class="col-md-8 col-md-offset-2 postContainer">
+		<div id="navPost" class="row"></div>
+		<div class="row">
+			<div id="postTitle">
+			<!-- START -->
+				<h3>Drawing Flowers</h3>
+				<h5>Design an algorithm to draw a flower.</h5>
+			</div>
+			<div id="postContent">
+				<p>When you draw a flower, you may start drawing a 5-petal flower like those pretty pink sakura blossoms. Then you may think what if you want 8 petals? or 11 petals? or 89 petals? Now maybe you think of an algorithm to cut your canvas into sections like how professional chefs cut their pizza. Or do they cut their pizza into 89 petals?
+				</p><p>
+				What if you want a daisy, or a rose, with overlapping petals? Now, you may think an algorithm that after some threshold, starts overlapping the petals. Then you can paint the flower layer by layer, shifting the angles of the petals every time you reach the threshold. But how much do you need to shift? What if you cycle back to the shift you began with? You may think you want the shift to be inversely proportional to the number of layer you need. But are all this computations really what nature do to grow a flower?
+				</p><p>
+				Let's go contemplate on the principles of evolution. For a flower to live, it needs to get sunlight from its leaves and petals. If petals are grown one over the other, that's not a good strategy to get optimal sunlight. We may think the first petal can grow wherever it likes, and then the second petal should grow as far as possible from the first petal in angular distance. So take $\pi$ radians. But when the third petal grow, it can only be $\pi/2$ radians away from its siblings, while the optimal configuration would have all the three petals $2\pi/3$ radians away from each other. So what if you make the second petal grow $2\pi/3$ away from the first one then? But then what about the fourth petal? and then the fifth petal? is the distant always constant? and when do they start overlapping?
+				</p><p>
+				Now, maybe you would consider a irrational number for the number of radians away so that no matter how many times you accumulate it, it will never add up to a position that you started with, and hence not blocking the sunlight of another petal. And what number is better to take than $\phi$? At $2\pi/\phi$ radians away, your flower will triumph and conquer all lands on Earth!
+				</p>
+	<h4>Demo</h4>
+	<center><table></tr><td id="inputZone">
+		Color: 
+		<input type="color" id="flcol" value="#ea3300"><br>
+		Petal size: 
+		<input id="size" type="range" min="50" max="250" value="250" step="1" onchange="showValue(this.value, 'sliderSize')" /> <span id="sliderSize">250</span><br>
+		Number of petals: 
+		<input id="freq" type="range" min="1" max="200" value="55" step="1" onchange="showValue(this.value, 'sliderPetal')" /> <span id="sliderPetal">55</span><br>
+		Rate of decrease: 
+		<input id="rate" type="range" min="1" max="10" value="3" step="1" onchange="showValue(this.value, 'sliderRate')" /> <span id="sliderRate">3</span></br><br>
+		<center><input type="button" value="DRAW" onclick="start()"></input></center>
+	</td><td>
+		<canvas id="demo"></canvas>
+	</td></tr></table></center>
+
+	<h4>Javascript</h4>
+<div class="code">
+<?prettify lang=js?>
+<pre><code>var canvas;
+var ctx;
+var maxSize;
+// set up necessary functions initialize these variables
+
+var halfSize = cvsSize/2;
+var gr = 1.61803398875;
+
+function drawPetal(n, size){
+    ctx.beginPath();
+	ctx.rotate(Math.PI*2/gr);
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(size*0.4,size*0.5,size*0.4,size*0.8,0,size);
+    ctx.bezierCurveTo(-size*0.4,size*0.8,-size*0.4,size*0.5,0,0);
+    ctx.fill();
+}
+
+function drawFlower(n,c,ms,pn,r){
+	if (n==pn) return;
+	ctx.fillStyle = "rgb("+Math.min(c[0]+Math.round(n*(225-c[0])/pn),225).toString()+
+		","+Math.min(c[1]+Math.round(n*(225-c[1])/pn),225).toString()+
+		","+Math.min(c[2]+Math.round(n*(225-c[2])/pn),225).toString()+")";
+	s = Math.max(ms-n*r,0);
+	if (s==0) return;
+	drawPetal(n,s);
+	drawFlower(n+1,c,ms,pn,r);
+}
+
+// need to translate canvas so that it's centered at 0,0 
+// ctx.translate(halfSize,halfSize);
+</code></pre>
+</div>
+		<div class="date row text-right">
+			Feb 8, 2015
+		</div>
+
+			<!-- END -->
+			</div>
+		</div>
+		<div id="navPost2" class="row"></div>
+	</div>
+<script src="pascript.js"> </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<script src="../script/flower.js"> </script>
+</body>
+</html>
