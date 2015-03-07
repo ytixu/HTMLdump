@@ -50,6 +50,11 @@ h5{
 
 .menuButton{
 	padding:5px;
+	float: right;
+}
+.menuButton:hover{
+	cursor: pointer;
+	/*color: ;*/
 }
 
 #upScroll{
@@ -93,9 +98,4 @@ table {
 
 p{
 	margin-left: 20px;
-}
-
-#homeButton:hover{
-	cursor: pointer;
-	color: #dddddd;
 }
