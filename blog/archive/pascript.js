@@ -6,6 +6,7 @@ function setup(){
 	  $("html, body").animate({ scrollTop: 0 }, "fast");
 	  return false;
 	});
+	document.title = ":3";
 }
 
 function getPage(){
