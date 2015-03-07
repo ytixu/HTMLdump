@@ -31,9 +31,9 @@
 					&p_{new}(i) = 2p_{curr}(i)-p_{old}(i)+a\Delta t^2\\
 					&p_{old}(i) = p_{curr}(i)
 					\end{align*}
-				where the $p(i)$'s are the new, current and old positions of the $i$th circles, and the velocity is replaced by $p_{curr}(i)-p_{old}(i)$. In the real world, this may offend some physicists. But in a computer simulation where time is discretized, air dancers don't need to obey physic law; and those who don't are privilege to gain some computational efficiency.<p>
+				where the $p(i)$'s are the new, current and old positions of the $i$th circles, and the velocity is replaced by $p_{curr}(i)-p_{old}(i)$. In the real world, this may offend some physicists. But in a computer simulation where time is discretized, air dancers don't need to obey physic law; and those who don't are privilege to gain some computational efficiency.</p>
 
-				</p>The distance between two connected circles is constrained by a certain bound so that the body of the air dancer stays as a whole. If during the position-updating process a constrain is violated, then we need to iterate a readjustment policy until there is no more violation. 
+				<p>The distance between two connected circles is constrained by a certain bound so that the body of the air dancer stays as a whole. If during the position-updating process a constrain is violated, then we need to iterate a readjustment policy until there is no more violation. 
 					\begin{align*}
 						&d = distance(i,i+1)\\
 						&p_{curr}(i) = p_{curr}(i) + d/2\\
