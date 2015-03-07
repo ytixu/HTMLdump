@@ -6,6 +6,10 @@ function setup(){
 	  $("html, body").animate({ scrollTop: 0 }, "fast");
 	  return false;
 	});
+	$("#homeButton").click(
+    	function(){
+    		window.location = "../index.html";
+    	});
 	document.title = ":3";
 }
 
@@ -19,25 +23,16 @@ function getPage(){
 function setNavePost(pN, posts){
 	var navPost = "";
 	if (pN == 1){
-		navPost = '<div class="col-xs-6 text-left"></div><div class="col-xs-6 text-right"> <a  href="'+(pN+1)+'.html"> '+posts[pN]+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
-	}else if (posts[pN] == ""){
-		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2]+'</a> </div>';
+		navPost = '<div class="col-xs-6 text-left"></div><div class="col-xs-6 text-right"> <a  href="'+(pN+1)+'.html"> '+posts[pN].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
+	}else if (posts[pN] == {}){
+		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2].name+'</a> </div>';
 	}else{
-		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2]+'</a> </div> <div class="col-xs-6 text-right"> <a href="'+(pN+1)+'.html"> '+posts[pN]+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
+		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2].name+'</a> </div> <div class="col-xs-6 text-right"> <a href="'+(pN+1)+'.html"> '+posts[pN].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
 	}
 	$("#navPost2").html(navPost);
 	$("#navPost").html(navPost);
 }
 
-function getPost(){
-	return ["Tic-Tac-Toe",
-		 	"Match-Three Puzzle",
-		  	"Match-Three Game",
-		  	"Drawing Flowers",
-		  	"Air Dancer", 
-		  	""
-		 ];
-}
 /* * * CONFIGURATION VARIABLES * * */
 var disqus_shortname = '3archproj';
 var disqus_identifier = "";
@@ -49,8 +44,10 @@ function start(){
 	var pN = getPage();
 	setup();
 	setNavePost(pN, posts);
+	$(".date").html(posts[pN-1].date);
+	// disqus
 	disqus_identifier = pN.toString();
-	disqus_title = posts[pN-1];
+	disqus_title = posts[pN-1].name;
 	disqus_url = document.URL;
 }
 start();

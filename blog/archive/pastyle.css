@@ -14,7 +14,7 @@ h5{
 .postContainer{
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
-	padding-bottom: 200px;
+	padding: 0 50px 200px 50px;
 }
 
 .postContainer .glyphicon{
@@ -93,4 +93,9 @@ table {
 
 p{
 	margin-left: 20px;
+}
+
+#homeButton:hover{
+	cursor: pointer;
+	color: #dddddd;
 }

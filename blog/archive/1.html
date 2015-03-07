@@ -41,7 +41,7 @@
 			<div id="postContent">
 			<p>In this implementation, we will assume that this algorithm is run many times during a tic-tac-toe game. In this case, we can just consider the changes made on the grid by the player when adding a $\circ$ or a $\times$. </p>
 
-			</p>Call a row, column or a diagonal of three tiles "matched" if its tiles all contain the same symbol. For each new $\circ$ or $\times$, we check the row, the column that it is placed on. We can also check if it is on a diagonal and then check if the diagonal is matched. However, we can simply check if any diagonal is matched at every call. This makes $3\times 4$ tiles to check, which is constant time.</p>
+			<p>Call a row, column or a diagonal of three tiles "matched" if its tiles all contain the same symbol. For each new $\circ$ or $\times$, we check the row, the column that it is placed on. We can also check if it is on a diagonal and then check if the diagonal is matched. However, we can simply check if any diagonal is matched at every call. This makes $3\times 4$ tiles to check, which is constant time.</p>
 
 			<p>This can also be optimized by checking the center cell. That is, if the center cell does not contains the symbol associated to the player that played previously, then we don't need to check the diagonals.</p>
 			<h4>Demo</h4>
@@ -129,9 +129,7 @@
 </code></pre>
 </div>
 
-		<div class="date row text-right">
-			Jan 4, 2015
-		</div>
+		<div class="date row text-right"></div>
 
 			<!-- END -->
 			</div>
@@ -141,6 +139,7 @@
 		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 	</div>
 
+<script src="posts.js"> </script>
 <script src="pascript.js"> </script>
 <script src="../script/titatoScript.js"> </script>
 </body>
