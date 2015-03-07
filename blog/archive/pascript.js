@@ -24,7 +24,7 @@ function setNavePost(pN, posts){
 	var navPost = "";
 	if (pN == 1){
 		navPost = '<div class="col-xs-6 text-left"></div><div class="col-xs-6 text-right"> <a  href="'+(pN+1)+'.html"> '+posts[pN].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
-	}else if (posts[pN] == {}){
+	}else if (posts[pN].name == null){
 		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2].name+'</a> </div>';
 	}else{
 		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2].name+'</a> </div> <div class="col-xs-6 text-right"> <a href="'+(pN+1)+'.html"> '+posts[pN].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
