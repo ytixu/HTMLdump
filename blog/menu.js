@@ -9,6 +9,15 @@ $("#homeButton").click(
 		}
 	});
 
+$("#infoButton").click(
+	function(){
+		if (document.URL.indexOf("archive") > -1){
+			window.location = "../(OvO).html";
+		}else{
+			window.location = "(OvO).html";
+		}
+	});
+
 $("body").append('<div id="upScroll"><span class="glyphicon glyphicon-chevron-up"></span></div>');
 $("#upScroll").click(function() {
   $("html, body").animate({ scrollTop: 0 }, "fast");

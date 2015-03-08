@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html data-ng-app>
+	<head>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<style>
+			.profileimage{
+				background-image: url("image/profile.png");
+				background-position: center; 
+				background-size: cover;
+				height: 500px;
+				min-width: 300px;
+			}
+			.profileAbout{
+			    /*margin-top: 40px;*/
+			    padding: 50px;
+			   	color: white;
+			   	min-width: 400px;
+			}
+			.profileAbout a{
+				color: #aaaaaa;
+			}
+			.profileAbout a:hover{
+				-webkit-filter: brightness(0.1);
+			}
+			.containterAbout{
+			    background-color: #666666;
+			}
+			/* columns of same height styles */
+		.row-same-height {
+		    display: table;
+		    width: 100%;
+		}
+		.col-xs-height {
+		    display: table-cell;
+		    float: none !important;
+		}
+		</style>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="archive/pastyle.css">
+	</head>
+<body>
+	<div id="header" class="container-fluid titleBar"> </div>
+	<div class="col-md-8 col-md-offset-2 postContainer">
+		<div id="profile" class="row-same-height">
+			<div class="col-md-3 profileimage col-xs-height"></div>
+			<div class="col-md-9 containterAbout col-xs-height">
+				<div class="profileAbout">
+				<h4>About</h4>
+				<p>Student at LearnByYourself University, studying in what-my-hands-can-build, what-my-mind-can-concieve and the language(s) in which the future will be written in.</p>
+				<p>Good health! I'm Yi Tian. This <a target="blanck" href="https://github.com/ytixu/HTMLdump">Github repository</a> has been my playground in experimenting front end web design since summer 2014. Below are the previous versions of my personal website and blog.</p>
+				<p><a target="blank" href="../mainPage/index.html">PW Sep 2014</a></p>
+				<p><a target="blank" href="../mainPage/new/index.html">PW Jan 2015</a></p>
+				<p><a target="blank" href="../mainPage/mathStuffs/euler/archive/13.html">Blog Jan 2015</a></p>
+				<h4>Contact</h4>
+					<p><a href="mailto:goldenratioesp@gmail.com" target="_top"><img src="image/icons_10.png"></a>
+					<a target="blank" href="https://github.com/ytixu"><img src="image/icons_08.png"></a>
+					<a target="blank" href="../mainPage/CV-2015.pdf"><img src="image/icons_11.png"></a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="menu.js"> </script>
+<script src="archive/posts.js"> </script>
+<script>
+	function postsCtrl($scope) {
+        $scope.posts = posts.reverse();
+    }
+</script>
+</body>
+</html>
