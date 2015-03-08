@@ -27,18 +27,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="upScroll">
-		<span class="glyphicon glyphicon-chevron-up"></span>
-	</div>
 <script src="menu.js"> </script>
 <script src="archive/posts.js"> </script>
 <script src="mainpage.js"> </script>
 <script>
-	$("#upScroll").click(function() {
-	  $("html, body").animate({ scrollTop: 0 }, "fast");
-	  return false;
-	});
-
 	function postsCtrl($scope) {
         $scope.posts = posts.reverse();
     }

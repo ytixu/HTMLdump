@@ -1,16 +1,3 @@
-function setup(){
-	$("body").append('<div id="upScroll"><span class="glyphicon glyphicon-chevron-up"></span></div>');
-	$("#upScroll").click(function() {
-	  $("html, body").animate({ scrollTop: 0 }, "fast");
-	  return false;
-	});
-	$("#homeButton").click(
-    	function(){
-    		window.location = "../index.html";
-    	});
-	document.title = ":3";
-}
-
 function getPage(){
 	var url = document.URL.split("/");
 	var currPage = url[url.length-1];
@@ -40,7 +27,6 @@ var disqus_url = "" ;
 function start(){
 	var posts = getPost();
 	var pN = getPage();
-	setup();
 	setNavePost(pN, posts);
 	$(".date").html(posts[pN-1].date);
 	// disqus
