@@ -35,7 +35,7 @@
 				<div class="canvDiv"><canvas id="grspinner" width="200"></canvas></div>
 				<p>To explain how I modeled the path of the dots, we need some notation. First, note that the curve is self-similar. This allows us to label the partitions of the canvas into 4 sections, $S=\{0,1,2,3\}$.</p>
 				<div class="canvDiv"><canvas id="eg"></canvas></div>
-				<p>In each partition, the curve can be drawn with a distinct center, which we label $c_s$, $s\in S$, and a radius equaling to the size of that partition. We define the position of a dot on the curve by a tuple of three variables $(s, \theta, c_s)$, where $\theta$ is the angle with respect to the horizontal axis.</p>
+				<p>In each partition, the curve can be drawn with a distinct center, which we label $c_s$, $s\in S$, and a radius $r$ equaling to the size of that partition. We keep track of a dot's position on the curve using a tuple of four variables $(s, \theta, c_s, r)$, where $\theta$ is the angle with respect to the horizontal axis.</p>
 				<div class="canvDiv"><canvas id="egg"></canvas></div>
 				<p>The path can be written as
 					\begin{align*}
