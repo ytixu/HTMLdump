@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+		</script>
+		<script type="text/javascript"
+		  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<style>
+			.canvDiv{
+				text-align:center; 
+				margin:40px;
+			}
+		</style>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="pastyle.css">
+	</head>
+<body>
+	<div id="header" class="container-fluid titleBar"></div>
+	<div class="col-md-8 col-md-offset-2 postContainer">
+		<div id="navPost" class="row"></div>
+		<div class="row">
+			<div id="postTitle">
+			<!-- START -->
+				<h3>Spinner</h3>
+				<h5>Design an loading spinner.</h5>
+			</div>
+			<div id="postContent">
+				<p>Here's my spinner, a mixture of random process and Fibonacci curve.</p>
+				<div class="canvDiv"><canvas id="grspinner" width="200"></canvas></div>
+				<p>To explain how I modeled the path of the dots, we need some notation. First, note that the curve is self-similar. This allows us to label the partitions of the canvas into 4 sections, $S=\{0,1,2,3\}$.</p>
+				<div class="canvDiv"><canvas id="eg"></canvas></div>
+				<p>In each partition, the curve can be drawn with a distinct center, which we label $c_s$, $s\in S$, and a radius equaling to the size of that partition. We define the position of a dot on the curve by a tuple of three variables $(s, \theta, c_s)$, where $\theta$ is the angle with respect to the horizontal axis.</p>
+				<div class="canvDiv"><canvas id="egg"></canvas></div>
+				<p>The path can be written as
+					\begin{align*}
+						&x = \cos(\theta)r+c_{sx}\\
+						&y = \sin(\theta)r+c_{sy}\\
+					\end{align*}
+					where $r$ is the radius. Both $c_s$ and $r$ can be computed recursively, i.e.: each time we change from section $s$ to $s'$, 
+					\begin{align*}
+						&c_{s'} = \begin{cases}
+							[c_{sx}, c_{sy}+r(1-\psi)] & \mbox{if } s = 0\\
+							[c_{sx}+r(1-\psi), c_{sy}] & \mbox{if } s = 1\\
+							[c_{sx}, c_{sy}-r(1-\psi)] & \mbox{if } s = 2\\
+							[c_{sx}-r(1-\psi), c_{sy}] & \mbox{if } s = 3
+						\end{cases}\\
+						&r' = r\psi\\
+					\end{align*}
+					where $\psi = 1/\phi$ (inverse of the Fibonacci number).
+				</p>
+				<h4>Code</h4>
+				<a target="blank" href="https://github.com/ytixu/HTMLdump/blob/gh-pages/blog/script/grspinner.js">view on github</a>
+				<div class="date row text-right"></div>
+			<!-- END -->
+			</div>
+		</div>
+		<div id="navPost2" class="row"></div>
+		<div id="disqus_thread"></div>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+	</div>
+<script src="../menu.js"> </script>
+<script src="posts.js"> </script>
+<script src="pascript.js"> </script>
+<script src="../script/grspinner.js"> </script>
+<script>
+	function drawEg(){
+		var canvasEg = document.getElementById("eg");	
+		var temp = 300*gr+25;
+		var start = [temp, temp];
+		var size = temp;
+		var section = 0;
+		canvasEg.width = 300+50;
+		canvasEg.height = temp+25;
+		var ctxEg = canvasEg.getContext("2d");
+		ctxEg.font="10px Arial";
+		for (var i=0; i<10; i++){
+			if (section == 0){
+				ctxEg.rect(start[0]-size,start[1]-size,size,size);
+				ctxEg.arc(start[0],start[1],size,-Math.PI,-Math.PI/2);
+				if (size >10) ctxEg.fillText("0",start[0]-size/2-2,start[1]-size/2+2);
+				start[1] -= size*(1-gr);
+			}else if (section == 1){
+				ctxEg.rect(start[0],start[1]-size,size,size);
+				ctxEg.arc(start[0],start[1],size,-Math.PI/2,0);
+				if (size >10) ctxEg.fillText("1",start[0]+size/2-2,start[1]-size/2+2);
+				start[0] += size*(1-gr);
+			}else if (section == 2){
+				ctxEg.rect(start[0],start[1],size,size);
+				ctxEg.arc(start[0],start[1],size,0,Math.PI/2);
+				if (size >10) ctxEg.fillText("2",start[0]+size/2-2,start[1]+size/2+2);
+				start[1] += size*(1-gr);
+			}else{
+				ctxEg.arc(start[0],start[1],size,Math.PI/2, Math.PI);
+				ctxEg.rect(start[0]-size,start[1],size,size);
+				if (size >10) ctxEg.fillText("3",start[0]-size/2-2,start[1]+size/2+2);
+				start[0] -= size*(1-gr);
+			}
+			ctxEg.stroke();
+			section = (section+1)%4;
+			size *= gr;
+		}
+	}
+
+	function drawEgg(){
+		var canvasEg = document.getElementById("egg");	
+		var temp = 300*gr+25;
+		var start = [temp, temp];
+		var size = temp;
+		var section = 0;
+		var first = true;
+		var center;
+		canvasEg.width = 300+50;
+		canvasEg.height = temp+25;
+		var ctxEg = canvasEg.getContext("2d");
+		ctxEg.font="10px Arial";
+		for (var i=0; i<10; i++){
+			if (section == 0){
+				ctxEg.arc(start[0],start[1],size,-Math.PI,-Math.PI/2);
+				start[1] -= size*(1-gr);
+			}else if (section == 1){
+				if (first){
+					first = false;
+					ctxEg.rect(start[0],start[1]-size,size,size);
+					center = [start[0],start[1],size];
+				}
+				ctxEg.arc(start[0],start[1],size,-Math.PI/2,0);
+				start[0] += size*(1-gr);
+			}else if (section == 2){
+				ctxEg.arc(start[0],start[1],size,0,Math.PI/2);
+				start[1] += size*(1-gr);
+			}else{
+				ctxEg.arc(start[0],start[1],size,Math.PI/2, Math.PI);
+				start[0] -= size*(1-gr);
+			}
+			ctxEg.stroke();
+			section = (section+1)%4;
+			size *= gr;
+		}
+		ctxEg.strokeStyle="#AA00BB";
+		ctxEg.font="20px Arial";
+		var x = Math.cos(0.8)*center[2] + center[0];
+		var y = center[1] - Math.sin(0.8)*center[2];
+		ctxEg.beginPath();
+		ctxEg.fillText("c",center[0]-15, center[1]+15);
+		ctxEg.arc(center[0], center[1],20,-0.8, 0);
+		ctxEg.moveTo(center[0], center[1]);
+		ctxEg.lineTo(x,y);
+		ctxEg.stroke();
+	}
+	drawEg();
+	drawEgg();
+</script>
+</body>
+</html>
