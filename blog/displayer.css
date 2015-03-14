@@ -11,6 +11,9 @@
 .postSubtitle,.postText{
 	margin:0 13% 0 13% ;
 }
+.smallTitle{
+	margin:13% 13% 0 13%;
+}
 .titleBar{
 	position:absolute;
 	z-index: 10;

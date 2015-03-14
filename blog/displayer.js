@@ -139,7 +139,7 @@ function addDivs(){
 				}
 			},
 			displayPost: function(){
-				if (this.size < 4 && sizes[this.size].size > 100){
+				if (this.size < 3 && sizes[this.size].size > 200){
 					$("#"+this.id.toString()).append("<div class='postTitle'><a href='archive/"
 						+ resPosts[this.id].url.toString() + ".html'>" 
 						+ resPosts[this.id].title + "</a></div>");
@@ -151,6 +151,10 @@ function addDivs(){
 								+ resPosts[this.id].content + "... </div>");
 						}
 					}
+				}else if (sizes[this.size].size > 100){
+					$("#"+this.id.toString()).append("<div class='smallTitle'><a href='archive/"
+						+ resPosts[this.id].url.toString() + ".html'>" 
+						+ resPosts[this.id].title + "</a></div>");
 				}
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 			}
