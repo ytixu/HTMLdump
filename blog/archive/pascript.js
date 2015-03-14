@@ -2,17 +2,18 @@ function getPage(){
 	var url = document.URL.split("/");
 	var currPage = url[url.length-1];
 	currPage = parseInt(currPage.split(".")[0]);
-	return currPage;
+	return LENGTH-currPage+1;
 }
 
 function setNavePost(pN, posts){
+	console.log(pN);
 	var navPost = "";
 	if (pN == 1){
-		navPost = '<div class="col-xs-6 text-left"></div><div class="col-xs-6 text-right"> <a  href="'+(pN+1)+'.html"> '+posts[pN].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
+		navPost = '<div class="col-xs-6 text-left"> <a href="'+posts[pN].url+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN].name+'</a> </div>';
 	}else if (posts[pN].name == null){
-		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2].name+'</a> </div>';
+		navPost = '<div class="col-xs-6 text-left"></div><div class="col-xs-6 text-right"> <a  href="'+posts[pN-2].url+'.html"> '+posts[pN-2].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
 	}else{
-		navPost = '<div class="col-xs-6 text-left"> <a href="'+(pN-1)+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN-2].name+'</a> </div> <div class="col-xs-6 text-right"> <a href="'+(pN+1)+'.html"> '+posts[pN].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
+		navPost = '<div class="col-xs-6 text-left"> <a href="'+posts[pN].url+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN].name+'</a> </div> <div class="col-xs-6 text-right"> <a href="'+posts[pN-2].url+'.html"> '+posts[pN-2].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
 	}
 	$("#navPost2").html(navPost);
 	$("#navPost").html(navPost);
