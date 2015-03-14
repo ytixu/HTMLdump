@@ -32,8 +32,8 @@ var N = 6;
 var resPosts = posts;
 function getRecentPosts(){
 	for (var i=0; i<N; i++){
-		// var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
-		var temp = getPost(eg);
+		var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
+		// var temp = getPost(eg);
 		resPosts[i].content = temp.content;
 		resPosts[i].subtitle = temp.subtitle;
 	}
