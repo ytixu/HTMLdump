@@ -119,6 +119,7 @@ function addDivs(){
 			startCycle:function(){
 				if (this.cycle <= 0){
 					this.displayPost(true);
+					done --;
 					return;	
 				} 
 				this.cycle -= 1;
@@ -202,9 +203,13 @@ function addDivs(){
 
 }
 
+var done = 0;
+
 function triggerCycle(_id){
+	if (done > 0) return;
 	__id = parseInt(_id);
 	if (divs[__id].size == 0) return;
+	done = N;
 	for (var i = 0; i<N; i++){
 		$("#"+i.toString()).find(".postContext").fadeOut("fast");
 		divs[i].cycle = divs[__id].size;
