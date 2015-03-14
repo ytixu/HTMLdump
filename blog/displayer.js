@@ -17,7 +17,7 @@ function getPost(post){
 	var title = parser.getElementsByTagName('h3')[0].innerHTML;
 	var subtitle = parser.getElementsByTagName('h5')[0].innerHTML;
 	var content = parser.getElementById('postContent').innerHTML.replace(/(<([^>]+)>)/ig,"").split(' ').slice(0,SIZE).join(' ');
-	return {title:title, subtitle:subtitle, content:content};
+	return {title:title, subtitle:subtitle, content:content, url:0};
 }
 
 var eg = '<h3>Tic-Tac-Toe</h3> <h5>Design an algorithm to figure out if someone has won.</h5> </div> <div id="postContent"> <p>In this implementation, we will assume that this algorithm is run many times during a tic-tac-toe game. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. </p></div>';
@@ -33,7 +33,9 @@ var N = 6;
 var resPosts = [];
 function getRecentPosts(){
 	for (var i=0; i<N; i++){
-		resPosts.push(getPost(httpGet('archive/'+posts[i].url.toString()+".html")));
+		var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
+		temp.url = posts[i].url;
+		resPosts.push(temp);
 	}
 }
 
@@ -143,7 +145,8 @@ function addDivs(){
 							+ resPosts[this.id].subtitle + "</div>");
 						if(this.size == 0){
 							$("#"+this.id.toString()).append("<div class='postText'>" 
-								+ resPosts[this.id].content + "</div>");
+								+ resPosts[this.id].content + "... <a href='archive/"
+								+ resPosts[this.id].url.toString() + ".html'>(continue reading)</a></div>");
 						}
 					}
 				}
