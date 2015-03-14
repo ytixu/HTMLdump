@@ -21,7 +21,7 @@ h5{
 }
 
 .titleBar{
-	background-color: #669999;
+	background-color: rgba(102,153,153,1);
 	padding:10px;
 	color:white;
 }

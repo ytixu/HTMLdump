@@ -14,31 +14,30 @@ var SIZE = 55;
 
 function getPost(post){
 	var parser = new DOMParser().parseFromString(post, "text/html");
-	var title = parser.getElementsByTagName('h3')[0].innerHTML;
 	var subtitle = parser.getElementsByTagName('h5')[0].innerHTML;
 	var content = parser.getElementById('postContent').innerHTML.replace(/(<([^>]+)>)/ig,"").split(' ').slice(0,SIZE).join(' ');
-	return {title:title, subtitle:subtitle, content:content, url:0};
+	return {subtitle:subtitle, content:content};
 }
 
 var eg = '<h3>Tic-Tac-Toe</h3> <h5>Design an algorithm to figure out if someone has won.</h5> </div> <div id="postContent"> <p>In this implementation, we will assume that this algorithm is run many times during a tic-tac-toe game. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. </p></div>';
 // console.log(getPost(eg));
 
 ////// constants
-var gr = 1/1.618;
+var gr = 1/1.618
 var colors = ["rgba(255, 148, 77, 0.9)", "rgba(142, 139, 132, 0.9)"];
 var N = 6;
 
 
 ///// get posts
-var resPosts = [];
+var resPosts = posts;
 function getRecentPosts(){
 	for (var i=0; i<N; i++){
 		var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
-		temp.url = posts[i].url;
 		// var temp = getPost(eg);
-		// temp.url = 1;
-		resPosts.push(temp);
+		resPosts[i].content = temp.content;
+		resPosts[i].subtitle = temp.subtitle;
 	}
+	console.log(resPosts);
 }
 
 
@@ -55,20 +54,24 @@ function initializeSizes(){
 	var start = 0;
 	var end = N;
 	var section = 0;
-	var size = $("#postsDisplayer").width();
-	var top = $(".titleBar").height();
+	var size = 0;
+	var top = $("#header").height();
+	var left = 0;
 	var center;
 	if ($(window).width() < $(window).height()){
 		start ++;
 		end ++;
 		section ++;
-		size = size/gr;
+		size = $("#postsDisplayer").width()/gr;
 		center = [0,size+top];
 		$("#postsDisplayer").height(size);
 	}else{
-		center = [size,size*gr+top];
+		size = $(window).height()/gr;
+		left = ($(window).width()-size)/2
+		center = [size+left,size*gr+top];
 		$("#postsDisplayer").height(center[1]);
 	}
+	console.log(gr);
 	for (var i=start; i<end; i++){
 		var coord;
 		if (section == 0){
@@ -115,7 +118,7 @@ function addDivs(){
 		divs.push({id:i, size:i, cycle:0,
 			startCycle:function(){
 				if (this.cycle <= 0){
-					this.displayPost();
+					this.displayPost(true);
 					return;	
 				} 
 				this.cycle -= 1;
@@ -141,16 +144,16 @@ function addDivs(){
 			assignPost: function(){
 				$("#"+this.id.toString()).append("<div class='postContext'><div class='postTitle'><a href='archive/"
 					+ resPosts[this.id].url.toString() + ".html'>" 
-					+ resPosts[this.id].title + "</a></div><div class='postSubtitle'>" 
+					+ resPosts[this.id].name + "</a></div><div class='postSubtitle'>" 
 					+ resPosts[this.id].subtitle + "</div><div class='postText'>" 
 					+ resPosts[this.id].content + "... </div><div class='smallTitle'><a href='archive/"
 					+ resPosts[this.id].url.toString() + ".html'>" 
-					+ resPosts[this.id].title + "</a></div></div>");
+					+ resPosts[this.id].name + "</a></div></div>");
 				// MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 			},
-			displayPost: function(){
+			displayPost: function(fade){
 				_id = this.id.toString();
-				console.log($("#"+_id).children()[0]);
+				// console.log($("#"+_id).children()[0]);
 				if (this.size < 3 && sizes[this.size].size > 200){
 					$("#"+_id).find(".postContext").find(".postTitle").show();
 					$("#"+_id).find(".postContext").find(".smallTitle").hide();
@@ -175,7 +178,11 @@ function addDivs(){
 						$("#"+_id).find(".postContext").find(".smallTitle").hide();
 					}
 				}
-				$("#"+_id).find(".postContext").fadeIn("fast");
+				if (fade){
+					$("#"+_id).find(".postContext").fadeIn("fast");
+				}else{
+					$("#"+_id).find(".postContext").show();
+				}
 			}
 		});
 		divs[i].assignPost();
@@ -185,11 +192,11 @@ function addDivs(){
 	$( window ).resize(function() {
 		sizes = [];
 		initializeSizes();
-		console.log(sizes);
+		// console.log(sizes);
 		for (var i = 0; i<N; i++){
-			$("#"+i.toString()).find(".postContext").fadeOut("fast");
+			$("#"+i.toString()).find(".postContext").hide();
 			resizeDiv(sizes[divs[i].size],i.toString());
-			divs[i].displayPost();
+			divs[i].displayPost(false);
 		}
 	});
 
