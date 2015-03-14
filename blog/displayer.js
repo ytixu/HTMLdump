@@ -138,27 +138,47 @@ function addDivs(){
 					});
 				}
 			},
+			assignPost: function(){
+				$("#"+this.id.toString()).append("<div class='postContext'><div class='postTitle'><a href='archive/"
+					+ resPosts[this.id].url.toString() + ".html'>" 
+					+ resPosts[this.id].title + "</a></div><div class='postSubtitle'>" 
+					+ resPosts[this.id].subtitle + "</div><div class='postText'>" 
+					+ resPosts[this.id].content + "... </div><div class='smallTitle'><a href='archive/"
+					+ resPosts[this.id].url.toString() + ".html'>" 
+					+ resPosts[this.id].title + "</a></div></div>");
+				// MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+			},
 			displayPost: function(){
+				_id = this.id.toString();
+				console.log($("#"+_id).children()[0]);
 				if (this.size < 3 && sizes[this.size].size > 200){
-					$("#"+this.id.toString()).append("<div class='postTitle'><a href='archive/"
-						+ resPosts[this.id].url.toString() + ".html'>" 
-						+ resPosts[this.id].title + "</a></div>");
+					$("#"+_id).find(".postContext").find(".postTitle").show();
+					$("#"+_id).find(".postContext").find(".smallTitle").hide();
 					if(this.size < 2){
-						$("#"+this.id.toString()).append("<div class='postSubtitle'>" 
-							+ resPosts[this.id].subtitle + "</div>");
+						$("#"+_id).find(".postContext").find(".postSubtitle").show();
 						if(this.size == 0){
-							$("#"+this.id.toString()).append("<div class='postText'>" 
-								+ resPosts[this.id].content + "... </div>");
+							$("#"+_id).find(".postContext").find(".postText").show();
+						}else{
+							$("#"+_id).find(".postContext").find(".postText").hide();
 						}
+					}else{
+						$("#"+_id).find(".postContext").find(".postSubtitle").hide();
+						$("#"+_id).find(".postContext").find(".postText").hide();
 					}
-				}else if (sizes[this.size].size > 100){
-					$("#"+this.id.toString()).append("<div class='smallTitle'><a href='archive/"
-						+ resPosts[this.id].url.toString() + ".html'>" 
-						+ resPosts[this.id].title + "</a></div>");
+				}else{
+					$("#"+_id).find(".postContext").find(".postTitle").hide();
+					$("#"+_id).find(".postContext").find(".postSubtitle").hide();
+					$("#"+_id).find(".postContext").find(".postText").hide();
+					if (sizes[this.size].size > 100){
+						$("#"+_id).find(".postContext").find(".smallTitle").show();
+					}else{
+						$("#"+_id).find(".postContext").find(".smallTitle").hide();
+					}
 				}
-				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+				$("#"+_id).find(".postContext").fadeIn("fast");
 			}
 		});
+		divs[i].assignPost();
 		divs[i].displayPost();
 	}
 	////// resize
@@ -167,7 +187,7 @@ function addDivs(){
 		initializeSizes();
 		console.log(sizes);
 		for (var i = 0; i<N; i++){
-			$("#"+i.toString()).html("");
+			$("#"+i.toString()).find(".postContext").fadeOut("fast");
 			resizeDiv(sizes[divs[i].size],i.toString());
 			divs[i].displayPost();
 		}
@@ -179,7 +199,7 @@ function triggerCycle(_id){
 	__id = parseInt(_id);
 	if (divs[__id].size == 0) return;
 	for (var i = 0; i<N; i++){
-		$("#"+i.toString()).html("");
+		$("#"+i.toString()).find(".postContext").fadeOut("fast");
 		divs[i].cycle = divs[__id].size;
 		divs[i].startCycle();
 	}
