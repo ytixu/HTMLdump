@@ -1,19 +1,36 @@
 .displayerContainer{
 	position: absolute;
-}
+	background-size: cover;
+	background-blend-mode:multiply;
+	}
 .displayerContainer:hover{
 	cursor: pointer;
 }
+.postContext{
+	background-color: rgba(0,0,0,0.4);
+	padding: 13% 8% 8% 8%;
+	color: white;
+}
+.postContext a{
+	color:white;
+	text-decoration: none;
+}
+.postContext a:hover{
+	color:#AAAAAA;
+}
 .postTitle{
-	margin:13% 13% 0 13%;
 	font-size: 20px;
 }
-.postSubtitle,.postText{
-	margin:0 13% 0 13% ;
+.postSubtitle{
+	padding-left: 10px;
+	color:#aaaaaa;
 }
+
 .smallTitle{
-	margin:13% 13% 0 13%;
 }
+
+
+
 .titleBar{
 	position:absolute;
 	z-index: 10;

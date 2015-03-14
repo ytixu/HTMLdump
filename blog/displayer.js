@@ -24,7 +24,7 @@ var eg = '<h3>Tic-Tac-Toe</h3> <h5>Design an algorithm to figure out if someone 
 
 ////// constants
 var gr = 1/1.618
-var colors = ["rgba(255, 148, 77, 0.9)", "rgba(142, 139, 132, 0.9)"];
+var colors = ["#fa774d", "#476b6b"];
 var N = 6;
 
 
@@ -112,7 +112,18 @@ function addDivs(){
 		div.className = "displayerContainer";
 		div.id = i.toString();
 		$("#postsDisplayer").append(div);
-		$("#"+div.id).css("background-color", colors[i%2]);
+		// $("#"+div.id).css({
+		// 	backgroundImage: "url('image/"+resPosts[i].url+".png')"
+		// });
+		$("#"+div.id).css({
+   			backgroundImage: "-webkit-linear-gradient(top, "+colors[0]+" , "+colors[1]+"), url('image/"+resPosts[i].url+".png')"}).css({
+   			backgroundImage: "-o-linear-gradient(bottom, "+colors[0]+", "+colors[1]+"),url('image/"+resPosts[i].url+".png')"}).css({
+   			backgroundImage: "-moz-linear-gradient(bottom, "+colors[0]+", "+colors[1]+"),url('image/"+resPosts[i].url+".png')"}).css({
+   			backgroundImage: "linear-gradient(to bottom, "+colors[0]+" , "+colors[1]+"),url('image/"+resPosts[i].url+".png')"
+
+   		});
+			// "background-color": colors[i%2],
+		console.log($("#"+div.id));
 		resizeDiv(size,div.id);
 		$("#"+div.id).click(function(){triggerCycle(this.id);});
 		divs.push({id:i, size:i, cycle:0,
@@ -156,33 +167,33 @@ function addDivs(){
 				_id = this.id.toString();
 				// console.log($("#"+_id).children()[0]);
 				if (this.size < 3 && sizes[this.size].size > 200){
-					$("#"+_id).find(".postContext").find(".postTitle").show();
-					$("#"+_id).find(".postContext").find(".smallTitle").hide();
-					if(this.size < 2){
-						$("#"+_id).find(".postContext").find(".postSubtitle").show();
+					$("#"+_id +" .postContext .postTitle").show();
+					$("#"+_id +" .postContext .smallTitle").hide();
+					// if(this.size < 2){
+						$("#"+_id +" .postContext .postSubtitle").show();
 						if(this.size == 0){
-							$("#"+_id).find(".postContext").find(".postText").show();
+							$("#"+_id +" .postContext .postText").show();
 						}else{
-							$("#"+_id).find(".postContext").find(".postText").hide();
+							$("#"+_id +" .postContext .postText").hide();
 						}
-					}else{
-						$("#"+_id).find(".postContext").find(".postSubtitle").hide();
-						$("#"+_id).find(".postContext").find(".postText").hide();
-					}
+					// }else{
+					// 	$("#"+_id +" .postContext .postSubtitle").hide();
+					// 	$("#"+_id +" .postContext .postText").hide();
+					// }
 				}else{
-					$("#"+_id).find(".postContext").find(".postTitle").hide();
-					$("#"+_id).find(".postContext").find(".postSubtitle").hide();
-					$("#"+_id).find(".postContext").find(".postText").hide();
+					$("#"+_id +" .postContext .postTitle").hide();
+					$("#"+_id +" .postContext .postSubtitle").hide();
+					$("#"+_id +" .postContext .postText").hide();
 					if (sizes[this.size].size > 100){
-						$("#"+_id).find(".postContext").find(".smallTitle").show();
+						$("#"+_id +" .postContext .smallTitle").show();
 					}else{
-						$("#"+_id).find(".postContext").find(".smallTitle").hide();
+						$("#"+_id +" .postContext .smallTitle").hide();
 					}
 				}
 				if (fade){
-					$("#"+_id).find(".postContext").fadeIn("fast");
+					$("#"+_id +" .postContext").fadeIn("fast");
 				}else{
-					$("#"+_id).find(".postContext").show();
+					$("#"+_id +" .postContext").show();
 				}
 			}
 		});
@@ -193,9 +204,8 @@ function addDivs(){
 	$( window ).resize(function() {
 		sizes = [];
 		initializeSizes();
-		// console.log(sizes);
 		for (var i = 0; i<N; i++){
-			$("#"+i.toString()).find(".postContext").hide();
+			$("#"+i.toString() +" .postContext").hide();
 			resizeDiv(sizes[divs[i].size],i.toString());
 			divs[i].displayPost(false);
 		}
@@ -204,6 +214,7 @@ function addDivs(){
 }
 
 var done = 0;
+// todo : automatic trigger
 
 function triggerCycle(_id){
 	if (done > 0) return;
@@ -211,7 +222,7 @@ function triggerCycle(_id){
 	if (divs[__id].size == 0) return;
 	done = N;
 	for (var i = 0; i<N; i++){
-		$("#"+i.toString()).find(".postContext").fadeOut("fast");
+		$("#"+i.toString() +" .postContext").fadeOut("fast");
 		divs[i].cycle = divs[__id].size;
 		divs[i].startCycle();
 	}
