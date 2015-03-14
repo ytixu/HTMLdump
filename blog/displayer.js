@@ -35,6 +35,8 @@ function getRecentPosts(){
 	for (var i=0; i<N; i++){
 		var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
 		temp.url = posts[i].url;
+		// var temp = getPost(eg);
+		// temp.url = 1;
 		resPosts.push(temp);
 	}
 }
@@ -150,6 +152,7 @@ function addDivs(){
 						}
 					}
 				}
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 			}
 		});
 		divs[i].displayPost();
