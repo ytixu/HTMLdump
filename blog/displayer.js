@@ -177,7 +177,7 @@ function addDivs(){
 
 function triggerCycle(_id){
 	__id = parseInt(_id);
-	if (__id == 0) return;
+	if (divs[__id].size == 0) return;
 	for (var i = 0; i<N; i++){
 		$("#"+i.toString()).html("");
 		divs[i].cycle = divs[__id].size;
