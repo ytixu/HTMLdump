@@ -137,16 +137,16 @@ function addDivs(){
 				}
 			},
 			displayPost: function(){
-				if (this.size < 4){
-					$("#"+this.id.toString()).append("<div class='postTitle'>" 
-						+ resPosts[this.id].title + "</div>");
+				if (this.size < 4 && sizes[this.size].size > 100){
+					$("#"+this.id.toString()).append("<div class='postTitle'><a href='archive/"
+						+ resPosts[this.id].url.toString() + ".html'>" 
+						+ resPosts[this.id].title + "</a></div>");
 					if(this.size < 2){
 						$("#"+this.id.toString()).append("<div class='postSubtitle'>" 
 							+ resPosts[this.id].subtitle + "</div>");
 						if(this.size == 0){
 							$("#"+this.id.toString()).append("<div class='postText'>" 
-								+ resPosts[this.id].content + "... <a href='archive/"
-								+ resPosts[this.id].url.toString() + ".html'>(continue reading)</a></div>");
+								+ resPosts[this.id].content + "... </div>");
 						}
 					}
 				}
