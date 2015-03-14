@@ -32,8 +32,8 @@ var N = 6;
 var resPosts = posts;
 function getRecentPosts(){
 	for (var i=0; i<N; i++){
-		var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
-		// var temp = getPost(eg);
+		// var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
+		var temp = getPost(eg);
 		resPosts[i].content = temp.content;
 		resPosts[i].subtitle = temp.subtitle;
 	}
@@ -67,6 +67,9 @@ function initializeSizes(){
 		$("#postsDisplayer").height(size);
 	}else{
 		size = $(window).height()/gr;
+		if (size > 1000){
+			size = 1000;
+		}
 		left = ($(window).width()-size)/2
 		center = [size+left,size*gr+top];
 		$("#postsDisplayer").height(center[1]);
@@ -157,7 +160,8 @@ function addDivs(){
 				$("#"+this.id.toString()).append("<div class='postContext'><div class='postTitle'><a href='archive/"
 					+ resPosts[this.id].url.toString() + ".html'>" 
 					+ resPosts[this.id].name + "</a></div><div class='postSubtitle'>" 
-					+ resPosts[this.id].subtitle + "</div><div class='postText'>" 
+					+ resPosts[this.id].subtitle + " ~ " 
+					+ resPosts[this.id].date + "</div><div class='postText'>" 
 					+ resPosts[this.id].content + "... </div><div class='smallTitle'><a href='archive/"
 					+ resPosts[this.id].url.toString() + ".html'>" 
 					+ resPosts[this.id].name + "</a></div></div>");
