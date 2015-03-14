@@ -176,10 +176,11 @@ function addDivs(){
 }
 
 function triggerCycle(_id){
-	console.log(divs);
+	__id = parseInt(_id);
+	if (__id == 0) return;
 	for (var i = 0; i<N; i++){
 		$("#"+i.toString()).html("");
-		divs[i].cycle = divs[parseInt(_id)].size;
+		divs[i].cycle = divs[__id].size;
 		divs[i].startCycle();
 	}
 }
