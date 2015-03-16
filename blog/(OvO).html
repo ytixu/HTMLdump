@@ -11,7 +11,11 @@
 		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="timeline/timeline.css">
 		<style>
+			body{
+				overflow-x:hidden;
+			}
 			.titleBar{
 				position:absolute;
 				z-index: 10;
@@ -58,6 +62,30 @@
 			.row-fluid { 
 				height: inherit; 
 			}
+			.bottons{
+				display:table-cell;
+			}
+			.bottons div{
+				margin:20px;
+				padding-top:10px;
+				text-align: center;
+				background-color: #bbbbbb;
+				color:#666666;
+				float:left;
+				width:100px;
+				height:40px;
+				vertical-align: middle;
+				border-radius: 1em;
+				font-weight: bold;
+
+			}
+			#downClick{
+				cursor: pointer;
+			}
+			.bottons div:hover{
+				background-color: #333333;
+				color:#bbbbbb;
+			}
 		</style>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -100,10 +128,49 @@
 				<a target="blank" href="https://github.com/ytixu"><img src="image/icons_08.png"></a>
 				<a target="blank" href="../mainPage/CV-2015.pdf"><img src="image/icons_11.png"></a></p>
 			</div>
+			<center><div class="bottons">
+				<div id="downClick">Timeline</div>
+				<a href="index.html"><div>Blog</div></a>
+			</div></center>
 		</div>
-	<div>
+	</div>
+	<div class="row" data-ng-controller="timelineCtrl" style="padding-bottom:100px;">
+	<div ng-view style="padding-top:10%;">
+		<ul class="timeline">
+			<li class="year"><div>Now</div></li>
+			<li data-ng-repeat="dat in timelineData">
+				<div class="year" ng-if="$index > 0 && dat.date.split('/')[2] != timelineData[$index-1].date.split('/')[2]">
+					<div>20{{timelineData[$index-1].date.split('/')[2]}}</div>
+				</div>
+				<div class="event" ng-if="dat.type == 'e'">
+					<div class="node" id="{{$index}}" onmouseover="showContent(this.id)" onmouseout="hideContent(this.id)"></div>
+					<div class="content" id="{{$index}}" onmouseover="showContent(this.id)" onmouseout="hideContent(this.id)">
+						<a target="blank" ng-if="dat.link && dat.link != '?'" href="{{dat.link}}">{{dat.name}}</a>
+						<a target="blank" ng-if="!dat.link" href="archive/{{dat.url}}.html">{{dat.name}}</a>
+						<span ng-if="dat.link == '?'">{{dat.name}}</span>
+						<br> {{dat.date}}
+						<div id="{{'c'+$index}}">{{dat.content}}</div>
+					</div>
+				</div>
+			  	<div class="project" ng-if="dat.type != 'e'">
+					<div id="{{$index}}"class="node" onmouseover="showContent(this.id)" onmouseout="hideContent(this.id)" style="background-image:url('image/{{dat.url}}.png');"></div>
+					<div class="content" id="{{$index}}" onmouseover="showContent(this.id)" onmouseout="hideContent(this.id)">
+						<a target="blank" ng-if="dat.link && dat.link != '?'" href="{{dat.link}}">{{dat.name}}</a>
+						<a target="blank" ng-if="!dat.link" href="archive/{{dat.url}}.html">{{dat.name}}</a>
+						<span ng-if="dat.link == '?'">{{dat.name}}</span>
+						<br> {{dat.date}}
+
+						<div id="{{'c'+$index}}">{{dat.content}}</div>
+					</div>
+				</div>
+			</li>
+			<li class="year"><div>20{{timelineData[timelineData.length-1].date.split('/')[2]}}</div></li>
+		</ul>
+	</div>
+	</div>
 <script src="menu.js"> </script>
 <script src="archive/posts.js"> </script>
+<script src="timeline/timelinedata.js"> </script>
 <script>
 	function postsCtrl($scope) {
         $scope.posts = posts.reverse();
@@ -115,6 +182,23 @@
 		return Math.round(Math.abs((firstDate.getTime() - today.getTime())/(oneDay)));
 	}
     $("#dayCount").html(diffDate());
+
+	function showContent(_id){
+		$("#c"+_id).finish();
+		$("#c"+_id).fadeIn("fast");
+	}
+	function hideContent(_id){
+		$("#c"+_id).finish();
+		$("#c"+_id).fadeOut("fast");
+	}
+	function timelineCtrl($scope) {
+    	$scope.timelineData = getData();
+	}
+	$("#downClick").click(function(){
+        $("body").animate({
+        	scrollTop:  $(window).height()
+	    });
+   	});
 </script>
 </body>
 </html>

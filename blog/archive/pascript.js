@@ -10,7 +10,7 @@ function setNavePost(pN, posts){
 	var navPost = "";
 	if (pN == 1){
 		navPost = '<div class="col-xs-6 text-left"> <a href="'+posts[pN].url+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN].name+'</a> </div>';
-	}else if (posts[pN].name == null){
+	}else if (!posts[pN]){
 		navPost = '<div class="col-xs-6 text-left"></div><div class="col-xs-6 text-right"> <a  href="'+posts[pN-2].url+'.html"> '+posts[pN-2].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';
 	}else{
 		navPost = '<div class="col-xs-6 text-left"> <a href="'+posts[pN].url+'.html"><span class="glyphicon glyphicon-chevron-left"></span> '+posts[pN].name+'</a> </div> <div class="col-xs-6 text-right"> <a href="'+posts[pN-2].url+'.html"> '+posts[pN-2].name+' <span class="glyphicon glyphicon-chevron-right"></span></a> </div>';

@@ -1,0 +1,132 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+
+ul.timeline{
+	list-style-type: none;
+}
+ul.timeline li {
+    position:relative; 
+    margin-bottom: 0;
+    padding-bottom: 2.5em;
+}
+
+ul.timeline li:after {
+    content: "";
+    position: absolute;
+    left: -16px; 
+    top: 0px;
+}
+
+ul.timeline li:before {
+    content:" ";
+    position: absolute;
+    left: -16px; 
+    border-left: 10px solid #f1f1f1;
+    height: 100%;
+    width: 1px;
+}
+
+ul.timeline li:first-child:before {
+   top: 6px; 
+}
+
+ul.timeline li:last-child:before {
+   height: 6px; 
+}
+
+ul.timeline li{
+	left:50%;
+}
+
+ul.timeline .year{
+	min-height:80px;
+}
+
+ul.timeline .year div{
+	position:relative;
+	display: table-cell;
+	border-radius: 100%;
+	width: 50px;
+	height: 50px;
+	background-color: rgba(102,153,153,1);
+	color:white;
+	left:-36px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+ul.timeline .event{
+	padding:10px 0 10px 0 ;
+	display:table-cell;
+}
+
+ul.timeline .event .node{
+	position:relative;
+	display: table-cell;
+	border-radius: 100%;
+	width: 10px;
+	height: 10px;
+	background-color: rgba(102,153,153,1);
+	left:-16px;
+	text-align: center;
+	vertical-align: middle;
+	z-index: 1;
+	float: left;
+}
+
+ul.timeline .event .content{
+	color:rgba(102,153,153,1);
+	border-left: 2px solid #dddddd;
+	padding-left:3px;
+	float: left;
+	width:200px;
+}
+
+ul.timeline .project{
+	padding:10px 0 10px 0 ;
+	display:table-cell;
+}
+ul.timeline .project .node{
+	position:relative;
+	display: table-cell;
+	border-radius: 100%;
+	width: 100px;
+	height: 100px;
+	background-color: #f1f1f1;
+	left:-61px;
+	text-align: center;
+	vertical-align: middle;
+	z-index: 1;
+	float: left;
+	background-size: cover;
+	border-width: 10px;
+	border-style: solid;
+	border-color: #f1f1f1;
+}
+
+ul.timeline .project .content{
+	position:relative;
+	top:40px;
+	left:-45px;
+	color:rgba(102,153,153,1);
+	border-left: 2px solid #dddddd;
+	padding-left: 3px;
+	float: left;
+	width:200px;
+}
+ul.timeline .project .content div, ul.timeline .event .content div{
+	display: none;
+	width:400px;
+}
+
+ul.timeline a{
+	color:rgba(102,153,153,1);
+	font-weight: bold;
+}
+
+ul.timeline a:hover{
+	color:rgba(102,153,153,0.5);
+	font-weight: bold;
+	text-decoration: none;
+}

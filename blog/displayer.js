@@ -32,8 +32,8 @@ var N = 6;
 var resPosts = posts;
 function getRecentPosts(){
 	for (var i=0; i<N; i++){
-		var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
-		// var temp = getPost(eg);
+		// var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
+		var temp = getPost(eg);
 		resPosts[i].content = temp.content;
 		resPosts[i].subtitle = temp.subtitle;
 	}
@@ -58,13 +58,17 @@ function initializeSizes(){
 	var top = $("#header").height();
 	var left = 0;
 	var center;
-	if ($(window).width() < $(window).height()){
+	if ($(window).width() < $(window).height()/gr){
 		start ++;
 		end ++;
 		section ++;
 		size = $("#postsDisplayer").width()/gr;
-		center = [0,size+top];
-		$("#postsDisplayer").height(size);
+		if (size > 1000){
+			size = 1000;
+		}
+		left = ($(window).width()-size*gr)/2
+		center = [left,size+top];
+		$("#postsDisplayer").height(size+top);
 	}else{
 		size = $(window).height()/gr;
 		if (size > 1000){
@@ -101,10 +105,10 @@ var divs = [];
 
 function resizeDiv(size, div){
 	$("#"+div).css({
-		"top" : size.coord[1],
-		"left" : size.coord[0],
-		"width" : size.size,
-		"height" : size.size
+		"top" : size.coord[1] + 10,
+		"left" : size.coord[0] + 10,
+		"width" : size.size - 20,
+		"height" : size.size - 20
 	});
 }
 
@@ -118,13 +122,16 @@ function addDivs(){
 		// $("#"+div.id).css({
 		// 	backgroundImage: "url('image/"+resPosts[i].url+".png')"
 		// });
-		$("#"+div.id).css({
-   			backgroundImage: "-webkit-linear-gradient(top, "+colors[0]+" , "+colors[1]+"), url('image/"+resPosts[i].url+".png')"}).css({
-   			backgroundImage: "-o-linear-gradient(bottom, "+colors[0]+", "+colors[1]+"),url('image/"+resPosts[i].url+".png')"}).css({
-   			backgroundImage: "-moz-linear-gradient(bottom, "+colors[0]+", "+colors[1]+"),url('image/"+resPosts[i].url+".png')"}).css({
-   			backgroundImage: "linear-gradient(to bottom, "+colors[0]+" , "+colors[1]+"),url('image/"+resPosts[i].url+".png')"
-
-   		});
+		//$("#"+div.id).css({
+   			// backgroundImage: "-webkit-linear-gradient(top, "+colors[0]+" , "+colors[1]+"), url('image/"+resPosts[i].url+".png')"}).css({
+   			// backgroundImage: "-o-linear-gradient(bottom, "+colors[0]+", "+colors[1]+"),url('image/"+resPosts[i].url+".png')"}).css({
+   			// backgroundImage: "-moz-linear-gradient(bottom, "+colors[0]+", "+colors[1]+"),url('image/"+resPosts[i].url+".png')"}).css({
+   			// backgroundImage: "linear-gradient(to bottom, "+colors[0]+" , "+colors[1]+"),url('image/"+resPosts[i].url+".png')"
+   			//backgroundImage:"url('image/"+resPosts[i].url+".png')"
+   		//});
+   		var t = new Trianglify();
+		var pattern = t.generate(document.body.clientWidth, document.body.clientHeight);
+		$("#"+div.id).css({'background-image': pattern.dataUrl+", url('image/"+resPosts[i].url+".png')"});
 			// "background-color": colors[i%2],
 		console.log($("#"+div.id));
 		resizeDiv(size,div.id);
@@ -146,10 +153,10 @@ function addDivs(){
 						});
 				}else{
 					$("#"+this.id.toString()).animate({
-						"top" : sizes[this.size-1].coord[1],
-						"left" : sizes[this.size-1].coord[0],
-						"width" : sizes[this.size-1].size,
-						"height" : sizes[this.size-1].size
+						"top" : sizes[this.size-1].coord[1] + 10,
+						"left" : sizes[this.size-1].coord[0] + 10,
+						"width" : sizes[this.size-1].size - 20,
+						"height" : sizes[this.size-1].size - 20
 					}, 340, function(){
 						divs[parseInt(this.id)].size -= 1;
 						divs[parseInt(this.id)].startCycle();
