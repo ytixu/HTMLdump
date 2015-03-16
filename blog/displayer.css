@@ -25,14 +25,12 @@ body{
 	position: absolute;
 	background-size: cover;
 	background-blend-mode:multiply;
-	display: table;
 	/*opacity: 0.8;*/
 }
 .displayerContainer:hover{
 	cursor: pointer;
 }
 .postContext{
-	display: table-cell;
 	background-color: rgba(0,0,0,0.6);
 	padding: 13% 8% 8% 8%;
 	color: white;
