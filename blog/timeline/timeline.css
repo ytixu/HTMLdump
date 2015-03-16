@@ -36,7 +36,7 @@ ul.timeline li:last-child:before {
 }
 
 ul.timeline li{
-	left:50%;
+	left:40%;
 }
 
 ul.timeline .year{
@@ -66,10 +66,10 @@ ul.timeline .event .node{
 	position:relative;
 	display: table-cell;
 	border-radius: 100%;
-	width: 10px;
-	height: 10px;
+	width: 20px;
+	height: 20px;
 	background-color: rgba(102,153,153,1);
-	left:-16px;
+	left:-21px;
 	text-align: center;
 	vertical-align: middle;
 	z-index: 1;
@@ -92,10 +92,10 @@ ul.timeline .project .node{
 	position:relative;
 	display: table-cell;
 	border-radius: 100%;
-	width: 100px;
-	height: 100px;
+	width: 180px;
+	height: 180px;
 	background-color: #f1f1f1;
-	left:-61px;
+	left:-101px;
 	text-align: center;
 	vertical-align: middle;
 	z-index: 1;
@@ -109,7 +109,7 @@ ul.timeline .project .node{
 ul.timeline .project .content{
 	position:relative;
 	top:40px;
-	left:-45px;
+	left:-65px;
 	color:rgba(102,153,153,1);
 	border-left: 2px solid #dddddd;
 	padding-left: 3px;
