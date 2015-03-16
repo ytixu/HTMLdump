@@ -103,7 +103,7 @@ var data = [
 		link: "?",
 		content: "Implemented 6 existing geographical location inference methods in published literature to infer Twitter tweet and user location. Experienced with machine learning methods and optimization algorithms. Familiarity with UNIX environment and version control platforms.",
 		tags:["Python", "UNIX", "GitLab"],
-		date: "29/08/14",
+		date: "08/29/14",
 		type:"e"
 	},{
 		name: "Tweet Scrapping",
