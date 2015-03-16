@@ -25,6 +25,7 @@ body{
 	position: absolute;
 	background-size: cover;
 	background-blend-mode:multiply;
+	display: table-cell;
 	/*opacity: 0.8;*/
 }
 .displayerContainer:hover{
