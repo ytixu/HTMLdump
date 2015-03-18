@@ -1,5 +1,8 @@
-$("#header").html('<div class="title"> GOLDENRATI&Phi; </div> <div class="menu"><div id="homeButton" class="menuButton"><span class="glyphicon glyphicon-home"></span></div><div id="infoButton" class="menuButton"><span class="glyphicon glyphicon-question-sign"></span></div></div>');
-
+if (document.URL.indexOf("archive") > -1){
+	$("#header").html('<a class="homeLink" href="../index.html"><div class="title"> GOLDENRATI&Phi; </div></a> <div class="menu"><div id="homeButton" class="menuButton"><span class="glyphicon glyphicon-home"></span></div><div id="infoButton" class="menuButton"><span class="glyphicon glyphicon-question-sign"></span></div></div>');
+}else{
+	$("#header").html('<a class="homeLink" href="index.html"><div class="title"> GOLDENRATI&Phi; </div></a> <div class="menu"><div id="homeButton" class="menuButton"><span class="glyphicon glyphicon-home"></span></div><div id="infoButton" class="menuButton"><span class="glyphicon glyphicon-question-sign"></span></div></div>');
+}
 $("#homeButton").click(
 	function(){
 		if (document.URL.indexOf("archive") > -1){

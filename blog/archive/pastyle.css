@@ -41,6 +41,13 @@ h5{
     height:100px;
 	font-size: 30px;
 }
+a.homeLink{
+	color:white;
+	text-decoration: none;
+}
+a.homeLink:hover{
+	color:white;
+}
 
 .menu{
 	text-align: right;

@@ -148,6 +148,12 @@ var data = [
 		content: "Helped in making a note taker app using Kivy that can query for pictures and equations from Wolfram Alpha API.",
 		date: "10/31/14",
 		url: "yhack"
+	},{
+		name: "Robot Navigation & Particle Filter",
+		link: "?",
+		content: "Implemented Particle Filter and studied on its performance for robot navigation (in robotics class).",
+		date: "10/23/14",
+		url: "particleFilter"
 	}
 ]
 
