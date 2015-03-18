@@ -135,7 +135,19 @@ var data = [
 		link: "?",
 		content: "Started undergraduate degree in Statistics and Computer Science at McGill University. Little did I know, I took Mathematical Analysis on my first semester. I do not recommend that to anyone.",
 		date: "09/03/12",
-		type:"e"
+		url: "mcgill"
+	},{
+		name: "McHacks",
+		link: "http://challengepost.com/software/notsorandomimage",
+		content: "Attempt to actualize an Android music sharing app. Played with \"drawing circles\" on Android Studio while trying to get mentors to help us installing Parse. End up changing hack idea at 2AM; made a random cat photo displayer instead.",
+		date: "02/21/15",
+		url: "mchacks"
+	},{
+		name: "YHack",
+		link: "http://challengepost.com/software/pyjot",
+		content: "Helped in making a note taker app using Kivy that can query for pictures and equations from Wolfram Alpha API.",
+		date: "10/31/14",
+		url: "yhack"
 	}
 ]
 

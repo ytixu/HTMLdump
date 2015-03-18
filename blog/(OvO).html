@@ -86,12 +86,38 @@
 				background-color: #333333;
 				color:#bbbbbb;
 			}
+			#bg{
+				position:fixed;
+				top:0;
+				left:0;
+				background-size: cover;
+				height: 100%;
+				width:100%;
+				background-position: center;
+			}
+			#timelineBg{
+				position:fixed;
+				top:0;
+				left:0;
+				background: rgb(255,255,255); /* Old browsers */
+				background: -moz-linear-gradient(left, rgba(255,255,255,0.0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.0) 100%); /* FF3.6+ */
+				background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0.0)), color-stop(50%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0.0))); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%); /* Opera 11.10+ */
+				background: -ms-linear-gradient(left, rgba(255,255,255,0.0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%); /* IE10+ */
+				background: linear-gradient(to right, rgba(255,255,255,0.0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.0) 100%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+				height: 100%;
+				width:100%;
+			}
 		</style>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="archive/pastyle.css">
 	</head>
 <body>
+	<div id="bg"></div>
+	<div id="timelineBg"></div>
 	<div id="header" class="container-fluid titleBar"> </div>
 	<div class="row-same-height row-fluid"> 
 		<div class="col-md-3 profileimage col-xs-height"></div>
@@ -172,6 +198,8 @@
 <script src="archive/posts.js"> </script>
 <script src="timeline/timelinedata.js"> </script>
 <script>
+	var DATA = getData();
+
 	function postsCtrl($scope) {
         $scope.posts = posts.reverse();
     }
@@ -186,13 +214,20 @@
 	function showContent(_id){
 		$("#c"+_id).finish();
 		$("#c"+_id).fadeIn("fast");
+		var temp = parseInt(_id);
+		console.log(DATA[temp].large);
+		if (DATA[temp].large){
+			$("#bg").css({
+				backgroundImage: "url('image/"+DATA[temp].large+".png')"
+			});
+		}
 	}
 	function hideContent(_id){
 		$("#c"+_id).finish();
 		$("#c"+_id).fadeOut("fast");
 	}
 	function timelineCtrl($scope) {
-    	$scope.timelineData = getData();
+    	$scope.timelineData = DATA;
 	}
 	$("#downClick").click(function(){
         $("body").animate({

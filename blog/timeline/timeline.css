@@ -95,12 +95,13 @@ ul.timeline .project .node{
 	width: 180px;
 	height: 180px;
 	background-color: #f1f1f1;
+	background-size: cover;
+	background-position: center;
 	left:-101px;
 	text-align: center;
 	vertical-align: middle;
 	z-index: 1;
 	float: left;
-	background-size: cover;
 	border-width: 10px;
 	border-style: solid;
 	border-color: #f1f1f1;
