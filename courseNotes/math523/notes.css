@@ -1,0 +1,52 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	margin:10%;
+	font-size: 20px;
+}
+a{
+	color: #333333;
+	text-decoration: none;
+}
+a:hover, div#scrollTop:hover{
+	color: #aaaaaa;
+	cursor: pointer;
+}
+div#scrollTop{
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	text-align: center;
+	color: #333333;
+}
+/*h1 {
+	counter-reset: h2counter;
+}*/
+h2 {
+	counter-reset: h3counter;
+}
+h3 {
+	counter-reset: h4counter;
+}
+/*h2:before {
+    content: counter(h2counter) ".\0000a0\0000a0";
+    counter-increment: h2counter;
+}*/
+h3:before {
+    content: counter(h3counter) ".\0000a0\0000a0";
+    counter-increment: h3counter;
+}
+ol { 
+	counter-reset: item 
+}
+ol li { 
+	display: block 
+}
+ol li:before { 
+	content: counters(item, ".") "."; 
+	counter-increment: item; 
+	padding-right:10px; 
+	margin-left:-20px;
+}
+.index{
+	font-size: 30px;
+}

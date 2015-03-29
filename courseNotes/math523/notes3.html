@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>GenLin</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+	</script>
+	<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="notes.css">
+	
+</head>
+<body>
+<div id="menu"></div>
+<h2>Inference</h2>
+<a name="cfit"></a><h3>Confidence Interval</h3>
+For any of these hypothesis tests for one parameter models, we can invert the test to obtain a 95% confidence interval.
+<a name="plrt"></a><h3>Profile Log-Likelihood Ratio Test (PLRT)</h3>
+For multi-parameter models, assume that we can partition $\beta$ into $(\beta_0, \psi)$ where $\beta_0$ is the target parameter of interest for the interval and $\psi$ is the set of nuisance parameters. For null hypothesis $H_0: \beta=\beta_0$, construct the original and profile log-likelihood
+\begin{align*}
+&l(\beta, \psi; y)\\
+&l_1(\beta_0) = l_1(\beta_0, \hat{\psi}(\beta_0); y) = \max_{\psi}l(\beta_0, \hat{\psi}; y)
+\end{align*}
+The statistic 
+\begin{equation*}
+	-2[l_1(\beta_0, \hat{\psi}(\beta_0)) - l(\hat{\beta}, \hat{\psi})] \sim \chi_1^2
+\end{equation*}
+can be inverted to construct a confidence interval. 
+<br><br>
+Similarly, we can take the partial derivative of the profile log-likelihood to obtain a profile score function and construct an asymptotic profile score test and invert this score test to obtain a confidence interval.
+<br><br>
+The PLRT and the profile score tests are asymptotically equivalent except:
+<ul>
+	<li>The profile score interval requires computation of the profile Fisher information matrix, whereas the PLRT does not.</li>
+	<li>The PLRT requires maximization of the original log-likelihood, whereas the profile score only requires maximization of the profile log-likelihood</li>
+</ul>
+
+<div id="footer"></div>
+
+<script src="notes.js"></script>
+</body>
+</html>

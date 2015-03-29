@@ -1,0 +1,148 @@
+<html>
+<head>
+	<title>GenLin</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+	</script>
+	<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="notes.css">
+	
+</head>
+<body>
+<div id="menu"></div>
+<h2>Estimate</h2>
+<a name="algo"></a><h3>Algorithms for maximizing the likelihood</h3><h4>Newton-Raphson (N-R)</h4>
+<ol>
+	<li>Start with an initial approximation of the solution</li>
+	<li>Approximate the target function in a neighborhood of the initial approximate solution by a second-degree polynomial</li>
+	<li>Find the maximum of the polynomial and set that as the new approximate solution</li>
+	<li>Repeat to obtain a sequence of approximations</li>
+</ol>
+Need to construct the Hessian matrix $H$ with entries
+\begin{equation*}
+	h_{ab} = \frac{\partial^2 L(\beta)}{\partial\beta_a\beta_b}
+\end{equation*}
+which is $(p+1)\times (p+1)$, and the vector 
+\begin{equation*}
+	u = \left(\frac{\partial L(\beta)}{\partial\beta_0},\dots, \frac{\partial L(\beta)}{\partial\beta_p}\right)
+\end{equation*}
+Leading to the following iteration update
+\begin{equation*}
+	\beta^{(t+1)} = \beta^{(t)} - (H^{(t)})^{-1}u^{(t)}
+\end{equation*}
+if $H^{(t)}$ is non-signular.
+<br><br>
+The algorithm in general is not guaranteed to obtain the global maximum, as it could encounter local maximum, minimum or saddlepoint. If the design matrix is full-rank, then for many GLM's the log-likelihood will be a strictly concave function, in which case the ML estimates will exist and will be unique under very general conditions. As a bonus, the convergence of the estimates will be quite fast.
+<h4>Fisher Scoring</h4>
+One modification to the N-R algorithm is to replace the Hessian with the expected value of the Hessian, referred to as the expected information matrix. 
+\begin{equation*}
+	\mathcal{I}^{(t)}_{ab} = -E\left(\frac{\partial^2 L(\beta)}{\partial\beta_a\partial\beta_b}\right)
+\end{equation*}
+evaluated at $\beta^{(t)}$. The updates becomes 
+\begin{equation*}
+	\beta^{(t+1)} = \beta^{(t)} + (\mathcal{I}^{(t)})^{-1}u^{(t)}
+\end{equation*}
+or 
+\begin{equation*}
+	\mathcal{I}^{(t)}\beta^{(t+1)} = \mathcal{I}^{(t)}\beta^{(t)} + u^{(t)}
+\end{equation*}
+
+Advantage of this over N-R:
+<ol>
+	<li>$(\mathcal{I}^{(t)})^{-1}$ is computed as a by-product of the estimation algorithm and is the estimated variance covariance matrix of $\hat{\beta}$.</li>
+	<li>It doesn’t directly require computing the matrix of second derivatives (as we can take the expected value of the outer product of the gradient).</li>
+	<li>It tends to be more robust than N-R because $\mathcal{I}^{(t)}$ doesn’t depend directly on the data observed.</li>
+	<li>However, N-R does have better theoretical convergence properties in that it will converge quadratically in a neighborhood of the true maximum, whereas Fisher scoring is merely sublinear.
+	</li>
+</ol>
+<br><br>
+Fisher scoring algorithm is generally called an iteratively reweighted least squares (IRLS) algorithm. At convergence, 
+\begin{equation*}
+	\hat{\beta} = (X^\top\hat{W}X)^{-1} \hat{W}\hat{z}
+\end{equation*}
+for 
+\begin{equation*}
+	\hat{z} = X\hat{\beta} + D^{-1}(y-\hat{\mu})
+\end{equation*}
+<h4>For Canonical Link Function</h4>
+For the canonical link function ($\phi = $ constant), the N-R and Fisher scoring algorithms are identical for GLMs, and 
+\begin{equation*}
+	H_W = -\mathcal{I}
+\end{equation*}
+Note that $b(\theta)$ is a convex function
+($b''(\theta) = Var(y_i)/a(\phi)$), and can be shown to not be a saddlepoint in multiple dimensions (as the second partial derivatives are the covariance of the sample statistics). Thus, an advantage of the canonical link in that the log-likelihood must be concave in $\theta$, because its log contains the sum of $−b(\theta)$ (a concave function) and is linear in $\theta$. 
+<a name="disp"></a><h3>Dispersion Parameter</h3>
+When $\phi$ is not constant, it is estimated by matching the moments of the individual $y_i$ and to solve the system of equations
+\begin{equation*}
+	\sum_{i=1}^n\left[\frac{(y_i-\mu_i)^2}{\phi Var(\mu_i)} - 1\right]=0
+\end{equation*}
+This leads to 
+\begin{equation*}
+	\hat{\phi} = \frac{\sum_{i=1}^n(y_i-\hat{\mu}_i)^2}{n}
+\end{equation*}
+<h4>From Breslow</h4>
+Breslow (1984) discusses potential bias for this estimator for large $p$ relative to $n$, so he suggested to solve insdead
+\begin{equation*}
+	\sum_{i=1}^n\left[\frac{(y_i-\mu_i)^2}{\phi Var(\mu_i)} - \frac{n-p}{n}\right]=0
+\end{equation*}
+leading to
+\begin{equation*}
+	\hat{\phi}_{MM} = \frac{\sum_{i=1}^n(y_i-\hat{\mu}_i)^2}{n-p}
+\end{equation*}
+Note that this procedure uses scaled values of the difference between observed and fitted values, giving it the form of a squared Pearson residual.
+
+<h4>Using Deviance Residual</h4>
+Any adequate model $M$ under small-dispersion asymptotics, the deviance for that model satisfies:
+
+\begin{equation*}\frac{D_M}{\phi} \sim \chi_{n-p}^2\end{equation*}
+
+due to the equivalence between the LRT statistic and scaled deviance. Therefore, the dispersion parameter can be estimated with 
+\begin{equation*}
+	\hat{\phi}_{D_M} = \frac{D_M}{n-p}
+\end{equation*}
+as the mean of a $\chi^2_{n-p}$ random variable is $n - p$. 
+<br><br> 
+$\hat{\phi}_{D_M}$ is providing an estimate of the extent to which the deviance exceeds the asymptotic mean under $\phi = 1$. $\hat{\phi}_{D_M}$ and $\hat{\phi}_{MM}$ will often be close due to the relationship between the deviance and Pearson residuals.
+
+<h4>Using Score Equation</h4>
+The dispersion can be estimated by solving the score equation for the MLE of $\phi$. The dispersion and regression coefficients are orthogonal, so this can be done after Fisher scoring has produced MLE's $\hat{\beta}$. 
+<br><br>
+The key advantage of this is that if N-R algorithm is used to find $\hat{\phi}_{ML}$, then one can obtain a standard error for $\hat{\phi}_{ML}$, whereas for the other two they must be derived by hand using methods for asymptotics of M-estimators (i.e. estimators which are solutions to systems of estimating equations). The key disadvantage is that the specification of the distribution is required to be correct for consistency of $\hat{\phi}_{ML}$, whereas the other two estimators only require that the first two moments of the response are correctly specified.
+
+<h4>Deviance Test for Unknown Dispersion</h4>
+Note that with a consistently estimated
+dispersion parameter, 
+\begin{equation*}
+	\frac{D_0-D_1}{\hat{\phi}_{D_M}} \rightarrow_d \chi^2_{p_1-p_0}
+\end{equation*}
+where $M_0$ is a model nested withing $M_1$. $\hat{\phi}_{D_M}$ is in practive from $M_1$. However, the estimate of the dispersion parameter need not be from either model $M_0$ or $M_1$ and could be from a more complex, larger model that has been deemed to be adequate.
+
+<a name="qasi"></a><h3>Quasi-Likelihood</h3>
+Quasi-likelihood estimation is an approach that specifies a link function and linear predictor $g(\mu_i) = \sum_{j}\beta_jx_{ij}$ , but does not assume a probability distribution for $y_i$. Assumptions are only made about the mean-variance relationship, i.e.: replace $Var(y_i)$ with any function $Var(\mu_i)$ which is appropropriate for the situation. Then, with dispersion
+\begin{equation*}
+	Var(y_i) = \phi Var^*(\mu_i)
+\end{equation*}
+$\phi >1$ represents overdispersion relative to the original distribution. Note that adding $\phi$ to the variance term yields identical estimate of $\hat{\beta}$ and so $\hat{\mu}_i$ also remains the same.
+But the assimptotic variance of $\hat{\beta}$ becomes
+\begin{equation*}
+	Var{\hat{\beta}} = (X^\top WX)^{-1}\phi
+\end{equation*}
+<h4>Estimate Dispersion</h4>
+$\phi$ can be estimated ising the moment estimator based on the generalized Pearson statistc for the origin model
+\begin{equation*}
+	X^2 = \sum_{i=1}^n\frac{y_i - \hat{\mu}_i)^2}{Var^*(\mu_i)}
+\end{equation*}
+by taking
+\begin{equation*}
+	\hat{\phi} = \frac{X^2}{n-(p+1)}
+\end{equation*}
+<div id="footer"></div>
+
+<script src="notes.js"></script>
+</body>
+</html>

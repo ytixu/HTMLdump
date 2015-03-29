@@ -1,0 +1,179 @@
+<html>
+<head>
+	<title>GenLin</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+	</script>
+	<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="notes.css">
+	
+</head>
+<body>
+<div id="menu"></div>
+<h2>Exponential Familiy (EF)</h2>
+Consider $Y_i$ with distribution belonging to the linear exponential family, 
+\begin{equation*}
+	f_{Y_i}(Y_i|\theta) = \exp(-b(\theta)+ \theta y_i + c(y_i))
+\end{equation*}
+where $b(\theta)$ is a function of the parameters only and $c(y_i)$ is a function of the data only.
+Assuming that the first 2 partial derivatives exist for all $\theta$ in the define support of the paprameter space, let
+\begin{align*}
+	&I(\theta;y_i) = \log(f_{Y_i}(Y_i|\theta))\\
+	&\dot{I}(\theta;y_i) = \frac{\partial I(\theta;y_i)}{\partial\theta}\\
+	&\ddot{I}(\theta;y_i) = \frac{\partial^2 I(\theta;y_i)}{\partial\theta^2}
+\end{align*}
+In particular 
+\begin{equation}
+	\label{eq:efexpand}
+	\dot{I}(\theta;y_i) = \frac{\partial}{\partial \theta} (-b(\theta)+ \theta y_i + c(y_i)) = -\dot{b}(\theta) + y_i
+\end{equation}
+and 
+\begin{equation}
+	\label{eq:efexpandd}
+	\ddot{I}(\theta;y_i) = \frac{\partial}{\partial \theta}(-\dot{b}(\theta) + y_i) = -\ddot{b}(\theta)
+\end{equation}
+Here are some interesting properties.
+<ol><li>
+\begin{equation}
+  \label{eq:efexp}
+  E\left[\dot{I}(\theta;y_i)\right] = 0
+\end{equation}
+</li><li>
+	Let $E\left[m(y_i, \theta)\right] = 0$ for some function $m$, then 
+\begin{equation*}
+	E\left[\frac{\partial m(y_i, \theta)}{\partial \theta'}\right] = 
+	-E\left[m(y_i, \theta)\frac{\partial I(\theta;y_i)}{\partial\theta'}\right]
+\end{equation*}
+</li><li>
+	In the special case when $m(y_i, \theta) = \dot{I}(\theta;y_i)$,
+	\begin{equation}
+	\label{eq:efvar}
+	E\left[\ddot{I}(\theta;y_i)\right] = 
+	-E\left[(\dot{I}(\theta;y_i))^2\right]
+\end{equation} 
+</li>
+</ol>
+TODO: PROOFS 
+Using these result, we can get the followings
+<h4>Expectation</h4>
+Combining equation \eqref{eq:efexpand} and \eqref{eq:efexp}, 
+\begin{align*}
+	E\left[\dot{I}(\theta;y_i)\right] = E[-\dot{b}(\theta) + y_i] = -\dot{b}(\theta) + E[y_i] = 0
+\end{align*}
+Therefore, 
+\begin{equation*}
+\dot{b}(\theta) = E[y_i]
+\end{equation*}
+<h4>Variance</h4>
+Combining equation \eqref{eq:efexpandd} and \eqref{eq:efvar}, 
+\begin{align*}
+	-E\left[\ddot{I}(\theta;y_i)\right] = E\left[(\dot{I}(\theta;y_i))^2\right] = E[(-\dot{b}(\theta) + y_i)^2] = Var(y_i)
+\end{align*}
+Hence, 
+\begin{equation*}
+\ddot{b}(\theta) = Var(y_i)
+\end{equation*}
+Seeing that $b(\theta)$ can get the moments of $Y_i$, this function is thus given the name <i>cumulent function</i>. 
+<a name="edfa"></a><h3>Exponential Disperson Family (EDF)</h3>
+Consider $Y_i$ with distribution belonging to the linear exponential dispersion family, 
+\begin{equation*}
+	f_{Y_i}(Y_i|\theta, \phi) = \exp\left(\frac{\theta y_i-b(\theta)}{a(\phi)} + c(y_i, \phi)\right)
+\end{equation*}
+where $\phi$ modifies the disperson in a multiplicative way. In this case, the expectation and variance of $Y_i$ are respectively
+\begin{align*}
+&E[Y_i] = \dot{b}(\theta)\\
+&Var[Y_i] = \ddot{b}(\theta)a(\phi)
+\end{align*}
+<a name="jorg"></a><h3>J&#248;rgensen's Exponential Disperson Family Model</h3>
+J&#248;rgensen showed that there do not exist many discrete distribution which can be expressed as the continuous exponential dispersion family ditribution. So he proposed 
+\begin{equation*}
+	f_{Y_i}(Y_i|\theta, \phi) = \exp\left(\theta y_i-\frac{b(\theta)}{a(\phi)} + c(y_i, \phi)\right)
+\end{equation*}
+wich expectation and variance 
+\begin{align*}
+&E[Y_i] = \dot{b}(\theta)/a(\phi)\\
+&Var[Y_i] = \ddot{b}(\theta)a(\phi)
+\end{align*}
+<a name="mlee"></a><h3>Maximum Likelihood Estimates for EDF</h3>
+Let $Y_1,\dots, Y_n \overset{i.i.d.}{\sim}f_{Y_i}(y_i)$. In the case when $\phi$ is known, 
+\begin{align*}
+\mathcal{L}(\theta;y) &= \sum_{i=1}^n\left(\frac{\theta y_i-b(\theta)}{a(\phi)} + c(y_i, \phi)\right)\\
+\frac{\partial}{\partial \theta}\mathcal{L}(\theta;y) &= \sum_{i=1}^n\frac{y_i-\dot{b}(\theta)}{a(\phi)} = 0\\
+\dot{b}(\theta) &= \frac{1}{n}\sum_{i=1}^ny_i
+\end{align*}
+The MLE for one parameter EF is also the method of moment estimator for the mean.
+<br><br>
+In the case when $phi$ is unknown,
+\begin{align*}
+\frac{\partial}{\partial \phi}\mathcal{L}(\theta;y) &= -\frac{\dot{a}(\phi)}{(a(\phi))^2}\sum_{i=1}^n(y_i-b(\theta)) + \sum_{i=1}^n\dot{c}(y_i, \phi) = 0\\
+\end{align*}
+and we stil have $\dot{b}(\theta) = \frac{1}{n}\sum_{i=1}^ny_i$. If $a(\phi) = \phi$, then 
+\begin{equation*}
+	\sum_{i=1}^n(y_i - b(\theta)) = \phi^2\sum_{i=1}^n\dot{c}(y_i, \phi)
+\end{equation*}
+<h4>Link Function</h4>
+To connect the covariates with the mean, we choose a mapping $g$ that is linear and invertible. 
+\begin{equation*}
+	\eta_i = g(\mu_i) = \sum_{j=0}^p\beta_jx_{ij}
+\end{equation*}
+For $\theta_i$ such that $\dot{b}(\theta_i) = \mu_i$, if $g(\mu_i) = \theta_i$ then $g$ is a <i>canonical link function</i>.
+<h4>Score Equation</h4>
+To get MLE for $\beta_j$, let
+\begin{equation*}
+	l(\beta_j;y) := \frac{\partial}{\partial \beta_j} \mathcal{L}(\beta_j;y) = \sum_{i=1}^n\frac{\partial}{\partial \beta_j} \mathcal{L}_i(\beta_j;y_i) = 0
+\end{equation*}
+Using the chain rule, 
+\begin{equation*}
+	\frac{\partial \mathcal{L}_i}{\partial \beta_j} = \frac{\partial \mathcal{L}_i}{\partial \theta_i}\frac{\partial \theta_i}{\partial \mu_i}\frac{\partial \mu_i}{\partial \eta_i}\frac{\partial \eta_i}{\partial \beta_j}
+\end{equation*}
+where 
+\begin{align*}
+	&\frac{\partial \mathcal{L}_i}{\partial \theta_i} = \frac{y_i-\dot{b}(\theta)}{a(\phi)} = \frac{y_i-\mu_i}{a(\phi)}\\
+	&\frac{\partial \mu_i}{\partial \theta_i} = \frac{\partial \dot{b}(\theta)}{\partial \theta_i} = \ddot{b}(\theta_i) = \frac{Var(y_i)}{a(\phi)}\\
+	&\frac{\partial \eta_i}{\partial \beta_j} = x_{ij}
+\end{align*}
+Ergo,
+\begin{equation*}
+	l(\beta_j;y) = \sum_{i=1}^n \frac{y_i-\dot{b}(\theta)x_{ij}}{Var(y_i)}\times \frac{\partial \mu_i}{\partial \eta_i} = 0
+\end{equation*}
+where $\frac{\partial \mu_i}{\partial \eta_i}$ depends on the link function. This is the score equation.
+<h4>Matrix format</h4>
+Let $V$ be a diagonal matric of response variance, i.e.: $V_{ii} = Var(y_i)$, and let $D$ is another diagonal matrix with $D_{ii} = \frac{\partial \mu_i}{\partial \eta_i}$. We have $\eta = X\beta$, where $X$ is a $n\times (p+1)$ matrix of observations. The score equation becomes 
+\begin{equation*}
+	X^\top DV^{-1}(y-\mu) = 0
+\end{equation*}
+In general, $D$ and $V$ may depend on $\mu$, and thus on $\beta$. Thus, an iterative method is required to solve for $\beta$. 
+<a name="fish"></a><h3>Fisher Information</h3>
+Under regularity conditions, the MLE of $\hat{\beta}$ converges in distribution to a multivariate normal random variable with mean equal to the true $\beta$ and covariance matrix equal to the inverse of the Fisher information. 
+\begin{equation*}
+	E\left[-\frac{\partial^2 l(\beta;y_i)}{\partial\beta_h\partial\beta_j}\right]= E\left[\left(\frac{\partial l(\beta;y_i)}{\partial\beta_h}\right)\left(\frac{\partial l(\beta;y_i)}{\partial\beta_j}\right)\right] = \sum_{i=1}^n\frac{x_{ih}x_{ij}}{Var(y_i)}\left(\frac{\partial\mu_i}{\partial\eta_i}\right)^2
+\end{equation*}
+Let $W$ be a diagonal matric with diagonal elements 
+\begin{equation*}
+w_{ii}=\frac{\left(\frac{\partial\mu_i}{\partial\eta_i}\right)^2}{Var(y_i)}
+\end{equation*}
+The Fisher information matrix can be written as 
+\begin{equation*}
+	\mathcal{I}(\beta) = X^\top WX
+\end{equation*}
+	Thus, for large sample, $\beta \sim N[\beta,(X^\top WX)^{-1}]$.
+<h4>Variance of the Estimators</h4>
+By plugging in $\hat{\beta}$ into $\partial \mu_i/\partial \eta_i$ and $Var(y_i)$ to obtain $\hat{W}$, we can estimate the variance of $\hat{\beta}$
+\begin{equation*}
+\hat{Var}(\hat{\beta}) = (X^\top \hat{W}X)^{-1}
+\end{equation*}
+If $a(\phi) \neq 1$, then the variance can be estimated using maximum likelihood.
+<a href="#delt"></a><h3>Delta Method</h3>
+<a href="#robo"></a><h3>Robustness</h3>
+The solution for $\beta$ to the score equation will be correct as long as the form of $\mu_i$ and $Var(y_i)$ are specified correctly.
+
+<div id="footer"></div>
+
+<script src="notes.js"></script>
+</body>
+</html>

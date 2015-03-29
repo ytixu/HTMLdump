@@ -1,0 +1,177 @@
+<html>
+<head>
+	<title>GenLin</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+	</script>
+	<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="notes.css">
+	
+</head>
+<body>
+<div id="menu"></div>
+<h2>Model Assessment and Goodness-of-Fit</h2>
+<a name="LRT"></a><h3>Likelihood-Ratio Test (LRT)</h3>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta = \beta_0\\
+&H_{1} : \beta \neq \beta_0
+\end{align*}
+the statistic 
+\begin{equation*}
+	-2\log\Lambda = -2(l_1-l_0)
+\end{equation*}
+where $l_1$ and $l_0$ are the log-likelihood under $H_1$ and $H_0$ respectively, has assymptotic $\chi^2$ distribution with $dim(\beta)$ degrees of freedom, under regularity condition. 
+<a name="wald"></a><h3>Wald's Test</h3>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta_j = \beta_{j0}\\
+&H_{1} : \beta_j \neq \beta_{j0}
+\end{align*}
+the statistic 
+\begin{equation*}
+	W = \frac{\hat{\beta}_j - \beta_{j0}}{\sqrt{Var(\beta)_{jj}}}
+\end{equation*}
+has assymptotic standard normal distribution. 
+<h4>Multiple Parameters</h4>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta_a = 0\\
+&H_{1} : \beta_a \neq 0
+\end{align*}
+\begin{equation*}
+	W = \hat{\beta}_a^\top[\hat{Var}(\hat{\beta}_a)]^{-1}\hat{\beta}_a
+\end{equation*}
+<a name="rao"></a><h3>Rao's Score Test</h3>
+For testing the hypothesis
+\begin{align*}
+&H_{0} : \beta = \beta_0\\
+&H_{1} : \beta \neq \beta_0
+\end{align*}
+the statistic 
+\begin{equation*}
+	S= \frac{\frac{\partial l(\beta;y)^2}{\partial \beta_0}}{-E\left[\frac{\partial^2 l(\beta;y)^2}{\partial \beta_0^2}\right]}
+\end{equation*}
+has assymptotic $\chi^2_1$ distribution.
+<h4>Multiple Parameters</h4>
+\begin{equation*}
+	S = \frac{\partial l(\beta;y)^\top}{\partial \beta_0}\mathcal{I}(\hat{\beta}_0)\frac{\partial l(\beta;y)}{\partial \beta_0}
+\end{equation*}
+<a name="gofi"></a><h3>Goodness-of-Fit</h3>
+Let $l(y,y)$ denote the ML for the <i>saturated model</i> and let $\tilde{\theta}_i$ be the estimate of $\theta_i$ with mean $\hat{\mu}_i$. The LRT goodness-of-fit statistic is 
+\begin{equation*}
+	-2[l(\hat{\mu}, y) - l(y,y)] = 2\sum_{i}[y_i(\tilde{\theta}_i) - b(\tilde{\theta}_i)]/a(\phi) -2\sum_{i}[y_i(\hat{\theta}_i) - b(\hat{\theta}_i)]/a(\phi)
+\end{equation*}
+If $a(\phi) = \phi/w_i$, then we obtain the <i>scaled deviance</i> 
+\begin{equation*}
+	2\sum_{i}w_i[y_i(\tilde{\theta}_i - \hat{\theta}_i) - b(\tilde{\theta}_i) + b(\hat{\theta}_i)]/\phi = D(y, \hat{\mu})/\phi
+\end{equation*}
+<h4>Deviance</h4>
+The deviance of the model is denoted by $D(y,\hat{\mu})$, denoting the dfference in log-likelihoods between the proposed model and the saturated model. Large value indicate worse fit. This is the GLM equivalent of residual in OLS. 
+<h4>Model Comparison</h4>
+For $\phi = 1$, the deviance and scaled deviance are both equal to
+\begin{equation*}
+	D(y,\hat{\mu}) = -2[l(\hat{\mu};y) - l(y;y)]
+\end{equation*}
+<br><br>
+Consider comparing two nester models, $M_0$ with $p_0$ parameter and fitted value $\hat{\mu}_0$, and $M_1$ with $p_1$ parameter and fitted value $\hat{\mu}_1$. 
+\begin{align*}
+	l(\hat{\mu}_0, y) \leq l(\hat{\mu}_1)\\
+	D(y, \hat{\mu}_0) \leq D(y, \hat{\mu}_1)
+\end{align*}
+When comparing models, use the LRT statistic
+\begin{align*}
+	G^2(M_0|M_1) &:= -2[l(\hat{\mu}_0;y) - l(\hat{\mu}_1;y)] = D(y, \hat{\mu}_0) - D(y, \hat{\mu}_1) \\
+	&= 2\sum_{i}w_i[y_i(\tilde{\theta}_{0i} - \hat{\theta}_{1i}) - b(\tilde{\theta}_{0i}) + b(\hat{\theta}_{1i})]
+\end{align*}
+Large values of the LRT statistic are equivalent to comparisons of lack of fit.
+<h4>Beyond Deviance</h4>
+If $a(\phi) = \phi = 1$, then the score statistic for comparing the chosen model with the saturated model can be written as
+\begin{equation*}
+	X^2 = \sum_{i=1}^n \frac{(y_i-\hat{\mu}_i)^2}{Var(\mu_i)}
+\end{equation*}
+<br><br>
+For Poission model, this gives the usual Pearson $\chi^2$ statistic. 
+<br><br>
+Pearson $\chi^2$ statistic can be extended to compare two models. 
+\begin{equation*}
+	X^2(M_0|M_1) = \sum_{i=1}^n\frac{(\hat{\mu}_{0i} - \hat{\mu}_{1i})^2}{Var(\hat{\mu}_{0i})}
+\end{equation*}
+This has asymptotically equivalent behavior under the null hypothesis to $G^2(M_0|M_1)$, but it is not equal to the score statistic, as the score statistic is more complex.
+
+<a name="resi"></a><h3>Residual</h3>
+<h4>Pearson Residual</h4>
+For the $i$th observation,
+\begin{equation*}
+	e_i = \frac{y_i-\hat{\mu}_i}{\sqrt{\hat{\mu}_i}}
+\end{equation*}
+where the sum of the squared Pearson residuals is eqaul to tbe generalized Pearson statistic. 
+<br><br>
+Note that in the Poisson and binomial case (the latter with $n_i$ reasonably large), $e_i$ will be approximately <i>Normal</i>(0, 1) (justified by approximate normality of $y_i$ and $\hat{\mu}$). But $y_i$ is usually not in nacessarily approximately normal in practive and the variance of the residual is not necessarily constant in the natural parameter. So the alternative formulation if 
+\begin{equation*}
+	e_i(t) = \frac{t(y_i) - E_{\hat{\theta}}[t(y)]}{\sqrt{Var_{\hat{\theta}}(t(y))}}
+\end{equation*}
+
+<h4>Anscome Residual</h4>
+Find the transformation $t(\cdot)$ such that 
+\begin{equation*}
+	t(x) = \int_{-\infty}^{x}\frac{1}{V^{1/3}(s)}ds
+\end{equation*}
+which minimizes the skewness of the transformed random variable for exponential dispersion families. I For stabilizing the variance, one would use one of the standard variance stabilizing transformations suggested from the OLS context (for example, $\sqrt{y}$ for the Poisson).
+
+<h4>Deviance Residual</h4>
+The deviance residual is
+\begin{equation*}
+	\delta_i = \sqrt{d_i} \times sign(y_i-\hat{\mu}_i)
+\end{equation*}
+where 
+\begin{equation*}
+	d_i = 2\omega_i[y_i(\tilde{\theta}_i - \hat{\theta}_i)-b(\tilde{\theta}_i) +b(\hat{\theta}_i)]
+\end{equation*}
+and the deviance is 
+\begin{equation*}
+	D(y,\hat{\mu}) = \sum d_i = \sum \delta_i
+\end{equation*}
+The assimptotic normality of $\delta_i$ can be justified in cases where the D(y,\hat{\mu})$ can be justified as being. 
+<h4>Studentized Pearson Residual</h4>
+One problem in interpreting the above residuals is that they tend to have variance less than 1 because they are comparing $y_i$ to the fitted value from the data, rather than the actual $\mu_i$. To do this, approximate the $H_W$ matrix as follow.
+<br><br>
+Unlike OLS, $\hat{\mu}$ and $(y - \hat{\mu})$ will not be orthogonal (except for the Normal family model) because $\hat{\mu}$ is choosen to maximize the likelihood for the Normal family is equivalent to minimizing the Euclidean norm $||y - \hat{\mu}||$. Because of the non-linearity of the link function $g(\mu)$ for a non-Normal model, the set of $\mu = g^{-1}(\eta)$ will not be a linear vector space.
+<br><br>
+Since $Var(\hat{\beta}) = (X^\top WX)^{-1}$ (see section on <a href="notes1.html#fish">Fisher information</a>), $Var(y) = V = DW^{-1}D$. If $\hat{\mu}$ is approximately uncorrelated with $ (y - \hat{\mu})$ (which does not mean rthogonal in the Euclidean sense), then
+\begin{equation*}
+	V\approx Var(\hat{\mu}) + Var(y - \hat{\mu})
+\end{equation*}
+and 
+\begin{equation*}
+	Var(y - \hat{\mu}) \approx DW^{-1/2}[I - W^{1/2}X(X^\top WX)^{-1}X^\top W^{1/2}]\times W^{-1/2}D
+\end{equation*}
+Let $H_W$ be $W^{1/2}X(X^\top WX)^{-1}X^\top W^{1/2}$; so 
+\begin{equation*}
+	Var(y - \hat{\mu}) \approx V^{1/2}[I - H_W] V^{1/2}
+\end{equation*}
+Finally, the studentized Pearson residuals are
+\begin{equation*}
+r_i = \frac{y_i - \hat{\mu}_i}{\sqrt{v(\hat{\mu}_i(1-\hat{h}_{ii}))}} = \frac{e_i}{\sqrt{1-\hat{h}_{ii}}}
+\end{equation*}
+where $\hat{h}_{ii}$ is the $i$th diagonal element of $H_W$. 
+
+<h4>Cook's Distance</h4>
+
+$h_{ii}$ can be thought as a measure of leverage for the generalized linear model as well. The Cook's distance is 
+\begin{equation*}
+	r_i^2 \left[\frac{\hat{h}_{ii}}{(\rho+1)(1-\hat{h}_{ii})}\right]
+\end{equation*}
+As in OLS, one would want to compare the Cook's distance to the residuals and leverage to identify points
+that were both outlying and important, as well as to find
+those that were high leverage but not outlying.
+<div id="footer"></div>
+
+<script src="notes.js"></script>
+</body>
+</html>
