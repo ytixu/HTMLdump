@@ -42,6 +42,10 @@ var menu = '<h1>Generalized Linear Models</h1>'+
 '	<li><a href="notes6.html">Log-Linear Model</a>'+
 '		<ol>'+
 '			<li><a href="notes6.html#2way">2-Way Table</a></li>'+
+'			<li><a href="notes6.html#mass">Measure of Association</a></li>'+
+'			<li><a href="notes6.html#cdmg">Conditional and Marginal Odds Ratio</a></li>'+
+'			<li><a href="notes6.html#ifor">Inference for Odds Ratio</a></li>'+
+'			<li><a href="notes6.html#test">Testing of Odds Ratios</a></li>'+
 '		</ol></li>'+
 '</ol></div>'+
 '<hr>';

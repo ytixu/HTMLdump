@@ -24,8 +24,156 @@ Log-linear model can be used to build a joint probability model. Generally for $
 <a = name="2way"></a><h3>2-Way Table</h3>
 Consider two categorial variables, $X_1$ with $I$ levels and $X_2$ with $J$ levels ($I,J>1$). Let $P(X_1 = i, X_2 = j) = \pi_{ij}$ amd 
 \begin{align*}
-	\pi_{i+}\sum_{j=1}^J\pi_{ij} & \pi_{+j}\sum_{i=1}^I\pi_{ij}
+	&\pi_{i+}\sum_{j=1}^J\pi_{ij} & \pi_{+j}\sum_{i=1}^I\pi_{ij}
 \end{align*}
+which define the marginal distributions. 
+<h4>Test of Independence</h4>
+If $\pi_{ij} = \pi_{i+}\pi_{+j}$ for all possible $i,j$, or equivalently if 
+\begin{equation*}
+	\pi_{j|i} = \frac{\pi_{ij}}{\pi_{i+}} = \pi_{+j}
+\end{equation*}
+then the two random variables are <i>dependent</i> or <i>associated</i>. If the variables are independent, we may refer to this as <i>homogeneity</i> of the conditional distributions.
+
+<h4>Estimate</h4>
+One can simply estimate $\pi$ via
+\begin{align*}
+	&p_{ij} = \frac{n_{ij}}{n} & p_{i+} = \frac{\sum_{j=1}^J n_{ij}}{n}
+\end{align*}
+and similarly for $\pi_{+j}$.
+
+<h4>Distribution</h4>
+If the total sample size $n$ is fixed, then one gets a motinomial random vaiable with $I\times J$ categories. 
+\begin{equation*}
+	\frac{n!}{n_{11}!\dots n_{IJ}!}\prod_i\prod_j\pi_{ij}^{n_{ij}}
+\end{equation*}
+<br><br>
+If either the row or column totals are fixed (suppose that it's the rows), then one gets $I$ multinomials each with $J$ categories. The counts for level i has multinomial distribution 
+\begin{equation*}
+M_i(\{n_{ij}\}) = \frac{n_{i+}!}{\prod_j n_{ij}!}\prod_j \pi_{j|i}^{n_{ij}}
+\end{equation*}
+and the joint <i>product multinomial</i> distribution over all counts is
+\begin{equation*}
+\prod_{i=1}^I M_i(\{n_{ij}\})
+\end{equation*}
+<br><br>
+If nothing is fixed, then one gets Poisson sampling model where 
+\begin{equation*}
+	n_{ij} \sim \mbox{Poisson}(\mu_{ij})
+\end{equation*}
+and all the counts are assumed to be independent. The joint distribution of the $n_{ij}$ values is 
+\begin{equation*}
+	\prod_i\prod_j\frac{\mu_{ij}^{n_{ij}}\exp(-\mu_{ij})}{n_{ij}!}
+\end{equation*}
+<a name="mass"></a><h3>Measure of Association</h3>
+<h4>Risk Difference</h4>
+If the variables are independent, then $\pi_{j|i} = \pi_j \ \forall i$. One can look at the <i>risk difference</i> which is symmetric.
+\begin{equation*}
+	\pi_{1|1} - \pi_{1|2} = \pi_{2|1} - \pi_{2|1}   
+\end{equation}
+However, the risk difference will generally be different if the table is transposed.
+<h4>Relative Risk</h4>
+So one can look at the <i>relative risk</i>
+\begin{equation*}
+\frac{\pi_{1|1}}{\pi_{1|2}}
+\end{equation*}
+which is not at all symmetric, either by
+changing columns of $X_2$ or by transposing $X_1$ and $X_2$ with respect to columns and rows.
+<h4>Odds Ratio</h4>
+Another measure is the <i>odds ratio</i>.
+\begin{equation*}
+	\theta = \frac{\pi_{11}\pi_{22}}{\pi_{12}\pi_{21}}
+\end{equation*}
+If $\theta = 1$ then the variables are independent (because their conditional row probabilites are equal). A value of $\theta$ far from indicates strong association. Unlike the risk difference and relative risk, the odds ratio is invariant to either changing the labelling of the columns or by transposing the table. Furthermore, it will be often be equally valid across many different kinds of sampling designs as well. 
+<br><br>
+Often, the log link will be used.
+<br><br>
+The sample estimate of the odds ratio can be obtained using sample proportions
+\begin{equation*}
+\hat{\theta} = \frac{n_{11}n_{22}}{n_{12}n_{21}}
+\end{equation*}
+whose magnetude is independent of $n$.
+<a name="cdmg"></a><h3>Conditional and Marginal Odds Ratio</h3>
+Consider $2\times 2 \times K$ table. The <i>conditional odds ratio</i> for a fixed category k is
+\begin{equation*}
+\hat{\theta}_{X_1X_2(k)} = \frac{\mu_{11k}\mu_{22k}}{\mu_{12k}\mu_{21k}}
+\end{equation*}
+describing the conditional $X_1X_2$ association in partial table $k$.
+<br><br>
+The <i>marginal odds ratio</i> is defined as 
+\begin{equation*}
+\hat{\theta}_{X_1X_2} = \frac{\mu_{11+}\mu_{22+}}{\mu_{12+}\mu_{21+}}
+\end{equation*}
+Sample estimates of the marginal and
+conditional odds ratios can be obtained by replacing the expected counts with observed counts.
+<br><br>
+Consider a generic $I\times J\times K$ table. $X_1$ and $X_2$ are conditionally independent <i>at level</i> $k$ of $X_3$ if they are independent in partial table $k$. 
+\begin{equation*}
+	\pi_{ijk} = \frac{\pi_{i+k}\pi_{+jk}}{\pi_{++k}}
+\end{equation*}
+for all $k$. 
+If $X_1$ and $X_2$ are conditionally independent given $X_3$, then they are conditionally independent at every level $k$ of $X_3$. 
+\begin{equation*}
+	\pi_{ij+}^* = \pi_{i++}\pi_{+j+}
+\end{equation*}
+<a name="ifor"></a><h3>Inference for Odds Ratio</h3>
+Estimate the odds ratio with the sample proportion
+\begin{equation*}
+	\hat{\theta} = \frac{n_{11}n_{22}}{n_{12}n_{21}}
+\end{equation*}
+will have value between 0 and $\infty$, and will be undefined if both column entres are equal to zero. All these events have positive probability under a Poisson sampling model. Therefore although $\hat{\theta}$ is consistent estimator as long as $\pi_{ij} > 0$, the expected value and variance of $\hat{\theta}$ and $\log(\hat{\theta})$ does not exist. 
+<br><br>
+Sometime this adjustment is used
+\begin{equation*}
+	\tilde{\theta} = \frac{(n_{11}+0.5)(n_{22}+0.5)}{(n_{12}+0.5)(n_{21}+0.5)}
+\end{equation*}
+$\tilde{\theta}$ and $\log(\tilde{\theta})$ have the same asymptotic distribution
+depending on $\theta$, but the distribution is quite skewed except for very large $n$, which is due to the difference in
+range of possible values less than 1 compared to the range of possible values larger than 1.
+<h4>Asymptotic Variance</h4>
+Using the delta method, $\log(\hat{\theta})$ is asymptotically normal and, in large sample, will have
+\begin{align*}
+	&E[\log(\hat{\theta})] = \theta\\
+	&Var[\log(\hat{\theta})] = \sum_k\sum_j\frac{1}{N\pi_{ij}}
+\end{align*}
+<h4>Confidence interval</h4>
+\begin{equation*}
+	log(\hat{\theta}) \pm z_{\alpha/2}\sigma^2(\log(\hat{\theta}))
+\end{equation*}
+For $2\times 2$ table, one can invert a likelihood ratio test of $H_0:\theta = \theta_0$ to construct an LRT confidence interval.
+<a name="test"></a><h3>Testing of Odds Ratios</h3>
+For general $I \times J$ contingency tables with multinomial sampling, the null hypothesis of independence is
+\begin{equation*}
+	H_0 : \pi_{ij} = \pi_{i+}\pi_{+j}
+\end{equation*}
+for all $i$ and $j$.
+For a table generated from product multinomial sampling, the null hypothesis is
+\begin{equation*}
+	H_0 : \pi_{j|i} = \pi_{+j}
+\end{equation*}
+for all $i$ and $j$. Despite the different hypotheses, the same tests apply in both cases.
+<h4>Pearson or Score Test</h4>
+\begin{equation*}
+	X^2 = \sum_i\sum_j\frac{(n_{ij}-\hat{\mu}_{ij})^2}{\hat{\mu}_{ij}}
+\end{equation*}
+has $\chi^2$ distributed with $(I-1)(J-1)$ degrees of freedom under $H_0$. 
+
+<h4>Likelihood Ratio Test</h4>
+The likelihood kernel is 
+\begin{equation*}
+	\prod_i\prod_j\pi_{ij}^{n_{ij}}
+\end{equation*}
+with the condition that each $\pi_{ij}$ is positive and their sum is 1.
+<br><br>
+The ratio of null and aternative likelihoods is 
+\begin{equation*}
+	\Lambda = \frac{\prod_i\prod_j(n_{i+}n_{+j})^n_{ij}}{n^n\prod_i\prod_jn_{ij}^{n_{ij}}}
+\end{equation*}
+Finally, 
+\begin{equation*}
+	G^2 = -2\log(\Lambda) = 2\sum_i\sum_jn_{ij}\log\left(\frac{n_ij}{\hat{\mu}_{i}}\right)
+\end{equation*}
+where $\hat{\mu}_{i} = n_{i+}n_{+j}/n. $G^2$ has $\chi^2$ distributed with $(I-1)(J-1)$ degrees of freedom under $H_0$ in large samples. Note that this has the sample limiting distribution than $X^2$, but $X^2$ is more preferred because it converges generally faster. 
+
 <div id="footer"></div>
 
 <script src="notes.js"></script>
