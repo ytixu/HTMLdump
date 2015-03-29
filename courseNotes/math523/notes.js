@@ -11,6 +11,12 @@ var menu = '<h1>Generalized Linear Models</h1>'+
 '			<li><a href="notes1.html#delt">Delta Method</a></li>'+
 '			<li><a href="notes1.html#robo">Robustness</a></li>'+
 '		</ol></li>'+
+'	<li><a href="notes4.html">Relevant Models</a>'+
+'		<ol>'+
+'			<li><a href="notes3.html#logm">Logistic Model</a></li>'+
+'			<li><a href="notes3.html#prom">Probit Model</a></li>'+
+'			<li><a href="notes3.html#poim">Poission Model</a></li>'+
+'		</ol></li>'+
 '	<li><a href="notes2.html">Model Assessment and Goodness-of-Fit</a>'+
 '		<ol>'+
 '			<li><a href="notes2.html#LRT">Likelihood-Ratio Test (LRT)</a></li>'+
@@ -19,22 +25,23 @@ var menu = '<h1>Generalized Linear Models</h1>'+
 '			<li><a href="notes2.html#gofi">Goodness-of-Fit</a></li>'+
 '			<li><a href="notes2.html#resi">Residual</a></li>'+
 '		</ol></li>'+
-'	<li><a href="notes5.html">Estimate</a>'+
-'		<ol>'+
-'			<li><a href="notes5.html#algo">Algorithms for Maximizing the Likelihood</a></li>'+
-'			<li><a href="notes5.html#disp">Dispersion Parameter</a></li>'+
-'			<li><a href="notes5.html#qasi">Quasi-Likelihood</a></li>'+
-'		</ol></li>'+
 '	<li><a href="notes3.html">Inference</a>'+
 '		<ol>'+
 '			<li><a href="notes3.html#cfit">Confidence Interval</a></li>'+
 '			<li><a href="notes3.html#plrt">Profile Log-Likelihood Ratio Test (PLRT)</a></li>'+
 '		</ol></li>'+
-'	<li><a href="notes4.html">Relevant Models</a>'+
+'	<li><a href="notes5.html">Estimate</a>'+
 '		<ol>'+
-'			<li><a href="notes3.html#logm">Logistic Model</a></li>'+
-'			<li><a href="notes3.html#prom">Probit Model</a></li>'+
-'			<li><a href="notes3.html#poim">Poission Model</a></li>'+
+'			<li><a href="notes5.html#algo">Algorithms for Maximizing the Likelihood</a></li>'+
+'			<li><a href="notes5.html#disp">Dispersion Parameter</a></li>'+
+'			<li><a href="notes5.html#qasi">Quasi-Likelihood</a></li>'+
+'			<li><a href="notes5.html#nbin">Negative-Binomial</a></li>'+
+'			<li><a href="notes5.html#ivbd">Dispersion in Bernoulli Data</a></li>'+
+'			<li><a href="notes5.html#beta">Beta-Binomial</a></li>'+
+'		</ol></li>'+
+'	<li><a href="notes6.html">Log-Linear Model</a>'+
+'		<ol>'+
+'			<li><a href="notes6.html#2way">2-Way Table</a></li>'+
 '		</ol></li>'+
 '</ol></div>'+
 '<hr>';

@@ -141,6 +141,83 @@ by taking
 \begin{equation*}
 	\hat{\phi} = \frac{X^2}{n-(p+1)}
 \end{equation*}
+The advantages of maximum likelihood are efficient estimator and clearly interpretable distribution. The advantages of quasi-likelihood are complete freedom in choosing the form of the variance function and often more computational stability.
+<h4>Overdispersion</h4>
+The most common use of quasi-likelihood is for overdispersed Poisson regression models, which assumes that $Var(\mu_i) = \mu_i$.
+
+<a name="nbin"></a><h3>Negative-Binomial</h3>
+There are two choices for overdispersed count regression models:
+<ul><li>Maximum likelihood via a negative-binomial model</li>
+<li>Quasi-likelihood model based only on the choice of variance and mean functions</li>
+</ul>
+For negative-binomial,
+\begin{align*}
+	&f_{Y_i}(y_i|\mu_i, \gamma_i) = {y_i+\alpha_i-1 \choose y_i}\left(\frac{\mu_i}{\alpha_i+\mu_i}\right)^{y_i}\left(\frac{\alpha_i}{\alpha_i+\mu_i}\right)^{\alpha_i}\\
+	&b(\theta_i) = -\log(1-\exp(\theta_i))\\
+	&a(\phi) = 1/\alpha_i\\
+	&\dot{b}(\theta_i) = \frac{\mu_i}{\alpha_i}\\
+	&E[y_i] = \dot{b}(\theta_i)/a(\phi) = \mu_i\\
+	&Var[y_i] = \ddot{b}(\theta_i)/a(\phi) = \mu_i + \mu_i^2/\alpha_i
+\end{align*}
+Note that as $\alpha_i \rightarrow \infty$, $Var[y_i] \rightarrow \mu_i$, which results the form of the Poisson model. 
+<br><br>
+The response variables is assumed to have different means, but the same dispersion parameter, $1/\alpha_i = 1/\alpha = \gamma$. This can be justified under the Gamma-Poisson mixture by noting that the coefficient of variation for the heterogeneous Poisson means then have constant coefficient of variation, $\sqrt{Var(\lambda)}/E(\lambda) = \sqrt{\gamma}$. Under this parametrization, overdispersion relative to the Poisson is indicated by $\gamma > 0$.
+
+<h4>Link Function</h4>
+The canonical link 
+\begin{equation*}
+	g(\mu_i) = \log\left(\frac{\mu_i}{\alpha_i+\mu_i}\right)
+\end{equation*}
+is rarely used in practive, in order to compare the nagative binomial model results to the Poisson. Generally software will by default choose the log link $g(\mu_i) = \log(\mu_i)$. 
+<br><br>
+The score equation built from this lead to orthogonal and thus asymptotically independent $\beta$ and $\gamma$. This means the true large sample standard error $\hat{\beta}_j$ is the same, whether $\lambda$ is known or estimated.
+
+<a name="ivbd"></a><h3>Dispersion in Bernoulli Data</h3>
+We can also use a quasi-likelihood approach to accommodate additional variance beyond what the usual binomial regression allows.  
+<br><br>
+Let $y_{i1}, \dots, y_{in_n}$ be $n_i$ trials for observation $i$. Let $\pi_i = P(Y_{ij} = 1)$ and $y_i = \sum_{j}y_{ij}/n_i$. IF the trials are independent, then $n_iy_i\sim \mbox{Binomial}(n_i, \pi_i)$ with variance $Var(y_i) = Var(\pi_i) = \pi_i(1-\pi_i)/n_i$. 
+<br><br>
+The additional variance can occur in two different ways. 
+<h4>Inflated Variance</h4>
+Unmeasured covariates are associated to the reponse probabilities $\pi_i$, which causes
+two different observations, $i$ and $j$ with identical observed covariate vectors to have two different true probabilities of
+success. This would cause observation of additional heterogeneity in the sample proportions, $y_i$, which would not be accomodated by the usual binomial variance. An inflated-variance quasi-likelihood approach would use the variance function
+\begin{equation*}
+	Var(\pi_i) = \phi\frac{\pi_i(1-\pi_i)}{n_i}
+\end{equation*}
+$\phi$ can be estimated using Pearson's goodness of fit 
+\begin{equation*} 
+	\hat{\phi} = X^2/(n-[p+1])
+\end{equation*}
+where 
+\begin{equation*}
+	X^2 = \sum_i \frac{(y_i-\hat{\pi}_i)^2}{[\hat{\pi}_i(1-\hat{\pi}_i)]/n_i}
+\end{equation*}
+
+This model can be effective for modelling overdispersion because of its simplicity and interpretability. However, it cannot be used when $n_i = 1$, in which case $E(Y^2_i) = E(Y_i) = \pi_i$ and $Var(y_i) = \pi_i(1 - \pi_i)$ (with no possibility for $\phi \neq 1$).
+
+<h4>Correlated Bernoulli Responses</h4>
+Trials within the $i$th observation can be  very strongly positively dependent. Data can also be sampled in clusters. 
+<br><br>
+Let $\rho = corr(y_{is}, y_{it})$ for $s\neq t$. Then 
+\begin{equation*}
+	Var(y_i) = (1+\rho(n_i-1))\frac{\pi_i(1-\pi_i)}{n_i}
+\end{equation*}
+$\rho = 0$ is the case of independent Binomial sampling variance. If $\rho > 0$, variance is larger than independence and if $\rho < 0$, variance is smaller. Note that the inflated variance model cannot be obtained as a special case of this correlated data model, except when the $n_i = n^* \ \forall i$, and this model handles $n_i = 1$ with no problem.
+<br><br>
+The quasi-likelihood model this this assumes that 
+\begin{equation*}
+	Var(\pi_i) = [1+\rho(n_i-1)]\pi_i(1-\pi_i)/n_i
+\end{equation*}
+as long as $|\rho| \leq 1$. The score function for this can be solved using Williams's algorithm (proposed in 1982).
+
+<a name="beta"></a><h3>Beta-Binomial</h3>
+For correlated Bernoulli data, a parametric alternative to the quasi-binomial model is to use a beta-binomial mixture model. Similar to the Gamma-Poisson mixture, a parametric distribution for the $\pi_i$ is assimed and then ML is used to obtain parameter estimates. Assume $\pi \sim \mbox{Beta}(\alpha_1, \alpha_2)$.
+\begin{equation*}
+	f(\pi;\alpha_1,\alpha_2) = \frac{\Gamma(\alpha_1 + \alpha_2)}{\Gamma(\alpha_1)\Gamma(\alpha_2)}\pi^{\alpha_1-1}(1-\pi)^{\alpha_2-1}
+\end{equation*}
+The Beta distribution restricts $\pi$ within (0, 1) and provides a variety of shapes, including a uniform distribution $(\alpha_1 = \alpha_2 = 1)$, unimodal symmetric $(\alpha_1 = \alpha_2 > 1)$ and bi-modal, U-shaped distributions $(\alpha_1 < 1, \alpha_2 < 1)$. 
+<br><br> However, Beta-binomial distribution does not belong to the exponential dispersion family of distributions, even for a known $\theta$. So, any link function can be used, although the logit is probably the most commonly used. This means that one only can use maximum likelihood (via N-R, for example), but one cannot rely on the generalized linear model framework. Even if the linear predictor is correct, if the data are not truly Beta-binomial, then $\hat{\beta}$ will not be consistent.
 <div id="footer"></div>
 
 <script src="notes.js"></script>

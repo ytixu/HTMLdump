@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>GenLin</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+	</script>
+	<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="notes.css">
+	
+</head>
+<body>
+<div id="menu"></div>
+<h2>Log-Linear Model</h2>
+Log-linear model can be used to build a joint probability model. Generally for $k$ categorical variables, data can be summerized in terms of a <i>k</i>-way contingency table. For example, given data for variables $A,B,C$, questions that one would be interested in are
+<ul>
+	<li>Are the variables mutually independent? I.e.: $P(A, B,C) = P(A),P(B)P(C)$.</li>
+	<li>Is $A$ independent of $B$ given (or conditional on) $C$? I.e.: $P(A,B,C) = P(A|C)P(B|C)P(C)$.</li>
+</ul>
+<a = name="2way"></a><h3>2-Way Table</h3>
+Consider two categorial variables, $X_1$ with $I$ levels and $X_2$ with $J$ levels ($I,J>1$). Let $P(X_1 = i, X_2 = j) = \pi_{ij}$ amd 
+\begin{align*}
+	\pi_{i+}\sum_{j=1}^J\pi_{ij} & \pi_{+j}\sum_{i=1}^I\pi_{ij}
+\end{align*}
+<div id="footer"></div>
+
+<script src="notes.js"></script>
+</body>
+</html>
