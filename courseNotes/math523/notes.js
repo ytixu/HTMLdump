@@ -46,6 +46,8 @@ var menu = '<h1>Generalized Linear Models</h1>'+
 '			<li><a href="notes6.html#cdmg">Conditional and Marginal Odds Ratio</a></li>'+
 '			<li><a href="notes6.html#ifor">Inference for Odds Ratio</a></li>'+
 '			<li><a href="notes6.html#test">Testing of Odds Ratios</a></li>'+
+'			<li><a href="notes6.html#lloi">Log-Linear Model of Independence</a></li>'+
+'			<li><a href="notes6.html#3way">3-Way Table</a></li>'+
 '		</ol></li>'+
 '</ol></div>'+
 '<hr>';
