@@ -16,10 +16,73 @@
 <body>
 <div id="menu"></div>
 <h2>Relevant Models</h2>
+Consider a covariate matrix $X$ and response vector $y$.
 <a name="logm"></a><h3>Probit Model</h3>
-<a name="prom"></a><h3>Logistic Model</h3>
-<a name="poim"></a><h3>Poission Model</h3>
+For binary response, once can take the CDF $\Phi$ of a <i>Normal</i>(0,1) to model $p = P(Y_i = 1|x_i)$. 
+\begin{equation*}
+	\Phi^{-1}(p) = X\beta
+\end{equation*}
+Advantages
+<ul><li>Everyone loves the normal (right?)</li>
+	<li>Straightforward interpretation relating $X$ to $Y$ in terms of normal random variables</li>
+</ul>
+Disadvantages
+<ul>
+<li>Computationally challenging<li>
+<li>Not an obvious interpretation of parameters for even a univariate model</li>
+</ul>
+Furthermore, $\Phi^{-1}$ is not the canonical link for Bernoulli distribution.
 
+<a name="prom"></a><h3>Logistic Model</h3>
+For binary response, Berkson (1940's) proposed to use 
+\begin{equation*}
+	p = \frac{\exp(X\beta)}{1+\exp{(X\beta)}}
+\end{equation*}
+so that
+\begin{equation*}
+	\log\left(\frac{p}{1-p}\right) = X\beta
+\end{equation*}
+where $\frac{p_i}{1-p_i}$ are the odds of $Y_i=1$.
+The intercept, $\beta_0$, is the log-odds ratio for an observation with $x = 0$ and so $\exp(\beta_0)$ would be the odds ratio for such an observation. $\beta_j$ for $j>0$ is thus the increase in the log-odds of a positive response for a one unit increase in $x_j$ when comparing two observations with the same values for all other covariates, and so $\exp(\beta_j)$ is the relative increase in odds.
+
+Advantages
+<ul>
+<li>Computationally much simpler to work with</li>
+<li>Has much better analytical properties than the probit function</li>
+</ul>
+Disadvantages
+<ul>
+<li>Not directly related to the normal distribution</li>
+<li>Not immediately obvious what the interpretation of the parameters would be</li>
+</ul>
+
+<h4>Risk Ratio</h4>
+Consider two observations indexed at $i$ and $j$ with univariate covariate $x$ and $x+1$ respectively. 
+\begin{equation*}
+	\frac{p_i}{p_j} = \exp(\beta_1)\frac{1+\exp(\beta_0+\beta_1 x)}{1+\exp(\beta_0 + \beta_1(x+1))}
+\end{equation*}
+If $p_i$ and $p_j$ are small, then $\frac{1+\exp(\beta_0+\beta_1 x)}{1+\exp(\beta_0 + \beta_1(x+1))}$ will be close to 1, and one can estimate the risk ratio $\frac{p_i}{p_j}$ with $\exp(\beta_1)$, which can be interpreted as an approximate relative increase in the probabilty of response for a one unit increase in $x$.
+
+<a name="poim"></a><h3>Poission Model</h3>
+For modeling discrete outcome, one assume that $Y_i \sim \mbox{Poisson}(\lambda_i)$. The Poisson regression is often used when modelling <i>counting processes</i>. 
+<br><br>
+Assumptions
+<ul><li>Events occur according to a stochastic process over time</li>
+	<li>Let $\{N(t) | t \geq 0\}$ be the process that counts the events from time 0 to time $t$ with the following properties:
+	<ul><li>$N(0) = 0$</li>
+		<li>The counts in the interval $[t_1, t_2]$ and $[t_3, t_4]$ are independent for all $t_1\leq t_2 \leq t_3 \leq t_4$</li>
+		<li>Probability of simultaneous events is zero</li>
+		<li>Probability of even in $[t_i, t_{i+1}]$ depends only on the length of the interval (stationary)</li>
+		<li>$N(t+\tau) - N(t) \sim \mbox{Poisson}(\lambda \tau)$</li>
+	</ul>
+</li></ul>
+<h4>Mean and Variance</h4>
+The Poisson distribution can be used for modeling situations where the variance of a discrete response increases with the mean, since the mean and variance are all equal to $\lambda$.
+<h4>Poisson Regression</h4>
+The mean of Poisson responses is modelled as 
+\begin{equation*}
+	\log(\lambda) = X\beta
+\end{equation*}
 <div id="footer"></div>
 
 <script src="notes.js"></script>

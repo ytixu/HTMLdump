@@ -93,18 +93,26 @@ The sample estimate of the odds ratio can be obtained using sample proportions
 \end{equation*}
 whose magnetude is independent of $n$.
 <a name="cdmg"></a><h3>Conditional and Marginal Odds Ratio</h3>
-Consider $2\times 2 \times K$ table. The <i>conditional odds ratio</i> for a fixed category k is
+<h4>Marginal Independence</h4>
+A random variable $X$ is marginally independent of a random variable $Y$ if
 \begin{equation*}
-\hat{\theta}_{X_1X_2(k)} = \frac{\mu_{11k}\mu_{22k}}{\mu_{12k}\mu_{21k}}
+	P(X=x|Y=y) = P(X=x)
 \end{equation*}
-describing the conditional $X_1X_2$ association in partial table $k$.
-<br><br>
 The <i>marginal odds ratio</i> is defined as 
 \begin{equation*}
 \hat{\theta}_{X_1X_2} = \frac{\mu_{11+}\mu_{22+}}{\mu_{12+}\mu_{21+}}
 \end{equation*}
-Sample estimates of the marginal and
-conditional odds ratios can be obtained by replacing the expected counts with observed counts.
+
+<h4>Conditional Independence</h4>
+A random variable $X$ is conditionally independent of a random variable $Y$ given random variable $Z$ if 
+\begin{equation*}
+	P(X=x|Y=y, Z=z) = P(X=x|Z=z)
+\end{equation*}
+Consider $2\times 2 \times K$ table. The <i>conditional odds ratio</i> for a fixed category k is
+\begin{equation*}
+\hat{\theta}_{X_1X_2(k)} = \frac{\mu_{11k}\mu_{22k}}{\mu_{12k}\mu_{21k}}
+\end{equation*}
+describing the conditional $X_1X_2$ association in partial table $k$. Note that conditional independence implies marginal independence (but the converse is not true).
 <br><br>
 Consider a generic $I\times J\times K$ table. $X_1$ and $X_2$ are conditionally independent <i>at level</i> $k$ of $X_3$ if they are independent in partial table $k$. 
 \begin{equation*}
@@ -115,6 +123,8 @@ If $X_1$ and $X_2$ are conditionally independent given $X_3$, then they are cond
 \begin{equation*}
 	\pi_{ij+}^* = \pi_{i++}\pi_{+j+}
 \end{equation*}
+<h4>Estimate</h4>
+Sample estimates of the marginal and conditional odds ratios can be obtained by replacing the expected counts with observed counts.
 <a name="ifor"></a><h3>Inference for Odds Ratio</h3>
 Estimate the odds ratio with the sample proportion
 \begin{equation*}
@@ -197,7 +207,7 @@ Note that the log-odds of $Y=1$ and $Y=2$ is same at each level of $X$ (since th
 <h4>Saturated Model</h4>
 The saturated model for an $I\times J$ table is 
 \begin{equation*}
-	log(\mu_{ij}) = \lambda + \lambda^X_i +\lambda_j^Y + \lambda_{ij}^{XY}
+	\log(\mu_{ij}) = \lambda + \lambda^X_i +\lambda_j^Y + \lambda_{ij}^{XY}
 \end{equation*}
 where $\lambda_{ij}^{XY}=0$ means independence. The model's degree of freedom is $IJ$.
 <br><br>

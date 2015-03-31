@@ -13,9 +13,9 @@ var menu = '<h1>Generalized Linear Models</h1>'+
 '		</ol></li>'+
 '	<li><a href="notes4.html">Relevant Models</a>'+
 '		<ol>'+
-'			<li><a href="notes3.html#logm">Logistic Model</a></li>'+
-'			<li><a href="notes3.html#prom">Probit Model</a></li>'+
-'			<li><a href="notes3.html#poim">Poission Model</a></li>'+
+'			<li><a href="notes4.html#logm">Logistic Model</a></li>'+
+'			<li><a href="notes4.html#prom">Probit Model</a></li>'+
+'			<li><a href="notes4.html#poim">Poission Model</a></li>'+
 '		</ol></li>'+
 '	<li><a href="notes2.html">Model Assessment and Goodness-of-Fit</a>'+
 '		<ol>'+
