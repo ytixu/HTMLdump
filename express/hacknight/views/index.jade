@@ -1,0 +1,30 @@
+extends layout
+
+block header
+  .text-center
+    p.siteTitle= title
+    p#timeTitle
+    #timeCountDown
+
+block content
+  p= description
+
+block listInfo
+  .text-center.container
+    .col-md-4
+      h2= 'TIME'
+      p= date
+      h1.glyphicon.glyphicon-time
+    .col-md-4
+      h2= 'PLACE'
+      p= place
+      h1.glyphicon.glyphicon-globe
+    .col-md-4
+      h2= "WHO"
+      p= who
+      h1.glyphicon.glyphicon-user
+
+block footer
+  .text-center.container
+    span= 'Contact '
+    span.glyphicon.glyphicon-envelope
