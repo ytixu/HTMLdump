@@ -93,18 +93,26 @@ The sample estimate of the odds ratio can be obtained using sample proportions
 \end{equation*}
 whose magnetude is independent of $n$.
 <a name="cdmg"></a><h3>Conditional and Marginal Odds Ratio</h3>
-Consider $2\times 2 \times K$ table. The <i>conditional odds ratio</i> for a fixed category k is
+<h4>Marginal Independence</h4>
+A random variable $X$ is marginally independent of a random variable $Y$ if
 \begin{equation*}
-\hat{\theta}_{X_1X_2(k)} = \frac{\mu_{11k}\mu_{22k}}{\mu_{12k}\mu_{21k}}
+	P(X=x|Y=y) = P(X=x)
 \end{equation*}
-describing the conditional $X_1X_2$ association in partial table $k$.
-<br><br>
 The <i>marginal odds ratio</i> is defined as 
 \begin{equation*}
 \hat{\theta}_{X_1X_2} = \frac{\mu_{11+}\mu_{22+}}{\mu_{12+}\mu_{21+}}
 \end{equation*}
-Sample estimates of the marginal and
-conditional odds ratios can be obtained by replacing the expected counts with observed counts.
+
+<h4>Conditional Independence</h4>
+A random variable $X$ is conditionally independent of a random variable $Y$ given random variable $Z$ if 
+\begin{equation*}
+	P(X=x|Y=y, Z=z) = P(X=x|Z=z)
+\end{equation*}
+Consider $2\times 2 \times K$ table. The <i>conditional odds ratio</i> for a fixed category k is
+\begin{equation*}
+\hat{\theta}_{X_1X_2(k)} = \frac{\mu_{11k}\mu_{22k}}{\mu_{12k}\mu_{21k}}
+\end{equation*}
+describing the conditional $X_1X_2$ association in partial table $k$. Note that conditional independence implies marginal independence (but the converse is not true).
 <br><br>
 Consider a generic $I\times J\times K$ table. $X_1$ and $X_2$ are conditionally independent <i>at level</i> $k$ of $X_3$ if they are independent in partial table $k$. 
 \begin{equation*}
@@ -115,6 +123,8 @@ If $X_1$ and $X_2$ are conditionally independent given $X_3$, then they are cond
 \begin{equation*}
 	\pi_{ij+}^* = \pi_{i++}\pi_{+j+}
 \end{equation*}
+<h4>Estimate</h4>
+Sample estimates of the marginal and conditional odds ratios can be obtained by replacing the expected counts with observed counts.
 <a name="ifor"></a><h3>Inference for Odds Ratio</h3>
 Estimate the odds ratio with the sample proportion
 \begin{equation*}
@@ -172,10 +182,113 @@ Finally,
 \begin{equation*}
 	G^2 = -2\log(\Lambda) = 2\sum_i\sum_jn_{ij}\log\left(\frac{n_ij}{\hat{\mu}_{i}}\right)
 \end{equation*}
-where $\hat{\mu}_{i} = n_{i+}n_{+j}/n. $G^2$ has $\chi^2$ distributed with $(I-1)(J-1)$ degrees of freedom under $H_0$ in large samples. Note that this has the sample limiting distribution than $X^2$, but $X^2$ is more preferred because it converges generally faster. 
+where $\hat{\mu}_{i} = n_{i+}n_{+j}/n$. $G^2$ has $\chi^2$ distributed with $(I-1)(J-1)$ degrees of freedom under $H_0$ in large samples. Note that this has the sample limiting distribution than $X^2$, but $X^2$ is more preferred because it converges generally faster. 
+
+<a name="lloi"></a><h3>Log-Linear Model of Independence</h3>
+To give a general method for contingency table analysis, one can use generalized linear model fomulation. Consider characterization of the table terms of their expected cell counts. 
+\begin{equation*}
+	\mu_{ij} = n\pi_{ij}
+\end{equation*}
+Denoting the row variable by $X$ and the column variable by $Y$, 
+\begin{equation*}
+\log(\mu_{ij}) = \lambda + \lambda^X_i +\lambda_j^Y
+\end{equation*}
+for row effect $\lambda^X_i$ and column effect $\lambda_j^Y$. Note that this has the form of a Poisson GLM with log link function and two categorical covariate. <!-- Thus, this model can be fit using a Poisson GML as long as the design matrix was of full rank. Because $X$ and $Y$ are both categorical, $\lambda^X_i$ and $\lambda_j^Y$ need to be contrained in some way for indentifiability. By convention, simply take $\lambda^X_i=\lambda_j^Y=0$, i.e.: take $X=I$ and $Y=J$ as the refence levels for these two categorical factor variables.  -->
+<br><br>
+The ML fitted value under independence remains $\hat{\mu}_{i} = n_{i+}n_{+j}/n$. For this model, $X^2$ and $G^2$ is obtained as chi-squared and LRT is the goodness-of-fit test.
+
+<h4>Conditional Distribution</h4>
+For row $i$, 
+\begin{equation*}
+\mbox{logit}[P(Y=1|X=i)] = \lambda_1^Y - \lambda_2^Y 
+\end{equation*}
+Note that the log-odds of $Y=1$ and $Y=2$ is same at each level of $X$ (since the terms do not depend on $i$). This is the intercept only model. The same property will hold for the joint independence model for $J>2$ as differencing will always elimiate parameters for the variable being conditioned on and leave the two levers of the other variable that are being compared. So differencing parameters for a single variable, in the independence case, leads to comparison of log-odds for that variable.
+
+<h4>Saturated Model</h4>
+The saturated model for an $I\times J$ table is 
+\begin{equation*}
+	\log(\mu_{ij}) = \lambda + \lambda^X_i +\lambda_j^Y + \lambda_{ij}^{XY}
+\end{equation*}
+where $\lambda_{ij}^{XY}=0$ means independence. The model's degree of freedom is $IJ$.
+<br><br>
+A test for independence would be 
+\begin{equation*}
+	H_0: \lambda_{ij}^{XY} = 0
+\end{equation*}
+
+<!-- <h4>2$\times$2 Table</h4>
+For $2\times 2$ table, 
+\begin{equation*}
+	\log(\theta) = \lambda_{11}^{XY} + \lambda_{22}^{XY} - \lambda_{12}^{XY} -\lambda_{21}^{XY}
+\end{equation*}
+Using a reference level, $\lambda_{11}^{XY} = \lambda_{22}^{XY} = \lambda_{21}^{XY} = 0$ so $\lambda_{11}^{XY}$ is the usual log-odds ratio. Note that other constraints can be enforced to give a parameter space with appropriately reduced dimension. A common alternative is to use the sum to zero constraint, i.e.: $\sum_i\lambda^X_i = \sum_j\lambda^Y_j = \sum_i\lambda^{XY}_{ij} = \sum_j\lambda^{XY}_{ij} = 0$. Although parameterizations are not uniquer, the contrasts that determine the odds ratios will be unique, i.e.: the parameterization of covariates will not affect the estimates of the odds ratios in the model up to re-labelling.  -->
+
+
+<a = name="3way"></a><h3>3-Way Table</h3>
+Consider 3 variables $X, Y, Z$. 
+<h4>Mutually Independence </h4>
+\begin{align*}
+	&\pi_{ijk} = \pi_{i++}\pi_{+j+}\pi_{++k}\\
+	&\log(\mu_{ijk}) = \lambda + \lambda^X_i +\lambda_j^Y +\lambda_k^Z
+\end{align*}
+Denote this model by (X,Y,Z).
+<h4>Joint Independence</h4>
+Suppose that $Y$ is jointly independent of $X$ and $Z$.
+\begin{align*}
+	&\pi_{ijk} = \pi_{i+k}\pi_{+j+}\\
+	&\log(\mu_{ijk}) = \lambda + \lambda^X_i +\lambda_j^Y +\lambda_k^Z  +\lambda_{ik}^{XZ}
+\end{align*}
+Denote this model by (XZ,Y).
+<h4>Conditional Independence</h4>
+Suppose that $X$ and $Y$ are conditionally independent given $Z$.
+\begin{align*}
+	&\pi_{ij|k} = \pi_{i+|k}\pi_{+j|k}\\
+	&\pi_{ijk} = \pi_{i+k}\pi_{+jk}/\pi_{++k}\\
+	&\log(\mu_{ijk}) = \lambda + \lambda^X_i +\lambda_j^Y +\lambda_k^Z  + \lambda_{ik}^{XZ} + \lambda_{jk}^{YZ}
+\end{align*}
+Denote this model by (XZ,YZ).
+<h4>No-Three-Factor Interaction</h4>
+If all three pairs are conditionally dependent, then 
+\begin{align*}
+	&\pi_{ijk} = \psi_{ij}\phi_{jk}\omega_{ik}\\
+	&\log(\mu_{ijk}) = \lambda + \lambda^X_i +\lambda_j^Y +\lambda_k^Z  + \lambda_{ik}^{XZ} + \lambda_{jk}^{YZ} + \lambda_{ij}^{XY}
+\end{align*}
+Denote this model by (XY,YZ,XZ).
+<h4>3-Way Interaction</h4>
+This is the satuated model
+\begin{equation*}
+	log(\mu_{ijk}) = \lambda + \lambda^X_i +\lambda_j^Y +\lambda_k^Z  + \lambda_{ik}^{XZ} + \lambda_{jk}^{YZ} + \lambda_{ij}^{XY} + \lambda_{ijk}^{XYZ} 
+\end{equation*}
+The total number of nonredundent parameters is 
+\begin{equation*}
+	1+(I-1)+(J-1)+(K-1)+(I-1)(J-1)+(I-1)(K-1)+(K-1)(J-1)+(I-1)(J-1)(K-1)
+\end{equation*}
+Denote this model by (XYZ).
+
+<h4>Odds Ratios</h4>
+Consider the model (XY,YZ,XZ). For fixed level $k$ of $Z$, the conditional association between $X$ and $Y$ is determined by $(I-1)(J-1)$ local odds ratios
+\begin{equation*}
+	\theta_{ij(k)} = \frac{\pi_{ijk}\pi_{i+1,j+1,k}}{\pi_{i,j+1,k}\pi_{i+1,j,k}} 
+\end{equation*}
+In the log-linear model, 
+\begin{equation*}
+	\log(\theta_{ij(k)}) = \lambda_{ij}^{XY} + \lambda_{i+1,j+1}^{XY} - \lambda_{i,j+1}^{XY} - \lambda_{i+1,j}^{XY}
+\end{equation*}
+Since that does not depend on $k$, all the $(I-1)(J-1)$ odds ratios are equal. This implies that any model without the 3-way interaction will have homogeneous association for each pair of variable. <!-- Note that if this homogeneous association is null (either with conditional odds ratios equal to zero), then various kinds of independence structues can be obtained.  -->
+
+<br><br>
+
+For the 3-way interaction, it determines how the odds ratio between two variable changes across level of the third. E.g.: for $2\times 2\times 2$ table,
+\begin{align*}
+	\log\frac{\theta_{11(1)}}{\theta_{11(2)}} = &\lambda_{111}^{XYZ} + \lambda_{221}^{XYZ} - \lambda_{121}^{XYZ}  - \lambda_{211}^{XYZ}  \\
+		&-(\lambda_{112}^{XYZ} + \lambda_{222}^{XYZ} - \lambda_{122}^{XYZ} - \lambda_{212}^{XYZ} )
+\end{align*}
+<!-- Note that in $2\times 2\times 2$ table, all but one of these 3-way interaction will be redundant as set to zero. -->$\lambda_{111}^{XYZ}$ for example, controls how the odds ratio for the $2\times 2$ $XY$ table chages as the level of $Z$ varies from 1 to 2. If $\lambda_{111}^{XYZ} = 0$, then there is a homogeneous $XY$ association across the levels of $Z$. 
+
+<h4>Model Comparison</h4>
+Can use $G^2$, $X^2$, AIC, BIC.
 
 <div id="footer"></div>
-
 <script src="notes.js"></script>
 </body>
 </html>
