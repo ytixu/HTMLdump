@@ -38,7 +38,7 @@
     <div ng-controller="cotentCtrl">
       <div class="text-center container">
         <div class="col-md-1"></div>
-        <div class="col-md-2" ng-repeat="c in posts.texts">
+        <div class="col-md-2 hoverBlocks" ng-repeat="c in posts.texts">
           <h2>{{c.title.toUpperCase()}}</h2>
           <p>{{c.text}}</p>
           <h1><i class="{{c.class}}"></i></h1>
@@ -55,6 +55,7 @@
     </div>
   </body>
   <script type="text/javascript" src="query.js"></script>
+  <script type="text/javascript" src="script.js"></script>
 
   <script>
     var DATA = {
