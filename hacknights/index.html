@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html data-ng-app>
+  <head>
+    <title>G&Phi;LDEN HackNights</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js">
+    </script>
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/ionicons/css/ionicons.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/icomoon/dist/css/style.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/foundation-icon-fonts/foundation-icons.css">
+<!--     <link href="http://marcoceppi.github.io/bootstrap-glyphicons/css/bootstrap.icon-large.min.css" rel="stylesheet"> -->
+  </head>
+  <body>
+    <!-- <div id="particles-js"></div> -->
+    <div id="header">
+      <div class="text-center">
+        <p class="siteTitle">G&Phi;LDEN HackNights</p>
+        <p id="timeTitle"></p>
+        <div id="timeCountDown"></div>
+      </div>
+    </div>
+    <hr>
+    <div ng-controller="cotentCtrl">
+      <div class="text-center container">
+        <div class="col-md-4" ng-repeat="c in posts.small">
+          <h2>{{c.title.toUpperCase()}}</h2>
+          <p>{{c.text}}</p>
+          <h1><i class="{{c.class}}"></i></h1>
+        </div>
+      </div>
+      <div class="text-center container">
+        <div class="col-md-6" ng-repeat="c in posts.large">
+          <h2>{{c.title.toUpperCase()}}</h2>
+          <p>{{c.text}}</p>
+          <h1><i class="{{c.class}}"></i></h1>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <hr>
+    <div id="footer">
+      <div class="text-center container">
+        <span>Contact </span><span class="glyphicon glyphicon-envelope">
+        </span>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="script.js"></script>
+  <!--<script type="text/javascript" src="http://vincentgarreau.com/particles.js/particles.js">
+  </script>
+  <script type="text/javascript" src="http://vincentgarreau.com/particles.js/js/app.js">
+  </script>-->
+  <script>
+    var DATA = {
+          subtitles: [''],
+          description: '',
+          small:[
+            {title : "when", text: 'Every night from dusk to dawn.', class: "glyphicon glyphicon-time"},
+            {title : "where", text: 'Every where in the shaded side of Earth.', class: "glyphicon glyphicon-globe"},
+            {title : "who", text: 'Every one with a productivity peak at night.', class: "glyphicon glyphicon-user"}
+          ],
+          large:[
+            {title : "what", text: 'Any idea concievable by the great programmers\' mind are welcome.', class: "fa fi-lightbulb"},
+            {title : "why", text: '', class: "glyphicon glyphicon-heart"}
+          ]
+        };
+
+    function postsCtrl($scope) {
+        $scope.posts = [
+          {name:"Spinner", url:6, date:"03/07/15", subtitle:"", content:"", type:"e"}, 
+          {name:"Air Dancer", url:5, date:"02/27/15", subtitle:"", content:"", type:"e"}];
+    }
+    function cotentCtrl($scope) {
+        $scope.posts = DATA;
+    }
+  </script>
+</html>
