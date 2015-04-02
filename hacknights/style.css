@@ -8,11 +8,21 @@ a {
 
 #timeCountDown{
 	font-size: 500%;
+}
+
+#timeLocation{
 	padding-bottom: 15%;
 }
 
 #timeTitle{
 	padding-top:10%;
+}
+
+#cityName{
+	font-size: 30px;
+}
+#cityName:hover{
+	cursor: pointer;
 }
 
 .siteTitle{
