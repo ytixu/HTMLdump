@@ -26,19 +26,20 @@
     <hr>
     <div ng-controller="cotentCtrl">
       <div class="text-center container">
-        <div class="col-md-4" ng-repeat="c in posts.small">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" ng-repeat="c in posts.small">
           <h2>{{c.title.toUpperCase()}}</h2>
           <p>{{c.text}}</p>
           <h1><i class="{{c.class}}"></i></h1>
         </div>
       </div>
-      <div class="text-center container">
+      <!-- <div class="text-center container">
         <div class="col-md-6" ng-repeat="c in posts.large">
           <h2>{{c.title.toUpperCase()}}</h2>
           <p>{{c.text}}</p>
           <h1><i class="{{c.class}}"></i></h1>
         </div>
-      </div>
+      </div> -->
     </div>
     <p></p>
     <hr>
@@ -61,11 +62,11 @@
           small:[
             {title : "when", text: 'Every night from dusk to dawn.', class: "glyphicon glyphicon-time"},
             {title : "where", text: 'Every where in the shaded side of Earth.', class: "glyphicon glyphicon-globe"},
-            {title : "who", text: 'Every one with a productivity peak at night.', class: "glyphicon glyphicon-user"}
-          ],
-          large:[
-            {title : "what", text: 'Any idea concievable by the great programmers\' mind are welcome.', class: "fa fi-lightbulb"},
-            {title : "why", text: '', class: "glyphicon glyphicon-heart"}
+            {title : "who", text: 'Every one with a productivity peak at night.', class: "glyphicon glyphicon-user"},
+          // ],
+          // large:[
+            {title : "what", text: 'Any idea concievable by the great hackers\' mind are welcome.', class: "fa fi-lightbulb"},
+            {title : "why", text: 'Because we love this!', class: "glyphicon glyphicon-heart"}
           ]
         };
 
