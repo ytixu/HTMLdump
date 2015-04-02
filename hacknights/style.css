@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-family: 'Oxygen', sans-serif !important;
 }
 
 a {
@@ -15,7 +15,7 @@ a {
 }
 
 #timeTitle{
-	padding-top:10%;
+	padding-top:8%;
 }
 
 #cityName{
