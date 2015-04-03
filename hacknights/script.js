@@ -1,13 +1,11 @@
-$(".col-md-2.hoverBlocks").hover(function(){
-  this.css({
-      "background-color":"#333333",
-      "color":"#ffffff",
-      "padding":"+=5px"
-    });
-}, function(){
-  this.animate({
-      "background-color":"white",
-      "color":"black",
-      "padding":"-=5px"
-    }, 1000);
-});
+var bingImage = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=1&n=1"
+
+function getImage(){
+  var xmlHttp = null;
+  xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", bingImage, false );
+  xmlHttp.send( null );
+  return xmlHttp.responseText;
+}
+
+console.log(getImage());
