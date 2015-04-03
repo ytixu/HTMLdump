@@ -159,7 +159,7 @@ var data = [
 		link: "../HackNights/index.html",
 		content: "Attempted to use Node.js, Express.js and Jade to create a website but couldn't find a host for it. :( Continued experimenting with Angular.js and Bootstrap. Used OpenStreetMap API, Sunrise Sunset API and Bing Image API.",
 		date: "04/02/15",
-		tags:["Angular.js", "Javascript", "CSS", "HTML5", "JQuery", "Bootstrap"],
+		tags:["Angular.js", "Javascript", "CSS", "HTML5", "JQuery", "Bootstrap", "DOM storage"],
 		type: "e"
 	},{
 		name: "Zombies Simulation",
