@@ -1,6 +1,3 @@
-//// get location of user
-var loc = "Old Montreal";
-
 //// set sunrise and sunset
 
 var mapapi = function(place){
@@ -100,7 +97,9 @@ function setTimeCount(){
 }
 
 function count(){
-	var today = new Date();
+	var now = new Date;
+	var today = new Date(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate() , 
+      now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
 	if (sunsetDate.getTime() < today.getTime()){
 		sunriseDate.setDate(sunriseDate.getDate()+1);
 	}
@@ -143,6 +142,9 @@ function count(){
 	$('#timeCountDown').html(h+":"+m+":"+s);
 	requestAnimFrame(count)
 }
+
+//// get location of user
+var loc = "Old Montreal";
 
 function displayName(){
 	$("#cityName").html(" " + loc.split(" ").map(function(x){
