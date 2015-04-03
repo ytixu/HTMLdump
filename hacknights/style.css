@@ -69,7 +69,19 @@ a {
 }
 
 .hoverBlocks{
+	cursor: pointer;
+	border-color: rgb(0,2,10);
+	border-bottom: transparent 8px;
+}
+
+.blocksDescription{
+	font-size: 20px;
+}
+
+.hoverBlocks, .blocksDescription{
 	background: rgba(225,225,225,0.6);
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .hoverBlocks:hover{
@@ -77,13 +89,23 @@ a {
     color : #ffffff;
 }
 
-#locationSubmit{
+#showIfBigScreen{
+	padding: 3% 11%;
+}
+
+#displayer{
+	display: none;
+}
+
+.buttonForHere{
 	background-color: #111111;
+	color: #aaaabb;
 }
 
 
-#locationSubmit:hover{
+.buttonForHere:hover{
 	background-color: #aaaabb;
+	color: #333333;
 }
 
 /* columns of same height styles */
@@ -101,4 +123,16 @@ a {
 .col-inv {
 	padding-left: 0 !important;
 	padding-right: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .doNotShowIfBigScreen {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hideIfSmallScreen {
+        display: none !important;
+    }
 }

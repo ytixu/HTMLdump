@@ -28,7 +28,7 @@
         <div id="timeLocation">in the area of <span id="cityName"></span> 
           <span id="inputCityBlock">
             <input id="inputCity" type="text"> 
-            <div id="locationSubmit" class="btn">Change location</div>
+            <div id="locationSubmit" class="btn buttonForHere">Change location</div>
             <span id="spinner"></span>
           </span>
         </div>
@@ -37,13 +37,26 @@
     <div id="contentBlock" ng-controller="cotentCtrl">
       <div class="text-center container row-same-height">
         <div class="col-md-1 col-inv "></div>
-        <div class="col-md-2 hoverBlocks col-xs-height" ng-repeat="c in posts.texts">
+        <div class="col-md-2 hoverBlocks col-xs-height" ng-repeat="c in posts.texts" id="{{c.title}}" 
+        onclick="clickBlock(this)">
           <h2>{{c.title.toUpperCase()}}</h2>
           <p>{{c.text}}</p>
           <h1><i class="{{c.class}}"></i></h1>
+          <span class="doNotShowIfBigScreen">
+            <p>{{c.description}}</p>
+            <div ng-if="c.btn != ''" class="btn buttonForHere">{{c.btn}}</div>
+          </span>
         </div>
         <div class="col-md-1 col-inv "></div>
       </div>
+    </div>
+    <div id="displayer" class="hideIfSmallScreen text-center container row-same-height" ng-controller="cotentCtrl">
+      <div class="col-md-1 col-inv"></div>
+      <div class="col-md-10 blocksDescription">
+        <div id="showIfBigScreen">
+        </div>
+      </div>
+      <div class="col-md-1 col-inv"></div>
     </div>
     <div id="footer">
       <div class="text-center container">
@@ -64,11 +77,21 @@
           subtitles: [''],
           description: '',
           texts:[
-            {title : "when", text: 'Every night from dusk to dawn.', class: "glyphicon glyphicon-time"},
-            {title : "where", text: 'Every where in the shaded side of Earth.', class: "glyphicon glyphicon-globe"},
-            {title : "who", text: 'Every one with nocturnal productivity peak.', class: "glyphicon glyphicon-user"},
-            {title : "what", text: 'Any idea concievable by a great hacker\'s mind.', class: "fa fi-lightbulb"},
-            {title : "why", text: 'Because of love and passion!', class: "glyphicon glyphicon-heart"}
+            {title : "when", text: 'Every night from dusk to dawn.', class: "glyphicon glyphicon-time",
+              description:"comming up", btn:""
+            },
+            {title : "where", text: 'Every where in the shaded side of Earth.', class: "glyphicon glyphicon-globe",
+              description:"comming up", btn:""
+            },
+            {title : "who", text: 'Every one with nocturnal productivity peak.', class: "glyphicon glyphicon-user",
+              description:"The more we are, the merrier we'll be. Join us! ", btn:"Sign Up"
+            },
+            {title : "what", text: 'Any idea concievable by a great hacker\'s mind.', class: "fa fi-lightbulb",
+              description:"We want to know about your hacks. Come share them with us!", btn:"Share"
+            },
+            {title : "why", text: 'Because of love and passion!', class: "glyphicon glyphicon-heart",
+              description:"What is the meaning of life (for a hacker)? Enlightenment, build, share and change the world~ Come view our hacks!", btn:"Explore"
+            }
           ]
         };
 
