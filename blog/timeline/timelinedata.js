@@ -174,6 +174,12 @@ var data = [
 		content: "Design a classical CPU on Logism (project in computer system class).",
 		date: "04/16/13",
 		url: "cpu"
+	},{
+		name: "Gin Rummy",
+		link: "?",
+		content: "Implemented Gin Rummy game using Java. Experimented JUnit, Swing and JavaFX. Explored design patterns, OOP. (for Software Design class)",
+		date: "12/13/14",
+		type: "e"
 	}
 ]
 
