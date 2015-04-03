@@ -161,6 +161,7 @@ function count(){
 
 //// get location of user
 var loc = "Montreal";
+var isVisible = false;
 
 function displayName(){
 	$("#cityName").html(" " + loc.split(" ").map(function(x){
@@ -171,16 +172,37 @@ function displayName(){
 function setLocationName(){
 	$("#locationSubmit").click(updateLocationName);
 	$("#inputCityBlock").hide();
+	$('body').click(function(evt){ 
+		if (!isVisible) return;
+		if(evt.target.id == "inputCityBlock")
+			return;
+		if($(evt.target).closest('#inputCityBlock').length)
+			return;  
+		isVisible = false;
+		$("#inputCity").val("");
+		$("#inputCityBlock").fadeOut("fast",displayName);
+	});
+	$("#inputCity").keypress(function(e) {
+        if(e.which == 13) {
+            if (!isVisible) return;
+        	e.preventDefault();
+        	updateLocationName();
+        }
+    });
 	displayName();
 	$("#cityName").click(function(){
 		$("#cityName").html('');
 		$("#locationSubmit").show();
-		$("#inputCityBlock").fadeIn("fast");
+		$("#inputCityBlock").fadeIn("fast", function(){
+			isVisible = true;
+		});
 		$("#inputCity").focus();
+		
 	});
 }
 
 function updateLocationName(){
+	isVisible = false;
 	var val = $("#inputCity").val();
 	$("#locationSubmit").hide();
 	console.log(val, val.length);
@@ -195,6 +217,7 @@ function updateLocationName(){
 		$("#inputCity").val("");
 		$("#inputCityBlock").fadeOut("fast",displayName);
 	}
+	$('body').click(function(){});
 }
 
 ///// spinner
