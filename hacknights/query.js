@@ -1,7 +1,7 @@
 //// set sunrise and sunset
 
 var mapapi = function(place){
-	return "http://api.openstreetmap.org/api/0.6/notes/search.json?q=" + place + "&place=city&limit=1";
+	return "http://api.openstreetmap.org/api/0.6/notes/search.json?q=" + place + "&place=city&limit=10";
 }
 var sunapi = function(lat, lng){
 	return "http://api.sunrise-sunset.org/json?lat="+lat+"&lng="+lng+"&date=today";
@@ -20,9 +20,25 @@ function getSunRiseSunset(str, func){
 	console.log(str);
 	var res = $.getJSON(mapapi(str)).done(function(data){
 		try{
-			console.log(data);
+			console.log("res", data);
 			var coordinates = data.features[0].geometry.coordinates;	
 			loc = data.features[0].properties.comments[0].text;
+			i = 1;
+			while (i<data.features.length){
+				if (loc.toLowerCase().indexOf(str.toLowerCase()) > -1){
+					loc = str;
+					break;
+				}
+				if (loc.length < str.length + 10){
+					break;
+				}
+				coordinates = data.features[i].geometry.coordinates;	
+				loc = data.features[i].properties.comments[0].text;
+				i++;
+			}
+			if (loc.length > str.length + 10){
+				loc = str;
+			}
 			$.ajax({
 				dataType: "jsonp",
 				url: sunapi(coordinates[1], coordinates[0]),
