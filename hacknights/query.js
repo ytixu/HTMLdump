@@ -160,7 +160,7 @@ function count(){
 }
 
 //// get location of user
-var loc = "Old Montreal";
+var loc = "Montreal";
 
 function displayName(){
 	$("#cityName").html(" " + loc.split(" ").map(function(x){
