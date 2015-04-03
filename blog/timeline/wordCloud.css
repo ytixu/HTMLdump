@@ -1,0 +1,15 @@
+#wordsCloud div{
+	position:absolute;
+}
+
+#wordsCloud div.weight1{
+	font-size: 20px;
+}
+
+#wordsCloud div.weight2{
+	font-size: 30px;
+}
+
+#wordsCloud div.weight3{
+	font-size: 50px;
+}
