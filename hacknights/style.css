@@ -85,3 +85,20 @@ a {
 #locationSubmit:hover{
 	background-color: #aaaabb;
 }
+
+/* columns of same height styles */
+.row-same-height {
+   	display: table;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .col-xs-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+.col-inv {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}

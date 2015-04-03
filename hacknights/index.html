@@ -35,13 +35,14 @@
       </div>
     </div>
     <div id="contentBlock" ng-controller="cotentCtrl">
-      <div class="text-center container">
-        <div class="col-md-1"></div>
-        <div class="col-md-2 hoverBlocks" ng-repeat="c in posts.texts">
+      <div class="text-center container row-same-height">
+        <div class="col-md-1 col-inv "></div>
+        <div class="col-md-2 hoverBlocks col-xs-height" ng-repeat="c in posts.texts">
           <h2>{{c.title.toUpperCase()}}</h2>
           <p>{{c.text}}</p>
           <h1><i class="{{c.class}}"></i></h1>
         </div>
+        <div class="col-md-1 col-inv "></div>
       </div>
     </div>
     <div id="footer">
