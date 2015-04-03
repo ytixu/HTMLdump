@@ -188,7 +188,7 @@ var opts = {
   corners: 0.2, // Corner roundness (0..1)
   rotate: 0, // The rotation offset
   direction: 1, // 1: clockwise, -1: counterclockwise
-  color: '#000', // #rgb or #rrggbb or array of colors
+  color: '#fff', // #rgb or #rrggbb or array of colors
   speed: 0.9, // Rounds per second
   trail: 54, // Afterglow percentage
   shadow: false, // Whether to render a shadow

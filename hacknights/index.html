@@ -28,14 +28,13 @@
         <div id="timeLocation">in the area of <span id="cityName"></span> 
           <span id="inputCityBlock">
             <input id="inputCity" type="text"> 
-            <div id="locationSubmit" class="btn btn-success">Change location</div>
+            <div id="locationSubmit" class="btn">Change location</div>
             <span id="spinner"></span>
           </span>
         </div>
       </div>
     </div>
-    <hr>
-    <div ng-controller="cotentCtrl">
+    <div id="contentBlock" ng-controller="cotentCtrl">
       <div class="text-center container">
         <div class="col-md-1"></div>
         <div class="col-md-2 hoverBlocks" ng-repeat="c in posts.texts">
@@ -45,11 +44,12 @@
         </div>
       </div>
     </div>
-    <p></p>
-    <hr>
     <div id="footer">
       <div class="text-center container">
-        <span>Contact </span><span class="glyphicon glyphicon-envelope">
+        <p><span>Contact </span><span class="glyphicon glyphicon-envelope"></span> | 
+          Image: <a class="footLink" target="blank" href="http://www.bing.com/">Bing Image</a> | 
+          Location API: <a class="footLink" target="blank" href="http://www.openstreetmap.org/">OpenStreetMap</a> | 
+          Times API: <a class="footLink" target="blank" href="http://sunrise-sunset.org/">Sunrise Sunset</a></p>
         </span>
       </div>
     </div>
