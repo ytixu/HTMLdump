@@ -119,13 +119,6 @@ a {
         display: table-cell;
         float: none !important;
     }
-}
-.col-inv {
-	padding-left: 0 !important;
-	padding-right: 0 !important;
-}
-
-@media (min-width: 768px) {
     .doNotShowIfBigScreen {
         display: none;
     }
@@ -135,4 +128,13 @@ a {
     .hideIfSmallScreen {
         display: none !important;
     }
+    .hoverBlocks{
+		border-bottom: transparent 8px !important;
+		cursor: default;
+	}
+}
+
+.col-inv {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }

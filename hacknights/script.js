@@ -2,13 +2,19 @@ var nextBlock;
 
 function clickBlock(block){
   if (window.innerWidth <= 768) return;
-  $("#"+nextBlock).css({
-    "border-bottom": "transparent 8px"
-  });
+  if (nextBlock == block.id){
+    if (!$("#displayer").is( ":hidden" )){
+      unhightlight();
+      $("#displayer").slideUp("fast");
+    }else{
+      hightlight();
+      $("#displayer").slideDown("fast");
+    }
+    return;
+  }
+  unhightlight();
   nextBlock = block.id;
-  $("#"+nextBlock).css({
-    "border-bottom": "solid 8px"
-  });
+  hightlight();
   if (!$("#displayer").is( ":hidden" )){
     $("#displayer").slideUp("fast", function(){
       changeText();
@@ -18,6 +24,19 @@ function clickBlock(block){
     
   }
 }
+
+function hightlight(){
+  $("#"+nextBlock).css({
+    "border-bottom": "solid 8px"
+  });
+}
+
+function unhightlight(){
+  $("#"+nextBlock).css({
+    "border-bottom": "transparent 8px"
+  });
+}
+
 function changeText(){
   $("#showIfBigScreen").html($("#"+nextBlock).find(".doNotShowIfBigScreen").html());
   $("#displayer").slideDown("fast");
