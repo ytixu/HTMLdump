@@ -1,3 +1,23 @@
+var hasUpdated = false;
+
+function get_date(){
+	lastUpdate = localStorage.getItem('last');
+	today = new Date();
+	time = today.getUTCHours();
+	date = today.getUTCDate();
+	if (lastUpdate == null){
+		localStorage.setItem('last', "12,"+date);
+		return;
+	}else{
+		lastUpdate = lastUpdate.split(",");
+		if (date == parseInt(lastUpdate[1]) || time - parseInt(lastUpdate[0]) < 0){
+			hasUpdated = true;
+		}else{
+			localStorage.setItem('last', lastUpdate[0]+","+date);
+		}
+	}
+}
+
 //// set sunrise and sunset
 
 var mapapi = function(place){
@@ -17,10 +37,9 @@ function toNums(arr){
 }
 
 function getSunRiseSunset(str, func){
-	console.log(str);
+	console.log("UPDATE");
 	var res = $.getJSON(mapapi(str)).done(function(data){
 		try{
-			console.log("res", data);
 			var coordinates = data.features[0].geometry.coordinates;	
 			loc = data.features[0].properties.comments[0].text;
 			i = 1;
@@ -58,7 +77,6 @@ function getSunRiseSunset(str, func){
 
 function parseTime(time){
 	temp = time.split(" ");
-	console.log(temp[0].split(":"));
 	time = toNums(temp[0].split(":"));
 	if (temp[1].indexOf("P")>-1){
 		time[0] += 12;
@@ -72,6 +90,10 @@ function save(){
 	localStorage.setItem('location', loc);
 }
 function load(){
+	if (!hasUpdated){
+		getSunRiseSunset(loc);
+		return;
+	}
 	sunrisetemp = localStorage.getItem('sunrise');
 	if (sunrisetemp == null){
 		getSunRiseSunset(loc);
@@ -108,7 +130,6 @@ function setTimeCount(){
 						   sunset[0],
 						   sunset[1],
 						   sunset[2]);
-	console.log(today.toDateString(), sunsetDate.toDateString(), sunriseDate.toDateString());
 	count();
 }
 
@@ -205,7 +226,6 @@ function updateLocationName(){
 	isVisible = false;
 	var val = $("#inputCity").val();
 	$("#locationSubmit").hide();
-	console.log(val, val.length);
 	if (val.length > 0){
 		startSpinning();
 		getSunRiseSunset(val, function(){
@@ -244,7 +264,6 @@ var spinner = null;
 
 function startSpinning(){
 	if (spinner == null){
-		console.log("start");
 		var target = document.getElementById('spinner');
 		spinner = new Spinner(opts).spin(target);
 	}else{
@@ -253,45 +272,56 @@ function startSpinning(){
 }
 
 function stopSpinning(){
-	console.log("stopped");
 	spinner.stop();
 }
 
 
 /////////////// background image
 
+function setBackground(url){
+	$("body").css({
+      "background": "url(http://bing.com" + url + ")",
+      "background-size": "cover",
+      "background-position": "center",
+      "background-repeat": "no-repeat",
+      "background-attachment": "fixed",
+      // "background-blend-mode": "color"
+    });
+    $(".siteTitle").css({
+      // "background": "url(http://bing.com" + data.Paths[0] + ")",
+      "color": "rgba(225,225,225,0.3)",
+      
+      "background": "-webkit-linear-gradient(transparent, transparent), url(http://bing.com" + url + ") transparent",
+      "background-image": "-o-linear-gradient(transparent, transparent)",
+      "background-size": "cover",
+      "background-position": "center",
+      "background-repeat": "no-repeat",
+      "background-attachment": "fixed",
+      "-webkit-text-fill-color": "transparent",
+      "-webkit-background-clip": "text"
+    });
+}
+
 function getImage(){
-  $.ajax({
+	if (hasUpdated){
+		url = localStorage.getItem('bgUrl');
+		if (url != null){
+			setBackground(url);
+			return;
+		}
+	}
+  	$.ajax({
         url: 'http://noapi.dorparasti.ir/api/scraps/e9baeceb-f353-4703-a84d-c9e3107bd90f',
         cache: false,
         dataType: 'json',
         success: function (data) {
-            $("body").css({
-              "background": "url(http://bing.com" + data.Paths[0] + ")",
-              "background-size": "cover",
-              "background-position": "center",
-              "background-repeat": "no-repeat",
-              "background-attachment": "fixed",
-              // "background-blend-mode": "color"
-            });
-            $(".siteTitle").css({
-              // "background": "url(http://bing.com" + data.Paths[0] + ")",
-              "color": "rgba(225,225,225,0.3)",
-              
-              "background": "-webkit-linear-gradient(transparent, transparent), url(http://bing.com" + data.Paths[0] + ") transparent",
-              "background-image": "-o-linear-gradient(transparent, transparent)",
-              "background-size": "cover",
-              "background-position": "center",
-              "background-repeat": "no-repeat",
-              "background-attachment": "fixed",
-              "-webkit-text-fill-color": "transparent",
-              "-webkit-background-clip": "text"
-            });
+        	setBackground(data.Paths[0]);
+        	localStorage.setItem('bgUrl', data.Paths[0]);
         }
     });
 }
 
-
+get_date();
 getImage();
 load();
 setLocationName();
