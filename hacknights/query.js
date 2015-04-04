@@ -290,11 +290,12 @@ function setBackground(url){
     $(".siteTitle").css({
 		// "background": "url(http://bing.com" + data.Paths[0] + ")",
 		"color": "rgba(225,225,225,0.3)",
-
+		"background-image": "rgba(0,0,0,0)",
 		"background-image": "linear-gradient(transparent, transparent)",
+		"background-image": "-o-linear-gradient(transparent, transparent)",
+		"background-image": "-moz-linear-gradient(transparent, transparent)",
+		"background-image":"-ms-linear-gradient(transparent, transparent)",
 		"background": "-webkit-linear-gradient(transparent, transparent), url(http://bing.com" + url + ") transparent",
-		// "background-image": "-o-linear-gradient(transparent, transparent)",
-		// "background-image": "-moz-linear-gradient(transparent, transparent)",
 		"background-size": "cover",
 		"background-position": "center",
 		"background-repeat": "no-repeat",
