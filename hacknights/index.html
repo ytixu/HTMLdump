@@ -44,7 +44,9 @@
           <h1><i class="{{c.class}}"></i></h1>
           <span class="doNotShowIfBigScreen">
             <p>{{c.description}}</p>
-            <div ng-if="c.btn != ''" class="btn buttonForHere">{{c.btn}}</div>
+            <a ng-if="c.btn != ''" href="{{c.link}}">
+              <div class="btn buttonForHere">{{c.btn}}</div>
+            </a>
           </span>
         </div>
         <div class="col-md-1 col-inv "></div>
@@ -78,19 +80,19 @@
           description: '',
           texts:[
             {title : "when", text: 'Every night from dusk to dawn.', class: "glyphicon glyphicon-time",
-              description:"coming up", btn:""
+              description:"The next HackNight is today.", btn:"Sign Up", link:"https://docs.google.com/forms/d/1Ndd9p4r6H61NF8bHIgQgN5Vd5niXj0tU2c8Px9QoaH4/viewform?embedded=true"
             },
             {title : "where", text: 'Every where in the shaded side of Earth.', class: "glyphicon glyphicon-globe",
-              description:"coming up", btn:""
+              description:"The next HackNight is here.", btn:"Sign Up", link:"https://docs.google.com/forms/d/1Ndd9p4r6H61NF8bHIgQgN5Vd5niXj0tU2c8Px9QoaH4/viewform?embedded=true"
             },
             {title : "who", text: 'Every one with nocturnal productivity peak.', class: "glyphicon glyphicon-user",
-              description:"The more we are, the merrier we'll be. Join us! ", btn:"Sign Up"
+              description:"The more we are, the merrier we'll be.", btn:"Join In", link:"#"
             },
             {title : "what", text: 'Any idea concievable by a great hacker\'s mind.', class: "fa fi-lightbulb",
-              description:"We want to know about your hacks. Come share them with us!", btn:"Share"
+              description:"We want to know about your hacks.", btn:"Share Your Hack", link:"#"
             },
             {title : "why", text: 'Because of love and passion!', class: "glyphicon glyphicon-heart",
-              description:"What is the meaning of life (for a hacker)? Enlightenment, build, share and change the world~ Come view our hacks!", btn:"Explore"
+              description:"What is the meaning of life (for a hacker)? Enlightenment, build, share and change the world!", btn:"Explore Our Hacks", link:"#"
             }
           ]
         };
