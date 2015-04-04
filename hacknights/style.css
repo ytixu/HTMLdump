@@ -97,15 +97,15 @@ a {
 	display: none;
 }
 
-.buttonForHere{
+.buttonForHere, .buttonForHere:visited, .buttonForHere:focus, .buttonForHere:active{
 	background-color: #111111;
-	color: #aaaabb;
+	color: #aaaabb !important;
 }
 
 
 .buttonForHere:hover{
 	background-color: #aaaabb;
-	color: #333333;
+	color: #333333 !important; 
 }
 
 /* columns of same height styles */

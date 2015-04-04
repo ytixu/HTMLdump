@@ -44,9 +44,11 @@
           <h1><i class="{{c.class}}"></i></h1>
           <span class="doNotShowIfBigScreen">
             <p>{{c.description}}</p>
-            <a ng-if="c.btn != ''" href="{{c.link}}">
+            <a ng-if="c.link != ''" href="{{c.link}}">
               <div class="btn buttonForHere">{{c.btn}}</div>
             </a>
+            <button ng-if="c.onclick" class="btn buttonForHere" id="{{c.answer}}" onclick="query(this)">{{c.btn}}</button>
+            <div ng-if="c.answer != ''" id="{{c.answer}}" style="display:none;"></div>
           </span>
         </div>
         <div class="col-md-1 col-inv "></div>
@@ -67,12 +69,14 @@
           Form: <a class="footLink" target="blank" href="http://www.google.ca/forms/about/">Google Form</a> | 
           Location API: <a class="footLink" target="blank" href="http://www.openstreetmap.org/">OpenStreetMap</a> | 
           Times API: <a class="footLink" target="blank" href="http://sunrise-sunset.org/">Sunrise Sunset</a> | 
+          Idea Generator: <a class="footLink" target="blank" href="http://itsthisforthat.com/">ItsThisForThat</a> | 
           Spinner: <a class="footLink" target="blank" href="http://fgnass.github.io/spin.js/">spin.js</a></p> 
         </span>
       </div>
     </div>
   </body>
   <script type="text/javascript" src="query.js"></script>
+  <script type="text/javascript" src="otherQueries.js"></script>
   <script type="text/javascript" src="script.js"></script>
 
   <script>
@@ -81,28 +85,28 @@
           description: '',
           texts:[
             {title : "when", text: 'Every night from dusk to dawn.', class: "glyphicon glyphicon-time",
-              description:"The next HackNight is today.", btn:"Sign Up", link:"https://docs.google.com/forms/d/1Ndd9p4r6H61NF8bHIgQgN5Vd5niXj0tU2c8Px9QoaH4/viewform?embedded=true"
+              description:"The next HackNight is today.", btn:"Sign Up", link:"https://docs.google.com/forms/d/1Ndd9p4r6H61NF8bHIgQgN5Vd5niXj0tU2c8Px9QoaH4/viewform?embedded=true", 
+              onclick:false, answer:""
             },
             {title : "where", text: 'Every where in the shaded side of Earth.', class: "glyphicon glyphicon-globe",
-              description:"The next HackNight is here.", btn:"Sign Up", link:"https://docs.google.com/forms/d/1Ndd9p4r6H61NF8bHIgQgN5Vd5niXj0tU2c8Px9QoaH4/viewform?embedded=true"
+              description:"The next HackNight is here.", btn:"Sign Up", link:"https://docs.google.com/forms/d/1Ndd9p4r6H61NF8bHIgQgN5Vd5niXj0tU2c8Px9QoaH4/viewform?embedded=true", 
+              onclick:false, answer:""
             },
             {title : "who", text: 'Every one with nocturnal productivity peak.', class: "glyphicon glyphicon-user",
-              description:"The more we are, the merrier we'll be.", btn:"Join In", link:"#"
+              description:"The more we are, the merrier we'll be.", btn:"Join In", link:"https://docs.google.com/forms/d/1Ndd9p4r6H61NF8bHIgQgN5Vd5niXj0tU2c8Px9QoaH4/viewform?embedded=true", 
+              onclick:false, answer:""
             },
             {title : "what", text: 'Any idea concievable by a great hacker\'s mind.', class: "fa fi-lightbulb",
-              description:"We want to know about your hacks.", btn:"Share Your Hack", link:"#"
+              description:"Don't have ideas? Get inspired here.", btn:"Generate Idea", link:"", 
+              onclick:true, answer:"thisIsForThat"
             },
             {title : "why", text: 'Because of love and passion!', class: "glyphicon glyphicon-heart",
-              description:"What is the meaning of life (for a hacker)? Enlightenment, build, share and change the world!", btn:"Explore Our Hacks", link:"#"
+              description:"What is the meaning of life (for a hacker)? Enlightenment, build, share and change the world!", btn:"Explore Our Hacks", link:"", 
+              onclick:false, answer:""
             }
           ]
         };
 
-    function postsCtrl($scope) {
-        $scope.posts = [
-          {name:"Spinner", url:6, date:"03/07/15", subtitle:"", content:"", type:"e"}, 
-          {name:"Air Dancer", url:5, date:"02/27/15", subtitle:"", content:"", type:"e"}];
-    }
     function cotentCtrl($scope) {
         $scope.posts = DATA;
     }
