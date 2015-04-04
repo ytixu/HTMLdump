@@ -155,13 +155,6 @@ var data = [
 		date: "10/23/14",
 		url: "particleFilter"
 	},{
-		name: "HackNights",
-		link: "../HackNights/index.html",
-		content: "Attempted to use Node.js, Express.js and Jade to create a website but couldn't find a host for it. :( Continued experimenting with Angular.js and Bootstrap. Used OpenStreetMap API, Sunrise Sunset API and Bing Image API.",
-		date: "04/02/15",
-		tags:["Angular.js", "Javascript", "CSS", "HTML5", "JQuery", "Bootstrap", "DOM storage"],
-		type: "e"
-	},{
 		name: "Zombies Simulation",
 		link: "?",
 		content: "Created a simulation of fours different levels of zombies patrolling around a circular corridor and a survivor that tries to avoid being seen by the zombies. Implemented AIs according to the concepts of finite state machine and behavior tree (project in modern game class).",
