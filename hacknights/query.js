@@ -177,6 +177,7 @@ function count(){
 		h = "0"+h;
 	}
 	$('#timeCountDown').html(h+":"+m+":"+s);
+	document.title = h+":"+m+":"+s;
 	requestAnimFrame(count)
 }
 
