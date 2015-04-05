@@ -49,6 +49,11 @@ var menu = '<h1>Generalized Linear Models</h1>'+
 '			<li><a href="notes6.html#lloi">Log-Linear Model of Independence</a></li>'+
 '			<li><a href="notes6.html#3way">3-Way Table</a></li>'+
 '		</ol></li>'+
+'   <li><a href="notes7.html">Moltinomial Response Models</a>'+
+'		<ol>'+
+'			<li><a href="notes7.html#nmrs">Nominal Response</a></li>'+
+'			<li><a href="notes7.html#orrs">Ordinal Response</a></li>'+
+'		</ol></li>'+
 '</ol></div>'+
 '<hr>';
 

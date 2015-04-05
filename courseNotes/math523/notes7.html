@@ -1,0 +1,180 @@
+<html>
+<head>
+	<title>GenLin</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+	</script>
+	<script type="text/javascript"
+	  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="notes.css">
+	
+</head>
+<body>
+<div id="menu"></div>
+<h2>Multinomial Response Models</h2>
+
+<a name="nmrs"></a><h3>Nominal Response</h3>
+Let $Y$ be a categorical response with $J > 2$ categories. Assume that these categories are unordered, i.e. that $Y$ is a nominal categorical random variable. The logit model can be used to fit the data. 
+
+<h4>Odds Ratio</h4>
+
+$J-1$ odds ratios from all ${J\choose 2}$ odd ratios will full specify the distribution over the categories. Let 
+\begin{equation*}
+	\pi_j(x) = P(Y = j|x) \mbox{ with } \sum_j \pi_(x) = 1
+\end{equation*}
+Let there be some baseline category $J$. The odds are determined relative to that baseline.
+\begin{equation*}
+	\log\frac{\pi_j(x)}{\pi_J(x)} = \alpha_j + \beta_j'x
+\end{equation*}
+The reference category is frequently chosen to be the last one or the most common one. To obtain the log odds for any pair of categories, $a$ and $b$,
+\begin{equation*}
+	\log\frac{\pi_a(x)}{\pi_b(x)} = \log\frac{\pi_a(x)}{\pi_J(x)} - \log\frac{\pi_b(x)}{\pi_J(x)}
+\end{equation*}
+
+The odds ratio for the $j$th category is 
+\begin{equation*}
+	\pi_j(x) = \frac{\exp(\alpha_j + \beta_j'x)}{1+\sum_{h=1^j-1}\exp(\alpha_h+\beta_h'x)}
+\end{equation*}
+with $\alpha_J = 0$ and $\beta_J = 0$.
+
+<h4>Maximum Likelihood</h4>
+Let $y_i = (y_{i1}, \dots, y_{iJ})$, where $y_{i1} = 1$ and 0 everywhere else means that the response is in category $j$. Let $x_i = (x_{i1}, \dots, x_{ip})'$ be the vector covariates and $\beta_j = (\beta_{i1}, \dots, \beta_{ip})'$ be the parameters for the $j$th logit. 
+<br><br>
+The sufficient statistic for $\beta_{jk}$ is $\sum_ix_{ik}y_{ij}$, and for $\alpha_j$, $\sum_ix_{i0}y_{ij}$ for $x_{i0} = 1$, so that the last sufficient statistic is the number of outcomes in category $j$.
+
+<h4>Multivariate Exponential Disperson Family</h4>
+\begin{equation*}
+	f_{Y_i}(Y_i;\theta_i, \phi) = \exp([-b(\theta_i)+ \theta_i y_i']/a(\phi) + c(y_i, \phi))
+\end{equation*}
+For response probabilities $\{
+\pi_i\}$, the multinomial distribution is 
+\begin{equation*}
+	\exp\left(\sum_{j=1}^{J-1}y_{ij}\log\frac{\pi_j}{1-\sum_{j=1}^{J-1}\pi_j} + \log\left[1-\sum_{j=1}^{J-1}\pi_j\right]\right)
+\end{equation*}
+The vector natural parameters is 
+\begin{equation*}
+	\theta_i = \left(\frac{\pi_1}{\pi_J}, \dots, \frac{\pi_{J-1}}{\pi_J}\right)
+\end{equation*}
+and the cumulant function is
+\begin{equation*}
+b(\theta_i) = \log\left(1-\sum_{j=1}^{J-1}\pi_i\right) = \log\left(\sum_{j=1}^{J-1}\frac{\exp(\theta_{ij})}{1+\sum_{h=1}^{J-1}\exp(\theta_{ih})}\right)
+\end{equation*}
+
+<h4>Link Function</h4>
+Defined $\mu_i = E(Y_i)$, find $g(\mu_i) = X_i\beta$, where row $h$ of the matrix $X_i$ contains values of covariates for $y_{ih}$. 
+\begin{equation*}
+	g_i(\mu_i) = \log\left(\frac{\mu_{ij}}{1-(\mu_{i1} + \dots + \mu_{i,J-1})}\right)
+\end{equation*}
+The model matrix for observation $i$ can be written as 
+\begin{equation*}
+	X_i = \left(\begin{array}{c c c c c c c}
+	1 & x_i' & & & & &\\
+	& & 1 & x_i' & & &\\
+	& & & & \dots & &\\
+	& & & & & 1 & x_i'\\
+	\end{array}\right)
+\end{equation*}
+with 0 everywhere else, and the parameter vector,
+\begin{equation*}
+	\beta' = (\alpha_1,\beta_1', \dots, \alpha_{J-1},\beta_{J-1}')
+\end{equation*}
+Similar to logistic regression, one can also fit the model using proportions or probabilities as the response with appropriately selected weights.
+
+<a name="orrs"></a><h3>Ordinal Response</h3>
+When the response is ordered, one common approach is to use <i>cumulative logits</i>. 
+\begin{equation*}
+logit[P(Y\leq j|x)] = \log\frac{P(Y\leq j|x)}{1-P(Y\leq j|x)} = \log\frac{\pi_i(x) + \dots + \pi_j(x)}{\pi_{j+1}(x) + \dots + \pi_J(x)}
+\end{equation*}
+where
+\begin{equation*}
+P(Y\leq j|x) = \pi_1(x) + \dots + \pi_j(x), \ j = 1, \dots, J
+\end{equation*}
+One could use this model directly, as it is equivalent to a binary logistic regression model, with positive response $Y \leq j$ and negative response $Y > j$. It is also possible to build a model for each of the $J - 1$ cumulative logits separately, although the model would be quite complex and each analysis would be dependent (and thus hard to combine results). In practice, it is often more effective to build a model for all $J - 1$ cumulative logits simultaneously.
+
+<h4>Assumption</h4>
+One standard assumption for a model on all the cumulative logits is that:
+\begin{equation*}
+logit[P(Y\leq j|x)] = \alpha_j + \beta'x, \ j= 1, \dots, J-1
+\end{equation*}
+So each cumulative logit has its own intercept and the $\alpha_j$ values must be increasing because cumulative logit is a monotonically increasing function. On the other hand, the covariate effects is assumed to be the same across all $J - 1$ cumulative logits, which gives a great amount of parsimony.
+
+<h4>Interpretation</h4>
+For univariate $x$ and $j < k$,
+\begin{equation*}
+P(Y\leq k|X=x) = P(Y\leq j| X=x+(\alpha_k+\alpha_j)/\beta_j)
+\end{equation*}
+So the shape of the response curve is the same across categories, it is only translated by $(\alpha_k+\alpha_j)/\beta_j$.
+<h4>Cumulative Odds Ratio</h4>
+\begin{equation*}
+logit[P(Y\leq j|x_1)] - logit[P(Y\leq j|x_2)] = \beta'(x_1-x_2)
+\end{equation*}
+The odds of $Y \leq j$ at $x = x_1$ are $\exp[\beta'(x_1 - x_2)]$ times the odds at $x=x_2$. The log cumulative odds ratio is proportional to the distance between $x_1$ and $x_2$ and, most importantly, is constant across each $j$. Therefore, this particular model is referred to as a <i>proportional odds model</i>.
+
+<h4>For Some Latent Variable Model</h4>
+Let $Y^*$ be an unobserved (or latent) variable with CDF $G(y^*-\eta)$ where $\eta$ is a location parameter (such as a mean). Assume that the $\eta$ depends on $x$ such that $\eta(n) = \beta^*\mbox{'}x$.
+<br><br>
+Defined $Y=j$ if $Y^*$ falls in the interval $(\alpha_{j-1}, \alpha_{j}]$ where
+\begin{equation*}
+	-\infty < \alpha_0 < \alpha_1 < \dots < \alpha_J = \infty
+\end{equation*}
+Then 
+\begin{align*}
+	&P(Y\leq j|x) = P(Y^*\leq \alpha_j|x) = G(\alpha_j-\beta' x)\\
+	&G^{-1}(P(Y\leq j|x)) = \alpha_j-\beta' x
+\end{align*}
+<ul><li>If $Y^* = \beta^*\mbox{'} +\varepsilon$, then $\varepsilon$ has CDF $G$. </li>
+	<li>If the CDF of $\varepsilon$ can be written as 
+		\begin{equation*}
+		G(\varepsilon) = \frac{\exp(\varepsilon)}{1+\exp(\varepsilon)}
+		\end{equation*}
+	then $G^{-1}$ is teh logistic link.</li>
+</ul>
+Note that the $\alpha_j$ parameters control how the values for $Y$ are allocated to intervals for $Y^*$, but the $\beta$ parameters are invariant to the choice of categories for $Y$. Therefore, if this model holds, there can be different discrete response scales measuring the same latent continuous trait, but the same covariate effects for each of the response scales. Note that the linear predictor for the latent variable
+approach uses $\alpha_j - \beta\mbox{'}x$ rather than $\alpha_j + \beta\mbox{'}x$. Therefore, under this parametrization an increase in $x_j$
+leads to a decrease in the cumulative logit, so that $Y$ will be larger for higher values of $x_j$.
+
+<h4>Other Link Functions</h4>
+Choosing a standard normal CDF for $G$ gives the cumulative probit model. Then $Y^*\sim N(\beta\mbox{'}x, 1)$ and $\beta$ can be interpreted corresponding to changes in the normal latent variable.
+<br><br>
+Another alternative choice for $Y^*$ is the extreme value distribution, which gives a model of the form
+\begin{equation*}
+\log(- \log[1 - P(Y \leq j|x)]) = \alpha_j + \beta\mbox{'}x$. This corresponds to the complementary log-log link for binary data and has close links to models commonly used in survival data and assumes proportional hazards for two covariate vectors, $x_1$ and $x_2$.
+
+<h4>Adjacent-Categories Logits</h4>
+Rather than modeling the CDF, one can also model the relative odds of adjacent categories. 
+\begin{equation*}
+	logit[P(Y=j|Y\in \{j j+1\})] = \log\frac{\pi_j}{\pi_{j+1}}, \ j = 1, \dots , J-1
+\end{equation*}
+Note tha these can be linked to the baseline category logit model as
+\begin{equation*}
+	\log\frac{\pi_j}{\pi_J} = \log\frac{\pi_j}{\pi_{j+1}} + \log\frac{\pi_{j+1}}{\pi_{j+2}} + \dots + \log\frac{\pi_j}{\pi_J}
+\end{equation*}
+The link function for adjacent-categories model is
+\begin{equation*}
+	\log\frac{\pi_j(x)}{\pi_{j+1}(x)} = \alpha_j + \beta\mbox{'}x
+\end{equation*}
+The baseline category model is equivalent to this in terms of $\beta$, but transforms the covariates to $(J-j)x$ as
+\begin{equation*}
+	\log\frac{\pi_j}{\pi_J} = \sum_{k=1}^{J-1}\alpha_k + \beta'(J-j)x = \alpha_j^*+\beta'u_j
+\end{equation*}
+where $u_j = (J-j)x$.
+<br><br>
+Lot of parsimony compared to the general
+multinomial model is gained by setting $\beta$ to be fixed across all $j$ (either adjacent or baseline). The advantage of the adjacent category model is that it is easier to believe the homogeneity assumption on the $\beta$ across $j$ for the adjacent category models.
+
+<h4>Interpretation</h4>
+The interpretation is that for a one unit increase in $x_j$, there is a $\beta_j$ change in the relative log odds of category $j$ over category $j + 1$.
+
+<a name="como"></a><h4>Comparing Models</h4>
+If the data are not sparse, with categorical predictors one can use the usual $X^2$ and $G^2$ goodness-of-fit statistics. In any case we can use the statistics to compare nested models that differ by a reasonable number of terms.
+
+
+<div id="footer"></div>
+
+<script src="notes.js"></script>
+</body>
+</html>
