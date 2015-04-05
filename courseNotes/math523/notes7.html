@@ -169,7 +169,24 @@ multinomial model is gained by setting $\beta$ to be fixed across all $j$ (eithe
 <h4>Interpretation</h4>
 The interpretation is that for a one unit increase in $x_j$, there is a $\beta_j$ change in the relative log odds of category $j$ over category $j + 1$.
 
-<a name="como"></a><h4>Comparing Models</h4>
+<h4>Continuation Logits</h4>
+Another approach to modelling ordinal response is, for $j = 1, \dots, J-1$,
+\begin{equation*}
+	\log\frac{\pi_j}{\pi_{j+1}+\dots \pi_J}
+\end{equation*}
+or 
+\begin{equation*}
+	\log\frac{\pi_{j+1}}{\pi_{1}+\dots \pi_j}
+\end{equation*}
+This allows one to define 
+\begin{align*}
+&\omega_j = P(Y=j|Y\geq j)\\
+&\omega_j(x) = \frac{\pi_j}{\pi_j(x)+\dots + \pi_J(x)}\\
+&\log\frac{\omega_j(x)}{1-\omega_j(x)} = \log\frac{\pi_j}{\pi_{j+1}+\dots+\pi_J}
+\end{align*}
+
+For the continuation-ratio model, one can either allow for different $\beta_j$ parameters for each $j$ or can fit a more constrained model that forces the relationship of the covariates to each conditional transition. There is a close relationship between continuation-ratio models (under the constraint for $x$) and Cox proportional hazard models. The <i>hazard function</i> can be defined as the ratio of a PDF to the complement of the CDF. For discrete time survival data (where events are only recorded in intervals of time, rather than at exact times), the continuation-ratio model converges to the Cox proportional hazards model. In epidemiology, parametric pooled logistic regression models of this form are often used as an alternative to the semi-parametric Cox proportional hazards approach as they provide asymptotically equivalent estimates of hazard ratios when event times are only observed on intervals.
+<a name="como"></a><h3>Comparing Models</h3>
 If the data are not sparse, with categorical predictors one can use the usual $X^2$ and $G^2$ goodness-of-fit statistics. In any case we can use the statistics to compare nested models that differ by a reasonable number of terms.
 
 

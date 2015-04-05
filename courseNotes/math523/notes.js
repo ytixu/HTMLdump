@@ -53,6 +53,7 @@ var menu = '<h1>Generalized Linear Models</h1>'+
 '		<ol>'+
 '			<li><a href="notes7.html#nmrs">Nominal Response</a></li>'+
 '			<li><a href="notes7.html#orrs">Ordinal Response</a></li>'+
+'			<li><a href="notes7.html#como">Comparing Models</a></li>'+
 '		</ol></li>'+
 '</ol></div>'+
 '<hr>';
