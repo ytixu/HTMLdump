@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Nekophilia</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/ionicons/css/ionicons.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/icomoon/dist/css/style.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://glyphsearch.com/bower_components/foundation-icon-fonts/foundation-icons.css">
+	<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+	
+    <style>
+    body{
+    	position:absolute;
+		height: 100%;
+		width: 100%;
+		display: table;
+		font-family: 'Slabo 27px', serif;
+    }
+    #cat_fact{
+    	font-size:20px;
+    	color:white;
+    	padding:5%;
+    	background-color: rgba(0,0,0,0.4);
+	}
+	#cat_fact p:first-letter {
+	    font-size: 50px;
+	    color: #aaaaaa;
+	    height: 30px;
+	    background-color: #112233;
+	    line-height: 1px;
+	    padding:0 10px;
+	}
+	#cat_fact p:first-line {
+	    font-weight: bold;
+	}
+	.tilted{
+		-ms-transform: rotate(-5deg); /* IE 9 */
+	    -webkit-transform: rotate(-5deg); /* Safari */
+	    transform: rotate(-5deg);
+	    padding:0 !important;
+	    z-index: 1100;
+	}
+	.bordered{
+		border: solid 10px;
+		border-color: rgba(225,225,225,0.4);
+		/*border-radius: 2em;*/
+	}
+	.blocks{
+		vertical-align: middle;
+	}
+
+	.catContent{
+		display: table-cell;
+		vertical-align: middle;
+    }
+
+	.row-same-height {
+	   	display: table;
+	    width: 100%;
+	}
+
+	@media (min-width: 768px) {
+	    .col-xs-height {
+	        display: table-cell;
+	        float: none !important;
+	    }
+	    .tilted{
+	    	text-align: right;
+	    	right: -3%;
+	    }
+	}
+
+	.pawBtn:hover{
+		cursor:pointer;
+	}
+	.nextPic, .nextFact, .nextBoth{
+		font-size: 32px;
+	}
+	.nextPic{
+		color:#ffbbaa;
+	}
+	.nextFact{
+		color:#aabbff;
+	}
+	.nextBoth{
+		color:#bbffaa;
+	}
+
+	.catFooter{
+		position:absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		color:#aaaaaa;
+		font-size: 21px;
+		padding:3%;
+	}
+	.upArrow{
+		font-size: 32px;
+	}
+	.upArrow:hover{
+		cursor: pointer;
+		color: white;
+	}
+	</style>
+	</head>
+	<body>
+		<div class="catContent">
+			<div class="row-same-height text-center catContent">
+				<div class="col-md-1 col-xs-height"></div>
+				<div id="cat_picture" class="tilted blocks col-md-4 col-xs-height"></div>
+				<div id="cat_fact" class="col-md-4 col-xs-height catContent">
+					<p id="cat_fact_text"></p>
+					<span class="nextPic">
+						<span class="ionicons ion-ios-paw pawBtn"></span></span>
+					<span class="nextFact">
+						<span class="ionicons ion-ios-paw pawBtn"></span></span>
+					<span class="nextBoth">
+						<span class="ionicons ion-ios-paw pawBtn"></span></span>
+				</div>
+				<div class="col-md-3 col-xs-height"></div>
+			</div>
+		</div>
+		<div class="catFooter">
+			<div class="upArrow text-center"><span class="fa fa-angle-up"></span></div>
+			<div id="catFooterToggle">
+				<div class="col-md-6">
+					Cat image: <a target="blank" href="http://thecatapi.com/">The Cat API</a> | 
+					Cat facts: <a target="blank" href="http://catfacts-api.appspot.com/">Cat Facts API</a> 
+				</div>
+				<div class="col-md-6 align-right">
+					<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+					<div id="fb-root"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="script.js"></script>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+</html>
