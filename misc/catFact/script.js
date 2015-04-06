@@ -68,6 +68,18 @@ function setupBtn(){
 	$(".nextBoth").click(function(){
 		cat.getBoth();
 	});
+	$("#catFooterToggle").slideUp("fast");
+	$("#upArrow").click(function(){
+		$("#catFooterToggle").slideDown("fast");
+		$(this).fadeOut("fast");
+	});
+	$(".catContent").mouseover(function(){
+		console.log("asd", $("#upArrow").is( ":hidden" ));
+		if ($("#upArrow").is( ":hidden" )){
+			$("#catFooterToggle").slideUp("fast");
+			$("#upArrow").fadeIn("fast");
+		}
+	});
 }
 
 setupBtn();

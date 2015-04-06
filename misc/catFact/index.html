@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="http://glyphsearch.com/bower_components/octicons/octicons/octicons.css">
     <link rel="stylesheet" href="http://glyphsearch.com/bower_components/foundation-icon-fonts/foundation-icons.css">
 	<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
-	
+
     <style>
     body{
     	position:absolute;
@@ -94,16 +94,30 @@
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		color:#aaaaaa;
+		color:#cccccc;
 		font-size: 21px;
-		padding:3%;
+		padding:0 3%;
+		background: rgba(0,0,0,0.5) !important;
+		background: -moz-linear-gradient(top, transparent, rgba(0,0,0,0.5)) !important;
+		background: -webkit-gradient(linear, left top, left bottom, transparent, rgba(0,0,0,0.5)) !important; 
+		background: -webkit-linear-gradient(top, transparent, rgba(0,0,0,0.5)) !important; 
+		background: -o-linear-gradient(top, transparent, rgba(0,0,0,0.5)) !important;
+		background: -ms-linear-gradient(top, transparent, rgba(0,0,0,0.5)) !important;
+		background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)) !important;
 	}
-	.upArrow{
+	#upArrow{
 		font-size: 32px;
 	}
-	.upArrow:hover{
+	#upArrow:hover{
 		cursor: pointer;
+		color: black;
+	}
+	.catFooter a, .catFooter a:visited{
 		color: white;
+		text-decoration: none;
+	}
+	.catFooter a:hover{
+		color: black;
 	}
 	</style>
 	</head>
@@ -125,14 +139,17 @@
 			</div>
 		</div>
 		<div class="catFooter">
-			<div class="upArrow text-center"><span class="fa fa-angle-up"></span></div>
+			<div id="upArrow" class="text-center"><span class="fa fa-angle-up"></span></div>
 			<div id="catFooterToggle">
-				<div class="col-md-6">
+				<div class="col-md-6 footChild">
+					<br><br><br>
 					Cat image: <a target="blank" href="http://thecatapi.com/">The Cat API</a> | 
-					Cat facts: <a target="blank" href="http://catfacts-api.appspot.com/">Cat Facts API</a> 
+					Cat facts: <a target="blank" href="http://catfacts-api.appspot.com/">Cat Facts API</a> |
+					Code: <a target="blank" href="https://github.com/ytixu/HTMLdump/tree/gh-pages/misc/catFact"><span class="icomoon icon-github"></span></a>
+					<br><br>
 				</div>
-				<div class="col-md-6 align-right">
-					<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+				<div class="col-md-6 text-right footChild">
+					<div class="fb-like " data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
 					<div id="fb-root"></div>
 				</div>
 			</div>
