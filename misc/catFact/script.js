@@ -14,16 +14,17 @@ var cat = {
 	imageTypeIndex: 0,
 	imageCount:0,
 	getPicture: function(){
-		console.log(this.imageTypes[this.imageTypeIndex]);
-		$("#cat_picture").html("<img class='bordered' src='http://thecatapi.com/api/images/get?format=src&type="
-			+this.imageTypes[this.imageTypeIndex]+"&"+this.imageCount+"'>");
-		this.imageTypeIndex = 1-this.imageTypeIndex;
-		this.imageCount ++;
+		$("#cat_picture").fadeOut("fast", function(){
+			$("#cat_picture").html("<img class='bordered' src='http://thecatapi.com/api/images/get?format=src&type="
+				+cat.imageTypes[cat.imageTypeIndex]+"&"+cat.imageCount+"'>");
+			cat.imageTypeIndex = 1-cat.imageTypeIndex;
+			cat.imageCount ++;
+			$("#cat_picture").fadeIn("fast");
+		});
 	},
 	getBg: function(){
 		query("http://noapi.dorparasti.ir/api/scraps/e3b76773-e265-4bf6-ae91-0fb5b93af10d", "json",
 			function(e){
-				console.log(e);
 				$("body").css({
 					background: "url(http://i.imgur.com/C3sLgvn.png)," + 
 					"url('" + e.Paths[0] + "')",
@@ -35,10 +36,13 @@ var cat = {
 			});
 	},
 	getFact: function(){
-		query("https://jsonp.afeld.me/?url=http://catfacts-api.appspot.com/api/facts?number=1", "json",
-			function(e){
-				$("#cat_fact_text").html(e.facts[0]);
-			});
+		$("#cat_fact_text").fadeOut("fast", function(){
+			query("https://jsonp.afeld.me/?url=http://catfacts-api.appspot.com/api/facts?number=1", "json",
+				function(e){
+					$("#cat_fact_text").html(e.facts[0]);
+					$("#cat_fact_text").fadeIn("fast");
+				});
+		});
 	},
 	getAll: function(){
 		this.getBg();
