@@ -49,7 +49,6 @@ var cat = {
 		this.getBoth();
 	},
 	getBoth:function(){
-		console.log(this);
 		this.getFact();
 		this.getPicture();
 	}
@@ -78,12 +77,11 @@ function setupBtn(){
 		$(this).fadeOut("fast");
 	});
 	$(".catContent").mouseover(function(){
-		console.log("asd", $("#upArrow").is( ":hidden" ));
 		if ($("#upArrow").is( ":hidden" )){
 			$("#catFooterToggle").slideUp("fast");
 			$("#upArrow").fadeIn("fast");
 		}
 	});
 }
-
+console.log("Nyaaaaaaaan~~~~");
 setupBtn();
