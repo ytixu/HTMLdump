@@ -39,20 +39,23 @@
 				<h5>Towards hosting a "fictional" hackathon and designing a webpage.</h5>
 			</div>
 			<div id="postContent">
-			<p>My experience with hackathons has never been very productive. I have been to four of such events since the first time I went, which was a little less than a year ago. Despite the hype, the mentorship, the sense of community and the free food and swags that you usually don't get when you hack alone at home, there was something fundamential that was lacking in the whole experience. Last weekend, after giving McGame Jam a try, I figured that either I had no luck in finding teammate with similar skillset and experience than mine or the proportion of freeshmans is just too high. Every time they said that you can just come and form a team on the spot, but if everytime when there are team members who need to be spoon-fed to understand how to pull and push to GitHub, I just end up giving them a workshop of everything I know instead of hacking.</p>
-			<p>So I am going to host a hackathon that I can enjoy.</p>
 			<p>Presenting to you <a href="../../hacknights/index.html">G&Phi;LDEN HackNights</a>. This hackathon happens every night of every day, in every corner of the globe. Everyone can attend and every idea is accepted (at the creator's own risk). </p>
 			<h4>Creation of G&Phi;LDEN HackNights</h4>
-			<p>Node.js was my initial goal for creating this website. I downloaded node, express, started using jade. I felt "AWYEAAAA finally gonna unlock skills for backend", until I learned that GitHub doesn't host dynamic web page. After spending hours in trying to figure out how to us OpenShift, generating SSH key, I'm back to ground zero, with no database, no log in, nothing. It's funny that I'm taking Cryptography class, leaning hard number theory and cryptanalysis, and it doesn't prepare me in any way in understanding how to communicate with a server.</p>
-			<p>After using Jade, going back to HTML makes it look a bit dumb. But as this is life, and I have a stack of school work waiting for my to pop, I shall stick with static web page for now.</p>
+			<p>Learning Node.js was my initial goal for creating this website. I was determined to know how to keep a database, make logins and understand why "Node.js is the only real Dev language". After watching a short tutorial, I followed the steps to download node and express, and started using jade. It was a lot simpler than I thought. Just type the command to build the project with express, install it, and run it with nodemon. Simple. But that feeling of AWYEAAAA-finally-gonna-unlock-skills-for-backend did not last very long as I learned that GitHub doesn't host dynamic web page. After spending hours trying to figure out how to us OpenShift, generating SSH key, I decided to fall back to ground zero. </p>
+			<p>After using Jade, going back to HTML made me feel a bit retarded. But as this is life, (and I have a huge stack of school work waiting for me to pop), I shall stick with static web page for now.</p>
 
 			<center><img src="../image/7.png" width="60%"></center>
 
 			<h4>No database? Use an API!</h4>
-			<p>To know how far in time a user is from the start/end of a hacknight session, we query OpenStreetMap API to get the input location's geographical coordinate, which is then used to get the sunset and sunrise time at that location using the Sunset and sunrise times API. To obtain a background image, we use Bing's image of the day. To register participants, we create a Google Form. One can't help but to ask the question whether there is a free API for everything. So I went googling "weird API" and found a few that I considered intergrating into this project. One of them that is more relevent generates "startup" ideas. I put that in, and gained a deeper understanding of JSONP.</p>
+			<p>There are a number of APIs that I used for this web page. 
+			<ul><li>To get the time remaining before the start and end of a hacknight (sunset and sunrise time), I used OpenStreetMap API to get geographical coordinate of an input location, and Sunset and sunrise times API to get the sunset and sunrise time for that location.</li>
+			<li>To obtain background image that changes everyday, I used Bing's image of the day.</li>
+			<li>To register participants, I created a Google Form.</li>
+			<li>Then I was curious to know what interesting APIs were out there and found ItsThisForThat that generates random "startup" ideas.</li>
+			</ul></p>
 
 			<h4>Challenges</h4>
-			<p>The most challenging part of this project, is it figure out how to make the CSS work for all browsers. It's very nice that Chrome has all those little things that adds sparks to your website. But as soon as you open on Firefox, or worse on IE, the magic of CSS dies. That clipping mask with the title text for example doesn't work on both Firefox and IE. After I wrote the fallbacks, I happy to see that every thing works as expected on all three browsers, except on the IE that I have on my Windows phone. In the end, I solved that problem by installing Chrome on my phone - and wait for Spartan to come out.</p>
+			<p>The most challenging part of this project, is to figure out how to make the CSS work for all browsers. It's very nice that Chrome has all those little things to adds sparks to your website. But as soon as you open on Firefox, or worse on IE, the magic of CSS dies. That clipping mask with the title text for example doesn't work on both Firefox and IE. After I wrote the fallbacks, I was happy to see that every thing works as expected on all three browsers, except on the IE that I have on my phone. In the end, I solved that problem by installing Chrome on my phone - and wait for Spartan to come out.</p>
 			<p>Ah~ can't wait to test on Safari and Opera...</p>
 
 		<div class="date row text-right"></div>
