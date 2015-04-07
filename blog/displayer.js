@@ -63,16 +63,16 @@ function initializeSizes(){
 		end ++;
 		section ++;
 		size = $("#postsDisplayer").width()/gr;
-		if (size > 1000){
-			size = 1000;
+		if (size > 1300){
+			size = 1300;
 		}
 		left = ($(window).width()-size*gr)/2
 		center = [left,size+top];
 		$("#postsDisplayer").height(size+top);
 	}else{
 		size = $(window).height()/gr;
-		if (size > 1000){
-			size = 1000;
+		if (size > 1300){
+			size = 1300;
 		}
 		left = ($(window).width()-size)/2
 		center = [size+left,size*gr+top];
@@ -129,9 +129,8 @@ function addDivs(){
    			// backgroundImage: "linear-gradient(to bottom, "+colors[0]+" , "+colors[1]+"),url('image/"+resPosts[i].url+".png')"
    			//backgroundImage:"url('image/"+resPosts[i].url+".png')"
    		//});
-   		var t = new Trianglify();
-		var pattern = t.generate(document.body.clientWidth, document.body.clientHeight);
-		$("#"+div.id).css({'background-image': pattern.dataUrl+", url('image/"+resPosts[i].url+".png')"});
+		var bg = 'http://www.backgroundzs.com/static/images/images_6.jpg';
+		$("#"+div.id).css({'background-image': "url('image/"+resPosts[i].url+".png'), url("+bg+")"});
 			// "background-color": colors[i%2],
 		console.log($("#"+div.id));
 		resizeDiv(size,div.id);

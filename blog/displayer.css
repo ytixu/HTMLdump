@@ -24,6 +24,7 @@ body{
 .displayerContainer{
 	position: absolute;
 	background-size: cover;
+	background-position: center;
 	background-blend-mode:multiply;
 	/*opacity: 0.8;*/
 }
