@@ -121,13 +121,6 @@
 		color: black;
 	}
 	</style>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
 	</head>
 	<body>
 		<div class="catContent">
@@ -152,7 +145,14 @@
 				<div class="col-md-6">
 					<div id="fb-root"></div>
 					<div class="fb-like" data-href="http://ytixu.github.io/HTMLdump/misc/catFact/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div><br>
-					<div class="fb-comments" data-href="http://ytixu.github.io/HTMLdump/misc/catFact/" data-numposts="5" data-colorscheme="dark"></div>
+					<a class="twitter-share-button"
+					  href="https://twitter.com/share"
+					  data-url="http://ytixu.github.io/HTMLdump/misc/catFact/"
+					  data-text="Nyaaaaaaaaaaan~~~ =^-.-^="
+					  button_hashtag="Nekophilia"
+					  data-count="horizontal">
+					Tweet
+					</a>
 				</div>
 				<div class="col-md-6 text-right">
 					<br><br>
@@ -164,5 +164,14 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="script.js"></script>
-
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<script>
+		window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+	</script>
 </html>
