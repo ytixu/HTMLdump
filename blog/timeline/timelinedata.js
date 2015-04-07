@@ -173,6 +173,12 @@ var data = [
 		content: "Implemented Gin Rummy game using Java. Experimented JUnit, Swing and JavaFX. Explored design patterns, OOP. (for Software Design class)",
 		date: "12/13/14",
 		type: "e"
+	},{
+		name: "Nekiphilia",
+		link: "http://ytixu.github.io/HTMLdump/misc/catFact/",
+		content: "Made a web page dedicated for cats. Experimenting with APIs and social sharing buttons.",
+		date: "04/06/15",
+		url: "8"
 	}
 ]
 

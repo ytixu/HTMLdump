@@ -87,7 +87,7 @@ Similar to logistic regression, one can also fit the model using proportions or 
 <a name="orrs"></a><h3>Ordinal Response</h3>
 When the response is ordered, one common approach is to use <i>cumulative logits</i>. 
 \begin{equation*}
-logit[P(Y\leq j|x)] = \log\frac{P(Y\leq j|x)}{1-P(Y\leq j|x)} = \log\frac{\pi_i(x) + \dots + \pi_j(x)}{\pi_{j+1}(x) + \dots + \pi_J(x)}
+logit[P(Y\leq j|x)] = \log\frac{P(Y\leq j|x)}{1-P(Y\leq j|x)} = \log\frac{\pi_1(x) + \dots + \pi_j(x)}{\pi_{j+1}(x) + \dots + \pi_J(x)}
 \end{equation*}
 where
 \begin{equation*}
@@ -142,12 +142,14 @@ Choosing a standard normal CDF for $G$ gives the cumulative probit model. Then $
 <br><br>
 Another alternative choice for $Y^*$ is the extreme value distribution, which gives a model of the form
 \begin{equation*}
-\log(- \log[1 - P(Y \leq j|x)]) = \alpha_j + \beta\mbox{'}x$. This corresponds to the complementary log-log link for binary data and has close links to models commonly used in survival data and assumes proportional hazards for two covariate vectors, $x_1$ and $x_2$.
+\log(- \log[1 - P(Y \leq j|x)]) = \alpha_j + \beta\mbox{'}x
+\end{equation*}
+This corresponds to the complementary log-log link for binary data and has close links to models commonly used in survival data and assumes proportional hazards for two covariate vectors, $x_1$ and $x_2$.
 
 <h4>Adjacent-Categories Logits</h4>
 Rather than modeling the CDF, one can also model the relative odds of adjacent categories. 
 \begin{equation*}
-	logit[P(Y=j|Y\in \{j j+1\})] = \log\frac{\pi_j}{\pi_{j+1}}, \ j = 1, \dots , J-1
+	logit[P(Y=j|Y\in \{j, j+1\})] = \log\frac{\pi_j}{\pi_{j+1}}, \ j = 1, \dots , J-1
 \end{equation*}
 Note tha these can be linked to the baseline category logit model as
 \begin{equation*}
