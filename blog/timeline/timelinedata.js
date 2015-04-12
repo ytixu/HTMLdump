@@ -174,7 +174,7 @@ var data = [
 		date: "12/13/14",
 		type: "e"
 	},{
-		name: "Nekiphilia",
+		name: "Nekophilia",
 		link: "http://ytixu.github.io/HTMLdump/misc/catFact/",
 		content: "Made a web page dedicated for cats. Experimenting with APIs and social sharing buttons.",
 		date: "04/06/15",
