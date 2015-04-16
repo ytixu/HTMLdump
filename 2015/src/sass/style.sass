@@ -1,0 +1,70 @@
+$font-stack: Helvetica, sans-serif;
+$bg-blue: #33ADAD;
+$bg-grey: #666666;
+$bg-orag: #C2A385;
+$title-col: white;
+$margins-sep:55px;
+$pad-small:11%;
+
+html, body{
+	height:100%;
+}
+
+body{
+	font: 100% $font-stack;
+	font-size:20px;
+	background-color: $bg-grey;
+}
+	
+#titleContainer{
+	display: table;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	z-index:10;
+	.centerMiddle{
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.title{
+		// display: table-cell;
+		// vertical-align: middle;
+		text-align: center;
+		position:absolute;
+		top: 45%;
+	 	left: 0;
+	 	width:100%;
+		font-size: 400%;
+		font-weight: lighter;
+		transition: text-shadow 0.1s;
+		-moz-transition: text-shadow 0.1s; /* Firefox 4 */
+		-webkit-transition: text-shadow 0.1s; /* Safari and Chrome */
+		-o-transition: text-shadow 0.1s; /* Opera */
+		a:hover{
+			// cursor: pointer;
+			-webkit-stroke-width: 5.3px;
+			-webkit-stroke-color: #FFFFFF;
+			-webkit-fill-color: #FFFFFF;
+			text-shadow: 1px 0px 20px yellow;
+		}
+	}
+}
+
+a{
+	text-decoration:none !important;
+	color: $title-col !important;
+	&:hover{
+		// cursor: pointer;
+		color: $title-col !important;
+		text-decoration:none !important;
+	}
+	&:visited{
+		color: $title-col !important;
+		text-decoration:none !important;
+	}
+}
+
+#projectsContainer{
+	margin-top:$margins-sep;
+	padding:$pad-small;
+}

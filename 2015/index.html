@@ -1,0 +1,9 @@
+<!DOCTYPE html><html data-ng-app lang="en"><head><title>GOLDENRATI&Phi;</title><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans"><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><link rel="stylesheet" href="style.css"></head><body><div id="titleContainer"><div class="title"> <a href="index.html">GOLDENRATI&Phi;</a></div><div class="centerMiddle"> <canvas id="logoAnimate"></canvas></div></div><div id="projectsContainer" ng-controller="projectCtrl"><div ng-repeat="p in projects"><div data-sr="enter top, reset" ng-init="$last ? refresh() : null" class="col-md-2"> <h2>{{p.name}}</h2><p>{{p.content}}</p></div></div></div><script type="text/javascript" src="node_modules/scrollreveal/dist/scrollReveal.min.js"></script><script type="text/javascript">function projectCtrl($scope) {
+	$scope.projects = [
+		{name: "HackNight", content: "bleh"},
+		{name: "Nekophilia", content: "Nyan nyan nyan~"}
+	];
+	$scope.refresh = function() {
+		window.sr = new scrollReveal();
+	};
+}</script><script type="text/javascript" src="script/flower.js"></script></body></html>

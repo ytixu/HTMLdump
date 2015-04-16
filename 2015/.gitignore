@@ -1,0 +1,6 @@
+node_modules/*
+!node_modules/scrollreveal
+node_modules/scrollreveal/*
+!node_modules/scrollreveal/dist
+node_modules/scrollreveal/dist/*
+!node_modules/scrollreveal/dist/scrollReveal.min.js

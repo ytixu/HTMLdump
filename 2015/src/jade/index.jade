@@ -1,0 +1,31 @@
+doctype html
+html(data-ng-app, lang="en")
+	head
+		//- meta(http-equiv="content-type", content="#{contentType}; charset=UTF-8")
+		title GOLDENRATI&Phi;
+		script(type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+		script(type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js")
+		link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Open+Sans")
+		link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+		link(rel="stylesheet", href="style.css")
+	body
+		include title.jade
+
+		#projectsContainer(ng-controller="projectCtrl")
+			div(ng-repeat="p in projects")
+				div(data-sr="enter top, reset", class="col-md-2", ng-init="$last ? refresh() : null") 
+					h2 {{p.name}}
+					p {{p.content}}
+
+		script(type="text/javascript" src="node_modules/scrollreveal/dist/scrollReveal.min.js")
+		script(type='text/javascript').
+			function projectCtrl($scope) {
+				$scope.projects = [
+					{name: "HackNight", content: "bleh"},
+					{name: "Nekophilia", content: "Nyan nyan nyan~"}
+				];
+				$scope.refresh = function() {
+					window.sr = new scrollReveal();
+				};
+			}
+		script(type="text/javascript" src="script/flower.js")
