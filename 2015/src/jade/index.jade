@@ -17,12 +17,25 @@ html(data-ng-app, lang="en")
 					h2 {{p.name}}
 					p {{p.content}}
 
+		#footer
+
 		script(type="text/javascript" src="node_modules/scrollreveal/dist/scrollReveal.min.js")
 		script(type='text/javascript').
 			function projectCtrl($scope) {
 				$scope.projects = [
-					{name: "HackNight", content: "bleh"},
-					{name: "Nekophilia", content: "Nyan nyan nyan~"}
+					{name:"HackNight", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+					{name:"Nekophilia", content: "Vivamus ac sapien euismod, lacinia augue eget, imperdiet purus."},
+					{name:"octopusXfractal",content:"Nulla sit amet nibh ut ipsum rutrum iaculis a sit amet justo."},
+					{name:"a1+a2=a3",content:"Nam eget ante commodo, interdum turpis in, posuere libero."},
+					{name:"<(='3'=)>",content:"Vivamus pellentesque libero a mollis bibendum."},
+					{name:"Nulla nulla nutella!",content:"Nulla nec nulla eu nisi malesuada interdum in eu felis."},
+					{name:"ProjectArchimedes",content:"Morbi eget mauris eget erat porta condimentum."},
+					{name:"48 days of coffee and samosas",content:"Vivamus malesuada leo tincidunt sapien ultricies tristique."},
+					{name:"how to talk in lorem ipsum",content:"Praesent tempor nunc id lorem viverra vulputate."},
+					{name:"fillThe_Blank",content:"Pellentesque condimentum dolor quis nibh placerat pretium."},
+					{name:"*SWAG*",content:"Aenean dapibus dui sit amet orci consectetur lacinia."},
+					{name:"damnHard 2 find a name",content:"Vivamus pulvinar nibh non volutpat lacinia."},
+					{name:"Red-Black Tree",content:"Curabitur congue arcu a porttitor sagittis."}
 				];
 				$scope.refresh = function() {
 					window.sr = new scrollReveal();

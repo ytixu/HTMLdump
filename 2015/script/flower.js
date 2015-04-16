@@ -41,11 +41,6 @@ function clearCanvas(){
 }
 
 function start(){
-	if (nextPetal != null){
-		return;
-		// clearTimeout(nextPetal);
-	}
-	clearCanvas();
 	color = [Math.random()*225, Math.random()*225, Math.random()*225];
 	freq = Math.round(canvas.width/40);
 	rate = Math.round(canvas.width/100);
@@ -66,8 +61,16 @@ function getCanvas(){
 window.onload = function(){
 	getCanvas();
 	start();
-	$(".title").hover(function(){
-		start();
+	$(".title a").hover(function(){
+		if (nextPetal != null){
+			return;
+		}
+		nextPetal = 1;
+		$("#logoAnimate").fadeOut("slow", function(){
+			clearCanvas();
+			$("#logoAnimate").show();
+			start();
+		});
 	},function(){return;});
 }
 

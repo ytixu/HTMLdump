@@ -2,7 +2,7 @@ html, body {
   height: 100%; }
 
 body {
-  font: 100% Helvetica, sans-serif;
+  font: 100% 'Open Sans', sans-serif;
   font-size: 20px;
   background-color: #666666; }
 
@@ -17,6 +17,7 @@ body {
     vertical-align: middle; }
   #titleContainer .title {
     text-align: center;
+    color: white;
     position: absolute;
     top: 45%;
     left: 0;
@@ -38,13 +39,24 @@ body {
 
 a {
   text-decoration: none !important;
-  color: white !important; }
+  color: inherit !important; }
   a:hover {
-    color: white !important;
+    color: inherit !important;
     text-decoration: none !important; }
   a:visited {
-    color: white !important;
+    color: inherit !important;
     text-decoration: none !important; }
+
+#menu {
+  text-align: right; }
+  #menu div {
+    padding: 0 13px;
+    margin: 8px;
+    display: inline-block; }
+    #menu div a {
+      flow: right; }
+    #menu div:hover {
+      border-bottom: solid #333333 5px; }
 
 #projectsContainer {
   margin-top: 55px;
