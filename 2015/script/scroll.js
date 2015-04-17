@@ -26,15 +26,32 @@ function moveMenu(){
 	}, 100);
 }
 
+var menus = ["#projectMenu","#blogMenu","#aboutMenu","#contactMenu"];
+var containers = ["#projectsContainer", "#blogContainer","#aboutContainer","#contactContainer"];
+var track = 0;
+
+function trackMenu(){
+	if ($(window).scrollTop() > $(containers[track]).offset().top){
+		$(menus[track]).addClass("menuTrack");
+		if (track > 0)
+			$(menus[track-1]).removeClass("menuTrack");
+		track++;
+	}else if (track > 0 && $(window).scrollTop() < $(containers[track-1]).offset().top){
+		$(menus[track-1]).removeClass("menuTrack");
+		track--;
+	}
+}
+
 function checkScroll(){
 	if ($(window).scrollTop() > $(window).height() 
-		|| $("#menu").offset().top > $(window).height()){
+		|| Math.abs($("#menu").offset().top - $(window).height())>1){
 		moveMenu();
 	}
 }
 
 window.onscroll = function() {
 	checkScroll();
+	trackMenu();
 };
 
 $(function(){

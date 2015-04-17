@@ -68,6 +68,10 @@ a {
     #menu div:hover {
       border-color: #333333; }
 
+.menuTrack {
+  color: white;
+  border-bottom: solid white 5px !important; }
+
 #projectsContainer {
   margin: 55px auto; }
   #projectsContainer .projectBlock {
