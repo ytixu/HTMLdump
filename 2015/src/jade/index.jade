@@ -17,9 +17,10 @@ html(data-ng-app, lang="en")
 		include title.jade
 
 		#projectsContainer.container(ng-controller="projectCtrl")
-			.col-md-4(ng-repeat="p in projects", data-sr="enter top, reset", ng-init="$last ? refresh() : null") 
-				h2 {{p.name}}
-				p {{p.content}}
+			.projectBlock.col-md-4(ng-repeat="p in projects", ng-init="$last ? refresh() : null")
+				div(data-sr="enter top, reset") 
+					h2 {{p.name}}
+					p {{p.content}}
 
 		#footer
 

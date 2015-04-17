@@ -68,14 +68,20 @@ a{
 	}
 }
 
-#menu{
+#menuColor, #menu{
 	position:absolute;
 	top:100%;
 	right:0;
 	text-align:right;
+}
+#menuColor{
+	background:$bg-blue;
+	z-index:10;
+}
+#menu{
+	z-index:11;
 	div{
-		padding:0 13px;
-		margin:8px;
+		padding:0 23px;
 		display:inline-block;
 		border-bottom: solid transparent 5px;
 		a{
@@ -87,7 +93,19 @@ a{
 	}
 }
 
+
 #projectsContainer{
 	margin: $margins-sep auto;
 	// padding:$pad-small;
+	.projectBlock{
+		-o-transition:color .2s ease-out, background .2s ease-in !important;
+		-ms-transition:color .2s ease-out, background .2s ease-in !important;
+		-moz-transition:color .2s ease-out, background .2s ease-in !important;
+		-webkit-transition:color .2s ease-out, background .2s ease-in !important;
+		transition:color .2s ease-out, background .2s ease-in !important;
+		&:hover{
+			color:$title-col;
+			background:$bg-blue;
+		}
+	}
 }
