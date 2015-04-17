@@ -31,7 +31,7 @@ var containers = ["#projectsContainer", "#blogContainer","#aboutContainer","#con
 var track = 0;
 
 function trackMenu(){
-	if ($(window).scrollTop() > $(containers[track]).offset().top){
+	if (track < 4 && $(window).scrollTop() > $(containers[track]).offset().top){
 		$(menus[track]).addClass("menuTrack");
 		if (track > 0)
 			$(menus[track-1]).removeClass("menuTrack");
