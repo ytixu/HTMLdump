@@ -73,7 +73,3 @@ window.onload = function(){
 		});
 	},function(){return;});
 }
-
-window.onresize = function(){
-	getCanvas();
-}

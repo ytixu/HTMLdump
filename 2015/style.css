@@ -48,16 +48,19 @@ a {
     text-decoration: none !important; }
 
 #menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
   text-align: right; }
   #menu div {
     padding: 0 13px;
     margin: 8px;
-    display: inline-block; }
+    display: inline-block;
+    border-bottom: solid transparent 5px; }
     #menu div a {
       flow: right; }
     #menu div:hover {
-      border-bottom: solid #333333 5px; }
+      border-color: #333333; }
 
 #projectsContainer {
-  margin-top: 55px;
-  padding: 11%; }
+  margin: 55px auto; }

@@ -69,21 +69,25 @@ a{
 }
 
 #menu{
+	position:absolute;
+	top:100%;
+	right:0;
 	text-align:right;
 	div{
 		padding:0 13px;
 		margin:8px;
 		display:inline-block;
+		border-bottom: solid transparent 5px;
 		a{
 			flow:right;
 		}
 		&:hover{
-			border-bottom: solid $menu-hover-border-col 5px;
+			border-color: $menu-hover-border-col;
 		}
 	}
 }
 
 #projectsContainer{
-	margin-top:$margins-sep;
-	padding:$pad-small;
+	margin: $margins-sep auto;
+	// padding:$pad-small;
 }
