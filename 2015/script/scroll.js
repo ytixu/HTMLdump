@@ -42,4 +42,5 @@ $(function(){
 	$("#menuColor").height($("#menu").height());
 	$("#menuColor").width($(window).width());
 	checkScroll();
-})
+	$("html, body").animate({ scrollTop: 0 }, "fast");
+});

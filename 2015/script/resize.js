@@ -1,6 +1,5 @@
 window.onresize = function(){
 	getCanvas();
-	if ($("#menu").offset().top < $(window).height()){
-		moveMenu();
-	}
+	$("#menuColor").width($(window).width());
+	checkScroll();
 }
