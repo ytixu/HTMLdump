@@ -80,13 +80,13 @@ a {
   -moz-column-count: 1;
   -moz-column-gap: 0px;
   column-count: 1;
-  column-gap: 0px;
-  -o-transition: color 0.2s ease-out, background 0.2s ease-in;
-  -ms-transition: color 0.2s ease-out, background 0.2s ease-in;
-  -moz-transition: color 0.2s ease-out, background 0.2s ease-in;
-  -webkit-transition: color 0.2s ease-out, background 0.2s ease-in;
-  transition: color 0.2s ease-out, background 0.2s ease-in; }
+  column-gap: 0px; }
   #projectsContainer .projectBlock {
+    -o-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -ms-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -moz-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -webkit-transition: color 0.2s ease-out, background 0.2s ease-in;
+    transition: color 0.2s ease-out, background 0.2s ease-in;
     padding: 8px;
     display: inline-block;
     -webkit-column-break-inside: avoid;
