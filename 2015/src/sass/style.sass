@@ -233,20 +233,20 @@ a{
 		@include fade-transition(.2s);
 		cursor: pointer;
 		background-color: $bg-orag !important;
-		.postSubtitle{
+		.postSubtitle, .postContext{
 			color:#eeeeee;
 		}
 	}
 }
 .postContext{
 	padding: 13% 8% 8% 8%;
-	color: white;
+	color: $bg-blue;
 	overflow:none;
 	height:inherit;
 }
 .postContext, .archiveContainer{
 	a{
-		color:white;
+		color:white !important;
 		text-decoration: none;
 		&:hover{
 			color:$bg-grey !important;

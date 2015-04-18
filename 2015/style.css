@@ -176,17 +176,17 @@ a {
     transition: color 0.2s ease-out, background 0.2s ease-in;
     cursor: pointer;
     background-color: #E69316 !important; }
-    .displayerContainer:hover .postSubtitle {
+    .displayerContainer:hover .postSubtitle, .displayerContainer:hover .postContext {
       color: #eeeeee; }
 
 .postContext {
   padding: 13% 8% 8% 8%;
-  color: white;
+  color: #33ADAD;
   overflow: none;
   height: inherit; }
 
 .postContext a, .archiveContainer a {
-  color: white;
+  color: white !important;
   text-decoration: none; }
   .postContext a:hover, .archiveContainer a:hover {
     color: #666666 !important; }
