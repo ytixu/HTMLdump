@@ -41,16 +41,18 @@ body{
 	 	width:100%;
 		font-size: 400%;
 		font-weight: lighter;
-		transition: text-shadow 0.1s;
-		-moz-transition: text-shadow 0.1s; /* Firefox 4 */
-		-webkit-transition: text-shadow 0.1s; /* Safari and Chrome */
-		-o-transition: text-shadow 0.1s; /* Opera */
-		a:hover{
-			// cursor: pointer;
-			-webkit-stroke-width: 5.3px;
-			-webkit-stroke-color: #FFFFFF;
-			-webkit-fill-color: #FFFFFF;
-			text-shadow: 1px 0px 20px yellow;
+		a{
+			transition: text-shadow 0.2s;
+			-moz-transition: text-shadow 0.2s; /* Firefox 4 */
+			-webkit-transition: text-shadow 0.2s; /* Safari and Chrome */
+			-o-transition: text-shadow 0.2s; /* Opera */
+			&:hover{
+				// cursor: pointer;
+				-webkit-stroke-width: 5.3px;
+				-webkit-stroke-color: #FFFFFF;
+				-webkit-fill-color: #FFFFFF;
+				text-shadow: 1px 0px 20px yellow;
+			}
 		}
 	}
 }
@@ -174,20 +176,20 @@ a{
 	.sidetitle{
 		float:left;
 		margin-left:-130px;
-		margin-top:240px;
+		margin-top:290px;
 	}
 	.sidetitleNoroate{
 		display:inline-block;
 		margin-left:-140px;
-		margin-top:320px;
+		margin-top:380px;
 		z-index:0;
 	}
 	#faq{
-		margin-top:-400px;
+		margin-top:-450px;
 		z-index:10;
 		text-align:right;
 		.faqBlock{
-			padding:10px 21%;
+			padding: 10px 21% 10px 34%;
 			@include fade-transition(.2s);
 			&:hover{
 				color:$title-col;
@@ -209,11 +211,17 @@ a{
 		margin:3%;
 		font-size:200%;
 		i:hover{
-			color:white;
+			color:$bg-orag;
 		}
 	}
 }
 
+#footer{
+	height:50px;
+	font-size: 12px;
+	color:$menu-hover-border-col;
+	text-align:center;
+}
 
 /***/
 
@@ -263,7 +271,16 @@ a{
 	.sidetitleNoroate, .sidetitle{
 		color:transparent;
 		display:none;
-		margin-left:-1000px;
+		margin-left:-3000px;
+	}
+	#aboutContainer #faq .faqBlock{
+		padding:10px 21%;
+	}
+}
+
+@media (max-width: 720px) {
+	#aboutContainer #faq .faqBlock{
+		padding:10px 11%;
 	}
 }
 
@@ -281,4 +298,5 @@ a{
 		-moz-column-count: 3;
 		column-count: 3;
 	}
+	
 }

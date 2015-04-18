@@ -23,19 +23,20 @@ body {
     left: 0;
     width: 100%;
     font-size: 400%;
-    font-weight: lighter;
-    transition: text-shadow 0.1s;
-    -moz-transition: text-shadow 0.1s;
-    /* Firefox 4 */
-    -webkit-transition: text-shadow 0.1s;
-    /* Safari and Chrome */
-    -o-transition: text-shadow 0.1s;
-    /* Opera */ }
-    #titleContainer .title a:hover {
-      -webkit-stroke-width: 5.3px;
-      -webkit-stroke-color: #FFFFFF;
-      -webkit-fill-color: #FFFFFF;
-      text-shadow: 1px 0px 20px yellow; }
+    font-weight: lighter; }
+    #titleContainer .title a {
+      transition: text-shadow 0.2s;
+      -moz-transition: text-shadow 0.2s;
+      /* Firefox 4 */
+      -webkit-transition: text-shadow 0.2s;
+      /* Safari and Chrome */
+      -o-transition: text-shadow 0.2s;
+      /* Opera */ }
+      #titleContainer .title a:hover {
+        -webkit-stroke-width: 5.3px;
+        -webkit-stroke-color: #FFFFFF;
+        -webkit-fill-color: #FFFFFF;
+        text-shadow: 1px 0px 20px yellow; }
 
 a {
   text-decoration: none !important;
@@ -124,18 +125,18 @@ a {
 #aboutContainer .sidetitle {
   float: left;
   margin-left: -130px;
-  margin-top: 240px; }
+  margin-top: 290px; }
 #aboutContainer .sidetitleNoroate {
   display: inline-block;
   margin-left: -140px;
-  margin-top: 320px;
+  margin-top: 380px;
   z-index: 0; }
 #aboutContainer #faq {
-  margin-top: -400px;
+  margin-top: -450px;
   z-index: 10;
   text-align: right; }
   #aboutContainer #faq .faqBlock {
-    padding: 10px 21%;
+    padding: 10px 21% 10px 34%;
     -o-transition: color 0.2s ease-out, background 0.2s ease-in;
     -ms-transition: color 0.2s ease-out, background 0.2s ease-in;
     -moz-transition: color 0.2s ease-out, background 0.2s ease-in;
@@ -154,7 +155,13 @@ a {
   margin: 3%;
   font-size: 200%; }
   #contactContainer .contactLink i:hover {
-    color: white; }
+    color: #E69316; }
+
+#footer {
+  height: 50px;
+  font-size: 12px;
+  color: #333333;
+  text-align: center; }
 
 /***/
 .displayerContainer {
@@ -198,7 +205,13 @@ a {
   .sidetitleNoroate, .sidetitle {
     color: transparent;
     display: none;
-    margin-left: -1000px; } }
+    margin-left: -3000px; }
+  #aboutContainer #faq .faqBlock {
+    padding: 10px 21%; } }
+
+@media (max-width: 720px) {
+  #aboutContainer #faq .faqBlock {
+    padding: 10px 11%; } }
 
 @media (min-width: 720px) {
   #projectsContainer {

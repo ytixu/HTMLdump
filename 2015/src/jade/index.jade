@@ -12,6 +12,7 @@ html(data-ng-app, lang="en")
 		link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Open+Sans")
 		link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
 		link(rel="stylesheet", href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css")
+		//- link(rel="stylesheet", href="http://glyphsearch.com/bower_components/icomoon/dist/css/style.css")
 		link(rel="stylesheet", href="style.css")
 	body
 		include title.jade
@@ -39,19 +40,27 @@ html(data-ng-app, lang="en")
 				div(data-sr="move 55px, reset") chocolate enthusiast 
 			#faq(ng-controller="faqCtrl")
 				.faqBlock(ng-repeat="q in faq", ng-init="$last ? refresh() : null")
-					h2 {{q.q}}
-					p {{q.a}}
+					div(data-sr="enter top, reset") 
+						h2 {{q.q}}
+						p {{q.a}}
 
 
 		#contactContainer
 			.container.text-center
 				.contactLink(data-sr="ease-in 21px, reset") 
+					a(target="_top", href="mailto:goldenratioesp@gmail.com")
+						i(class="fa fa-envelope-square")
+				.contactLink(data-sr="ease-in 34px, reset") 
 					a(target="blank", href="https://github.com/ytixu")
 						i(class="fa fa-github-square")
-				.contactLink(data-sr="ease-in 34px, reset") 
-					a(target="_top", href="mailto:goldenratioesp@gmail.com")
-						i(class="fa fa-google-plus-square")
-		#footer
+				//- .contactLink(data-sr="ease-in 55px, reset") 
+				//- 	a(target="blank", href="https://goldenratiphi.wordpress.com")
+				//- 		i(class="fa fa-wordpress")
+				//- .contactLink(data-sr="ease-in 89px, reset") 
+				//- 	a(target="blank", href="http://lipid-fatality.deviantart.com")
+				//- 		i(class="icomoon icon-deviantart-2")
+
+		#footer &#169; Yi Tian Xu 2015
 
 		script(type="text/javascript" src="node_modules/scrollreveal/dist/scrollReveal.min.js")
 		script(type="text/javascript" src="script/scroll.js")
@@ -91,10 +100,9 @@ html(data-ng-app, lang="en")
 			}
 			function faqCtrl($scope) {
 				$scope.faq = [
-					{q:"Why GOLDENRATI&Phi;?", a:"Because."},
-					{q:"Programming and art crafting, which one do you prefer?", a:"Both."},
-					{q:"How do you make time for personal project?", a:"Persistance and ambition."},
-					{q:"What is the purpose of life?", a:"Eat chocolate."}
+					{q:"Why \"GOLDENRATI\u03A6\"?", a:"The name of my personal website is derived from the word \"golden ratio\" with \"o\" replaced by the capital Greek letter \"\u03A6\". It reflects my passion in mathematics, arts and design. It's connotation of programming/coding/hacking is yet to be popularized."},
+					{q:"Coding and arts, which one do you prefer?", a:"Both. And in web dev, I can do both. Aw yeah! That moment when you see that you have two things that you both like at the same time is the best feeling ever."},
+					{q:"How do you make time for personal project?", a:"Persistence, ambition, sleep deprivation and a lot of coffee. The fact that that energy and time were spend on things that I love makes all the sacrifices rewarding."},
+					{q:"What is the meaning of life?", a:"Complemplate on the beauty of nature, reproduce it and celebrate by eat a lot of chocolate."}
 				];
-				
 			}
