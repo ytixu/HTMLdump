@@ -60,7 +60,7 @@ function bindMenu(){
 	for (var i in menus){
 		$(menus[i]).click(function(){
 			$("html, body").animate({ 
-				scrollTop: $(containers[menus.indexOf("#"+this.id)]).offset().top - 10
+				scrollTop: $(containers[menus.indexOf("#"+this.id)]).offset().top -$(window).height()*0.2
 			}, "fast");
 		});
 	}

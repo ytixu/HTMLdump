@@ -9,11 +9,6 @@ html(data-ng-app, lang="en")
 		script(type='text/x-mathjax-config').
 			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 			MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-		// script(type="text/javascript" src="node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js")
-		// script(type="text/javascript" src="node_modules/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js")
-		// script(type="text/javascript").
-		// 	// ScrollMagic
-		// 	var controller = new ScrollMagic.Controller();
 		link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Open+Sans")
 		link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
 		link(rel="stylesheet", href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css")
@@ -33,13 +28,22 @@ html(data-ng-app, lang="en")
 							a(href="{{sp.link}}", target="blank") {{sp.name}}
 
 		#blogContainer
-			.title recent blog posts
+			.sidetitle recent blog posts
 			#postsDisplayer
 
 		#aboutContainer
+			.sidetitle about me
+			.sidetitleNoroate
+				div(data-sr="move 21px, reset") analytical 
+				div(data-sr="move 34px, reset") artisitic 
+				div(data-sr="move 55px, reset") chocolate enthusiast 
+			#faq(ng-controller="faqCtrl")
+				.faqBlock(ng-repeat="q in faq", ng-init="$last ? refresh() : null")
+					h2 {{q.q}}
+					p {{q.a}}
+
 
 		#contactContainer
-			//- .title Let's talk
 			.container.text-center
 				.contactLink(data-sr="ease-in 21px, reset") 
 					a(target="blank", href="https://github.com/ytixu")
@@ -47,14 +51,6 @@ html(data-ng-app, lang="en")
 				.contactLink(data-sr="ease-in 34px, reset") 
 					a(target="_top", href="mailto:goldenratioesp@gmail.com")
 						i(class="fa fa-google-plus-square")
-				//- .contactLink(data-sr="ease-in 55px, reset") 
-				//- 	a(target="blank", href="https://goldenratiphi.wordpress.com/")
-				//- 		i(class="fa fa-wordpress")		
-			//- .container.text-center(ng-controller="contactCtrl")
-			//- 	.contactLink(ng-repeat="c in contact")
-			//- 		div(data-sr="ease-in 34px, reset") 
-			//- 			a(target="{{c.target}}", href="{{c.link}}")
-			//- 				i(class="{{c.icon}}")
 		#footer
 
 		script(type="text/javascript" src="node_modules/scrollreveal/dist/scrollReveal.min.js")
@@ -83,9 +79,9 @@ html(data-ng-app, lang="en")
 						]}
 				];
 				$scope.refresh = function() {
-					//scrollReveal
-					window.sr = new scrollReveal();
 					window.setTimeout(function(){
+						//scrollReveal
+						window.sr = new scrollReveal();
 						getRecentPosts();
 						initializeSizes();
 						addDivs();
@@ -93,10 +89,12 @@ html(data-ng-app, lang="en")
 					}, 1000);
 				};
 			}
-			// function contactCtrl($scope) {
-			// 	$scope.contact = [
-			// 		{link: "https://github.com/ytixu", target:"blank", icon: "fa fa-github-square"},
-			// 		{link: "mailto:goldenratioesp@gmail.com", target:"_top", icon: "fa fa-google-plus-square"}
-			// 	];
+			function faqCtrl($scope) {
+				$scope.faq = [
+					{q:"Why GOLDENRATI&Phi;?", a:"Because."},
+					{q:"Programming and art crafting, which one do you prefer?", a:"Both."},
+					{q:"How do you make time for personal project?", a:"Persistance and ambition."},
+					{q:"What is the purpose of life?", a:"Eat chocolate."}
+				];
 				
-			// }
+			}
