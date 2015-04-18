@@ -89,11 +89,11 @@ a {
     -webkit-column-break-inside: avoid;
     -moz-column-break-inside: avoid;
     column-break-inside: avoid;
-    -o-transition: color .2s ease-out, background .2s ease-in;
-    -ms-transition: color .2s ease-out, background .2s ease-in;
-    -moz-transition: color .2s ease-out, background .2s ease-in;
-    -webkit-transition: color .2s ease-out, background .2s ease-in;
-    transition: color .2s ease-out, background .2s ease-in; }
+    -o-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -ms-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -moz-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -webkit-transition: color 0.2s ease-out, background 0.2s ease-in;
+    transition: color 0.2s ease-out, background 0.2s ease-in; }
     #projectsContainer .projectBlock:hover {
       color: white;
       background: #33ADAD; }
@@ -109,3 +109,61 @@ a {
     -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3; } }
+
+#blogContainer .title {
+  float: left;
+  margin-left: -280px;
+  margin-top: 250px;
+  overflow: none;
+  font-size: 400%;
+  color: #606060;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); }
+
+#contactContainer .contactLink {
+  display: inline-block;
+  margin: 3%;
+  font-size: 200%; }
+  #contactContainer .contactLink i:hover {
+    color: white; }
+
+/***/
+.displayerContainer {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  display: table;
+  overflow: none;
+  background-blend-mode: overlay; }
+  .displayerContainer:hover {
+    -o-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -ms-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -moz-transition: color 0.2s ease-out, background 0.2s ease-in;
+    -webkit-transition: color 0.2s ease-out, background 0.2s ease-in;
+    transition: color 0.2s ease-out, background 0.2s ease-in;
+    cursor: pointer;
+    background-color: #E69316 !important; }
+    .displayerContainer:hover .postSubtitle {
+      color: #eeeeee; }
+
+.postContext {
+  padding: 13% 8% 8% 8%;
+  color: white;
+  overflow: none;
+  height: inherit; }
+
+.postContext a, .archiveContainer a {
+  color: white;
+  text-decoration: none; }
+  .postContext a:hover, .archiveContainer a:hover {
+    color: #aaaaaa; }
+
+.postTitle {
+  font-size: 20px; }
+
+.postSubtitle {
+  padding-left: 10px;
+  color: #aaaaaa; }

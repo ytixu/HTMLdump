@@ -1,13 +1,14 @@
 $font-stack: 'Open Sans', sans-serif;
 $bg-blue: #33ADAD;
 $bg-grey: #666666;
-$bg-orag: #C2A385;
+$bg-orag: #E69316;
 
 $title-col: white;
 $margins-sep:55px;
 $pad-small:11%;
 
 $menu-hover-border-col: #333333;
+$bg-text-col:#606060;
 
 html, body{
 	height:100%;
@@ -98,6 +99,13 @@ a{
 
 }
 
+@mixin fade-transition($time) {
+	-o-transition:color $time ease-out, background $time ease-in;
+	-ms-transition:color $time ease-out, background $time ease-in;
+	-moz-transition:color $time ease-out, background $time ease-in;
+	-webkit-transition:color $time ease-out, background $time ease-in;
+	transition:color $time ease-out, background $time ease-in;
+}
 
 #projectsContainer{
 	margin: $margins-sep auto;
@@ -117,11 +125,7 @@ a{
 		-webkit-column-break-inside: avoid;
 		-moz-column-break-inside: avoid;
 		column-break-inside: avoid;
-		-o-transition:color .2s ease-out, background .2s ease-in;
-		-ms-transition:color .2s ease-out, background .2s ease-in;
-		-moz-transition:color .2s ease-out, background .2s ease-in;
-		-webkit-transition:color .2s ease-out, background .2s ease-in;
-		transition:color .2s ease-out, background .2s ease-in;
+		@include fade-transition(.2s);
 		&:hover{
 			color:$title-col;
 			background:$bg-blue;
@@ -143,4 +147,87 @@ a{
 		-moz-column-count: 3;
 		column-count: 3;
 	}
+}
+
+#blogContainer{
+	.title{
+		float:left;
+		margin-left:-280px;
+		margin-top:250px;
+		overflow:none;
+		font-size:400%;
+		color:$bg-text-col;
+		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	}
+}
+
+#contactContainer{
+	// .title{
+	// 	float:left;
+	// 	margin-left:-100px;
+	// 	margin-top:100px;
+	// 	overflow:none;
+	// 	font-size:400%;
+	// 	color:$bg-text-col;
+	// 	-webkit-transform: rotate(-90deg);
+	// 	-moz-transform: rotate(-90deg);
+	// 	-ms-transform: rotate(-90deg);
+	// 	-o-transform: rotate(-90deg);
+	// 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	// }
+	.contactLink{
+		display:inline-block;
+		margin:3%;
+		font-size:200%;
+		i:hover{
+			color:white;
+		}
+	}
+}
+
+
+/***/
+
+.displayerContainer{
+	position: absolute;
+	background-size: cover;
+	background-position: center;
+	display:table;
+	overflow:none;
+	background-blend-mode: overlay;
+	&:hover{
+		@include fade-transition(.2s);
+		cursor: pointer;
+		background-color: $bg-orag !important;
+		.postSubtitle{
+			color:#eeeeee;
+		}
+	}
+}
+.postContext{
+	padding: 13% 8% 8% 8%;
+	color: white;
+	overflow:none;
+	height:inherit;
+}
+.postContext, .archiveContainer{
+	a{
+		color:white;
+		text-decoration: none;
+		&:hover{
+			color:#aaaaaa;
+		}
+	}
+}
+
+.postTitle{
+	font-size: 20px;
+}
+.postSubtitle{
+	padding-left: 10px;
+	color:#aaaaaa;
 }

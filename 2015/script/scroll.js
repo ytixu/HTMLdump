@@ -31,14 +31,16 @@ var containers = ["#projectsContainer", "#blogContainer","#aboutContainer","#con
 var track = 0;
 
 function trackMenu(){
-	if (track < 4 && $(window).scrollTop() > $(containers[track]).offset().top){
+	if (track < 4 && $(window).scrollTop() > $(containers[track]).offset().top-$(window).height()*0.382){
 		$(menus[track]).addClass("menuTrack");
 		if (track > 0)
 			$(menus[track-1]).removeClass("menuTrack");
 		track++;
-	}else if (track > 0 && $(window).scrollTop() < $(containers[track-1]).offset().top){
+	}else if (track > 0 && $(window).scrollTop() < $(containers[track-1]).offset().top-$(window).height()*0.618){
 		$(menus[track-1]).removeClass("menuTrack");
 		track--;
+		if (track > 0)
+			$(menus[track-1]).addClass("menuTrack");
 	}
 }
 
@@ -54,10 +56,21 @@ window.onscroll = function() {
 	trackMenu();
 };
 
+function bindMenu(){
+	for (var i in menus){
+		$(menus[i]).click(function(){
+			$("html, body").animate({ 
+				scrollTop: $(containers[menus.indexOf("#"+this.id)]).offset().top - 10
+			}, "fast");
+		});
+	}
+}
+
 $(function(){
 	$("#menuColor").hide();
 	$("#menuColor").height($("#menu").height());
 	$("#menuColor").width($(window).width());
-	checkScroll();
 	$("html, body").animate({ scrollTop: 0 }, "fast");
+	checkScroll();
+	bindMenu();
 });

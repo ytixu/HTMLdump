@@ -5,6 +5,10 @@ html(data-ng-app, lang="en")
 		title GOLDENRATI&Phi;
 		script(type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
 		script(type="text/javascript" src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js")
+		script(type="text/javascript" src= "http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
+		script(type='text/x-mathjax-config').
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+			MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
 		// script(type="text/javascript" src="node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js")
 		// script(type="text/javascript" src="node_modules/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js")
 		// script(type="text/javascript").
@@ -12,6 +16,7 @@ html(data-ng-app, lang="en")
 		// 	var controller = new ScrollMagic.Controller();
 		link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Open+Sans")
 		link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+		link(rel="stylesheet", href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css")
 		link(rel="stylesheet", href="style.css")
 	body
 		include title.jade
@@ -23,14 +28,36 @@ html(data-ng-app, lang="en")
 					p {{p.content}}
 
 		#blogContainer
+			.title recent blog posts
+			#postsDisplayer
 
 		#aboutContainer
 
 		#contactContainer
-
+			//- .title Let's talk
+			.container.text-center
+				.contactLink(data-sr="ease-in 21px, reset") 
+					a(target="blank", href="https://github.com/ytixu")
+						i(class="fa fa-github-square")
+				.contactLink(data-sr="ease-in 34px, reset") 
+					a(target="_top", href="mailto:goldenratioesp@gmail.com")
+						i(class="fa fa-google-plus-square")
+				//- .contactLink(data-sr="ease-in 55px, reset") 
+				//- 	a(target="blank", href="https://goldenratiphi.wordpress.com/")
+				//- 		i(class="fa fa-wordpress")		
+			//- .container.text-center(ng-controller="contactCtrl")
+			//- 	.contactLink(ng-repeat="c in contact")
+			//- 		div(data-sr="ease-in 34px, reset") 
+			//- 			a(target="{{c.target}}", href="{{c.link}}")
+			//- 				i(class="{{c.icon}}")
 		#footer
 
 		script(type="text/javascript" src="node_modules/scrollreveal/dist/scrollReveal.min.js")
+		script(type="text/javascript" src="script/scroll.js")
+		script(type="text/javascript" src="script/flower.js")
+		script(type="text/javascript" src="script/resize.js")
+		script(type="text/javascript" src="../blog/archive/posts.js")
+		script(type="text/javascript" src="script/blog.js")
 		script(type='text/javascript').
 			function projectCtrl($scope) {
 				$scope.projects = [
@@ -39,7 +66,7 @@ html(data-ng-app, lang="en")
 					{name:"octopusXfractal",content:"Nulla sit amet nibh ut ipsum rutrum iaculis a sit amet justo."},
 					{name:"a1+a2=a3",content:"Nam eget ante commodo, interdum turpis in, posuere libero."},
 					{name:"<(='3'=)>",content:"Vivamus pellentesque libero a mollis bibendum."},
-					{name:"Nulla nulla nutella!",content:"Nulla nec nulla eu nisi malesuada interdum in eu felis."},
+					{name:"Nulla nulla nutella!",content:"Nulla nec nulla eu nisi malesuada interdum in eu felis. Vivamus pellentesque libero a mollis bibendum."},
 					{name:"ProjectArchimedes",content:"Morbi eget mauris eget erat porta condimentum."},
 					{name:"48 days of coffee and samosas",content:"Vivamus malesuada leo tincidunt sapien ultricies tristique."},
 					{name:"how to talk in lorem ipsum",content:"Praesent tempor nunc id lorem viverra vulputate."},
@@ -51,8 +78,18 @@ html(data-ng-app, lang="en")
 				$scope.refresh = function() {
 					//scrollReveal
 					window.sr = new scrollReveal();
+					window.setTimeout(function(){
+						getRecentPosts();
+						initializeSizes();
+						addDivs();
+						MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+					}, 1000);
 				};
 			}
-		script(type="text/javascript" src="script/scroll.js")
-		script(type="text/javascript" src="script/flower.js")
-		script(type="text/javascript" src="script/resize.js")
+			// function contactCtrl($scope) {
+			// 	$scope.contact = [
+			// 		{link: "https://github.com/ytixu", target:"blank", icon: "fa fa-github-square"},
+			// 		{link: "mailto:goldenratioesp@gmail.com", target:"_top", icon: "fa fa-google-plus-square"}
+			// 	];
+				
+			// }
