@@ -19,7 +19,7 @@ function getPost(post){
 	return {subtitle:subtitle, content:content};
 }
 
-var eg = '<h3>Tic-Tac-Toe</h3> <h5>Design an algorithm to figure out if someone has won.</h5> </div> <div id="postContent"> <p>In this implementation, we will assume that this algorithm is run many times during a tic-tac-toe game. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. </p></div>';
+// var eg = '<h3>Tic-Tac-Toe</h3> <h5>Design an algorithm to figure out if someone has won.</h5> </div> <div id="postContent"> <p>In this implementation, we will assume that this algorithm is run many times during a tic-tac-toe game. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. </p></div>';
 
 ////// constants
 var gr = 1/1.618
@@ -31,8 +31,8 @@ var N = 6;
 var resPosts = posts;
 function getRecentPosts(){
 	for (var i=0; i<N; i++){
-		// var temp = getPost(httpGet('../blog/archive/'+posts[i].url.toString()+".html"));
-		var temp = getPost(eg);
+		var temp = getPost(httpGet('../blog/archive/'+posts[i].url.toString()+".html"));
+		// var temp = getPost(eg);
 		resPosts[i].content = temp.content;
 		resPosts[i].subtitle = temp.subtitle;
 	}
