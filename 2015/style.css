@@ -97,6 +97,8 @@ a {
     #projectsContainer .projectBlock:hover {
       color: white;
       background: #33ADAD; }
+    #projectsContainer .projectBlock a:hover {
+      color: #666666 !important; }
 
 @media (min-width: 720px) {
   #projectsContainer {
@@ -159,7 +161,7 @@ a {
   color: white;
   text-decoration: none; }
   .postContext a:hover, .archiveContainer a:hover {
-    color: black !important; }
+    color: #666666 !important; }
 
 .postTitle {
   font-size: 20px; }
