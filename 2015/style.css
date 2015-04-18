@@ -77,13 +77,10 @@ a {
   margin: 55px auto;
   -webkit-column-count: 1;
   -webkit-column-gap: 0px;
-  -webkit-column-fill: auto;
   -moz-column-count: 1;
   -moz-column-gap: 0px;
-  -moz-column-fill: auto;
   column-count: 1;
   column-gap: 0px;
-  column-fill: auto;
   -o-transition: color 0.2s ease-out, background 0.2s ease-in;
   -ms-transition: color 0.2s ease-out, background 0.2s ease-in;
   -moz-transition: color 0.2s ease-out, background 0.2s ease-in;
