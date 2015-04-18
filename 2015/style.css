@@ -159,7 +159,7 @@ a {
   color: white;
   text-decoration: none; }
   .postContext a:hover, .archiveContainer a:hover {
-    color: #aaaaaa; }
+    color: black !important; }
 
 .postTitle {
   font-size: 20px; }
