@@ -14,6 +14,9 @@ html(data-ng-app, lang="en")
 		link(rel="stylesheet", href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css")
 		//- link(rel="stylesheet", href="http://glyphsearch.com/bower_components/icomoon/dist/css/style.css")
 		link(rel="stylesheet", href="style.css")
+		style(type='text/css').
+			[data-sr] { visibility: hidden; }
+
 	body
 		include title.jade
 
@@ -60,7 +63,10 @@ html(data-ng-app, lang="en")
 				//- 	a(target="blank", href="http://lipid-fatality.deviantart.com")
 				//- 		i(class="icomoon icon-deviantart-2")
 
-		#footer &#169; Yi Tian Xu 2015
+		#footer 
+			h1 
+				i#scrollUp(class="fa fa-angle-up")
+			div &#169; Yi Tian Xu 2015
 
 		script(type="text/javascript" src="node_modules/scrollreveal/dist/scrollReveal.min.js")
 		script(type="text/javascript" src="script/scroll.js")
@@ -83,7 +89,7 @@ html(data-ng-app, lang="en")
 						]},
 					{name:"Course Notes", link:"", content: "Some notes taken during my undergrads.", 
 						sublinks:[{name:"Regression and Analysis of Varaince", link:"../courseNotes/math423/notes.html"},
-							{name: "Generalized Linear Models", link:"../courseNotes/math523/notes1.html"},
+							{name: "Generalized Linear Models (warning: a lot of typos)", link:"../courseNotes/math523/notes1.html"},
 							{name: "Nonparametric Statistics", link:"../courseNotes/math524/cheatsheet.html"}
 						]}
 				];
@@ -100,9 +106,9 @@ html(data-ng-app, lang="en")
 			}
 			function faqCtrl($scope) {
 				$scope.faq = [
-					{q:"Why \"GOLDENRATI\u03A6\"?", a:"The name of my personal website is derived from the word \"golden ratio\" with \"o\" replaced by the capital Greek letter \"\u03A6\". It reflects my passion in mathematics, arts and design. It's connotation of programming/coding/hacking is yet to be popularized."},
-					{q:"Coding and arts, which one do you prefer?", a:"Both. And in web dev, I can do both. Aw yeah! That moment when you see that you have two things that you both like at the same time is the best feeling ever."},
+					{q:"Why \"GOLDENRATI\u03A6\"?", a:"The name of my personal website is derived from the term \"golden ratio\" with \"o\" replaced by the capital Greek letter \"\u03A6\". It reflects my passion in mathematics, arts and design. It's connotation of programming/coding/hacking is yet to be popularized."},
+					{q:"Coding and arts, which one do you prefer more?", a:"Both. And in web dev, I can do both. Aw yeah! That moment when you see that you have two things that you both like at the same time is the best feeling ever."},
 					{q:"How do you make time for personal project?", a:"Persistence, ambition, sleep deprivation and a lot of coffee. The fact that that energy and time were spent on things that I love makes all the sacrifices rewarding."},
-					{q:"What is the meaning of life?", a:"Complemplate on the beauty of nature, reproduce it and celebrate by eat a lot of chocolate."}
+					{q:"What is the meaning of life?", a:"Complemplate on the beauty of nature, reproduce it and celebrate by eating lots of chocolate."}
 				];
 			}

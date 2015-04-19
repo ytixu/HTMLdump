@@ -73,4 +73,7 @@ $(function(){
 	$("html, body").animate({ scrollTop: 0 }, "fast");
 	checkScroll();
 	bindMenu();
+	$("#scrollUp").click(function(){
+		$("html, body").animate({ scrollTop: 0 }, "fast");
+	})
 });
