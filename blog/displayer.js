@@ -31,9 +31,13 @@ var N = 6;
 ///// get posts
 var resPosts = posts;
 function getRecentPosts(){
+	var temp;
 	for (var i=0; i<N; i++){
-		var temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
-		// var temp = getPost(eg);
+		try{
+			temp = getPost(httpGet('archive/'+posts[i].url.toString()+".html"));
+		}catch(e){
+			temp = getPost(eg);
+		}
 		resPosts[i].content = temp.content;
 		resPosts[i].subtitle = temp.subtitle;
 	}
@@ -129,9 +133,10 @@ function addDivs(){
    			// backgroundImage: "linear-gradient(to bottom, "+colors[0]+" , "+colors[1]+"),url('image/"+resPosts[i].url+".png')"
    			//backgroundImage:"url('image/"+resPosts[i].url+".png')"
    		//});
-		var bg = 'http://www.backgroundzs.com/static/images/images_6.jpg';
-		$("#"+div.id).css({'background-image': "url('image/"+resPosts[i].url+".png'), url("+bg+")"});
-			// "background-color": colors[i%2],
+		// var bg = 'http://www.backgroundzs.com/static/images/images_6.jpg';
+		$("#"+div.id).css({'background-image': "url('image/"+resPosts[i].url+".png')",
+			"background-color": colors[i%2]
+		});
 		console.log($("#"+div.id));
 		resizeDiv(size,div.id);
 		$("#"+div.id).click(function(){triggerCycle(this.id);});

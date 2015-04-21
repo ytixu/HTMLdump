@@ -179,6 +179,12 @@ var data = [
 		content: "Made a web page dedicated for cats. Experimenting with APIs and social sharing buttons.",
 		date: "04/06/15",
 		url: "8"
+	},{
+		name: "New Home Page",
+		link: "http://ytixu.github.io/HTMLdump/2015/index.html",
+		content: "Abandoning another webpage again.",
+		date: "04/20/15",
+		type:"e"
 	}
 ]
 
