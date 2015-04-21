@@ -9,6 +9,7 @@ $pad-small:11%;
 
 $menu-hover-border-col: #333333;
 $bg-text-col:#606060;
+$bg-small-text-col:#5f5f5f;
 
 html, body{
 	height:100%;
@@ -118,16 +119,17 @@ a{
 	column-gap: 0px;
 }
 @mixin column-div-block(){
-	display: inline-block;
 	-webkit-column-break-inside: avoid;
 	-moz-column-break-inside: avoid;
 	column-break-inside: avoid;
 }
 
 #projectsContainer{
+	padding: 0 8%;
 	@include column-div();
 	.projectBlock{
-		padding:13px;
+		display: block;
+		padding:21px;
 		@include fade-transition(.2s);
 		@include column-div-block();
 		&:hover{
@@ -145,15 +147,14 @@ a{
 }
 
 
-.sidetitleNoroate, .sidetitle{
-	color:$bg-text-col;
-}
-
 .sidetitleNoroate{
-	font-size:200%;
+	font-size:150%;
+	color:$bg-small-text-col;
 }
 
 .sidetitle{
+	color:$bg-text-col;
+	line-height: 80%;
 	font-size:400%;
 	resize: none;
 	overflow:none;
@@ -169,6 +170,22 @@ a{
 		float:right;
 		margin-right:-260px;
 		margin-top:220px;
+	}
+}
+
+#porfolioContainer{
+	position: absolute;
+	top:105%;
+	left:0;
+	.sidetitle{
+		float:right;
+		margin-left:-475px;
+		margin-top:210px;
+	}
+	.sidetitleNoroate{
+		display:inline-block;
+		margin-left:100px;
+		margin-top:-80px;
 	}
 }
 
@@ -292,14 +309,19 @@ a{
 
 @media (min-width: 720px) {
 	#projectsContainer {
+		padding: 0 5%;
 		-webkit-column-count: 2;
 		-moz-column-count: 2;
 		column-count: 2;
+		.projectBlock{
+			display:inline-block;
+		}
 	}
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1400px) {
 	#projectsContainer {
+		padding: 0;
 		-webkit-column-count: 3;
 		-moz-column-count: 3;
 		column-count: 3;

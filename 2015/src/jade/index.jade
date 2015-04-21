@@ -20,7 +20,16 @@ html(data-ng-app, lang="en")
 	body
 		include title.jade
 
-		#projectsContainer.container(ng-controller="projectCtrl")
+		#porfolioContainer
+			.sidetitle web developer 
+			.sidetitleNoroate
+				div(data-sr="move 21px, reset")
+					span#bdYear
+				div(data-sr="move 34px, reset")
+					span#bdMonth
+				div(data-sr="move 55px, reset")
+					span#bdDay
+		#projectsContainer(ng-controller="projectCtrl")
 			.projectBlock(ng-repeat="p in projects", ng-init="$last ? refresh() : null")
 				div(data-sr="enter top, reset") 
 					a(ng-if="p.link!=''", href="{{p.link}}", target="blank")
