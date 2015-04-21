@@ -70,6 +70,7 @@ function initializeSizes(){
 		}
 		left = ($(window).width()-size*gr)/2
 		center = [left,size+top];
+		console.log(size/gr);
 		$("#postsDisplayer").height(size);
 	}else{
 		size = $(window).height()/gr;
@@ -156,23 +157,27 @@ function addDivs(){
 			assignPost: function(){
 				$("#"+this.id.toString()).append("<div class='postContext'><div class='postTitle'><a href='../blog/archive/"
 					+ resPosts[this.id].url.toString() + ".html'>" 
-					+ resPosts[this.id].name + "</a></div><div class='postSubtitle'>" 
+					+ resPosts[this.id].name + "</a></div>"
+					+ "<div class='smallTitle'><a href='../blog/archive/"
+					+ resPosts[this.id].url.toString() + ".html'>" 
+					+ resPosts[this.id].name + "</a></div>"
+					+ "<div class='postSubtitle'>" 
 					+ resPosts[this.id].subtitle + " ~ " 
 					+ resPosts[this.id].date + "</div><div class='postText'>" 
-					+ resPosts[this.id].content + "... </div><div class='smallTitle'><a href='../blog/archive/"
-					+ resPosts[this.id].url.toString() + ".html'>" 
-					+ resPosts[this.id].name + "</a></div></div>");
+					+ resPosts[this.id].content + "... </div></div>");
 				// MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 			},
 			displayPost: function(fade){
 				_id = this.id.toString();
 				if (this.size < 2 && sizes[this.size].size > 200){
-					$("#"+_id +" .postContext .postTitle").show();
-					$("#"+_id +" .postContext .smallTitle").hide();
 					$("#"+_id +" .postContext .postSubtitle").show();
 					if(this.size == 0 && sizes[this.size].size > 450){
+						$("#"+_id +" .postContext .postTitle").show();
+						$("#"+_id +" .postContext .smallTitle").hide();
 						$("#"+_id +" .postContext .postText").show();
 					}else{
+						$("#"+_id +" .postContext .postTitle").hide();
+						$("#"+_id +" .postContext .smallTitle").show();
 						$("#"+_id +" .postContext .postText").hide();
 					}
 				}else{

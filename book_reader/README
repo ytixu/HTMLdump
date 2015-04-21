@@ -4,7 +4,6 @@ To add books:
 		1) Book title must be on the first line, starting with $title$.
 		2) Chapter names must start with $chap$
 		3) All name and paragraph are seperated by new lines.
-	Refer to example in books/dist if needed: Seven.txt and story.txt
 
 	Run book_converter.exe and then open or refresh the webpage and you'll see them.
 
