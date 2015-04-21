@@ -32,15 +32,16 @@ html(data-ng-app, lang="en")
 							a(href="{{sp.link}}", target="blank") {{sp.name}}
 
 		#blogContainer
-			.sidetitle recent blog posts
+			#blogBGtitle.sidetitle recent blog posts
 			#postsDisplayer
 
 		#aboutContainer
-			.sidetitle about me
-			.sidetitleNoroate
-				div(data-sr="move 21px, reset") analytical 
-				div(data-sr="move 34px, reset") artisitic 
-				div(data-sr="move 55px, reset") chocolate enthusiast 
+			#aboutBGtitle
+				.sidetitle about me
+				.sidetitleNoroate
+					div(data-sr="move 21px, reset") analytical 
+					div(data-sr="move 34px, reset") artisitic 
+					div(data-sr="move 55px, reset") chocolate enthusiast 
 			#faq(ng-controller="faqCtrl")
 				.faqBlock(ng-repeat="q in faq", ng-init="$last ? refresh() : null")
 					div(data-sr="enter top, reset") 
@@ -101,6 +102,7 @@ html(data-ng-app, lang="en")
 						initializeSizes();
 						addDivs();
 						MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+						firstFlowerDraw();
 					}, 500);
 				};
 			}

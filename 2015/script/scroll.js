@@ -1,29 +1,62 @@
-var scrollMenu = null;
+// window.requestAnimationFrame = window.requestAnimationFrame
+//  || window.mozRequestAnimationFrame
+//  || window.webkitRequestAnimationFrame
+//  || window.msRequestAnimationFrame
+//  || function(f){setTimeout(f, 1000/60)}
+
+// var scrollMenu = null;
 var colorChanged = false;
 
 function moveMenu(){
-	if (scrollMenu != null){
-		clearTimeout(scrollMenu);
-	}
-	scrollMenu = window.setTimeout(function(){
-		scrollMenu = null;
-		var value = Math.max(Math.floor($(window).scrollTop()), 
-						  $(window).height()).toString() + "px";
-		$("#menuColor").animate({
-			top: value
-		}, 200);
-		$("#menu").animate({
-			top: value
-		}, 200, function(){
-			if (!colorChanged && Math.abs($("#menu").offset().top - $(window).height()) > 5){
-				colorChanged = true;
-				$("#menuColor").slideDown("fast");
-			}else if (Math.abs($("#menu").offset().top - $(window).height())<5){
-				colorChanged = false;
-				$("#menuColor").slideUp("fast");
-			}
+	// if (scrollMenu != null){
+	// 	clearTimeout(scrollMenu);
+	// }
+	// scrollMenu = window.setTimeout(function(){
+	// 	scrollMenu = null;
+	// 	var value = Math.max(Math.floor($(window).scrollTop()), 
+	// 					  $(window).height()).toString() + "px";
+	// 	$("#menuColor").animate({
+	// 		top: value
+	// 	}, 200);
+	// 	$("#menu").animate({
+	// 		top: value
+	// 	}, 200, function(){
+	// 		if (!colorChanged && Math.abs($("#menu").offset().top - $(window).height()) > 5){
+	// 			colorChanged = true;
+	// 			$("#menuColor").slideDown("fast");
+	// 		}else if (Math.abs($("#menu").offset().top - $(window).height())<5){
+	// 			colorChanged = false;
+	// 			$("#menuColor").slideUp("fast");
+	// 		}
+	// 	});
+	// }, 10);
+	// scrollMenu = window.setTimeout(function(){
+	// 	scrollMenu = null;
+	// var value = Math.max(Math.floor($(window).scrollTop()), 
+	// 				  $(window).height()).toString() + "px";
+	if (!colorChanged && $(window).scrollTop() > $("#menu").offset().top){
+		colorChanged = true;
+		$("#menuColor").css({
+			top: "0",
+			position:"fixed"
 		});
-	}, 100);
+		$("#menu").css({
+			top: "0",
+			position:"fixed"
+		});
+		$("#menuColor").slideDown("fast");
+	}else if ($("#menu").offset().top < $(window).height()){
+		colorChanged = false;
+		$("#menuColor").slideUp("fast");
+		$("#menuColor").css({
+			top: "100%",
+			position:"absolute"
+		});
+		$("#menu").css({
+			top: "100%",
+			position:"absolute"
+		});
+	}
 }
 
 var menus = ["#projectMenu","#blogMenu","#aboutMenu","#contactMenu"];
@@ -51,10 +84,6 @@ function checkScroll(){
 	}
 }
 
-window.onscroll = function() {
-	checkScroll();
-	trackMenu();
-};
 
 function bindMenu(){
 	for (var i in menus){
@@ -77,3 +106,27 @@ $(function(){
 		$("html, body").animate({ scrollTop: 0 }, "fast");
 	})
 });
+
+
+// ////////////////// background text
+
+// var BGtexts = ["#blogBGtitle", "#aboutBGtitle"];
+
+// function scrollBGtext(){
+// 	var o = $(window).scrollTop();
+// 	for (var i in BGtexts){
+// 		var offset = o - $(BGtexts[i]).offset().top;
+// 		if (Math.abs(offset) > $(BGtexts[i]).height()) continue;
+// 		$(BGtexts[i]).css({
+// 			"margin-top":"-="+(offset * .05).toString() + 'px'
+// 		});
+// 	}
+// }
+
+/////////////////////
+
+window.onscroll = function() {
+	checkScroll();
+	trackMenu();
+	// requestAnimationFrame(scrollBGtext);
+};

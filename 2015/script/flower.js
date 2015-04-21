@@ -58,7 +58,7 @@ function getCanvas(){
     ctx.translate(halfSize,halfSize);
 }
 
-window.onload = function(){
+function firstFlowerDraw(){
 	getCanvas();
 	start();
 	$(".title a").hover(function(){
