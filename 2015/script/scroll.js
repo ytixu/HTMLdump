@@ -4,7 +4,6 @@
 //  || window.msRequestAnimationFrame
 //  || function(f){setTimeout(f, 1000/60)}
 
-// var scrollMenu = null;
 var colorChanged = false;
 
 function moveMenu(){
@@ -106,22 +105,6 @@ $(function(){
 		$("html, body").animate({ scrollTop: 0 }, "fast");
 	})
 });
-
-
-// ////////////////// background text
-
-// var BGtexts = ["#blogBGtitle", "#aboutBGtitle"];
-
-// function scrollBGtext(){
-// 	var o = $(window).scrollTop();
-// 	for (var i in BGtexts){
-// 		var offset = o - $(BGtexts[i]).offset().top;
-// 		if (Math.abs(offset) > $(BGtexts[i]).height()) continue;
-// 		$(BGtexts[i]).css({
-// 			"margin-top":"-="+(offset * .05).toString() + 'px'
-// 		});
-// 	}
-// }
 
 /////////////////////
 

@@ -21,14 +21,14 @@ html(data-ng-app, lang="en")
 		include title.jade
 
 		#porfolioContainer
-			.sidetitle web developer 
-			.sidetitleNoroate
-				div(data-sr="move 21px, reset")
-					span#bdYear
-				div(data-sr="move 34px, reset")
-					span#bdMonth
-				div(data-sr="move 55px, reset")
-					span#bdDay
+				.sidetitle web developer 
+				.sidetitleNoroate
+					div(data-sr="move 21px, reset")
+						span#bdYear
+					div(data-sr="move 34px, reset")
+						span#bdMonth
+					div(data-sr="move 55px, reset")
+						span#bdDay
 		#projectsContainer(ng-controller="projectCtrl")
 			.projectBlock(ng-repeat="p in projects", ng-init="$last ? refresh() : null")
 				div(data-sr="enter top, reset") 
@@ -120,6 +120,6 @@ html(data-ng-app, lang="en")
 					{q:"Why \"GOLDENRATI\u03A6\"?", a:"The name of my personal website is derived from the term \"golden ratio\" with \"o\" replaced by the capital Greek letter \"\u03A6\". It reflects my passion in mathematics, arts and design. It's connotation of programming/coding/hacking is yet to be popularized."},
 					{q:"Coding and arts, which one do you prefer more?", a:"Both. And in web dev, I can do both. Aw yeah! That moment when you see that you have two things that you both like at the same time is the best feeling ever."},
 					{q:"How do you make time for personal project?", a:"Persistence, ambition, sleep deprivation and a lot of coffee. The fact that that energy and time were spent on things that I love makes all the sacrifices rewarding."},
-					{q:"What is the meaning of life?", a:"Complemplate on the beauty of nature, reproduce it and celebrate by eating lots of chocolate."}
+					{q:"What is the meaning of life?", a:"Contemplate on the beauty of nature, reproduce it and celebrate by eating lots of chocolate."}
 				];
 			}

@@ -19,7 +19,7 @@ function getPost(post){
 	return {subtitle:subtitle, content:content};
 }
 
-var eg = '<h3>Tic-Tac-Toe</h3> <h5>Design an algorithm to figure out if someone has won.</h5> </div> <div id="postContent"> <p>In this implementation, we will assume that this algorithm is run many times during a tic-tac-toe game. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. In this case, we can just consider the changes made on the grid by the player when adding a $\\circ$ or a $\\times$. </p></div>';
+var eg = '<h3>Creating G&Phi;LDEN HackNights</h3>				<h5>Towards hosting a "fictional" hackathon and designing a webpage.</h5>			</div>			<div id="postContent">			<p>Presenting to you <a href="../../hacknights/index.html">G&Phi;LDEN HackNights</a>. This hackathon happens every night of every day, in every corner of the globe. Everyone can attend and every idea is accepted (at the creator\'s own risk). </p>			<h4>Creation of G&Phi;LDEN HackNights</h4>			<p>Learning Node.js was my initial goal for creating this website. I was determined to know how to keep a database, make logins and understand why "Node.js is the only real Dev language". After watching a short tutorial, I followed the steps to download node and express, and started using jade. It was a lot simpler than I thought. Just type the command to build the project with express, install it, and run it with nodemon. Simple. But that feeling of AWYEAAAA-finally-gonna-unlock-skills-for-backend did not last very long as I learned that GitHub doesn\'t host dynamic web page. After spending hours trying to figure out how to us OpenShift, generating SSH key, I decided to fall back to ground zero. </p>';
 
 ////// constants
 var gr = 1/1.618
@@ -58,6 +58,7 @@ function initializeSizes(){
 	var section = 0;
 	var size = 0;
 	var top = $("#postsDisplayer").offset().top;
+	console.log(top);
 	var left = 0;
 	var center;
 	if ($(window).width() < $(window).height()/gr){
@@ -210,7 +211,6 @@ function addDivs(){
 			divs[i].displayPost(false);
 		}
 	});
-
 }
 
 var done = 0;
