@@ -4,12 +4,75 @@
 		<title>Red Black Tree Cult</title>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+		<script src="http://pixelcog.github.io/parallax.js/js/parallax.js"></script>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans"  type='text/css'>
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Indie+Flower' type='text/css'>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./style.css"  type='text/css'>
 		<style type="text/css">[data-sr] { visibility: hidden; }</style>
 	</head>
 	<body>
+		<header>
+			<!-- images from http://p1.pichost.me/i/71/1960879.jpg 
+			http://wallpapercow.com/wp-content/uploads/2014/06/Red-Black-Tree-Sunset.jpg 
+			http://7-themes.com/data_images/out/21/6839682-tree-wallpaper.jpg 
+			http://freedwallpaper.com/wp-content/uploads/2014/12/Tree-of-Color.jpg-->
+			<div id="menu"><span style="color:red;">Red</span><span 
+				style="background-color:white;color:black;padding:5px;margin:5px;">Black</span>Tree Cult
+			</div>
+			<span id="nav">Story | Members | ?</span>
+			<div class="header parallax-window" data-parallax="scroll" data-image-src="Red-Black-Tree-Sunset.jpg">
+				<div class="content">
+					<h1 class="glyphicon glyphicon-hand-down"></h1>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div id="story" class="container">
+				<h1>Story</h1>
+				<div class="cult-col">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum efficitur erat in facilisis. Mauris et efficitur urna, eu ullamcorper turpis. Suspendisse condimentum tristique lectus sed tincidunt. Nullam ornare mollis dapibus. Phasellus eleifend euismod faucibus. Praesent hendrerit ipsum eget nisl fringilla, a fermentum mi rutrum. Donec maximus varius dui aliquam facilisis. Etiam felis neque, euismod et justo non, semper pretium mauris. Nullam scelerisque risus sapien, quis malesuada felis accumsan sed. Maecenas ut consequat quam.</p>
 
+					<p>Sed posuere arcu et urna varius vulputate. Integer vulputate suscipit mollis. Aliquam interdum, ante at faucibus posuere, est lectus congue risus, eu sagittis turpis mi et nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent sed lectus metus. Aenean tempus lacus id mauris rhoncus, vitae ullamcorper sapien pulvinar. Cras ullamcorper quam quis purus molestie ultricies. Maecenas tristique suscipit sapien, vitae dapibus elit iaculis id. Sed non massa vitae tellus ornare ullamcorper ac ut enim. Integer eros dolor, laoreet id velit sit amet, iaculis sagittis elit. Curabitur id rutrum velit. Duis at pharetra dolor. Etiam luctus odio est, non luctus ex elementum nec. </p>
+				</div>
+			</div>
+			<div class="hrpi parallax-window" data-parallax="scroll" data-image-src="1960879.jpg"></div>
+			<div id="members" data-ng-controller="memberCtrl" class="container">
+				<h1>Members</h1>
+				<div class="col-md-3" data-ng-repeat="mem in members">
+					<center><h2>{{mem.name}}</h2>
+					{{mem.desc}}</center>
+					<p>{{mem.quot}}</p>
+				</div>
+			</div>
+			<div class="hrpi parallax-window" data-parallax="scroll" data-image-src="Tree-of-Color.jpg"></div>
+			<div id="encyclopedia" class="container">
+				<h1>Something here :p</h1>
+				 <p>Donec finibus faucibus velit vitae tristique. Pellentesque volutpat ipsum quis eros egestas, sit amet mollis augue congue. Phasellus placerat efficitur sapien, sagittis dictum tortor porttitor vel. Aenean ex augue, dictum non erat et, aliquam condimentum leo. Aliquam consequat elit vel ex facilisis maximus. Curabitur risus mauris, scelerisque a felis sit amet, efficitur convallis tellus. Cras interdum aliquet interdum.</p>
+
+				<p>Donec condimentum imperdiet lorem, sed imperdiet libero suscipit quis. Quisque ultricies volutpat ligula sit amet efficitur. Nunc ac congue leo. Quisque ac pharetra diam. Nunc sollicitudin ipsum non vulputate sodales. Vivamus eget pretium metus, et interdum tellus. Aenean interdum nunc vel iaculis dictum. Integer at fermentum erat. Nam tempor eget metus in ultrices.</p>
+
+				<p>Aliquam dignissim fringilla risus. Aliquam hendrerit, ante eget pretium lobortis, sapien enim aliquet enim, hendrerit luctus libero diam porttitor turpis. Donec et orci nibh. Aliquam imperdiet mi in pellentesque rutrum. Nullam pretium porttitor massa a dictum. Curabitur eros nisi, posuere nec erat eu, egestas mollis leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in est velit. Sed nec eros interdum, vehicula leo auctor, scelerisque quam. Morbi dapibus, eros et efficitur tristique, nulla arcu hendrerit est, id sagittis elit augue consequat felis.</p>
+			</div>
+			<div class="hrpi parallax-window" data-parallax="scroll" data-image-src="6839682-tree-wallpaper.jpg">
+				<h1 class="glyphicon glyphicon-hand-up"></h1>
+			</div>
+		</main>
 	</body>
+	<script>
+		function memberCtrl($scope) {
+	    	$scope.members = [
+	    		{name:"Yi Tian", desc:"Co-Founder", pict:"", quot:""},
+	    		{name:"Yumeng", desc:"Founder", pict:"", quot:""},
+	    		{name:"Shivani", desc:"Co-Founder", pict:"", quot:""},
+	    		{name:"Alan", desc:"Co-Founder", pict:"", quot:""},
+	    		{name:"Rami", desc:"Co-Founder", pict:"", quot:""},
+	    		{name:"Wayne", desc:"Co-Founder", pict:"", quot:""},
+	    		{name:"Si Mei", desc:"Member", pict:"", quot:""},
+	    		{name:"Kwang", desc:"Member", pict:"", quot:""}
+	    	].sort(function(a, b){return b.name.localeCompare(a.name)});
+		}
+
+	</script>
 </html>
