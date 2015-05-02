@@ -87,3 +87,20 @@ body{
 	    column-count: 1;
 	}
 }
+
+.bbton{
+	cursor: pointer;
+}
+.bbton:hover{
+	color:red;
+}
+
+a, a:visited{
+	text-decoration: none !important;
+	color:white !important;
+}
+
+a:hover{
+	color: #eeeeee !important;
+	text-decoration: none !important;
+}

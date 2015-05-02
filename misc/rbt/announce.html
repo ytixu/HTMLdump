@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html data-ng-app lang="en">
+	<head>
+		<title>Red Black Tree Cult</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="http://pixelcog.github.io/parallax.js/js/parallax.js"></script>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans"  type='text/css'>
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Indie+Flower' type='text/css'>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://glyphsearch.com/bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./style.css"  type='text/css'>
+		<style type="text/css">[data-sr] { visibility: hidden; }</style>
+	</head>
+	<body>
+		<div id="menu"><a href="RBT.html"><span style="color:red;">Red</span><span 
+			style="background-color:white;color:black;padding:5px;margin:5px;">Black</span>Tree Cult</a>
+		</div>
+		<span id="nav"><span class="bbton" id="annBtn">Announcements</span> | 
+			<span class="bbton"id="linkBtn">External Links</span> | 
+			<span class="bbton"id="vocaBtn">RBT Vocabulary</span></span>
+		<div class="hrpi parallax-window" data-parallax="scroll" data-image-src="Tree-of-Color.jpg"></div>
+		<main class="container">
+			<div id="news" data-ng-controller="newsCtrl">
+				<a name="announce"></a><h1 data-sr="enter bottom, roll 15deg, over 1.5s">Announcements</h1>
+				<div data-ng-repeat="n in news">
+					<p data-ng-repeat="p in n.cont">{{p}}</p>	
+					<p>{{n.date}}</p>
+					<hr ng-if="!$last">
+				</div>
+			</div>
+			<br><br>
+			<div id="links" data-ng-controller="linksCtrl">
+				<a name="links"></a><h1 data-sr="enter bottom, roll 15deg, over 1.5s">External Links</h1>
+				<div data-ng-repeat="l in weblinks">
+					<a target="blank" href="{{l.link}}"><h3>{{l.name}}</h3></a>
+					<p>{{l.desc}} | @{{l.from}}</p>
+					<br>
+				</div>
+			</div>
+			<br><br>
+			<div id="terms" data-ng-controller="termCtrl">
+				<a name="vocab"></a><h1 data-sr="enter bottom, roll 15deg, over 1.5s">RBT Vocabulary</h1>
+				<div data-ng-repeat="t in terms">
+					<h3>{{t.name}}</h3>
+					<p>{{t.def}} <span ng-if="t.from!=''">| @{{t.from}}</span></p>
+					<br>
+				</div>
+			</div>
+		</main>
+		<center><div class="bbton" id="scrollUp"><h1 class="glyphicon glyphicon-hand-up"></h1></div></center>
+	</body>
+	<script type="text/javascript" src="../../2015/node_modules/scrollreveal/dist/scrollReveal.min.js"></script>
+	<script>
+		function termCtrl($scope){
+			$scope.terms = [
+				{name: "COMP 251 is prerequisite of life.", def: "Direct quote from the intructor of that course: COMP 250 is prerequisite of COMP 251 and COMP 251 is prerequisite of life. The expression is henceforth used to demonstrate the essence of BFS, DFS, DP, Dijkstra, Kruskal, topological sorting, amortized cost, fibonacci heaps, Abelard and Eloise, union bind data structure, red-black tree, ...", from:""},
+				{name: "8 credits", def: "Dropping courses until only 8 credits is what remains for the entire semester. But that's still too much; life is indeed hard, especially when it's prequequisite is already FK hard. Drop courses until only 5 credits remains is how Kwang survived one semester. But 8 credits remains the iconical term reflecting the harshness of life. The number 8 also represents the number of members in the cult that faught COMP 251 together like a big family.", from:""},
+				{name: "G", def: "Denoting a graphs, a grammar, a goal state, or the TA in COMP 251.", from:""},
+				{name: "The bar", def: "Sanctuary for (male) professors to escape from their daily stress and to enjoy bar dancing.", from:"Alan"},
+				{name: "FK Hard", def:"Computational complexity beyond EXPTIME. FK stands for f*k***.", from:"Yi Tian"},
+				{name: "I'm a good student.", def:"A student that often skips classes, dream about chocolate and ramen during lectures, but still get straight A's; the founder of our cult.", from:"Yumeng"},
+				{name: "F*** this s*** it's friday!", def:"For some people, every day is Friday.", from:"Alan"},
+				{name: "Nil children", def:"\"i have a boy and a girl, i am married but my wife is void and my children are void as well\"", from:"Alan"},
+				{name: "I will put his voice as my alarm clock every morning.", def:"Using the voice of the professors as morning alarm is the reason why some of us are so awake and exited during the entire day, and some others fails to get up from bed.", from:"Alan"},
+				{name:"Sleep is for the week.", def:"The one who said that successful people are the ones who don't sleep slept in class.", from:"Shivani"},
+				{name: "COMP 273 is creative writing.", def:"Long assignment instructions and full mark given for whatever you write.", from:"Rami"}
+			]
+		}
+		function linksCtrl($scope){
+			$scope.weblinks = [
+				{link: "https://docs.google.com/document/d/1IqyEuqvCIQSaceO8MOb5nrLoahhe4ekOVixmNh9TmKM/edit#heading=h.7q6gtslhhool", name: "COMP 251 midterm cramming", from:"Yumeng", desc:""}
+			]
+		}
+		function newsCtrl($scope){
+			$scope.news = [
+				{cont:["Dear boys and gals,","Think about all the things you could've missed if you didn't wake up? Would you rather stay and ignore the world full of wonders or would you rather go on an adventure? What if you met the love of your life that morning? What if you experienced something that would change your life forever? What if you get to know new interesting people that end up being the closest friends you ever had in your life? Is some minutes of sleep worth it in front of all that you could've accomplished?","Love,","Alan"], date:"10/18/2013, 2:58pm"},
+				{cont:["Hi boys and gals, students of Red-Black Trees!","f*** this s*** tomorrow's friday."], date:"10/17/2013, 9:40pm"},
+				{cont:["Dear guys and girls,","I understand the moment of truth is rapidly coming but it is under pressure that the human strives the best. Hence, I encourage you people, out of all the other students, to persevere in the last moments of studying. It is with pride that we should all march the final steps towards victory for only then will the world recognize our hard work and consider us as true heroes! Go forth soldiers and let your family be proud!"], date:"10/15/2013, 10:05pm"}
+			]
+		}
+		function init(){
+			var scrollData = {
+				scrollUp:function(){return 0;},
+				linkBtn:function(){return $("#links").offset().top;},
+				annBtn:function(){return $("#news").offset().top;},
+				vocaBtn:function(){return $("#terms").offset().top;}
+			};
+			var keys = Object.keys(scrollData);
+			for (var i in keys){
+				$("#"+keys[i]).click(function(){
+					console.log(this.id);
+					$('html, body').animate({ scrollTop: scrollData[this.id]() }, 'fast');
+				});
+			}
+			window.sr = new scrollReveal();
+		}
+		init();
+	</script>
+</html>

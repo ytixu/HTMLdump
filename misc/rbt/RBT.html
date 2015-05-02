@@ -18,19 +18,20 @@
 			http://wallpapercow.com/wp-content/uploads/2014/06/Red-Black-Tree-Sunset.jpg 
 			http://7-themes.com/data_images/out/21/6839682-tree-wallpaper.jpg 
 			http://freedwallpaper.com/wp-content/uploads/2014/12/Tree-of-Color.jpg-->
-			<div id="menu"><span style="color:red;">Red</span><span 
-				style="background-color:white;color:black;padding:5px;margin:5px;">Black</span>Tree Cult
-			</div>
-			<span id="nav">Story | Members | ?</span>
+			<div id="menu"><a href="RBT.html"><span style="color:red;">Red</span><span 
+				style="background-color:white;color:black;padding:5px;margin:5px;">Black</span>Tree Cult</a>
+			</div>			<span id="nav"><span class="bbton" id="storyBtn">Story</span> | 
+				<span class="bbton"id="memberBtn">Members</span> | 
+				<span class="bbton"id="encyclBtn">?</span></span>
 			<div class="header parallax-window" data-parallax="scroll" data-image-src="Red-Black-Tree-Sunset.jpg">
 				<div class="content">
-					<h1 class="glyphicon glyphicon-hand-down"></h1>
+					<div id="scrollDown" class="bbton"><h1 class="glyphicon glyphicon-hand-down"></h1></div>
 				</div>
 			</div>
 		</header>
 		<main>
 			<div id="story" class="container">
-				<h1>Story</h1>
+				<h1 data-sr="enter bottom, roll 15deg, over 1.5s">Story</h1>
 				<div class="cult-col">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elementum efficitur erat in facilisis. Mauris et efficitur urna, eu ullamcorper turpis. Suspendisse condimentum tristique lectus sed tincidunt. Nullam ornare mollis dapibus. Phasellus eleifend euismod faucibus. Praesent hendrerit ipsum eget nisl fringilla, a fermentum mi rutrum. Donec maximus varius dui aliquam facilisis. Etiam felis neque, euismod et justo non, semper pretium mauris. Nullam scelerisque risus sapien, quis malesuada felis accumsan sed. Maecenas ut consequat quam.</p>
 
@@ -39,8 +40,8 @@
 			</div>
 			<div class="hrpi parallax-window" data-parallax="scroll" data-image-src="1960879.jpg"></div>
 			<div id="members" data-ng-controller="memberCtrl" class="container">
-				<h1>Members</h1>
-				<div class="col-md-3" data-ng-repeat="mem in members">
+				<h1 data-sr="enter bottom, roll 15deg, over 1.5s">Members</h1>
+				<div class="col-md-3" data-ng-repeat="mem in members" ng-init="$last ? refresh() : null" data-sr>
 					<center><h2>{{mem.name}}</h2>
 					{{mem.desc}}</center>
 					<p>{{mem.quot}}</p>
@@ -48,31 +49,55 @@
 			</div>
 			<div class="hrpi parallax-window" data-parallax="scroll" data-image-src="Tree-of-Color.jpg"></div>
 			<div id="encyclopedia" class="container">
-				<h1>Something here :p</h1>
-				 <p>Donec finibus faucibus velit vitae tristique. Pellentesque volutpat ipsum quis eros egestas, sit amet mollis augue congue. Phasellus placerat efficitur sapien, sagittis dictum tortor porttitor vel. Aenean ex augue, dictum non erat et, aliquam condimentum leo. Aliquam consequat elit vel ex facilisis maximus. Curabitur risus mauris, scelerisque a felis sit amet, efficitur convallis tellus. Cras interdum aliquet interdum.</p>
-
-				<p>Donec condimentum imperdiet lorem, sed imperdiet libero suscipit quis. Quisque ultricies volutpat ligula sit amet efficitur. Nunc ac congue leo. Quisque ac pharetra diam. Nunc sollicitudin ipsum non vulputate sodales. Vivamus eget pretium metus, et interdum tellus. Aenean interdum nunc vel iaculis dictum. Integer at fermentum erat. Nam tempor eget metus in ultrices.</p>
-
-				<p>Aliquam dignissim fringilla risus. Aliquam hendrerit, ante eget pretium lobortis, sapien enim aliquet enim, hendrerit luctus libero diam porttitor turpis. Donec et orci nibh. Aliquam imperdiet mi in pellentesque rutrum. Nullam pretium porttitor massa a dictum. Curabitur eros nisi, posuere nec erat eu, egestas mollis leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in est velit. Sed nec eros interdum, vehicula leo auctor, scelerisque quam. Morbi dapibus, eros et efficitur tristique, nulla arcu hendrerit est, id sagittis elit augue consequat felis.</p>
+				<h1 data-sr="enter bottom, roll 15deg, over 1.5s">Log</h1>
+				<a href="announce.html#announce">Announcements</a><br>
+				<a href="announce.html#links">External Links</a><br>
+				<a href="announce.html#vocab">RBT Vocab</a><br>
 			</div>
 			<div class="hrpi parallax-window" data-parallax="scroll" data-image-src="6839682-tree-wallpaper.jpg">
-				<h1 class="glyphicon glyphicon-hand-up"></h1>
+				<div class="bbton" id="scrollUp"><h1 class="glyphicon glyphicon-hand-up"></h1></div>
+				<p>
 			</div>
 		</main>
 	</body>
+	<script type="text/javascript" src="../../2015/node_modules/scrollreveal/dist/scrollReveal.min.js"></script>
 	<script>
 		function memberCtrl($scope) {
 	    	$scope.members = [
 	    		{name:"Yi Tian", desc:"Co-Founder", pict:"", quot:""},
 	    		{name:"Yumeng", desc:"Founder", pict:"", quot:""},
 	    		{name:"Shivani", desc:"Co-Founder", pict:"", quot:""},
-	    		{name:"Alan", desc:"Co-Founder", pict:"", quot:""},
+	    		{name:"Alan", desc:"Co-Founder and Announcer", pict:"", quot:""},
 	    		{name:"Rami", desc:"Co-Founder", pict:"", quot:""},
-	    		{name:"Wayne", desc:"Co-Founder", pict:"", quot:""},
+	    		{name:"Wayne", desc:"(aka Winnie) Co-Founder", pict:"", quot:""},
 	    		{name:"Si Mei", desc:"Member", pict:"", quot:""},
 	    		{name:"Kwang", desc:"Member", pict:"", quot:""}
+	    		// {name:"Jing", desc:"Ex-Member", pict:"", quot:""}
 	    	].sort(function(a, b){return b.name.localeCompare(a.name)});
+	    	$scope.refresh = function() {
+	    		window.setTimeout(function(){
+					//scrollReveal
+					console.log("wewer");
+					window.sr = new scrollReveal();
+				}, 500);
+			};
 		}
-
+		function init(){
+			var scrollData = {
+				scrollUp:function(){return 0;},
+				scrollDown:function(){return $(window).height();},
+				storyBtn:function(){return $("#story").offset().top;},
+				memberBtn:function(){return $("#members").offset().top;},
+				encyclBtn:function(){return $("#encyclopedia").offset().top;}
+			};
+			var keys = Object.keys(scrollData);
+			for (var i in keys){
+				$("#"+keys[i]).click(function(){
+					console.log(this.id);
+					$('html, body').animate({ scrollTop: scrollData[this.id]() }, 'fast');
+				});
+			}
+		}
+		init();
 	</script>
 </html>
