@@ -197,6 +197,12 @@ var data = [
 		content: "Survived last academic semester while taking 4 graduate courses and applying for jobs. Ha~ again, I don't recommend this to anyone.",
 		date: "06/02/15",
 		url: "grad"
+	},{
+		name: "LXR&CO",
+		link: "https://www.lxrco.com/",
+		content: "Started working full time. A new web developer is born!",
+		date: "05/05/15",
+		type: "e"
 	}
 ]
 
