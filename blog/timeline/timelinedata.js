@@ -185,6 +185,18 @@ var data = [
 		content: "Abandoning another webpage again.",
 		date: "04/20/15",
 		type:"e"
+	},{
+		name: "Octopus X Fractal Game",
+		link: "https://github.com/ytixu/octopusXfractal",
+		content: "Term project in modern game class. Built room exhibiting fractal properties.",
+		date: "04/14/15",
+		url: "octo"
+	},{
+		name: "Graduation",
+		link: "?",
+		content: "Survived last academic semester while taking 4 graduate courses and applying for jobs. Ha~ again, I don't recommend this to anyone.",
+		date: "06/02/15",
+		url: "grad"
 	}
 ]
 
