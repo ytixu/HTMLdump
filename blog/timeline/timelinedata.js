@@ -194,9 +194,15 @@ var data = [
 	},{
 		name: "Graduation",
 		link: "?",
-		content: "Survived last academic semester while taking 4 graduate courses and applying for jobs. Ha~ again, I don't recommend this to anyone.",
+		content: "",
 		date: "06/02/15",
 		url: "grad"
+	},{
+		name: "Last final exam - evar",
+		link: "?",
+		content: "Survived last academic semester with 4 graduate courses, job applications and hackathons. During the second half, start most of my days with a Tim Horton coffee, then arriving home at around 10PM and continue coding until 2AM. Good times, though I don't recommend this to anyone.",
+		date: "05/01/15",
+		type: "e"
 	},{
 		name: "LXR&CO",
 		link: "https://www.lxrco.com/",
