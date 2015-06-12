@@ -1,0 +1,29 @@
+<DOCTYPE HTML!>
+<html>
+	<head>
+		<title>Blah</title>
+		<style type="text/css">
+            body {
+                margin-top: 100px;
+			    margin-left: 100px;
+            }
+
+        </style>
+	</head>
+	<body>
+		<table><tr><td>
+			<p>To move your player (black tile):<br>
+			Option 1: Use numpad numbers (1-9);<br>
+			Option 2: Use arrow keys (cannot move in diagonal in this case);<br>
+			Option 3: Use letter keys &lt;Y&gt;, &lt;U&gt;, &lt;I&gt;, &lt;H&gt;, &lt;J&gt;, &lt;K&gt;, &lt;N&gt;, &lt;M&gt;, &lt;,&gt;.</p>
+			<p>Use the same keys to highlight a tile next to the player. <br>
+			To set flag on a highlighted tile, either use &lt;Enter&gt; (on numpad) or &lt;Shift&gt;. <br>
+			To open a highlighted tile, either use &lt;0&gt; (on numpad) or &lt;Space&gt;. </p>
+			<p>When the surronding flags add up to the number on the tile, <br>
+			use &lt;5&gt;(on numpad) or &lt;j&gt; to open all surrounding non-flagged tiles.</p>
+		</td><td width=30><br></td><td>
+			<div id='game'></div>
+		</td></tr></table>
+		<script type="text/javascript" src="board.js"></script>
+	</body>
+</html>
