@@ -6,7 +6,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
-	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body class="container">
@@ -23,12 +24,13 @@
 	</header>
 	<main ng-view>
 		<div data-ng-controller="recipesCtrl">
-			<div data-ng-repeat="rec in recipesData" class="recipesContainer col-md-4">
+			<div class="recipesContainer col-md-4" data-ng-repeat="rec in recipesData" ng-init="$last ? refresh() : null">
 				<h3>{{ rec.name }}</h3>
 				<div class="content">
 					<img src="images/{{ rec.img }}" class="dishPic">
 				</div>
-				<div>{{ rec.desc }}</div>
+				<p>{{ rec.desc }}</p>
+				<i class="fa fa-twitter share-btn" data-text="{{rec.name}} looks so damn good #foodXhack"></i>
 			</div>
 		</div>
 	</main>
@@ -39,7 +41,23 @@
 	<script>
 		function recipesCtrl($scope) {
 	        $scope.recipesData = recipes;
+
+	        $scope.refresh = function() {
+					window.setTimeout(function(){
+						$('.fa-twitter').each(function(){
+							$btn = $(this);
+					    	$btn.click(function(){
+					    		window.open('https://twitter.com/intent/tweet?text='
+					    			+ encodeURIComponent($btn.data("text") + " " 
+					    			+ window.location.href ), '', 'width=500,height=350');
+					    	});
+					    	
+					    });
+					}, 500);
+				};
 	    }
+
+	    
 	</script>
 </body>
 </html>

@@ -23,3 +23,11 @@ h3{
 	margin:10px 0;
 	width:100%;
 }
+
+.share-btn{
+	font-size: 20px;
+}
+.share-btn:hover{
+	color:#4099FF;
+	cursor:pointer;
+}
