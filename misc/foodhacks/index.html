@@ -27,9 +27,9 @@
 				<h3>{{ rec.name }}</h3>
 				<div class="content">
 					<img src="images/{{ rec.img }}" class="dishPic">
+					<div class='share-btn-container'><i id="{{rec.name}}" class="fa fa-twitter share-btn" data-text="{{rec.name}} looks so damn good #foodXhack"></i></div>
 				</div>
 				<p>{{ rec.desc }}</p>
-				<i id="{{rec.name}}" class="fa fa-twitter share-btn" data-text="{{rec.name}} looks so damn good #foodXhack"></i>
 			</div>
 		</div>
 	</main>
@@ -43,6 +43,27 @@
 
 	        $scope.refresh = function() {
 					window.setTimeout(function(){
+						$('.recipesContainer').each(function(){
+							$(this).hover(function(){
+								$(this).find('div.share-btn-container').finish();
+								$(this).find('div.share-btn-container').animate({
+									'height':'40px',
+									'margin-top':'-50px',
+									'padding':'10px'
+								}, 200, function(){
+									$(this).find('i.share-btn').fadeIn('fast');
+								});
+							}, function(){
+								$(this).find('div.share-btn-container').finish();
+								$(this).find('i.share-btn').finish();
+								$(this).find('i.share-btn').css('display', 'none');
+								$(this).find('div.share-btn-container').animate({
+									'height':'0px',
+									'margin-top':'0px',
+									'padding':'0px'
+								}, 150);
+							});
+						});
 						$('.fa-twitter').each(function(){
 					    	$(this).click(function(){
 					    		window.open('https://twitter.com/intent/tweet?text='

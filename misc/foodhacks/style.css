@@ -36,6 +36,7 @@ h3{
 	-moz-transition:.21s;
 	-webkit-transition:.21s;
 	transition:.21s;
+	display:none;
 }
 .share-btn:hover{
 	color:#4099FF;
@@ -50,4 +51,13 @@ h3{
 .titleLink:hover{
 	color:black;
 	text-decoration: none;
+}
+
+.share-btn-container{
+	position:relative;
+	height:0px;
+	padding:0px;
+	margin-top:0px;
+	float:left;
+	background-color: rgba(255, 255, 255, 0.8); 
 }
