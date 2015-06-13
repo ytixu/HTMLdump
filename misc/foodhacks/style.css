@@ -12,7 +12,12 @@ h3{
 }
 
 .recipesContainer{
-	padding:10px;	
+	padding:10px;
+	-webkit-transition: background 0.21s linear;
+	-moz-transition: background 0.21s linear;
+	-ms-transition: background 0.21s linear;
+	-o-transition: background 0.21s linear;
+	transition: background 0.21s linear;
 }
 
 .recipesContainer:hover{
@@ -26,8 +31,23 @@ h3{
 
 .share-btn{
 	font-size: 20px;
+	-o-transition:.21s;
+	-ms-transition:.21s;
+	-moz-transition:.21s;
+	-webkit-transition:.21s;
+	transition:.21s;
 }
 .share-btn:hover{
 	color:#4099FF;
 	cursor:pointer;
+}
+
+.titleLink{
+	color:black;
+	text-decoration: none;
+}
+
+.titleLink:hover{
+	color:black;
+	text-decoration: none;
 }
