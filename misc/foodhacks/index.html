@@ -30,7 +30,7 @@
 					<img src="images/{{ rec.img }}" class="dishPic">
 				</div>
 				<p>{{ rec.desc }}</p>
-				<i class="fa fa-twitter share-btn" data-text="{{rec.name}} looks so damn good #foodXhack"></i>
+				<i id="{{rec.name}}" class="fa fa-twitter share-btn" data-text="{{rec.name}} looks so damn good #foodXhack"></i>
 			</div>
 		</div>
 	</main>
@@ -45,10 +45,9 @@
 	        $scope.refresh = function() {
 					window.setTimeout(function(){
 						$('.fa-twitter').each(function(){
-							$btn = $(this);
-					    	$btn.click(function(){
+					    	$(this).click(function(){
 					    		window.open('https://twitter.com/intent/tweet?text='
-					    			+ encodeURIComponent($btn.data("text") + " " 
+					    			+ encodeURIComponent($(this).data("text") + " " 
 					    			+ window.location.href ), '', 'width=500,height=350');
 					    	});
 					    	
