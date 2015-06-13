@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html data-ng-app>	
+<head>
+	<title>foodXhack</title>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=ml&lang=scm&lang=hs"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="container">
+	<header>
+		<div id="header-banner"></div>
+		<menu>
+			<menuitem>HOME</menuitem>
+			<menuitem>SHARE</menuitem>
+			<menuitem>CONTACT</menuitem>
+			<menuitem>SUPPORT</menuitem>
+		</menu>
+		<hr>
+		<h1 class="title">Recipes</h1>
+	</header>
+	<main ng-view>
+		<div data-ng-controller="recipesCtrl" class="col-md-4">
+			<div data-ng-repeat="rec in recipesData" class="recipesContainer">
+				<h3>{{ rec.name }}</h3>
+				<div class="content">
+					<img src="images/{{ rec.img }}" class="dishPic">
+				</div>
+				<div>{{ rec.desc }}</div>
+			</div>
+		</div>
+	</main>
+	<footer>
+
+	</footer>
+	<script src= "script.js"></script>
+	<script>
+		function recipesCtrl($scope) {
+	        $scope.recipesData = recipes;
+	    }
+	</script>
+</body>
+</html>

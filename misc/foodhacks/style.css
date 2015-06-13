@@ -1,0 +1,25 @@
+.title{
+	margin-bottom:20px;
+}
+
+menuitem{
+	padding:20px;	
+}
+
+h3{
+	padding:0;
+	margin:0;
+}
+
+.recipesContainer{
+	padding:10px;	
+}
+
+.recipesContainer:hover{
+	background-color: #eeeeee;
+}
+
+.dishPic{
+	margin:10px 0;
+	width:100%;
+}
