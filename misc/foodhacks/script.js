@@ -21,4 +21,8 @@ var recipes = [
 		img: "helloworld.jpg"
 	}
 
-]
+];
+
+var aboutPage = {
+	desc: "<b>foodXhack</b> is the cross product of food and hacking. We inspire and encourage creative food lovers to design cooking algorithms and to push culinary art beyond its boundaries.",
+};

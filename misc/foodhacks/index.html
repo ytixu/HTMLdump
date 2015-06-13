@@ -12,12 +12,12 @@
 </head>
 <body class="container">
 	<header>
-		<div id="header-banner"></div>
 		<menu>
-			<menuitem><a>SHARE</a></menuitem>
-			<menuitem><a>CONTACT</a></menuitem>
-			<menuitem><a>SUPPORT</a></menuitem>
+			<menuitem><a id="share-btn">SHARE YOURS</a></menuitem>
+			<menuitem><a id="about-btn">ABOUT</a></menuitem>
 		</menu>
+		<div id="header-extension" class="content"></div>
+		<div id="header-banner"></div>
 		<hr>
 		<a href="index.html" class="titleLink"><h1 class="title">food<img src="images/logo.png" style="margin-top:-8px;">hack</h1></a>
 	</header>
@@ -40,6 +40,25 @@
 	<script>
 		function recipesCtrl($scope) {
 	        $scope.recipesData = recipes;
+
+	        var header = false;
+	        $(function(){
+	        	$("#about-btn").click(function(){
+	        		header = true;
+	        		$("#header-extension").finish();
+	        		$("#header-extension").slideUp("fast", 
+        				function(){
+        					$(this).html(aboutPage.desc);
+        					$(this).slideDown("fast")
+        				});
+	        	});
+	        	$("header").on('mouseout', function(){
+	        		if (!header) return;
+	        		header = false;
+	        		$("#header-extension").finish();
+	        		$("#header-extension").slideUp("slow");
+	        	});
+	        });
 
 	        $scope.refresh = function() {
 					window.setTimeout(function(){
