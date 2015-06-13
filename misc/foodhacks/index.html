@@ -22,8 +22,8 @@
 		<h1 class="title">Recipes</h1>
 	</header>
 	<main ng-view>
-		<div data-ng-controller="recipesCtrl" class="col-md-4">
-			<div data-ng-repeat="rec in recipesData" class="recipesContainer">
+		<div data-ng-controller="recipesCtrl">
+			<div data-ng-repeat="rec in recipesData" class="recipesContainer col-md-4">
 				<h3>{{ rec.name }}</h3>
 				<div class="content">
 					<img src="images/{{ rec.img }}" class="dishPic">
