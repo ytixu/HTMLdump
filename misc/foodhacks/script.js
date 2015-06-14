@@ -9,7 +9,7 @@ var recipes = [
 		algo: ["Create two threads, one boils the pasta and the other one cooks the sauce.",
 			   "On the thread cooking the sauce, input oil in cooking pot, wait until oil becomes hot, slice pepper and tomato into pot like a ninja.",
 			   "Create a third thread that cut the lettuce and put them aesthetically on the output plate.",
-			   "On no move lettuce to cut, close lettuce cutting thread."
+			   "On no move lettuce to cut, close lettuce cutting thread.",
 			   "On tomato becomes mushy, close cooking thread.",
 			   "On pasta becomes mushy, you probably overboild the pasta. :o",
 			   "On pasta becomes soft, close boiling thread and move pasta and tomato sauce onto output place.",
@@ -21,10 +21,10 @@ var recipes = [
 		name: "Meat Da Salad", 
 		desc: "Fried meat, peas and corn on salad and rice.",
 		img: "meat-the-salad.jpg",
-		ing: ["green peas, corn, ground meat, rice, lettuce, oil, salt"]
+		ing: ["green peas","corn","ground meat","rice","lettuce","oil","salt"],
 		algo: ["Install package cooked-rice.",
 			   "Input meat into cooking pan. Cook until cooked.",
-			   "Add peas, corn and salt to cooking pan. Cook until all cooked."
+			   "Add peas, corn and salt to cooking pan. Cook until all cooked.",
 			   "Cut the lettuce and put them aesthetically on the output plate.",
 			   "Import cooked rice in the output plate.",
 			   "Move peas, corn and meat to the output plate."]
