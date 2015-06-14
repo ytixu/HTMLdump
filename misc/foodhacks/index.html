@@ -61,15 +61,21 @@
 	<script>
 	    var header = false;
 
+	    function changeHeader(str){
+    		header = true;
+    		$("#header-extension").finish();
+    		$("#header-extension").slideUp("fast", 
+				function(){
+					$(this).html(str);
+					$(this).slideDown("fast")
+				});
+	    }
 		$(function(){
         	$("#about-btn").click(function(){
-        		header = true;
-        		$("#header-extension").finish();
-        		$("#header-extension").slideUp("fast", 
-    				function(){
-    					$(this).html(aboutPage.desc);
-    					$(this).slideDown("fast")
-    				});
+        		changeHeader(aboutPage.desc);
+        	});
+        	$("#share-btn").click(function(){
+        		changeHeader(sharePage.desc);
         	});
         	$("header").on('mouseout', function(){
         		if (!header) return;

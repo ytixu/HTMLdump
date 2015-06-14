@@ -56,3 +56,7 @@ var recipes = [
 var aboutPage = {
 	desc: "<b>foodXhack</b> is the cross product of food and hacking. We inspire and encourage creative food lovers to design cooking algorithms and to push culinary art beyond its boundaries.",
 };
+
+var sharePage = {
+	desc: "Have awesome food hacks that you want to share with the world? Get ready because soon we'll add the POST method that enable you to add your own recipe, eventually...",
+};
