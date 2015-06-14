@@ -57,6 +57,7 @@
 	</div>
 	<script src= "script.js"></script>
 	<script>
+	    var header = false;
 
 		$(function(){
         	$("#about-btn").click(function(){
@@ -91,8 +92,6 @@
         }
 		function recipesCtrl($scope) {
 	        $scope.recipesData = recipes;
-
-	        var header = false;
 
 	        $scope.refresh = function() {
 					window.setTimeout(function(){

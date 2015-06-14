@@ -35,16 +35,19 @@ var recipes = [
 		name: "Coin For Your Stomach", 
 		desc: "Cookies - round and smooth like coins - with cereal, yogurt and chocolate sauce.",
 		img: "coin-for-your-stomach.jpg",
-		ing: [],
-		algo: [],
+		ing: ["chocolate sauce", "cookies", "cereal", "yogurt"],
+		algo: ["Insert the ingredients to a stack in the listed order.", "Pop the stack into a bowl until it's empty."],
 		slug: "coin-for-your-stomach"
 	},
 	{
 		name: "Hello World", 
 		desc: "Cheese and blackberry on bagel with jelly and chocolate sauce. First food hack :3",
 		img: "helloworld.jpg",
-		ing: [],
-		algo: [],
+		ing: ["bagel", "La vache qui Rit cheese", "blackberry", "jam", "chocolate sause"],
+		algo: ["Try split the bagel in half; catch fail to split by hand exception; cut the bagel in half.",
+			   "Spread jam.",
+			   "Cut the cheese in half. Top each bagel halves with cheese with blackberry",
+			   "Add chocolate sauce."],
 		slug: "hello-world"
 	}
 
