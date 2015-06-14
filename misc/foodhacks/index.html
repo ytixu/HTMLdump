@@ -26,7 +26,9 @@
 			<div class="recipesContainer col-md-4" data-ng-repeat="rec in recipesData" ng-init="$last ? refresh() : null">
 				<h3>{{ rec.name }}</h3>
 				<div class="content">
-					<img id="{{rec.slug}}" data-image="{{ $index }}" src="images/{{ rec.img }}" class="dishPic">
+					<a href="#.{{rec.slug}}" id="{{rec.slug}}" class="displayer-btn" data-image="{{ $index }}">
+						<img src="images/{{ rec.img }}" class="dishPic">
+					</a>
 					<div class='share-btn-container'><i id="{{rec.name}}" class="fa fa-twitter share-btn" data-slug="{{rec.slug}}" data-name="{{rec.name}}"></i></div>
 				</div>
 				<p>{{ rec.desc }}</p>
@@ -88,7 +90,7 @@
         	return 'https://twitter.com/intent/tweet?text='
 	    			+ encodeURIComponent(name
 	    			+ " looks so damn good #foodXhack " 
-	    			+ window.location.href.split('#')[0] + "#" ) + slug;
+	    			+ window.location.href.split('#.')[0] + "#." ) + slug;
         }
 		function recipesCtrl($scope) {
 	        $scope.recipesData = recipes;
@@ -124,7 +126,7 @@
 					    	});
 					    	
 					    });
-					    $('.dishPic').each(function(){
+					    $('.displayer-btn').each(function(){
 					    	$(this).click(function(){
 						    	var recipe = recipes[parseInt($(this).data('image'))];
 						    	$('.recipe-displayer').finish();
@@ -154,7 +156,7 @@
 					    	});
 					    });
 					    // slugs
-					    var url = window.location.href.split('#');
+					    var url = window.location.href.split('#.');
 					    if (url.length > 1){
 					    	$('#'+url[1]).click();
 					    }
