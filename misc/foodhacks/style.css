@@ -30,14 +30,19 @@ h3{
 }
 
 .share-btn{
+	display:none;
+}
+.share-btn,
+#displayer-share-btn{
 	font-size: 20px;
 	-o-transition:.21s;
 	-ms-transition:.21s;
 	-moz-transition:.21s;
 	-webkit-transition:.21s;
 	transition:.21s;
-	display:none;
 }
+
+#displayer-share-btn:hover,
 .share-btn:hover{
 	color:#4099FF;
 	cursor:pointer;

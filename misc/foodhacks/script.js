@@ -15,7 +15,8 @@ var recipes = [
 			   "On pasta becomes soft, close boiling thread and move pasta and tomato sauce onto output place.",
 			   "Add a sprinkle of cheese.",
 			   "Insert output plate into microwave and set for the time it takes for the cheese to melt.",
-			   "Now you remember you forgot to add salt..."]
+			   "Now you remember you forgot to add salt..."],
+		slug: "trottier-p-p"
 	},
 	{
 		name: "Meat Da Salad", 
@@ -27,21 +28,24 @@ var recipes = [
 			   "Add peas, corn and salt to cooking pan. Cook until all cooked.",
 			   "Cut the lettuce and put them aesthetically on the output plate.",
 			   "Import cooked rice in the output plate.",
-			   "Move peas, corn and meat to the output plate."]
+			   "Move peas, corn and meat to the output plate."],
+		slug: "meat-da-salad"
 	},
 	{
 		name: "Coin For Your Stomach", 
 		desc: "Cookies - round and smooth like coins - with cereal, yogurt and chocolate sauce.",
 		img: "coin-for-your-stomach.jpg",
 		ing: [],
-		algo: []
+		algo: [],
+		slug: "coin-for-your-stomach"
 	},
 	{
 		name: "Hello World", 
 		desc: "Cheese and blackberry on bagel with jelly and chocolate sauce. First food hack :3",
 		img: "helloworld.jpg",
 		ing: [],
-		algo: []
+		algo: [],
+		slug: "hello-world"
 	}
 
 ];

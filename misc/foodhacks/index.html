@@ -26,8 +26,8 @@
 			<div class="recipesContainer col-md-4" data-ng-repeat="rec in recipesData" ng-init="$last ? refresh() : null">
 				<h3>{{ rec.name }}</h3>
 				<div class="content">
-					<img data-image="{{ $index }}" src="images/{{ rec.img }}" class="dishPic">
-					<div class='share-btn-container'><i id="{{rec.name}}" class="fa fa-twitter share-btn" data-text="{{rec.name}} looks so damn good #foodXhack"></i></div>
+					<img id="{{rec.slug}}" data-image="{{ $index }}" src="images/{{ rec.img }}" class="dishPic">
+					<div class='share-btn-container'><i id="{{rec.name}}" class="fa fa-twitter share-btn" data-slug="{{rec.slug}}" data-name="{{rec.name}}"></i></div>
 				</div>
 				<p>{{ rec.desc }}</p>
 			</div>
@@ -44,6 +44,7 @@
 		</div>
 		<div class="col-md-6">
 			<img id="displayer-image">
+			<i id="displayer-share-btn"class="fa fa-twitter"></i>
 		</div>
 		<div class="col-md-6 displayer-scrollable">
 			<h1 id="displayer-title"></h1>
@@ -80,6 +81,14 @@
 				$("#recipe-displayer").fadeOut("fast");
     		});
         });
+
+        function getTwitterMessage(name, slug)
+        {
+        	return 'https://twitter.com/intent/tweet?text='
+	    			+ encodeURIComponent(name
+	    			+ " looks so damn good #foodXhack " 
+	    			+ window.location.href.split('#')[0] + "#" ) + slug;
+        }
 		function recipesCtrl($scope) {
 	        $scope.recipesData = recipes;
 
@@ -110,9 +119,9 @@
 						});
 						$('.fa-twitter').each(function(){
 					    	$(this).click(function(){
-					    		window.open('https://twitter.com/intent/tweet?text='
-					    			+ encodeURIComponent($(this).data("text") + " " 
-					    			+ window.location.href ), '', 'width=500,height=350');
+					    		window.open(getTwitterMessage($(this).data("name"), 
+					    			$(this).data("slug")), 
+					    			'', 'width=500,height=350');
 					    	});
 					    	
 					    });
@@ -132,12 +141,24 @@
 						    	for (var i in recipe.algo){
 						    		$("#displayer-algorithm").append('<li>' + recipe.algo[i] + '</li>');
 						    	}
+						    	$("#displayer-share-btn").data("name", recipe.name);
+						    	$("#displayer-share-btn").data("slug", recipe.slug);
+						    	$("#displayer-share-btn").click(function(){
+						    		window.open(getTwitterMessage($(this).data("name"), 
+					    			$(this).data("slug")), 
+						    			'', 'width=500,height=350');
+							    });
 						    	$('#recipe-displayer').css("top", $(window).scrollTop());
 						    	$('.recipe-displayer').fadeIn("slow");
 						    	$('#recipe-displayer').fadeIn("slow");
 
 					    	});
 					    });
+					    // slugs
+					    var url = window.location.href.split('#');
+					    if (url.length > 1){
+					    	$('#'+url[1]).click();
+					    }
 
 					}, 500);
 				};
