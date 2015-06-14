@@ -60,6 +60,7 @@
 	<script src= "script.js"></script>
 	<script>
 	    var header = false;
+	    var url = "";
 
 	    function changeHeader(str){
     		header = true;
@@ -89,6 +90,11 @@
 				$(".recipe-displayer").fadeOut("fast");
 				$("#recipe-displayer").fadeOut("fast");
     		});
+
+    		url = window.location.href.split('#.');
+		    if (url.length == 1){
+		    	url = window.location.href.split('#');
+		    }
         });
 
         function getTwitterMessage(name, slug)
@@ -96,7 +102,7 @@
         	return 'https://twitter.com/intent/tweet?text='
 	    			+ encodeURIComponent(name
 	    			+ " looks so damn good #foodXhack " 
-	    			+ window.location.href.split('#.')[0] + "#." ) + slug;
+	    			+ url[0] + "#" ) + slug;
         }
 		function recipesCtrl($scope) {
 	        $scope.recipesData = recipes;
@@ -162,7 +168,6 @@
 					    	});
 					    });
 					    // slugs
-					    var url = window.location.href.split('#.');
 					    if (url.length > 1){
 					    	$('#'+url[1]).click();
 					    }
