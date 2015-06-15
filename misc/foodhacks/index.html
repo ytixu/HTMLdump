@@ -7,7 +7,8 @@
 	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
 	<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+	<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.
+	css" />
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body class="container">
@@ -23,15 +24,17 @@
 	</header>
 	<main ng-view>
 		<div data-ng-controller="recipesCtrl">
-			<div class="recipesContainer col-md-4" data-ng-repeat="rec in recipesData" ng-init="$last ? refresh() : null">
+			<div class="recipesContainer col-md-4 col-sm-6" data-ng-repeat="rec in recipesData" ng-init="$last ? refresh() : null">
 				<h3>{{ rec.name }}</h3>
 				<div class="content">
 					<a href="#.{{rec.slug}}" id="{{rec.slug}}" class="displayer-btn" data-image="{{ $index }}">
 						<img src="images/{{ rec.img }}" class="dishPic">
 					</a>
-					<div class='share-btn-container'><i id="{{rec.name}}" class="fa fa-twitter share-btn" data-slug="{{rec.slug}}" data-name="{{rec.name}}"></i></div>
+					<div class='share-btn-container'>
+						<div>{{ rec.desc }}</div>
+						<i id="{{rec.name}}" class="fa fa-twitter share-btn" data-slug="{{rec.slug}}" data-name="{{rec.name}}"></i>
+					</div>
 				</div>
-				<p>{{ rec.desc }}</p>
 			</div>
 		</div>
 	</main>
@@ -110,24 +113,12 @@
 	        $scope.refresh = function() {
 					window.setTimeout(function(){
 						$('.recipesContainer').each(function(){
-							$(this).hover(function(){
+								$(this).hover(function(){
 								$(this).find('div.share-btn-container').finish();
-								$(this).find('div.share-btn-container').animate({
-									'height':'40px',
-									'margin-top':'-50px',
-									'padding':'10px'
-								}, 200, function(){
-									$(this).find('i.share-btn').fadeIn('fast');
-								});
+								$(this).find('div.share-btn-container').fadeIn("fast");
 							}, function(){
 								$(this).find('div.share-btn-container').finish();
-								$(this).find('i.share-btn').finish();
-								$(this).find('i.share-btn').css('display', 'none');
-								$(this).find('div.share-btn-container').animate({
-									'height':'0px',
-									'margin-top':'0px',
-									'padding':'0px'
-								}, 150);
+								$(this).find('div.share-btn-container').fadeOut("fast");
 							});
 						});
 						$('.fa-twitter').each(function(){

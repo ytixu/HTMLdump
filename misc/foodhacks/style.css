@@ -1,5 +1,6 @@
 .title{
 	margin-bottom:20px;
+	display:inline-block;
 }
 
 menuitem{
@@ -29,9 +30,6 @@ h3{
 	width:100%;
 }
 
-.share-btn{
-	display:none;
-}
 .share-btn,
 #displayer-share-btn{
 	font-size: 20px;
@@ -59,13 +57,29 @@ h3{
 }
 
 .share-btn-container{
-	position:relative;
-	height:0px;
-	padding:0px;
-	margin-top:0px;
-	float:left;
-	background-color: rgba(255, 255, 255, 0.8); 
+	position:absolute;
+	display:none;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	padding: 5px;
+	bottom:0;
+	width:98%;
+	background-color: rgba(238,238,238, 0.8); 
 }
+
+@media (min-width: 768px) {
+    .share-btn-container{
+    	width:97%;
+    }
+}
+
+@media (min-width: 992px) {
+    .share-btn-container{
+    	width:95%;
+    }
+}
+
+
 
 #about-btn:hover, 
 #share-btn:hover, 

@@ -1,8 +1,22 @@
 var recipes = [
-
+	{
+		name:"Midnight Eyes",
+		desc:"Stuffed rice ball topped with tomato sauce, red like coders' eyes in a marathon against bed time.",
+		img:"midtnight-eyes.jpg",
+		ing:["1 tomato", "green onion", "rice", "stuff to stuff", "salt"],
+		algo: ["Import whatever you want to stuff (e.g.: eggs and green peas.",
+			   "Cook the rice.",
+			   "Cook the tomato and green onion to make the sauce.",
+			   "Define sub routine to shape the rice ball <ol><li>Take a plastic rapper. </li>"
+			    +"<li>Start with a thin layer of rice. </li>"
+			    +"<li>Add a layer of stuff. </li>"
+			    +"<li>Add another layer of rice. </li>"
+			    +"<li>Squeeze everything like when you make a snowball but with a plastic rapper.</li></ol>",
+			   "Add tomato sauce."]
+	},
 	{
 		name: "Trottier++", 
-		desc: "Homemade fried tomato and green pepper sauce sprinkled with cheese. A lot better than the pasta at Trottier's cafeteria.",
+		desc: "Tomato and green pepper sauce sprinkled with cheese, a lot better than the pasta at Trottier's cafeteria.",
 		img: "trottier-p-p-pasta.jpg",
 		ing: ["4 plum tomatoes", "1/2 green pepper", "salt", "oil", "pasta", 
 			  "romaine lettuce (or any other is fine)", "shredded cheese"],
