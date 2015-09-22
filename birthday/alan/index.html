@@ -11,6 +11,9 @@
 			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 			MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
 		</script>
+		<!-- Pie charts -->
+		<script type="text/javascript" src="http://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
+		<link rel="stylesheet" href="http://rendro.github.io/easy-pie-chart/stylesheets/jquery.easy-pie-chart.css">
 		<!-- Google font -->
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
 		<link href='https://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
@@ -34,17 +37,29 @@
 			<div>My Goals</div>
 			<div>Teaming Up!</div>
 		</div>
-		<div id="splash-div">
+		<div class="splash-div">
 			<div id="splash-title">
-				Alan Do-Omri 
+				Alan Do-Omri
 			</div>
 			<div class="splash-subtitle">
 				Lead Cryptographer, Mecha Engineer and Game Enthusiast
 				<br><br>
 				<button type="button" class="btn btn-trans btn-trans-default"><strong>LET'
-				S TEAM UP!<strong></button>
+				S TEAM UP!</strong></button>
 			</div>
 		</div>
+
+		<div class="splash-div">
+			<div class="container">
+				<h2>My Stats</h2>
+				<div ng-controller="viewCtrl">
+					<div ng-repeat="c in skillCharts" ng-init="$last ? refresh() : null">
+						<div class="chart" data-percent="{{c.percent}}" data-color="{{c.color}}">{{c.name}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 		<div class="contact-links">
 			<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-linkedin-square"></i></a>
@@ -54,8 +69,6 @@
 		</div>
 	</body>
 	<!-- Scrolling power~ -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
-	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
 	<script type="text/javascript" src="http://ytixu.github.io/HTMLdump/2015/node_modules/scrollreveal/dist/scrollReveal.min.js"></script>
 
 	<!-- My script :3 -->
