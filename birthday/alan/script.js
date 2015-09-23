@@ -40,6 +40,7 @@ function viewCtrl($scope) {
 
 // menu highligher
 var cachePosition = {};
+var currentSplash = ''
 
 function populateBG(){
 	$('.splash-div').each(function(i, e){
@@ -49,8 +50,10 @@ function populateBG(){
 		$(div).css({
 			'background-image':'url("'+$(e).data('image')+'")'
 		});
+		$(div).hide();
 		$('#splash-bg-container').append(div);
 		if (i == 0){
+			currentSplash = $(div).attr('id');
 			if(navigator.userAgent.toLowerCase().indexOf('chrome') > -1){
 				$('#splash-title').css({
 					'background': 'url("'+$(e).data('image')+'")',
@@ -61,6 +64,7 @@ function populateBG(){
 					'-webkit-background-clip': 'text'
 				});
 			}
+			$(div).fadeIn('slow');
 		}
 	});
 }
@@ -80,12 +84,17 @@ function populateCache(){
 function refreashMenuHighlight(){
 	for(var i in cachePosition){
 		var top = $('#side-menu').offset().top;
-		console.log(cachePosition[i].top);
 		if (top > cachePosition[i].top &&
 			top < cachePosition[i].buttom){
+			console.log(i);
 				$('#'+i).addClass('active');
+				if($('#bg-'+i).attr('id') != currentSplash){
+					currentSplash = $('#bg-'+i).attr('id');
+					$('#bg-'+i).fadeIn('slow');
+				}
 		}else{
 			$('#'+i).removeClass('active');
+			$('#bg-'+i).fadeOut('slow');
 		}
 	}
 }
