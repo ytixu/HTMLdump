@@ -31,41 +31,43 @@
 		</style>
 	</head>
 	<body>
+		<div id="splash-bg-container"></div>
 		<div id="side-menu">
-			<div>My Stats</div>
-			<div>My Archievements</div>
-			<div>My Goals</div>
-			<div>Teaming Up!</div>
+			<div id="splash2">About me</div>
+			<div id="splash3">Projects</div>
+			<div id="splash5">Teaming Up!</div>
 		</div>
-		<div class="splash-div">
-			<div id="splash-title">
-				Alan Do-Omri
+		<div id="splash-content-container">
+			<div class="splash-div" data-id="splash1" data-image="images/1.jpg">
+				<h2 id="splash-title">
+					Alan Do-Omri
+				</h2>
+				<div class="splash-subtitle">
+					Lead Cryptographer, Mecha Engineer and Game Enthusiast
+					<br><br>
+					<button type="button" class="btn btn-trans btn-trans-default"><strong>LET'
+					S TEAM UP!</strong></button>
+				</div>
 			</div>
-			<div class="splash-subtitle">
-				Lead Cryptographer, Mecha Engineer and Game Enthusiast
-				<br><br>
-				<button type="button" class="btn btn-trans btn-trans-default"><strong>LET'
-				S TEAM UP!</strong></button>
-			</div>
-		</div>
 
-		<div class="splash-div">
-			<div class="container">
-				<h2>My Stats</h2>
-				<div ng-controller="viewCtrl">
-					<div ng-repeat="c in skillCharts" ng-init="$last ? refresh() : null">
-						<div class="chart" data-percent="{{c.percent}}" data-color="{{c.color}}">{{c.name}}</div>
+			<div class="splash-div" data-id="splash2" data-image="images/2.jpg">
+				<div class="container">
+					<div ng-controller="viewCtrl">
+						<div ng-repeat="c in skillCharts" ng-init="$last ? refresh() : null">
+							<div class="chart" data-percent="{{c.percent}}" data-color="{{c.color}}">{{c.name}}</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-
-		<div class="contact-links">
-			<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-linkedin-square"></i></a>
-			<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-github-square"></i></a>
-			<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-facebook-official"></i></a>
-			<a href="mailto:alan@something.com"><i class="fa fa-envelope-square"></i></a>
+			<div class="splash-div" data-id="splash5" data-image="images/12.jpg">
+				<div class="contact-links">
+					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-github-square"></i></a>
+					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-facebook-official"></i></a>
+					<a href="mailto:alan@something.com"><i class="fa fa-envelope-square"></i></a>
+				</div>
+			</div>
 		</div>
 	</body>
 	<!-- Scrolling power~ -->
