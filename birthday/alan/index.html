@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="http://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
 		<link rel="stylesheet" href="http://rendro.github.io/easy-pie-chart/stylesheets/jquery.easy-pie-chart.css">
 		<!-- Google font -->
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans">
+		<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:900' rel='stylesheet' type='text/css'>
 		<!-- Bootstrap -->
@@ -38,7 +38,7 @@
 			<div id="splash5">Teaming Up!</div>
 		</div>
 		<div id="splash-content-container">
-			<div class="splash-div" data-id="splash1" data-image="images/1.jpg">
+			<div class="splash-div full-height" data-id="splash1" data-image="images/1.jpg">
 				<h2 id="splash-title">
 					Alan Do-Omri
 				</h2>
@@ -51,16 +51,63 @@
 			</div>
 
 			<div class="splash-div" data-id="splash2" data-image="images/2.jpg">
-				<div class="container">
-					<div ng-controller="viewCtrl">
-						<div ng-repeat="c in skillCharts" ng-init="$last ? refresh() : null">
-							<div class="chart" data-percent="{{c.percent}}" data-color="{{c.color}}">{{c.name}}</div>
+				<div class="container color-black">
+					<div class="row">
+						<div class="col-md-4">
+							<center><img class="circle-image" src="images/profile.jpg"></center>
+							<h3>My Story</h3>
+							<p>	Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent id tempor ipsum. Fusce at massa ac nunc porta fringilla sed eget neque. Quisque quis pretium nulla. Fusce eget bibendum neque, vel volutpat augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+						</div>
+						<div class="col-md-8" ng-controller="viewCtrl">
+							<h3>My Background</h3>
+							<div ng-repeat="e in experience">
+								<div class="row">
+									<div class="col-xs-8">
+										<i class="fa {{e.faIcon}}"></i> <strong>{{e.name}}</strong>
+									</div>
+									<div class="col-xs-4">
+										{{e.time}}
+									</div>
+								</div>
+								<i>{{e.location}}</i>
+								<p>{{e.description}}</p>
+							</div>
+							<h3>My Skills</h3>
+							<div ng-repeat="c in skillCharts">
+								<div class="chart" data-percent="{{c.percent}}" data-color="{{c.color}}">
+									{{c.name}}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="splash-div" data-id="splash5" data-image="images/12.jpg">
+			<div class="splash-div" data-id="splash4" data-image="images/3.jpg">
+				<div class="container color-black">
+					<h3>My Projects</h3>
+					<div class="row" ng-controller="viewCtrl">
+						<div ng-repeat="p in projects" ng-init="$last ? refresh() : null">
+							<div class="col-md-4">
+								<center><img src="{{p.image}}" style="width:100%;"></center>
+								<div class="row">
+									<div class="col-xs-8">
+										<strong>{{p.name}}</strong>
+									</div>
+									<div class="col-xs-4">
+										{{p.time}}
+									</div>
+								</div>
+								<i>{{p.location}}</i>
+								<p>{{p.description}}
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="splash-div full-height" data-id="splash5" data-image="images/12.jpg">
 				<div class="contact-links">
 					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-linkedin-square"></i></a>
 					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-github-square"></i></a>

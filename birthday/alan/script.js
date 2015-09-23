@@ -7,6 +7,61 @@ var skillCharts = [
 		name: "Matlab",
 		percent: 42,
 		color:'#FF6699'
+	},{
+		name: "Proofs",
+		percent: 93,
+		color:'#FF9900'
+	}
+];
+
+// get icons from here https://fortawesome.github.io/Font-Awesome/icons/
+var experience = [
+	{
+		name: "Farmer",
+		time: "2041-pre",
+		location: "Planet Kepler-z3023",
+		description: "Feeding horses and cows with self-grown grass on a airless environment.",
+		faIcon: "fa-space-shuttle"
+	},{
+		name: "Master of Computer Science",
+		time: "2015-2017",
+		location: "McGill University, Montreal",
+		description: "",
+		faIcon: "fa-star"
+	},{
+		name: "Bachelor of Mathematics and Computer Science",
+		time: "2012-2015",
+		location: "McGill University, Montreal",
+		description: "",
+		faIcon: "fa-graduation-cap"
+	},{
+		name: "Undergraduate Research",
+		time: "2014",
+		location: "McGill University, Montreal",
+		description: "",
+		faIcon: "fa-search"
+	}
+];
+
+var projects = [
+	{
+		name:"600 hours of game!",
+		time:"2015",
+		location:"Montreal",
+		description:"I played 600 hours of Mocano. Good times.",
+		image:"images/proj1.jpg"
+	},{
+		name:"Bar dancing club",
+		time:"2014-2015",
+		location:"Montreal",
+		description:"I founded a startup of a club of dedicated students who do bar dancing for their teacher to show their love and adiration.",
+		image:"images/proj2.jpg"
+	},{
+		name:"Robotics project",
+		time:"2014",
+		location:"Montreal",
+		description:"I implemented a paper in robotics class. Everything was done in C++.",
+		image:"images/proj3.jpg"
 	}
 ]
 
@@ -25,6 +80,8 @@ function pieChartInit(){
 
 function viewCtrl($scope) {
 	$scope.skillCharts = skillCharts;
+	$scope.experience = experience;
+	$scope.projects = projects;
 
 	$scope.refresh = function() {
 		window.setTimeout(function(){
@@ -71,7 +128,7 @@ function populateBG(){
 
 function populateCache(){
 	$('.splash-div').each(function(i, e){
-		var top = $(e).position().top-$(window).height()/5;
+		var top = $(e).position().top-$(window).height()*0.392;
 		cachePosition[$(e).data('id')] =
 		{
 			top: top,
