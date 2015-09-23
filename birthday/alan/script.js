@@ -81,9 +81,20 @@ function populateCache(){
 	});
 }
 
+function showMenu(top){
+	var thr = $(window).height()*0.618;
+	console.log(top, thr);
+	if(top > thr){
+		$('#side-menu').slideDown('slow');
+	}else if(top < thr){
+		$('#side-menu').slideUp('slow');
+	}
+}
+
 function refreashMenuHighlight(){
 	for(var i in cachePosition){
 		var top = $('#side-menu').offset().top;
+		showMenu(top);
 		if (top > cachePosition[i].top &&
 			top < cachePosition[i].buttom){
 			console.log(i);
@@ -110,6 +121,7 @@ window.onresize = function(){
 
 
 $(function(){
+	$('#side-menu').hide();
 	populateBG();
 	populateCache();
 }());
