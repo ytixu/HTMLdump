@@ -35,6 +35,7 @@ body{
 	text-align:right;
 	width:100%;
 	font-family:'Raleway';
+	font-weight: 100;
 	font-size: 24px;
 }
 
@@ -47,15 +48,13 @@ body{
 
 #side-menu div.active{
 	/*border-bottom:2px solid rgba(225,225,225, 0.4);*/
-	background-color:rgba(255,132,183, 0.4);
+	background-color:rgb(255,132,183);
+	color:black;
+	font-weight: 400;
 }
 
 .splash-div{
 	width:100%;
-}
-
-.full-height{
-	height:100%;
 }
 
 .splash-bg{
@@ -71,6 +70,14 @@ body{
 	background-blend-mode: multiply;
 }
 
+.full-height{
+	height:100%;
+}
+
+.full-center{
+	padding-top:19%;
+}
+
 #splash-content-container{
 	z-index: 5;
 	position:absolute;
@@ -80,22 +87,36 @@ body{
 	width: 100%;
 }
 
+.splash-subtitle:before{
+    content:' ';
+    display:block;
+    border:1px solid rgba(225,225,225, 0.4);
+    margin-bottom:10px;
+}
+
 #splash-title{
 	position:relative;
 	color: rgba(255,132,183, 0.4);
 	text-align: center;
-	top:34%;
+	top:0;
 	font-size:420%;
+	width:100%;
+	height:100%;
 	font-family: 'Alegreya Sans SC', sans-serif;
+	line-height: 70px;
 }
+
 .splash-subtitle{
-	position:relative;
 	color:rgba(225,225,225, 0.8);
-	top:32%;
 	text-align: center;
 	font-size:24px;
 	text-transform: uppercase;
+	margin:0 10px;
+	font-family: 'Raleway';
+	font-weight: 400;
+	line-height: 30px;
 }
+
 
 .btn-trans {
       background:none;
@@ -128,17 +149,13 @@ body{
 
 h2, h3{
 	font-family: 'Raleway';
-	color:white}
+	font-weight: 100;
+	color:white
+}
 h2{
 	text-align: center;
 	margin:0;
 	font-size:50px;
-}
-h2:after{
-    content:' ';
-    display:block;
-    border:1px solid rgba(225,225,225, 0.4);
-    margin-bottom:30px;
 }
 
 .container{
@@ -153,4 +170,38 @@ h2:after{
 .circle-image{
 	border-radius: 100%;
 	width:61%;
+}
+
+.credit{
+	text-align:center;
+	font-size:12px;
+}
+
+.square-img{
+	position: relative;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+}
+.square-img:before{
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+
+.hover-hightlight{
+	padding:10px;
+}
+.hover-hightlight:hover{
+	background-color:rgb(0,204,153);
+	color:black;
+}
+
+.anchor-no-style{
+	color:rgba(225,225,225, 0.8);
+	text-decoration: none !important;
+}
+
+.anchor-np-style:hover{
+	text-decoration: none !important;
 }

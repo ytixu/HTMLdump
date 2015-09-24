@@ -21,25 +21,29 @@ var experience = [
 		time: "2041-pre",
 		location: "Planet Kepler-z3023",
 		description: "Feeding horses and cows with self-grown grass on a airless environment.",
-		faIcon: "fa-space-shuttle"
+		faIcon: "fa-space-shuttle",
+		url:"#"
 	},{
 		name: "Master of Computer Science",
 		time: "2015-2017",
 		location: "McGill University, Montreal",
 		description: "",
-		faIcon: "fa-star"
+		faIcon: "fa-star",
+		url:"#"
 	},{
 		name: "Bachelor of Mathematics and Computer Science",
 		time: "2012-2015",
 		location: "McGill University, Montreal",
 		description: "",
-		faIcon: "fa-graduation-cap"
+		faIcon: "fa-graduation-cap",
+		url:"#"
 	},{
 		name: "Undergraduate Research",
 		time: "2014",
 		location: "McGill University, Montreal",
 		description: "",
-		faIcon: "fa-search"
+		faIcon: "fa-search",
+		url:"#"
 	}
 ];
 
@@ -49,25 +53,27 @@ var projects = [
 		time:"2015",
 		location:"Montreal",
 		description:"I played 600 hours of Mocano. Good times.",
-		image:"images/proj1.jpg"
+		image:"images/proj1.jpg",
+		url:"http://www.google.com"
 	},{
 		name:"Bar dancing club",
 		time:"2014-2015",
 		location:"Montreal",
 		description:"I founded a startup of a club of dedicated students who do bar dancing for their teacher to show their love and adiration.",
-		image:"images/proj2.jpg"
+		image:"images/proj2.jpg",
+		url:"http://www.google.com"
 	},{
 		name:"Robotics project",
 		time:"2014",
 		location:"Montreal",
 		description:"I implemented a paper in robotics class. Everything was done in C++.",
-		image:"images/proj3.jpg"
+		image:"images/proj3.jpg",
+		url:"http://www.google.com"
 	}
 ]
 
 function pieChartInit(){
 	$('.chart').each(function(i, e){
-		console.log($(e));
 		$(e).easyPieChart({
 	        barColor: $(this).data('color'),
 		    trackColor: 'rgba(0,0,0,0.6)',
@@ -104,6 +110,7 @@ function populateBG(){
 		var div = document.createElement('div');
 		$(div).addClass('splash-bg');
 		$(div).attr('id','bg-'+$(e).data('id'));
+		console.log($(e).data('image'));
 		$(div).css({
 			'background-image':'url("'+$(e).data('image')+'")'
 		});
@@ -140,7 +147,6 @@ function populateCache(){
 
 function showMenu(top){
 	var thr = $(window).height()*0.618;
-	console.log(top, thr);
 	if(top > thr){
 		$('#side-menu').slideDown('slow');
 	}else if(top < thr){
@@ -154,7 +160,6 @@ function refreashMenuHighlight(){
 		showMenu(top);
 		if (top > cachePosition[i].top &&
 			top < cachePosition[i].buttom){
-			console.log(i);
 				$('#'+i).addClass('active');
 				if($('#bg-'+i).attr('id') != currentSplash){
 					currentSplash = $('#bg-'+i).attr('id');
