@@ -33,6 +33,7 @@ a {
 	font-size: 500%;
 	font-weight: bold;
 	padding-top:15%;
+	color:#ff8844;
 }
 
 #header,#footer{
@@ -105,7 +106,7 @@ a {
 
 .buttonForHere:hover{
 	background-color: #aaaabb;
-	color: #333333 !important; 
+	color: #333333 !important;
 }
 
 /* columns of same height styles */

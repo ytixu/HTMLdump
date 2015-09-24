@@ -40,7 +40,7 @@ function getSunRiseSunset(str, func){
 	console.log("UPDATE");
 	var res = $.getJSON(mapapi(str)).done(function(data){
 		try{
-			var coordinates = data.features[0].geometry.coordinates;	
+			var coordinates = data.features[0].geometry.coordinates;
 			loc = data.features[0].properties.comments[0].text;
 			i = 1;
 			while (i<data.features.length){
@@ -51,7 +51,7 @@ function getSunRiseSunset(str, func){
 				if (loc.length < str.length + 10){
 					break;
 				}
-				coordinates = data.features[i].geometry.coordinates;	
+				coordinates = data.features[i].geometry.coordinates;
 				loc = data.features[i].properties.comments[0].text;
 				i++;
 			}
@@ -118,13 +118,13 @@ var sunsetDate;
 
 function setTimeCount(){
 	var today = new Date();
-	sunriseDate = new Date(today.getFullYear(), 
+	sunriseDate = new Date(today.getFullYear(),
 						   today.getMonth(),
 						   today.getDate(),
 						   sunrise[0],
 						   sunrise[1],
 						   sunrise[2]);
-	sunsetDate = new Date(today.getFullYear(), 
+	sunsetDate = new Date(today.getFullYear(),
 						   today.getMonth(),
 						   today.getDate(),
 						   sunset[0],
@@ -135,7 +135,7 @@ function setTimeCount(){
 
 function count(){
 	var now = new Date;
-	var today = new Date(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate() , 
+	var today = new Date(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate() ,
       now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
 	if (sunsetDate.getTime() < today.getTime()){
 		sunriseDate.setDate(sunriseDate.getDate()+1);
@@ -194,12 +194,12 @@ function displayName(){
 function setLocationName(){
 	$("#locationSubmit").click(updateLocationName);
 	$("#inputCityBlock").hide();
-	$('body').click(function(evt){ 
+	$('body').click(function(evt){
 		if (!isVisible) return;
 		if(evt.target.id == "inputCityBlock")
 			return;
 		if($(evt.target).closest('#inputCityBlock').length)
-			return;  
+			return;
 		isVisible = false;
 		$("#inputCity").val("");
 		$("#inputCityBlock").fadeOut("fast",displayName);
@@ -219,7 +219,7 @@ function setLocationName(){
 			isVisible = true;
 		});
 		$("#inputCity").focus();
-		
+
 	});
 }
 
@@ -281,48 +281,52 @@ function stopSpinning(){
 
 function setBackground(url){
 	$("body").css({
-      "background": "url(http://bing.com" + url + ")",
+      "background": "url(" + url + ")", //http://bing.com
       "background-size": "cover",
       "background-position": "center",
       "background-repeat": "no-repeat",
       "background-attachment": "fixed",
       // "background-blend-mode": "color"
     });
-    $(".siteTitle").css({
-		// "background": "url(http://bing.com" + data.Paths[0] + ")",
-		"color": "rgba(225,225,225,0.3)",
-		"background-image": "rgba(0,0,0,0)",
-		"background-image": "linear-gradient(transparent, transparent)",
-		"background-image": "-o-linear-gradient(transparent, transparent)",
-		"background-image": "-moz-linear-gradient(transparent, transparent)",
-		"background-image":"-ms-linear-gradient(transparent, transparent)",
-		"background": "-webkit-linear-gradient(transparent, transparent), url(http://bing.com" + url + ") transparent",
-		"background-size": "cover",
-		"background-position": "center",
-		"background-repeat": "no-repeat",
-		"background-attachment": "fixed",
-		"-webkit-text-fill-color": "transparent",
-		"-webkit-background-clip": "text"
-    });
+    if(navigator.userAgent.toLowerCase().indexOf('chrome') > -1){
+	    $(".siteTitle").css({
+			"background": "url(sparkles.jpg)",
+			"color": "rgba(225,225,225,0.3)",
+			"background-image": "rgba(0,0,0,0)",
+			"background-image": "linear-gradient(transparent, transparent)",
+			"background-image": "-o-linear-gradient(transparent, transparent)",
+			"background-image": "-moz-linear-gradient(transparent, transparent)",
+			"background-image":"-ms-linear-gradient(transparent, transparent)",
+			"background": "-webkit-linear-gradient(transparent, transparent), url(sparkles.jpg) transparent",
+			"background-size": "cover",
+			"background-position": "center",
+			"background-repeat": "no-repeat",
+			"background-attachment": "fixed",
+			"-webkit-text-fill-color": "transparent",
+			"-webkit-background-clip": "text"
+	    });
+	}
 }
 
 function getImage(){
-	if (hasUpdated){
-		url = localStorage.getItem('bgUrl');
-		if (url != null){
-			setBackground(url);
-			return;
-		}
-	}
-  	$.ajax({
-        url: 'http://noapi.dorparasti.ir/api/scraps/e9baeceb-f353-4703-a84d-c9e3107bd90f',
-        cache: false,
-        dataType: 'json',
-        success: function (data) {
-        	setBackground(data.Paths[0]);
-        	localStorage.setItem('bgUrl', data.Paths[0]);
-        }
-    });
+	// if (hasUpdated){
+	// 	url = localStorage.getItem('bgUrl');
+	// 	if (url != null){
+	// 		setBackground(url);
+	// 		return;
+	// 	}
+	// }
+ //  	$.ajax({
+ //        url: 'http://noapi.dorparasti.ir/api/scraps/e9baeceb-f353-4703-a84d-c9e3107bd90f',
+ //        cache: false,
+ //        dataType: 'json',
+ //        success: function (data) {
+ //        	setBackground(data.Paths[0]);
+ //        	localStorage.setItem('bgUrl', data.Paths[0]);
+ //        }
+ //    });
+	setBackground("http://thecatapi.com/api/images/get?format=src&type=jpg");
+	localStorage.setItem('bgUrl', "http://thecatapi.com/api/images/get?format=src&type=jpg");
 }
 
 get_date();
