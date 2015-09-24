@@ -59,7 +59,7 @@ var projects = [
 		name:"Bar dancing club",
 		time:"2014-2015",
 		location:"Montreal",
-		description:"I founded a startup of a club of dedicated students who do bar dancing for their teacher to show their love and adiration.",
+		description:"I founded a startup of a club of dedicated students who do bar dancing for their teacher to show their love and admiration.",
 		image:"images/proj2.jpg",
 		url:"http://www.google.com"
 	},{
