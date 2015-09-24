@@ -23,17 +23,17 @@ var cat = {
 		});
 	},
 	getBg: function(){
-		query("http://noapi.dorparasti.ir/api/scraps/e3b76773-e265-4bf6-ae91-0fb5b93af10d", "json",
-			function(e){
+		// query("http://noapi.dorparasti.ir/api/scraps/e3b76773-e265-4bf6-ae91-0fb5b93af10d", "json",
+		// 	function(e){
 				$("body").css({
-					background: "url(http://i.imgur.com/C3sLgvn.png)," + 
-					"url('" + e.Paths[0] + "')",
-					backgroundSize: "cover",
-					backgroundAttachment: "fixed",
-					backgroundPosition:"center",
-					backgroundBlendMode: "overlay"
+					'background': "url('sparkles.jpg'), url('http://thecatapi.com/api/images/get?format=src&type=jpg')",
+					'background-color':'#555555',
+					'background-size': "cover",
+					'background-attachment': "fixed",
+					'background-position':"center",
+					'background-blend-mode': "overlay"
 				});
-			});
+			// });
 	},
 	getFact: function(){
 		$("#cat_fact_text").fadeOut("fast", function(){
