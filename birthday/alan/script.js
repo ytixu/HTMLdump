@@ -91,9 +91,7 @@ function viewCtrl($scope) {
 
 	$scope.refresh = function() {
 		window.setTimeout(function(){
-			//scrollReveal
-			// window.sr = new scrollReveal();
-			// MatJax
+			// MatJax (if latex code in js data arrays, uncomment this)
 			// MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 			pieChartInit();
 		}, 500);

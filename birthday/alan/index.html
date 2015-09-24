@@ -33,9 +33,9 @@
 	<body>
 		<div id="splash-bg-container"></div>
 		<div id="side-menu">
-			<div id="splash2">About me</div>
-			<div id="splash3">Projects</div>
-			<div id="splash5">Teaming Up!</div>
+			<a href="#about"><div id="splash2">About me</div></a>
+			<a href="#projects"><div id="splash3">Projects</div></a>
+			<a href="#contact"><div id="splash5">Teaming Up!</div></a>
 		</div>
 		<div id="splash-content-container">
 			<div class="splash-div full-height" data-id="splash1" data-image="images/1.jpg">
@@ -50,6 +50,7 @@
 				</div>
 			</div>
 
+			<a name="about"></a>
 			<div class="splash-div" data-id="splash2" data-image="images/2.jpg">
 				<div class="container color-black">
 					<div class="row">
@@ -85,13 +86,17 @@
 				</div>
 			</div>
 
+			<a name="projects"></a>
 			<div class="splash-div" data-id="splash3" data-image="images/3.jpg">
 				<div class="container color-black">
 					<h3>My Projects</h3>
 					<div class="row" ng-controller="viewCtrl">
-						<div ng-repeat="p in projects" ng-init="$last ? refresh() : null">
+						<a class="anchor-no-style" ng-repeat="p in projects"
+							ng-init="$last ? refresh() : null"
+							href="{{p.url}}" target="_blank">
 							<div class="col-md-4 hover-hightlight">
 								<div class="square-img" style="background-image:url('{{p.image}}');"></div>
+								<br>
 								<div class="row">
 									<div class="col-xs-8">
 										<strong>{{p.name}}</strong>
@@ -103,33 +108,34 @@
 								<i>{{p.location}}</i>
 								<p>{{p.description}}
 							</div>
-						</div>
+						</a>
 					</div>
-
 				</div>
 			</div>
 
+			<a name="contact"></a>
 			<div class="splash-div full-height" data-id="splash5" data-image="images/12.jpg">
-				<div class="container contact-links color-black full-height">
+				<div class="container text-center full-height">
 					<h2 class="full-center">Let's Team Up</h2>
 					<div class="splash-subtitle">and change the world!</div>
 					<br>
-					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-linkedin-square"></i></a>
-					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-github-square"></i></a>
-					<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-facebook-official"></i></a>
-					<a href="mailto:alan@something.com"><i class="fa fa-envelope-square"></i></a>
+					<div class="contact-links">
+						<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+						<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-github-square"></i></a>
+						<a href="https://www.facebook.com/alan.doomri" target="_blank"><i class="fa fa-facebook-official"></i></a>
+						<a href="mailto:alan@something.com"><i class="fa fa-envelope-square"></i></a>
+					</div>
 					<br><br>
-					$\hat{H}\alpha_{pp}\lambda \cdot \beta_ir+h\partial a^y$
+					<span title="Happy Birthday! :3">
+						$\int -[\alpha_{pp}\lambda \cdot \beta_ir+h\partial a^y]$
+					</span>
 				</div>
-				<div class="container">
+				<div class="container color-black">
 					<div class="credit">&copy;Goldenrati&Phi; | 2015</div>
 				</div>
 			</div>
 		</div>
-	</body>s
-	<!-- Scrolling power~ -->
-	<script type="text/javascript" src="http://ytixu.github.io/HTMLdump/2015/node_modules/scrollreveal/dist/scrollReveal.min.js"></script>
-
+	</body>
 	<!-- My script :3 -->
 	<script src="script.js"> </script>
 </html>
