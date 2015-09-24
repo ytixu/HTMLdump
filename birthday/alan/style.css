@@ -63,7 +63,12 @@ body{
 }
 
 .full-center{
-	padding-top:19%;
+	position: relative;
+	top: 40%;
+	  -webkit-transform: translateY(40%);
+	  -ms-transform: translateY(40%);
+	  transform: translateY(40%);
+	padding-bottom: 5%;
 }
 
 #splash-content-container{
@@ -84,7 +89,7 @@ body{
 
 #splash-title{
 	position:relative;
-	color: rgba(255,132,183, 0.4);
+	color: rgba(255,132,183, 0.6);
 	text-align: center;
 	top:0;
 	font-size:420%;
@@ -179,10 +184,10 @@ h2{
 
 .hover-hightlight{
 	padding:10px;
-	-moz-transition: all .1s` ease-in;
-    -o-transition: all .1s` ease-in;
-    -webkit-transition: all .1s ease-in;
-    transition: all .1s ease-in;
+	-moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
 }
 .hover-hightlight:hover{
 	background-color:rgb(0,204,153);

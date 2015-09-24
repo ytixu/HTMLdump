@@ -119,6 +119,7 @@ function populateBG(){
 			if(navigator.userAgent.toLowerCase().indexOf('chrome') > -1){
 				$('#splash-title').css({
 					'background': 'url("'+$(e).data('image')+'")',
+					'color': 'rgba(255,132,183, 0.4)',
 					'background-position':'center',
 					'background-size':'cover',
 					'background-color':'rgba(255,132,183, 0.4)',
@@ -132,12 +133,14 @@ function populateBG(){
 }
 
 function populateCache(){
+	var splashCount = $('.splash-div').length;
 	$('.splash-div').each(function(i, e){
-		var top = $(e).position().top-$(window).height()*0.392;
+		var top = $(e).position().top-$(window).height()*0.312;
 		cachePosition[$(e).data('id')] =
 		{
-			top: top,
-			buttom: $(e).height() + top,
+			top:top,
+			buttom: splashCount == i+1 ? $(document).height() + 1000 :
+							$(e).height() + top,
 		}
 
 	});
