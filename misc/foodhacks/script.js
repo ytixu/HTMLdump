@@ -1,5 +1,19 @@
 var recipes = [
 	{
+		name:"Egg Crater",
+		desc:"Fried egg mixed with anything you link in an onion ring.",
+		img:"egg-crater.jpg",
+		ing:["egg", "onion", "stuffs you like", "salt", "soya sauce", "oil"],
+		algo: ["Select the stuffs you like that you want to have in your egg crater. Or use the default options: green onion, galic, shrimp skin.",
+				"Mix all the selected stuffs you like and eggs in a bowl.",
+				"Cut the onions into rings that are 1.618 cm height. Make sure that at least one side is cut evenly.",
+				"Repete until no more ingredient"+
+				"<ol><li>Pur some oil into pan.</li>"+
+				"<li>Put an onion ring into pan (the even side down).</li>"+
+				"<li>Fill onion ring with mix until it is 61.8% full.</li>"+
+				"<li>Fry until cooked.</li></ol>"]
+	},
+	{
 		name:"Midnight Eyes",
 		desc:"Stuffed rice ball topped with tomato sauce, red like coders' eyes in a marathon against bed time.",
 		img:"midtnight-eyes.jpg",
@@ -15,10 +29,10 @@ var recipes = [
 			   "Add tomato sauce."]
 	},
 	{
-		name: "Trottier++", 
+		name: "Trottier++",
 		desc: "Tomato and green pepper sauce sprinkled with cheese, a lot better than the pasta at Trottier's cafeteria.",
 		img: "trottier-p-p-pasta.jpg",
-		ing: ["4 plum tomatoes", "1/2 green pepper", "salt", "oil", "pasta", 
+		ing: ["4 plum tomatoes", "1/2 green pepper", "salt", "oil", "pasta",
 			  "romaine lettuce (or any other is fine)", "shredded cheese"],
 		algo: ["Create two threads, one boils the pasta and the other one cooks the sauce.",
 			   "On the thread cooking the sauce, input oil in cooking pot, wait until oil becomes hot, slice pepper and tomato into pot like a ninja.",
@@ -33,7 +47,7 @@ var recipes = [
 		slug: "trottier-p-p"
 	},
 	{
-		name: "Meat Da Salad", 
+		name: "Meat Da Salad",
 		desc: "Fried meat, peas and corn on salad and rice.",
 		img: "meat-the-salad.jpg",
 		ing: ["green peas","corn","ground meat","rice","lettuce","oil","salt"],
@@ -46,7 +60,7 @@ var recipes = [
 		slug: "meat-da-salad"
 	},
 	{
-		name: "Coin For Your Stomach", 
+		name: "Coin For Your Stomach",
 		desc: "Cookies - round and smooth like coins - with cereal, yogurt and chocolate sauce.",
 		img: "coin-for-your-stomach.jpg",
 		ing: ["chocolate sauce", "cookies", "cereal", "yogurt"],
@@ -54,7 +68,7 @@ var recipes = [
 		slug: "coin-for-your-stomach"
 	},
 	{
-		name: "Hello World", 
+		name: "Hello World",
 		desc: "Cheese and blackberry on bagel with jelly and chocolate sauce. First food hack :3",
 		img: "helloworld.jpg",
 		ing: ["bagel", "La vache qui Rit cheese", "blackberry", "jam", "chocolate sause"],
