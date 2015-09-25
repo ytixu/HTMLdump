@@ -164,6 +164,8 @@ function refreashMenuHighlight(){
 				if($('#bg-'+i).attr('id') != currentSplash){
 					currentSplash = $('#bg-'+i).attr('id');
 					$('#bg-'+i).fadeIn('slow');
+					console.log('ALAAAAAAAN')
+					console.log('Happy Birthday!')
 				}
 		}else{
 			$('#'+i).removeClass('active');
@@ -174,8 +176,6 @@ function refreashMenuHighlight(){
 
 window.onscroll = function(){
 	refreashMenuHighlight();
-	console.log('ALAAAAAAAN')
-	console.log('Happy Birthday!')
 }
 
 window.onresize = function(){
