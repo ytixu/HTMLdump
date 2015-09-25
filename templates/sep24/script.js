@@ -174,13 +174,14 @@ function refreashMenuHighlight(){
 
 window.onscroll = function(){
 	refreashMenuHighlight();
+	console.log('ALAAAAAAAN')
+	console.log('Happy Birthday!')
 }
 
 window.onresize = function(){
 	populateCache();
 	refreashMenuHighlight();
 }
-
 
 $(function(){
 	$('#side-menu').hide();
