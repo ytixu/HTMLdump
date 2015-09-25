@@ -108,7 +108,6 @@ function populateBG(){
 		var div = document.createElement('div');
 		$(div).addClass('splash-bg');
 		$(div).attr('id','bg-'+$(e).data('id'));
-		console.log($(e).data('image'));
 		$(div).css({
 			'background-image':'url("'+$(e).data('image')+'")'
 		});
