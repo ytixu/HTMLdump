@@ -21,7 +21,7 @@ html(data-ng-app, lang="en")
 		include title.jade
 
 		#porfolioContainer
-				.sidetitle web developer 
+				.sidetitle web developer
 				.sidetitleNoroate
 					div(data-sr="move 21px, reset")
 						span#bdYear
@@ -31,7 +31,7 @@ html(data-ng-app, lang="en")
 						span#bdDay
 		#projectsContainer(ng-controller="projectCtrl")
 			.projectBlock(ng-repeat="p in projects", ng-init="$last ? refresh() : null")
-				div(data-sr="enter top, reset") 
+				div(data-sr="enter top, reset")
 					a(ng-if="p.link!=''", href="{{p.link}}", target="blank")
 						h2 {{p.name}}
 					h2(ng-if="p.link==''") {{p.name}}
@@ -48,33 +48,33 @@ html(data-ng-app, lang="en")
 			#aboutBGtitle
 				.sidetitle about me
 				.sidetitleNoroate
-					div(data-sr="move 21px, reset") analytical 
-					div(data-sr="move 34px, reset") artisitic 
-					div(data-sr="move 55px, reset") chocolate enthusiast 
+					div(data-sr="move 21px, reset") analytical
+					div(data-sr="move 34px, reset") artisitic
+					div(data-sr="move 55px, reset") chocolate enthusiast
 			#faq(ng-controller="faqCtrl")
 				.faqBlock(ng-repeat="q in faq", ng-init="$last ? refresh() : null")
-					div(data-sr="enter top, reset") 
+					div(data-sr="enter top, reset")
 						h2 {{q.q}}
 						p {{q.a}}
 
 
 		#contactContainer
 			.container.text-center
-				.contactLink(data-sr="ease-in 21px, reset") 
+				.contactLink(data-sr="ease-in 21px, reset")
 					a(target="_top", href="mailto:goldenratioesp@gmail.com")
 						i(class="fa fa-envelope-square")
-				.contactLink(data-sr="ease-in 34px, reset") 
+				.contactLink(data-sr="ease-in 34px, reset")
 					a(target="blank", href="https://github.com/ytixu")
 						i(class="fa fa-github-square")
-				//- .contactLink(data-sr="ease-in 55px, reset") 
+				//- .contactLink(data-sr="ease-in 55px, reset")
 				//- 	a(target="blank", href="https://goldenratiphi.wordpress.com")
 				//- 		i(class="fa fa-wordpress")
-				//- .contactLink(data-sr="ease-in 89px, reset") 
+				//- .contactLink(data-sr="ease-in 89px, reset")
 				//- 	a(target="blank", href="http://lipid-fatality.deviantart.com")
 				//- 		i(class="icomoon icon-deviantart-2")
 
-		#footer 
-			h1 
+		#footer
+			h1
 				i#scrollUp(class="fa fa-angle-up")
 			div &#169; Yi Tian Xu 2015
 
@@ -87,17 +87,18 @@ html(data-ng-app, lang="en")
 		script(type='text/javascript').
 			function projectCtrl($scope) {
 				$scope.projects = [
+					{name:"FoodXHack", link:"../misc/catFact/index.html", content: "Turning every meal into a possibility to innovate the food industry."}
 					{name:"HackNight", link:"../hacknights/index.html", content: "Made to motivate people to work hardcore every night of every day. Sleep, depending on the circumstance, can also be a hack."},
 					{name:"Nekophilia", link:"../misc/catFact/index.html", content: "For the love of cats... and random cat pictures."},
 					{name:"GRE Vocab Quiz", link:"../GRE_Nexus/gre.html", content: "For those who need more stimulation to study for the GRE exam."},
 					{name:"Keyboard Minesweeper", link:"../mines/bomb.html", content: "A minesweeper game adapted to play with a keyboard."},
 					{name:"E-Book Reader", link:"../book_reader/reader.html", content: "A local e-book reader with bookmark feature."},
 					{name:"Previous Personal Website", link:"../blog/(OvO).html", content: "The one you're looking at is my fourth personal website. The third one was a small charm. This one is a biggy."},
-					{name:"Research Report", link:"", content: "Research done during my undergrads.", 
+					{name:"Research Report", link:"", content: "Research done during my undergrads.",
 						sublinks:[{name:"The Big Gap: The Earth, the Moon and the Space in Between", link:"../bigGap/bigGap.html"},
 							{name: "Study on Network Calibration", link:"../../courseDump/term_project/417course_project.html"}
 						]},
-					{name:"Course Notes", link:"", content: "Some notes taken during my undergrads.", 
+					{name:"Course Notes", link:"", content: "Some notes taken during my undergrads.",
 						sublinks:[{name:"Regression and Analysis of Varaince", link:"../courseNotes/math423/notes.html"},
 							{name: "Generalized Linear Models (warning: a lot of typos)", link:"../courseNotes/math523/notes1.html"},
 							{name: "Nonparametric Statistics", link:"../courseNotes/math524/cheatsheet.html"}
