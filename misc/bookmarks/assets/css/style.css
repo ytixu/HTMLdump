@@ -1,0 +1,37 @@
+body {
+  font-family: 'Poiret One', cursive; }
+
+#header {
+  padding: 12% 0;
+  background-image: url("../images/head.jpg");
+  background-position: top;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-blend-mode: multiply;
+  margin-bottom: 100px; }
+
+#bookmark-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start; }
+
+.bookmarkBox {
+  color: black; }
+
+.head-title {
+  font-size: 400%;
+  color: white;
+  padding: 0 10%;
+  line-height: 20px; }
+  .head-title .subtitle {
+    padding: 0 14%;
+    font-size: 60%; }
+
+.bookmark-title {
+  font-size: 20px; }
+
+.footer {
+  margin: 100px 0;
+  text-align: center; }
