@@ -14,7 +14,7 @@ var database = {
 		//   .fail(function() {
 		// 	alert( "Can't load database :(" );
 		//   });
-		this.data = [{ "id": "1", "name": "Sheetsu", "url": "http://sheetsu.com/", "description": "Turn your Google sheet into an API, yo~", "created_at": "9/27/2015" }];
+		this.data = [{ "id": "1", "name": "Sheetsu", "url": "http://sheetsu.com/", "description": "Turn your Google sheet into an API, yo~", "created_at": "9/27/2015", "type": "API" }, { "id": "2", "name": "Webpack", "url": "http://bensmithett.com/smarter-css-builds-with-webpack/", "description": "Smarter CSS builds with Webpack", "created_at": "9/27/2015", "type": "tool" }];
 		callback();
 	},
 
@@ -27,28 +27,37 @@ var BookmarkBox = React.createClass({
 	displayName: "BookmarkBox",
 
 	render: function render() {
-		return React.createElement(
-			"div",
-			{ className: "bookmarkBox" },
-			React.createElement(
-				"a",
-				{ href: this.props.data.url, target: "_blank" },
+		var boxes = [];
+		for (var i in this.props.data) {
+			boxes.push(React.createElement(
+				"div",
+				{ className: "bookmarkBox" },
+				React.createElement(
+					"a",
+					{ href: this.props.data[i].url, target: "_blank" },
+					React.createElement(
+						"div",
+						{ className: "bookmark-title" },
+						this.props.data[i].name
+					)
+				),
 				React.createElement(
 					"div",
-					{ className: "bookmark-title" },
-					this.props.data.name
+					null,
+					this.props.data[i].created_at
+				),
+				React.createElement(
+					"p",
+					null,
+					this.props.data[i].description
 				)
-			),
-			React.createElement(
-				"div",
-				null,
-				this.props.data.created_at
-			),
-			React.createElement(
-				"p",
-				null,
-				this.props.data.description
-			)
+			));
+		}
+		console.log(boxes);
+		return React.createElement(
+			"div",
+			{ className: "bookmark-display" },
+			boxes
 		);
 	}
 });
@@ -59,7 +68,7 @@ var controller = {
 
 	renderNext: function renderNext() {
 		var data = database.takeFrom(this.page, this.limit);
-		React.render(React.createElement(BookmarkBox, { data: data[0] }), document.getElementById('bookmark-display'));
+		React.render(React.createElement(BookmarkBox, { data: data }), document.getElementById('page-' + this.page));
 		this.page++;
 		if (!data[0]) {
 			return false;

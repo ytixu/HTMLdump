@@ -10,7 +10,7 @@ body {
   background-blend-mode: multiply;
   margin-bottom: 100px; }
 
-#bookmark-display {
+.bookmark-display {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -18,7 +18,8 @@ body {
   align-items: flex-start; }
 
 .bookmarkBox {
-  color: black; }
+  color: black;
+  padding: 20px; }
 
 .head-title {
   font-size: 400%;

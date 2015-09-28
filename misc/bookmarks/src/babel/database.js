@@ -12,7 +12,7 @@ var database = {
 		//   .fail(function() {
 		// 	alert( "Can't load database :(" );
 		//   });
-		this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015"}];
+		this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015","type":"API"},{"id":"2","name":"Webpack","url":"http://bensmithett.com/smarter-css-builds-with-webpack/","description":"Smarter CSS builds with Webpack","created_at":"9/27/2015","type":"tool"}];
 		callback();
 
 	},
@@ -24,14 +24,22 @@ var database = {
 
 var BookmarkBox = React.createClass({
   render: function() {
-	return (
-		<div className="bookmarkBox">
-			<a href={this.props.data.url} target="_blank">
-				<div className="bookmark-title">{this.props.data.name}</div>
+  	var boxes = [];
+	for (var i in this.props.data) {
+	  boxes.push(
+	  	<div className="bookmarkBox">
+			<a href={this.props.data[i].url} target="_blank">
+				<div className="bookmark-title">{this.props.data[i].name}</div>
 			</a>
-			<div>{this.props.data.created_at}</div>
-	     	<p>{this.props.data.description}</p>
+			<div>{this.props.data[i].created_at}</div>
+	     	<p>{this.props.data[i].description}</p>
      	</div>
+     	);
+	}
+	return (
+		<div className="bookmark-display">
+			{boxes}
+		</div>
     );
   }
 });
@@ -43,8 +51,8 @@ var controller = {
 	renderNext: function(){
 		var data = database.takeFrom(this.page, this.limit);
 		React.render(
-			<BookmarkBox data={data[0]} />,
-			document.getElementById('bookmark-display')
+			<BookmarkBox data={data}/>,
+			document.getElementById('page-'+this.page)
 		);
 		this.page ++;
 		if (!data[0]){
