@@ -17,6 +17,20 @@ var database = {
 
 	},
 
+	postData: function(data, callback){
+		$.ajax({
+           type: "POST",
+           url: "http://sheetsu.com/apis/2d34085f",
+           data: data })
+        .done(function(res) {
+			console.log(res);
+			callback();
+		})
+		.fail(function() {
+			alert( "Can't update database :(" );
+		});
+	},
+
 	takeFrom: function(from, limit){
 		return this.data.slice(from, limit);
 	}
@@ -62,7 +76,20 @@ var controller = {
 }
 
 $(function(){
+	$(".add-form").hide();
 	database.getData(function(){
 		controller.renderNext();
 	});
+
+	$("#add-bookmark").submit(function() {
+		database.postData($("#add-bookmark").serialize(), function(){
+			return;
+		});
+	});
+
+	$('#addToggle').click(function(event) {
+		console.log('alksdlajd');
+            event.preventDefault();
+            $('.add-form').slideToggle("fast");
+    });
 }());

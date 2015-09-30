@@ -29,16 +29,37 @@
 			<span class="subtitle">Goldenrati&Phi;'s collection of bookmarks</span>
 		</span></strong></div>
 	<div class="container">
-		<div class="menu-btn">Add Yours! <i class="fa fa-plus"></i></div>
-		<div id="main-container" class="white-bg">
-			<div id="page-0">
+		<div id="addToggle" class="menu-btn">Add Yours! <i class="fa fa-plus"></i></div>
+		<div id="main-container">
+			<div class="add-form">
+				<h2>Share a Bookmark<br>&emsp;and the World Turns a Bit Sweeter~</h2>
+				<form id="add-bookmark">
+					<div class="row">
+						<label class="col-xs-3 text-right">Name:</label>
+						<input class="col-xs-9" type="text" name="name" maxlength="21" placeholder="(max 21 characters)" required>
+					</div>
+					<div class="row">
+						<label class="col-xs-3 text-right">Description:</label>
+						<textarea class="col-xs-9" name="description" maxlength="55" placeholder="(max 55 characters)" required></textarea>
+					</div>
+					<div class="row">
+						<label class="col-xs-3 text-right">URL:</label>
+						<input class="col-xs-9" type="url" name="url" required>
+					</div>
 
+					<input type="submit" class="btn btn-tran" value="Add">
+				</form>
 			</div>
-			<div class="footer">
-				<hr>
-				<div class="credit">&copy;Goldenrati&Phi; | 2015 &emsp;
-					<a href="https://github.com/ytixu" target="_blank"><i class="fa fa-github"></i></a>&emsp;
-					<a href="http://40.media.tumblr.com/122a8845be45f721e9bd1933bc3c4549/tumblr_mttfz6VwNb1s7h6two1_500.jpg" target="_blank">Background Image</a>
+			<div class="white-bg">
+				<div id="page-0">
+
+				</div>
+				<div class="footer">
+					<hr>
+					<div class="credit">&copy;Goldenrati&Phi; | 2015 &emsp;
+						<a href="https://github.com/ytixu" target="_blank"><i class="fa fa-github"></i></a>&emsp;
+						<a href="http://40.media.tumblr.com/122a8845be45f721e9bd1933bc3c4549/tumblr_mttfz6VwNb1s7h6two1_500.jpg" target="_blank">Background Image</a>
+					</div>
 				</div>
 			</div>
 		</div>

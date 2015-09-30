@@ -27,6 +27,9 @@ body
 	float: right;
 	margin-top: -25px;
 
+	&:hover
+		cursor:pointer
+
 .white-bg
 	background-color:rgba(255,255,255,0.8);
 	padding:15px;
@@ -36,8 +39,10 @@ a.bookmarkBox
 	padding:20px;
 	max-width:300px;
 	transition: background .25s ease-in-out;
-	-moz-transition: background .25s ease-in-out;
 	-webkit-transition: background .25s ease-in-out;
+	-moz-transition: background .25s ease-in-out;
+	-ms-transition: background .25s ease-in-out;
+	-o-transition: background .25s ease-in-out;
 	font-family: 'Raleway', sans-serif;
 	text-decoration:none;
 	color:black
@@ -74,6 +79,53 @@ a.bookmarkBox
 .footer
 	padding:50px 0 100px 0;
 	text-align:center;
+
+.add-form
+	background-color:lightpink;
+	padding:20px;
+
+#add-bookmark
+	font-family: 'Raleway', sans-serif;
+	margin:0 10%;
+	text-align:center;
+
+	input[type=text], input[type=url], textarea
+		background-color:lightpink;
+		padding: 15px;
+		border: 0;
+		padding: 2px 5px;
+
+		&:focus
+			outline: 0;
+
+	label
+		padding: 2px 5px;
+
+::-webkit-input-placeholder
+   color:#666;
+
+:-moz-placeholder
+   color:#666;
+
+::-moz-placeholder
+   color:#666;
+
+:-ms-input-placeholder
+   color:#666;
+
+.btn.btn-tran
+	background: transparent;
+	color: white;
+	border: white solid 2px;
+	-webkit-transition: background .2s ease-in-out,color .2s ease-in-out;
+	-moz-transition: background .2s ease-in-out, color .2s ease-in-out;
+	-ms-transition: background .2s ease-in-out, color .2s ease-in-out;
+	-o-transition: background .2s ease-in-out, color .2s ease-in-out;
+	transition: background .2s ease-in-out, color .2s ease-in-out;
+
+	&:hover
+		background-color:white;
+		color: lightpink;
 
 
 @media screen and (max-width: 750px)
