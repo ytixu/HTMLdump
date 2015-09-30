@@ -14,10 +14,22 @@ body
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: stretch;
-	padding:15px 0;
+
+#main-container
+	border-top:lightpink solid 5px;
+
+.menu-btn
+	background-color:lightpink;
+	color:white;
+	font-family: 'Raleway', sans-serif;
+	display: inline-block;
+	padding: 5px 10px;
+	float: right;
+	margin-top: -25px;
 
 .white-bg
 	background-color:rgba(255,255,255,0.8);
+	padding:15px;
 
 a.bookmarkBox
 	color:black;
@@ -31,10 +43,19 @@ a.bookmarkBox
 	color:black
 	width:25%;
 
+	.type
+		background-color: lightpink;
+		padding: 3px 5px;
+		float:right;
+		display:inline-block;
+		font-size:10px;
+
 	&:hover
 		background-color: lightpink;
 		text-decoration:none;
 
+		.type
+			background-color: white;
 
 .head-title
 	font-size:400%;
@@ -51,7 +72,7 @@ a.bookmarkBox
 	font-size:20px;
 
 .footer
-	margin:100px 0;
+	padding:50px 0 100px 0;
 	text-align:center;
 
 

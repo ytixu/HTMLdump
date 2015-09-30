@@ -44,6 +44,11 @@ var BookmarkBox = React.createClass({
 					"p",
 					null,
 					this.props.data[i].description
+				),
+				React.createElement(
+					"div",
+					{ className: "type" },
+					this.props.data[i].type
 				)
 			));
 		}

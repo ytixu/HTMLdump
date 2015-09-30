@@ -31,6 +31,7 @@ var BookmarkBox = React.createClass({
 			<div className="bookmark-title">{this.props.data[i].name}</div>
 			<div>{this.props.data[i].created_at}</div>
 	     	<p>{this.props.data[i].description}</p>
+	     	<div className="type">{this.props.data[i].type}</div>
 		</a>
      	);
 	}
