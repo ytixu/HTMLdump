@@ -3,17 +3,17 @@ var database = {
 	data: [],
 
 	getData: function(callback){
-		// var jqxhr = $.ajax(this.url)
-		//   .done(function(res) {
-		// 	database.data = res['result'];
-		// 	console.log(database.data);
-		// 	callback();
-		//   })
-		//   .fail(function() {
-		// 	alert( "Can't load database :(" );
-		//   });
-		this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015","type":"API"},{"id":"2","name":"Webpack","url":"http://bensmithett.com/smarter-css-builds-with-webpack/","description":"Smarter CSS builds with Webpack","created_at":"9/27/2015","type":"tool"}];
-		callback();
+		var jqxhr = $.ajax(this.url)
+		  .done(function(res) {
+			database.data = res['result'];
+			console.log(database.data);
+			callback();
+		  })
+		  .fail(function() {
+			alert( "Can't load database :(" );
+		  });
+		// this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015","type":"API"},{"id":"2","name":"Webpack","url":"http://bensmithett.com/smarter-css-builds-with-webpack/","description":"Smarter CSS builds with Webpack","created_at":"9/27/2015","type":"tool"},{"id":"3","name":"Flexbox","url":"https://css-tricks.com/snippets/css/a-guide-to-flexbox/","description":"A more efficient way to lay out, align and distribute space among items in a container","created_at":"9/28/2015","type":"CSS"}];
+		// callback();
 
 	},
 
@@ -27,13 +27,11 @@ var BookmarkBox = React.createClass({
   	var boxes = [];
 	for (var i in this.props.data) {
 	  boxes.push(
-	  	<div className="bookmarkBox">
-			<a href={this.props.data[i].url} target="_blank">
-				<div className="bookmark-title">{this.props.data[i].name}</div>
-			</a>
+		<a href={this.props.data[i].url} target="_blank" className="bookmarkBox">
+			<div className="bookmark-title">{this.props.data[i].name}</div>
 			<div>{this.props.data[i].created_at}</div>
 	     	<p>{this.props.data[i].description}</p>
-     	</div>
+		</a>
      	);
 	}
 	return (

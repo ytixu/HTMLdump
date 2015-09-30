@@ -1,31 +1,47 @@
 body
 	font-family: 'Poiret One', cursive;
-
-#header
-	padding:12% 0;
 	background-image: url('../images/head.jpg');
 	background-position:top;
-	background-size:cover;
-	background-color:rgba(0,0,0,0.2);
-	background-blend-mode:multiply;
-	margin-bottom:100px;
+	background-repeat: repeat;
+
+#header
+	margin:100px 0 50px 0;
+	padding: 0 5%;
 
 .bookmark-display
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
-	align-items: flex-start;
+	align-items: stretch;
+	padding:15px 0;
 
-.bookmarkBox
+.white-bg
+	background-color:rgba(255,255,255,0.8);
+
+a.bookmarkBox
 	color:black;
 	padding:20px;
+	max-width:300px;
+	transition: background .25s ease-in-out;
+	-moz-transition: background .25s ease-in-out;
+	-webkit-transition: background .25s ease-in-out;
+	font-family: 'Raleway', sans-serif;
+	text-decoration:none;
+	color:black
+	width:25%;
+
+	&:hover
+		background-color: lightpink;
+		text-decoration:none;
+
 
 .head-title
 	font-size:400%;
 	color:white;
 	padding:0 10%;
 	line-height:20px;
+	text-shadow: 0 0 0.2em #FF77E6, 0 0 0.2em #F79, 0 0 0.2em #F3E454;
 
 	.subtitle
 		padding:0 14%;
@@ -37,3 +53,16 @@ body
 .footer
 	margin:100px 0;
 	text-align:center;
+
+
+@media screen and (max-width: 750px)
+	a.bookmarkBox
+		width:33%
+
+@media screen and (max-width: 400px)
+	a.bookmarkBox
+		width:50%
+
+@media screen and (max-width: 250px)
+	a.bookmarkBox
+		width:100%
