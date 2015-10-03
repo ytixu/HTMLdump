@@ -3,17 +3,17 @@ var database = {
 	data: [],
 
 	getData: function(callback){
-		var jqxhr = $.ajax(this.url)
-		  .done(function(res) {
-			database.data = res['result'];
-			console.log(database.data);
-			callback();
-		  })
-		  .fail(function() {
-			alert( "Can't load database :(" );
-		  });
-		// this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015","type":"API"},{"id":"2","name":"Webpack","url":"http://bensmithett.com/smarter-css-builds-with-webpack/","description":"Smarter CSS builds with Webpack","created_at":"9/27/2015","type":"tool"},{"id":"3","name":"Flexbox","url":"https://css-tricks.com/snippets/css/a-guide-to-flexbox/","description":"A more efficient way to lay out, align and distribute space among items in a container","created_at":"9/28/2015","type":"CSS"}];
-		// callback();
+		// var jqxhr = $.ajax(this.url)
+		//   .done(function(res) {
+		// 	database.data = res['result'];
+		// 	console.log(database.data);
+		// 	callback();
+		//   })
+		//   .fail(function() {
+		// 	alert( "Can't load database :(" );
+		//   });
+		this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015","type":"API"},{"id":"2","name":"Webpack","url":"http://bensmithett.com/smarter-css-builds-with-webpack/","description":"Smarter CSS builds with Webpack","created_at":"9/27/2015","type":"tool"},{"id":"3","name":"Flexbox","url":"https://css-tricks.com/snippets/css/a-guide-to-flexbox/","description":"A more efficient way to lay out, align and distribute space among items in a container","created_at":"9/28/2015","type":"CSS"}];
+		callback();
 
 	},
 
@@ -23,10 +23,9 @@ var database = {
            url: "http://sheetsu.com/apis/2d34085f",
            data: data })
         .done(function(res) {
-			console.log(res);
 			callback();
 		})
-		.fail(function() {
+		.fail(function(res) {
 			alert( "Can't update database :(" );
 		});
 	},
@@ -77,6 +76,7 @@ var controller = {
 
 $(function(){
 	$(".add-form").hide();
+	$('#success-message').hide();
 	database.getData(function(){
 		controller.renderNext();
 	});
@@ -88,8 +88,20 @@ $(function(){
 	});
 
 	$('#addToggle').click(function(event) {
-		console.log('alksdlajd');
-            event.preventDefault();
-            $('.add-form').slideToggle("fast");
+        event.preventDefault();
+        $('.add-form').slideToggle("fast");
     });
+
+	$('#subimitAdd').click(function(event) {
+		$(this).attr('disabled','disabled');
+		event.preventDefault();
+		var data =  $("#add-bookmark").serialize();
+		database.postData(data, function(){
+			$('#success-message').html('Your bookmark has been recorded.');
+			$('#add-bookmark').fadeOut('fast', function(){
+				$('#success-message').fadeIn('fast');
+			});
+
+		});
+	});
 }());

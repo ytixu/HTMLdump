@@ -118,6 +118,9 @@ a.bookmarkBox {
     background-color: white;
     color: lightpink; }
 
+#success-message {
+  text-align: center; }
+
 @media screen and (max-width: 750px) {
   a.bookmarkBox {
     width: 33%; } }
