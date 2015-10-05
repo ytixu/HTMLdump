@@ -39,6 +39,10 @@
 						<input class="col-xs-9" type="text" name="name" maxlength="21" placeholder="(max 21 characters)" required>
 					</div>
 					<div class="row">
+						<label class="col-xs-3 text-right">Type:</label>
+						<input class="col-xs-9" type="text" name="type" maxlength="21" placeholder="(a tag of 1-2 words)" required>
+					</div>
+					<div class="row">
 						<label class="col-xs-3 text-right">Description:</label>
 						<textarea class="col-xs-9" name="description" maxlength="55" placeholder="(max 55 characters)" required></textarea>
 					</div>
@@ -49,7 +53,10 @@
 
 					<input id="subimitAdd" type="button" class="btn btn-tran" value="Add">
 				</form>
-				<div id="success-message"></div>
+				<div id="success-message">
+					Thanks for sharing!<br>
+					<input id="submitAgain" type="button" value="Add again?" class="btn btn-tran">
+				</div>
 			</div>
 			<div class="white-bg">
 				<div id="page-0">

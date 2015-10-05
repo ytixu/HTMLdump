@@ -1,26 +1,26 @@
 var database = {
-	url: "http://sheetsu.com/apis/2d34085f",
+	url: "https://sheetsu.com/apis/2d34085f",
 	data: [],
 
 	getData: function(callback){
-		// var jqxhr = $.ajax(this.url)
-		//   .done(function(res) {
-		// 	database.data = res['result'];
-		// 	console.log(database.data);
-		// 	callback();
-		//   })
-		//   .fail(function() {
-		// 	alert( "Can't load database :(" );
-		//   });
-		this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015","type":"API"},{"id":"2","name":"Webpack","url":"http://bensmithett.com/smarter-css-builds-with-webpack/","description":"Smarter CSS builds with Webpack","created_at":"9/27/2015","type":"tool"},{"id":"3","name":"Flexbox","url":"https://css-tricks.com/snippets/css/a-guide-to-flexbox/","description":"A more efficient way to lay out, align and distribute space among items in a container","created_at":"9/28/2015","type":"CSS"}];
-		callback();
+		var jqxhr = $.ajax(this.url)
+		  .done(function(res) {
+			database.data = res['result'];
+			console.log(database.data);
+			callback();
+		  })
+		  .fail(function() {
+			alert( "Can't load database :(" );
+		  });
+		// this.data = [{"id":"1","name":"Sheetsu","url":"http://sheetsu.com/","description":"Turn your Google sheet into an API, yo~","created_at":"9/27/2015","type":"API"},{"id":"2","name":"Webpack","url":"http://bensmithett.com/smarter-css-builds-with-webpack/","description":"Smarter CSS builds with Webpack","created_at":"9/27/2015","type":"tool"},{"id":"3","name":"Flexbox","url":"https://css-tricks.com/snippets/css/a-guide-to-flexbox/","description":"A more efficient way to lay out, align and distribute space among items in a container","created_at":"9/28/2015","type":"CSS"}];
+		// callback();
 
 	},
 
 	postData: function(data, callback){
 		$.ajax({
            type: "POST",
-           url: "http://sheetsu.com/apis/2d34085f",
+           url: this.url,
            data: data })
         .done(function(res) {
 			callback();
@@ -74,34 +74,48 @@ var controller = {
 	}
 }
 
+var formComplete = false;
+
+function resetForm(){
+    formComplete = false;
+	$('#add-bookmark').trigger('reset');
+	$('#success-message').fadeOut('fast',function(){
+		$('#add-bookmark').fadeIn('fast');
+	});
+}
+
 $(function(){
-	$(".add-form").hide();
+	$('.add-form').hide();
 	$('#success-message').hide();
+
 	database.getData(function(){
 		controller.renderNext();
 	});
 
-	$("#add-bookmark").submit(function() {
-		database.postData($("#add-bookmark").serialize(), function(){
-			return;
-		});
-	});
-
 	$('#addToggle').click(function(event) {
         event.preventDefault();
-        $('.add-form').slideToggle("fast");
+        $('.add-form').slideToggle('fast', function(){
+        	if (formComplete){
+        		resetForm();
+        	}
+        });
     });
 
 	$('#subimitAdd').click(function(event) {
 		$(this).attr('disabled','disabled');
 		event.preventDefault();
-		var data =  $("#add-bookmark").serialize();
+		var data =  $('#add-bookmark').serialize();
 		database.postData(data, function(){
-			$('#success-message').html('Your bookmark has been recorded.');
+			formComplete = true;
 			$('#add-bookmark').fadeOut('fast', function(){
 				$('#success-message').fadeIn('fast');
 			});
-
 		});
+	});
+
+	$('#submitAgain').click(function(event){
+		$(this).attr('disabled','disabled');
+		event.preventDefault();
+		resetForm();
 	});
 }());
